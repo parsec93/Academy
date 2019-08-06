@@ -1,0 +1,28 @@
+Academy 데이터 베이스 
+
+1. 데이터베이스 생성 
+	
+create database academy; 
+
+
+
+2. 회원 테이블 생성 
+
+create table member(
+ member_idx int primary key auto_increment,
+ member_name varchar(10) not null,
+ member_email varchar(50) not null unique,
+ member_pass varchar(16) not null,
+ member_postcode int not null,
+ member_add1 varchar(50) not null,
+ member_add2 varchar(50) not null,
+ member_nickname varchar(8) not null
+);
+
+
+
+3. 회원 테이블에 관리자 계정 삽입 
+
+insert into member values(
+ 1, 'admin', 'admin@naver.com', 'admin', 12345, '부산
+, '연제구', 'admin');
