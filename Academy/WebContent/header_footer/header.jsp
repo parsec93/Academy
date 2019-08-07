@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html"
+            <a class="navbar-brand logo_h" href="index.jsp"
               ><img src="img/logo.png" alt=""
             /></a>
             <button
@@ -46,10 +46,10 @@
             >
               <ul class="nav navbar-nav menu_nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home</a>
+                  <a class="nav-link" href="index.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about-us.html">About</a>
+                  <a class="nav-link" href="about-us.jsp">About</a>
                 </li>
                 <li class="nav-item submenu dropdown">
                   <a
@@ -63,25 +63,29 @@
                   >
                   <ul class="dropdown-menu">
                     <li class="nav-item">
-                      <a class="nav-link" href="courses.html">Courses</a>
+                      <a class="nav-link" href="courses.jsp">Courses</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="course-details.html"
+                      <a class="nav-link" href="course-details.jsp"
                         >Course Details</a
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="elements.html">Elements</a>
+                      <a class="nav-link" href="elements.jsp">Elements</a>
                     </li>
                   </ul>
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
+                  <a class="nav-link" href="contact.jsp">Contact</a>
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link" href="loginForm.html">로그인</a>
+                  <a class="nav-link" href="loginForm.jsp">로그인</a>
+                </li>
+                
+                <li class="nav-item">
+                 <a class="nav-link" href="notice/notice.jsp">공지/이벤트</a>
                 </li>
            <!-- <li class="nav-item submenu dropdown">
                   <a
