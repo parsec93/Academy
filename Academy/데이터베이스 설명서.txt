@@ -23,5 +23,4 @@ create table member(
 
 3. 회원 테이블에 관리자 계정 삽입 
 
-insert into member values(
- 1, 'admin', 'admin@naver.com', 'admin', 12345, '부산', '연제구', 'admin');
+insert into member values(1, 'admin', 'admin@naver.com', 'admin', 12345, '부산', '연제구', 'admin');
