@@ -4,7 +4,7 @@ Academy 데이터 베이스
 	
 create database academy; 
 
-
+//-------------------------------------------------------------
 
 2. 회원 테이블 생성 
 
@@ -20,7 +20,54 @@ create table member(
 );
 
 
+//-------------------------------------------------------------
+
+
 
 3. 회원 테이블에 관리자 계정 삽입 
 
 insert into member values(1, 'admin', 'admin@naver.com', 'admin', 12345, '부산', '연제구', '010-2613-6735');
+
+//-------------------------------------------------------------
+
+
+
+4. 공지사항(notice) 게시판 테이블 생성 
+
+Create table notice (
+notice_idx int primary key auto_increment,
+notice_subject varchar(30) not null,
+notice_content varchar(500) not null,
+notice_file varchar(100) ,
+notice_date date,
+event_start_day date,
+event_end_day date,
+isNotice int(1) not null
+);
+
+isNotice = 1 이면 공지
+isNotice = 2 이면 이벤트
+
+
+
+//-------------------------------------------------------------
+
+
+
+5. notice 게시판에 "공지사항1" 내용 추가 
+
+insert into notice values(
+1, '공지1', '공지사항1 내용', '첨부파일1', '2019-08-01', null, null, 1);
+
+
+
+
+//-------------------------------------------------------------
+
+
+
+
+6. notice 게시판에 "이벤트1" 내용 추가 
+
+insert into notice values(
+2, '이벤트1', '이벤트1 내용', '첨부파일1' , '2019-08-01', '2019-08-01' , '2019-08-31', 2);
