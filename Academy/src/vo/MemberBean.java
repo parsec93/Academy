@@ -8,7 +8,7 @@ public class MemberBean {
     private int member_postcode;
     private String member_add1;
     private String member_add2;
-    private String member_nickname;
+    private String member_phone;
     
     
 	public int getMember_idx() {
@@ -53,13 +53,12 @@ public class MemberBean {
 	public void setMember_add2(String member_add2) {
 		this.member_add2 = member_add2;
 	}
-	public String getMember_nickname() {
-		return member_nickname;
+	public String getMember_phone() {
+		return member_phone;
 	}
-	public void setMember_nickname(String member_nickname) {
-		this.member_nickname = member_nickname;
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
 	}
-    
    
     
 }

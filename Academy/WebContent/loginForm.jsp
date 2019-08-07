@@ -22,8 +22,6 @@
 
 <body>
 
-   
-    
     <!--================ Start Login Area =================-->
     
     <div class="login_container">
@@ -108,6 +106,5 @@
     </script>
     
     <!--================ End Login Area =================-->
-    
 </body>
 </html>
