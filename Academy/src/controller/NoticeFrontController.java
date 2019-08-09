@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.NoticeWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.me")
-public class MemberFrontController extends HttpServlet {
-    
-    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("*.no")
+public class NoticeFrontController extends HttpServlet {
+	
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8"); // 한글 설정
         
         // 서블릿 주소 가져오기
@@ -27,8 +28,19 @@ public class MemberFrontController extends HttpServlet {
         if(command.equals("/noticeWriteForm.no")) {
             // member 폴더의 loginForm.jsp 페이지로 이동
             forward = new ActionForward();
-            forward.setPath("/member/loginForm.jsp");
-        } 
+            forward.setPath("/noticeWriteForm.jsp");
+        } else if (command.equals("/NoticeWritePro.no")) {
+        	action = new NoticeWriteProAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }else if(command.equals("/notice.no")) {
+        	forward = new ActionForward();
+        	forward.setPath("/notice.jsp");
+        }
         
         
         
@@ -46,8 +58,9 @@ public class MemberFrontController extends HttpServlet {
         }
         
     }
-
-    @Override
+	
+	
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request, response);
     }
