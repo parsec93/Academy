@@ -64,7 +64,7 @@
 							href="#"data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">공지/이벤트</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="notice.jsp">공지사항</a></li>
+								<li class="nav-item"><a class="nav-link" href="notice.no">공지사항</a></li>
 								<li class="nav-item"><a class="nav-link" href="event.jsp">이벤트</a></li>
 							<%if(sid.equals("admin")) {%>
 								<li class="nav-item"><a class="nav-link" href="noticeWriteForm.no">공지사항&이벤트입력</a></li>

@@ -4,6 +4,7 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import vo.NoticeBean;
 
@@ -76,6 +77,39 @@ public class NoticeDAO {
 			
 	}
 	
+	
+	//Notice(공지사항) 게시판 출력 
+	public ArrayList<NoticeBean> getNoticeList(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<NoticeBean> noticeList = null;
+		
+		String sql = "SELECT * FROM notice";
+		
+		
+		try {
+			//전체 게시판 목록 조회
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			noticeList = new ArrayList<NoticeBean>();
+			
+			while(rs.next()) {
+				NoticeBean noticeBean = new NoticeBean();
+				noticeBean.setNotice_idx(rs.getInt("notice_idx"));
+				noticeBean.setNotice_subject(rs.getString("notice_subject"));
+				noticeBean.setNotice_date(rs.getDate("notice_date"));
+				
+				noticeList.add(noticeBean);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return noticeList;
+	}
 	
 	
 	

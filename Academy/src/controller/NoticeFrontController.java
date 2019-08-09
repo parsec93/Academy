@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.NoticeListAction;
 import action.NoticeWriteProAction;
 import vo.ActionForward;
 
@@ -38,8 +39,13 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(command.equals("/notice.no")) {
-        	forward = new ActionForward();
-        	forward.setPath("/notice.jsp");
+        	System.out.println("notice.no FrontController");
+        	action = new NoticeListAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
         
         

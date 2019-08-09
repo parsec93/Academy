@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.NoticeBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,6 +23,14 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
+<%
+// 공지/이벤트 목록 가져오기 
+ArrayList<NoticeBean> noticeList = (ArrayList<NoticeBean>)request.getAttribute("noticeList");
+%>
+
+
+
+
 
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -55,7 +66,25 @@
               <p>
 				공지사항
               </p>
-
+				<table>
+				<tr>
+					<td>글 번호</td><td>글 제목</td><td>작성일</td>
+					<%
+					for(int i =0 ; i<noticeList.size(); i++){
+						NoticeBean noticeBean = (NoticeBean)noticeList.get(i);
+						%>	
+						<tr>
+							<td><%=noticeBean.getNotice_idx() %></td>
+							<td><%=noticeBean.getNotice_subject() %></td>
+							<td><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
+						</tr>
+						<%
+					}
+					%>
+				</tr>
+				
+				
+				</table>
 
 
 
