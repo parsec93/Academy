@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	// 세션값 가져 오기 
+	String sid = (String)session.getAttribute("sid");
+	
+	if(sid == null){
+		sid = "guest";
+	}
+	%>
 <header class="header_area">
 	<div class="main_menu">
 		<div class="search_input" id="search_input_box">
@@ -58,9 +66,9 @@
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="notice.jsp">공지사항</a></li>
 								<li class="nav-item"><a class="nav-link" href="event.jsp">이벤트</a></li>
-
-								<li class="nav-item"><a class="nav-link" href="notice_event_board.jsp">공지사항&이벤트입력</a></li>
-							
+							<%if(sid.equals("admin")) {%>
+								<li class="nav-item"><a class="nav-link" href="noticeWriteForm.no">공지사항&이벤트입력</a></li>
+							<% }%>
 							</ul></li>
 						<!-- <li class="nav-item submenu dropdown">
                   <a

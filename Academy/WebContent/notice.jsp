@@ -56,7 +56,6 @@
 				공지사항
               </p>
 
-	<input type="button" value="글쓰기" onclick="location.href='noticeWriteForm.no'">
 
 
 
