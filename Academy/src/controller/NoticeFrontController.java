@@ -41,6 +41,7 @@ public class NoticeFrontController extends HttpServlet {
         }else if(command.equals("/notice.no")) {
         	System.out.println("notice.no FrontController");
         	action = new NoticeListAction();
+        	
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -79,22 +79,29 @@ public class NoticeDAO {
 	
 	
 	//Notice(공지사항) 게시판 출력 
-	public ArrayList<NoticeBean> getNoticeList(){
+	public ArrayList<NoticeBean> selectNoticeList(int page, int limit){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<NoticeBean> noticeList = null;
 		
-		String sql = "SELECT * FROM notice";
+		ArrayList<NoticeBean> noticeList = new ArrayList<NoticeBean>();
+		
+		int startRow = (page -1 ) * 10; // 읽어올 목록의 첫 레코드 번호
 		
 		
 		try {
+			String sql = "SELECT * FROM notice  LIMIT ?,?";
 			//전체 게시판 목록 조회
+			
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
-			noticeList = new ArrayList<NoticeBean>();
+			
+			//ResultSet 객체 내의 모든 레코드를 각각 레코드별로 NoticeBean 에 담아서 ArrayList 객체에 저장 
 			
 			while(rs.next()) {
 				NoticeBean noticeBean = new NoticeBean();
+				
 				noticeBean.setNotice_idx(rs.getInt("notice_idx"));
 				noticeBean.setNotice_subject(rs.getString("notice_subject"));
 				noticeBean.setNotice_date(rs.getDate("notice_date"));
@@ -103,7 +110,7 @@ public class NoticeDAO {
 				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("selectArticleList() 에러 " + e.getMessage());
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -111,7 +118,29 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
-	
+	// 전체 게시물 수를 조회하여 리턴 
+	public int selectNoticeListCount() {
+		int listCount = 0; // 게시물 개수를 저장하느니 변수 
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM notice";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("selectListCount() 에러" + e.getMessage());
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
+	}
 	
 	
 }

@@ -59,6 +59,8 @@ isNotice = 2 이면 이벤트
 insert into notice values(
 1, '공지1', '공지사항1 내용', '첨부파일1', '2019-08-01', null, null, 1);
 
+insert into notice values(
+null, '공지Test', '공지사항 내용', '첨부파일', '2019-08-01', null, null, 1); * 10회이상 시행(페이징 처리 확인을 위해)
 
 
 
