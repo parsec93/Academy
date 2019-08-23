@@ -4,6 +4,7 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.NoticeBean;
@@ -142,5 +143,66 @@ public class NoticeDAO {
 		return listCount;
 	}
 	
+	
+	public ArrayList<NoticeBean> getEventList(){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<NoticeBean> eventList = null;
+		String sql = "SELECT * FROM notice WHERE isNotice=2 AND event_end_day >= now() ORDER BY notice_idx DESC,event_end_day DESC";
+		
+		try {	
+			//이벤트 게시판 목록 가져오기
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			eventList = new ArrayList<NoticeBean>();
+			
+			while(rs.next()) {
+				NoticeBean noticeBean = new NoticeBean();
+				noticeBean.setNotice_idx(rs.getInt("notice_idx"));
+				noticeBean.setNotice_file(rs.getString("notice_file"));
+				noticeBean.setEvent_start_day(rs.getDate("event_start_day"));
+				noticeBean.setNotice_date(rs.getDate("notice_date"));
+				noticeBean.setEvent_end_day(rs.getDate("event_end_day"));
+				noticeBean.setNotice_subject(rs.getString("notice_subject"));
+				eventList.add(noticeBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return eventList;
+	}//이벤트 리스트 처리
+	
+	public NoticeBean selectArticle(int notice_idx) {
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		NoticeBean noticeBean=null;
+		String sql = "select * from notice where notice_idx=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, notice_idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				noticeBean = new NoticeBean();
+				noticeBean.setNotice_idx(rs.getInt("notice_idx"));
+				noticeBean.setNotice_file(rs.getString("notice_file"));
+				noticeBean.setEvent_start_day(rs.getDate("event_start_day"));
+				noticeBean.setNotice_date(rs.getDate("notice_date"));
+				noticeBean.setEvent_end_day(rs.getDate("event_end_day"));
+				noticeBean.setNotice_subject(rs.getString("notice_subject"));
+				noticeBean.setNotice_content(rs.getString("notice_content"));
+				noticeBean.setIsNotice(rs.getInt("isNotice"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return noticeBean;
+	}//NoticeView 처리(이벤트/공지 같이 사용)
 	
 }

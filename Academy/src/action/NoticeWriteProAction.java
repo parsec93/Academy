@@ -1,6 +1,8 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +41,21 @@ public class NoticeWriteProAction implements Action {
         // request 객체를 MultipartRequest 객체에 전달했으므로 multi.getParameter() 메서드로 파라미터 가져오기
         noticeBean.setNotice_subject(multi.getParameter("notice_subject"));
         noticeBean.setNotice_content(multi.getParameter("notice_content"));
+        noticeBean.setIsNotice(Integer.parseInt(multi.getParameter("isNotice")));// 1 : 공지사항 / 2: 이벤트
+        
+        //이벤트 시작일 및 종료일 
+        Date event_start_day, event_end_day;
+        
+        event_start_day = Date.valueOf(multi.getParameter("event_start_day"));
+        event_end_day = Date.valueOf(multi.getParameter("event_end_day"));
+        noticeBean.setEvent_start_day(event_start_day);
+        noticeBean.setEvent_end_day(event_end_day);
+
+//        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_start_day")));
+//        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_end_day")));
+        //
+        
+        
         // 업로드 파일명은 별도의 메서드 getOriginalFileName()를 호출하여 가져오기 
         noticeBean.setNotice_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
         

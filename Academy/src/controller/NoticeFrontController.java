@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.EventListAction;
 import action.NoticeListAction;
+import action.NoticeViewAction;
 import action.NoticeWriteProAction;
 import vo.ActionForward;
 
@@ -42,6 +44,20 @@ public class NoticeFrontController extends HttpServlet {
         	System.out.println("notice.no FrontController");
         	action = new NoticeListAction();
         	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }else if(command.equals("/event.no")) {
+        	action = new EventListAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }else if(command.equals("/noticeView.no")) {
+        	action = new NoticeViewAction();
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

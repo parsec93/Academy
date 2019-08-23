@@ -87,7 +87,7 @@ String sid = (String)session.getAttribute("sid");
 						%>	
 						<tr>
 							<td><%=noticeBean.getNotice_idx() %></td>
-							<td><%=noticeBean.getNotice_subject() %></td>
+							<td><a href ="noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>"><%=noticeBean.getNotice_subject() %></a></td>
 							<td><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
 						</tr>
 						<%
