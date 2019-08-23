@@ -28,7 +28,7 @@
 %>
 <body>
 	<!--================ Start Header Menu Area =================-->
-	<jsp:include page="header_footer/header.jsp" />
+	<jsp:include page="../header_footer/header.jsp" />
 	<!--================ End Header Menu Area =================-->
 
 	<!--================Home Banner Area =================-->
@@ -115,7 +115,7 @@
 	<!--================ End Feature Area =================-->
 
 	<!--================ Start footer Area  =================-->
-	<jsp:include page="header_footer/footer.jsp" />
+	<jsp:include page="../header_footer/footer.jsp" />
 	<!--================ End footer Area  =================-->
 
 	<!-- Optional JavaScript -->

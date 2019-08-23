@@ -42,7 +42,7 @@ String sid = (String)session.getAttribute("sid");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
-    <jsp:include page="header_footer/header.jsp" />
+    <jsp:include page="../header_footer/header.jsp" />
     <!--================ End Header Menu Area =================-->
 
     <!--================Home Banner Area =================-->
@@ -85,9 +85,9 @@ String sid = (String)session.getAttribute("sid");
 					for(int i =0 ; i<noticeList.size(); i++){
 						NoticeBean noticeBean = (NoticeBean)noticeList.get(i);
 						%>	
-						<tr>
+						<tr style="cursor:pointer;" onclick="location.href='noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>'" onmouseover="window.status='https://www.happyjung.com/'" onmouseout="window.status=''">
 							<td><%=noticeBean.getNotice_idx() %></td>
-							<td><a href ="noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>"><%=noticeBean.getNotice_subject() %></a></td>
+							<td><%=noticeBean.getNotice_subject() %></td>
 							<td><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
 						</tr>
 						<%
@@ -141,7 +141,7 @@ String sid = (String)session.getAttribute("sid");
     <!--================ End Feature Area =================-->
 
     <!--================ Start footer Area  =================-->
-    <jsp:include page="header_footer/footer.jsp" />
+    <jsp:include page="../header_footer/footer.jsp" />
     <!--================ End footer Area  =================-->
 
     <!-- Optional JavaScript -->

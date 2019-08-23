@@ -20,7 +20,7 @@ public class NoticeViewAction implements Action {
 		request.setAttribute("noticeBean", noticeBean);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/noticeView.jsp");//포워딩 주소 지정
+		forward.setPath("notice_event/noticeView.jsp");//포워딩 주소 지정
 		forward.setRedirect(false);//포워드 방식 지정
 		
 		

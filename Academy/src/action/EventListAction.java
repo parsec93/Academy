@@ -22,7 +22,7 @@ public class EventListAction implements Action {
 		request.setAttribute("eventList", eventList);
 		
 		
-		forward.setPath("event.jsp");
+		forward.setPath("notice_event/event.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}
