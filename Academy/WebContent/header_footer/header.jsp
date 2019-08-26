@@ -54,6 +54,12 @@
 
 						<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 						</li>	
+						<li class="nav-item submenu dropdown"><a class="nav-link dropdown-toggle"
+							href="#"data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false">게시판</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item"><a class="nav-link" href="BoardList.bo">게시판</a></li>
+							</ul></li>
 						<%
 						if(sId == null){
             			%>
