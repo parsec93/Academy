@@ -2,11 +2,9 @@
 	pageEncoding="UTF-8"%>
 	<%
 	// 세션값 가져 오기 
-	String sid = (String)session.getAttribute("sid");
+	String sId = (String)session.getAttribute("sId");
 	
-	if(sid == null){
-		sid = "guest";
-	}
+	
 	%>
 <header class="header_area">
 	<div class="main_menu">
@@ -55,10 +53,21 @@
 							</ul></li>
 
 						<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
-						</li>
-
-						<li class="nav-item"><a class="nav-link" href="loginForm.jsp">로그인</a>
-						</li>
+						</li>	
+						<%
+						if(sId == null){
+            			%>
+              			  <li class="nav-item">
+                  <a class="nav-link" href="member/loginForm.jsp">로그인</a>
+                </li>
+                <%}else {
+                	%> <li class="nav-item">
+                  <a class="nav-link" href="InfoPro.me"><%=sId %>님</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="LogoutPro.me">로그아웃</a>
+                  </li>
+                <%}%>
 
 						<li class="nav-item submenu dropdown"><a class="nav-link dropdown-toggle"
 							href="#"data-toggle="dropdown"
@@ -66,7 +75,7 @@
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="notice.no">공지사항</a></li>
 								<li class="nav-item"><a class="nav-link" href="event.no">이벤트</a></li>
-							<%if(sid.equals("admin")) {%>
+							<%if(sId.equals("admin")) {%>
 								<li class="nav-item"><a class="nav-link" href="noticeWriteForm.no">공지사항&이벤트입력</a></li>
 							<% }%>
 							</ul></li>

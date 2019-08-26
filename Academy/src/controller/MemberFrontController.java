@@ -10,6 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.member.LoginProAction;
+import action.member.LogoutProAction;
+import action.member.MemberCheckProAction;
+import action.member.MemberJoinProAction;
+import action.member.infoProAction;
+import action.member.updatePasswordProAction;
+import action.member.updateProAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -24,11 +31,85 @@ public class MemberFrontController extends HttpServlet {
         Action action = null;
         ActionForward forward = null;
         
-        if(command.equals("/noticeWriteForm.no")) {
+        if(command.equals("/MemberLoginForm.me")) {
             // member 폴더의 loginForm.jsp 페이지로 이동
             forward = new ActionForward();
             forward.setPath("/member/loginForm.jsp");
-        } 
+        }else if(command.equals("/MemberLoginPro.me")) {
+//			action = new MemberLoginProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberJoinPro.me")) {
+			action = new MemberJoinProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberCheckPro.me")) {
+			action = new MemberCheckProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/LoginPro.me")) {
+
+        	action = new LoginProAction();
+
+        	try {
+				forward =action.execute(request, response);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/LogoutPro.me")) {
+        	System.out.println("/LogoutPro.me");
+        	action = new LogoutProAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/InfoPro.me")){
+        	System.out.println("/InfoPro.me");
+        	action = new infoProAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        }else if(command.equals("/UpdatePro.me")) {
+        	action = new updateProAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/UpdatePassword.me")) {
+        	action = new updatePasswordProAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         
         
         

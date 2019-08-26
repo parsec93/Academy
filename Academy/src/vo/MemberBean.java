@@ -3,9 +3,10 @@ package vo;
 public class MemberBean {
     private int member_idx;
     private String member_name;
+    private String member_id;
     private String member_email;
     private String member_pass;
-    private int member_postcode;
+    private String member_postcode;
     private String member_add1;
     private String member_add2;
     private String member_phone;
@@ -16,6 +17,12 @@ public class MemberBean {
 	}
 	public void setMember_idx(int member_idx) {
 		this.member_idx = member_idx;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public String getMember_name() {
 		return member_name;
@@ -35,10 +42,10 @@ public class MemberBean {
 	public void setMember_pass(String member_pass) {
 		this.member_pass = member_pass;
 	}
-	public int getMember_postcode() {
+	public String getMember_postcode() {
 		return member_postcode;
 	}
-	public void setMember_postcode(int member_postcode) {
+	public void setMember_postcode(String member_postcode) {
 		this.member_postcode = member_postcode;
 	}
 	public String getMember_add1() {
