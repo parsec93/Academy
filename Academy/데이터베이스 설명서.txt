@@ -47,7 +47,7 @@ insert into member(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', '
 
 
 
-3. 공지사항(notice) 게시판 테이블 생성 
+3. 공지사항(notice) 게시판 테이블 생성 (notice 테이블로 공지사항과 이벤트 모두를 처리함 => 별도의 event 테이블은 없음.)
 
 Create table notice (
 notice_idx int primary key auto_increment,
