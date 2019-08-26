@@ -39,7 +39,9 @@ create table member(
 
 로 실행 
 
+insert into member(2, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01026136735');
 
+관리자 계정 추가.
 
 //-------------------------------------------------------------
 
