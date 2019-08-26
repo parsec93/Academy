@@ -19,7 +19,7 @@ create table member(
  member_phone varchar(13) not null
 );
 
- !! 멤버 테이블 내용 수정 
+ !! 멤버 테이블 내용 수정 ( 위의 create table member 구문을 실행하지 않았을 경우 아래의 drop 구문을 실행하지 말고 바로 그 아래의 create 문을 실행한다 )
  
  drop table member; 
  
@@ -47,15 +47,7 @@ insert into member(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', '
 
 
 
-3. 회원 테이블에 관리자 계정 삽입 
-
-insert into member values(1, 'admin', 'admin@naver.com', 'admin', 12345, '부산', '연제구', '010-2613-6735');
-
-//-------------------------------------------------------------
-
-
-
-4. 공지사항(notice) 게시판 테이블 생성 
+3. 공지사항(notice) 게시판 테이블 생성 
 
 Create table notice (
 notice_idx int primary key auto_increment,
@@ -77,7 +69,7 @@ isNotice = 2 이면 이벤트
 
 
 
-5. notice 게시판에 "공지사항1" 내용 추가 
+4. notice 게시판에 "공지사항1" 내용 추가 
 
 insert into notice values(
 1, '공지1', '공지사항1 내용', '첨부파일1', '2019-08-01', null, null, 1);
@@ -92,7 +84,34 @@ null, '공지Test', '공지사항 내용', '첨부파일', '2019-08-01', null, n
 
 
 
-6. notice 게시판에 "이벤트1" 내용 추가 
+5. notice 게시판에 "이벤트1" 내용 추가 
 
 insert into notice values(
 2, '이벤트1', '이벤트1 내용', '첨부파일1' , '2019-08-01', '2019-08-01' , '2019-08-31', 2);
+
+
+
+//-------------------------------------------------------------
+
+6. 게시판 board 테이블 생성 
+
+CREATE TABLE `academy`.`board` (
+  `board_num` INT(11) NOT NULL,
+  `board_subject` VARCHAR(45) NOT NULL,
+  `board_content` VARCHAR(500) NOT NULL,
+  `board_file` VARCHAR(45) NULL,
+  `board_re_ref` INT(11) NULL,
+  `board_re_lev` INT(11) NULL,
+  `board_re_seq` INT(11) NULL,
+  `board_readcount` INT(11) NULL,
+  `board_date` DATE NULL,
+  PRIMARY KEY (`board_num`));
+  
+  
+  7. 게시판 board 의 댓글 작성용 comment 테이블 생성 
+  
+  CREATE TABLE `academy`.`comment` (
+  `comment_num` INT(11) NOT NULL,
+  `board_num` INT(11) NOT NULL,
+  `comment` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`comment_num`));
