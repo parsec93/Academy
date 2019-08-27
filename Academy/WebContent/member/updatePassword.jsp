@@ -4,7 +4,7 @@
 <%
 String sId = (String)session.getAttribute("sId");
 request.setCharacterEncoding("utf-8");
-MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
+
 
 %>
 <!DOCTYPE html>
@@ -43,8 +43,6 @@ MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
             }
 			}else{
 				alert('기존비밀번호를 확인하세요!');
-				alert(password);
-				alert(password1);
 				return false;
 			}
         }
@@ -62,9 +60,9 @@ MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
 
                     <form action="../UpdatePassword.me" method="post" onsubmit="return tocheckpw2()">
 
-                        <input type="password" name="password" id="password1" class="inpt" required="required" placeholder="현재 비밀번호">
+                        <input type="password" name="password1" id="password1" class="inpt" required="required" placeholder="현재 비밀번호">
                         <label for="password">Your password</label>
-                        <input type="hidden" id="password" value="<%=memberBean.getMember_pass() %>">
+                        <input type="hidden" name="password" id="password" value="<%=request.getParameter("password") %>">
                         
                         <input type="password" name="newPassword1" id="newPassword1" class="inpt" required="required" placeholder="새로운 비밀번호">
                         <label for="new password1">new password</label>
@@ -73,7 +71,6 @@ MemberBean memberBean = (MemberBean)request.getAttribute("memberBean");
                         <label for="new password2">new password check</label>
                         
 
-   
                         
                         <div class="submit-wrap">
                             <input type="submit" value="Sign up" class="submit"> <a

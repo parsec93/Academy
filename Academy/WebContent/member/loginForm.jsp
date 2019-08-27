@@ -131,8 +131,8 @@ function sandEmail() {
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password"> 
                         <label for="password">Your password</label> 
                         <input type="checkbox" id="remember" class="checkbox" checked> 
-                        <label for="remember">Remember mezzzzzzssss</label>
-                        <div class="submit-wrap">n
+                        <label for="remember">Remember me</label>
+                        <div class="submit-wrap">
                             <input type="submit" value="Sign in" class="submit"> 
                             <a href="#" class="more">Forgot your password?</a>
                         </div>

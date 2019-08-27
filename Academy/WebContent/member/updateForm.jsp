@@ -35,28 +35,28 @@ request.setCharacterEncoding("utf-8");
             <div class="content">
 
                     <form action="../UpdatePro.me" method="post" >
-                        <input type="text" name="name" id="name" class="inpt" value="<%=request.getParameter("name") %>" required="required" placeholder="Your name"> 
                         <label for="name">Your name</label> 
+                        <input type="text" name="name" id="name" class="inpt" value="<%=request.getParameter("name") %>" required="required" placeholder="Your name"> 
                         
-                        <input type="text" name="id" id="id" class="inpt_02" value="<%=sId %>" required="required" placeholder="Your id"> 
                         <label for="id">Your Id</label>
+                        <input type="text" name="id" id="id" class="inpt_02" value="<%=sId %>" readonly="readonly" required="required" placeholder="Your id"> 
                         
-                        <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                         <label for="password">Your password</label>
+                        <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                         
+                        <label for="email">Your email</label>
                         <input type="email" name="email" id="email" class="inpt_04" value="<%=request.getParameter("email") %>" required="required" placeholder="Your email">
                      
-                        <label for="email">Your email</label>
                         
                     
-                        <input type="text" name="address" id="address" class="inpt_02" value="<%=request.getParameter("address") %>" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label><br>
-                        <input type="text" name="address_more1" id="address_more1" class="inpt" value="<%=request.getParameter("address_more1") %>" required="required" placeholder="상세주소">
+                        <input type="text" name="address" id="address" class="inpt_02" value="<%=request.getParameter("address") %>" required="required" placeholder="우편번호">
                         <label for="address_more1">상세주소</label>
+                        <input type="text" name="address_more1" id="address_more1" class="inpt" value="<%=request.getParameter("address_more1") %>" required="required" placeholder="상세주소">
                         <input type="text" name="address_more2" id="address_more2" class="inpt" value="<%=request.getParameter("address_more2") %>" required="required" placeholder="상세주소">
                         
-                        <input type="text" name="phone" id="phone" class="inpt" value="<%=request.getParameter("phone") %>" required="required" placeholder="휴대폰 번호"> 
                         <label for="name">Your phone</label>
+                        <input type="text" name="phone" id="phone" class="inpt" value="<%=request.getParameter("phone") %>" required="required" placeholder="휴대폰 번호"> 
                         
                         
                         

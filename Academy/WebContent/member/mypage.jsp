@@ -32,6 +32,17 @@ request.setCharacterEncoding("utf-8");
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
 </head>
+<script>
+function mySubmit(index) {
+	if (index == 1) {
+	document.myForm.action='member/updateForm.jsp';
+	}
+	if (index == 2) {
+	document.myForm.action='member/updatePassword.jsp';
+	}
+	document.myForm.submit();
+}
+</script>
 
 <body>
 
@@ -42,36 +53,36 @@ request.setCharacterEncoding("utf-8");
             <a href="index.jsp">컴퓨터 학원</a>
             <div class="content">
    
-                    <form action="member/updateForm.jsp" method="post">
+                    <form name='myForm' method="post">
                        
 						
-                        <input type="text" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" required="required" placeholder="Your name"> 
-                        <label for="name">Your name</label> 
+                        <label for="name">Your name : </label> <%=memberBean.getMember_name() %> <br>
+                        <input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" required="required" placeholder="Your name"> 
                         
-                        <input type="text" name="id" id="id" class="inpt_02" value="<%=sId %>" required="required" placeholder="Your id"> 
-                        <label for="id">Your Id</label>
+                        <label for="id">Your Id : </label> <%=sId %><br>
+                        <input type="hidden" name="id" id="id" class="inpt_02" value="<%=sId %>" required="required" placeholder="Your id"> 
                         
                         <input type="hidden" name="password" id="password" class="inpt" value="<%=memberBean.getMember_pass() %>" required="required" placeholder="Your password">
-                        <label for="password">Your password</label>
-                        
-                        <input type="email" name="email" id="email" class="inpt_04" value="<%=memberBean.getMember_email() %>" required="required" placeholder="Your email">
-                     
-                        <label for="email">Your email</label>
+                 
+                        <label for="email">Your email : </label><%=memberBean.getMember_email() %><br>
+                        <input type="hidden" name="email" id="email" class="inpt_04" value="<%=memberBean.getMember_email() %>" required="required" placeholder="Your email">
                         
                     
-                        <input type="text" name="address" id="address" class="inpt_02" value="<%=memberBean.getMember_postcode() %>" required="required" placeholder="우편번호">
-                        <label for="address">우편번호</label><br>
-                        <input type="text" name="address_more1" id="address_more1" class="inpt" value="<%=memberBean.getMember_add1() %>" required="required" placeholder="상세주소">
-                        <label for="address_more1">상세주소</label>
-                        <input type="text" name="address_more2" id="address_more2" class="inpt" value="<%=memberBean.getMember_add2() %>" required="required" placeholder="상세주소">
+                        <label for="address">우편번호 : </label> <%=memberBean.getMember_postcode() %><br> 
+                        <input type="hidden" name="address" id="address" class="inpt_02" value="<%=memberBean.getMember_postcode() %>" required="required" placeholder="우편번호">
                         
-                        <input type="text" name="phone" id="phone" class="inpt" value="<%=memberBean.getMember_phone() %>" required="required" placeholder="휴대폰 번호"> 
-                        <label for="name">Your phone</label>
+                        <label for="address_more1">상세주소 : </label><%=memberBean.getMember_add1() %><%=memberBean.getMember_add2() %><br>
+                        
+                        <input type="hidden" name="address_more1" id="address_more1" class="inpt" value="<%=memberBean.getMember_add1() %>" required="required" placeholder="상세주소">
+                        <input type="hidden" name="address_more2" id="address_more2" class="inpt" value="<%=memberBean.getMember_add2() %>" required="required" placeholder="상세주소">
+                        
+                        <label for="name">Your phone : </label><%=memberBean.getMember_phone() %><br>
+                        <input type="hidden" name="phone" id="phone" class="inpt" value="<%=memberBean.getMember_phone() %>" required="required" placeholder="휴대폰 번호"> 
                         
                 
                         <div class="submit-wrap">
-                            <input type="submit" value="회원 수정"  >
-                            <input type="button" value="비밀번호 수정" onclick="location.href='member/updatePassword.jsp'"> 
+								<input type='button' value="회원 수정" onClick='mySubmit(1)'>
+								<input type='button' value="비밀번호 수정" onClick='mySubmit(2)'>
                         </div>
                     </form>
             </div>

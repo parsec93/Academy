@@ -115,6 +115,7 @@ public class MemberDAO {
 	            memberBean = new MemberBean();
 	            memberBean.setMember_name(rs.getString("member_name"));
 	            memberBean.setMember_id(rs.getString("member_id"));
+	            memberBean.setMember_pass(rs.getString("member_pass"));
 	            memberBean.setMember_email(rs.getString("member_email"));
 	            memberBean.setMember_postcode(rs.getString("member_postcode"));
 	            memberBean.setMember_add1(rs.getString("member_add1"));
