@@ -90,7 +90,7 @@ public class NoticeDAO {
 		
 		
 		try {
-			String sql = "SELECT * FROM notice  LIMIT ?,? ORDER BY notice_idx DESC";
+			String sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
 			//전체 게시판 목록 조회
 			
 			pstmt = con.prepareStatement(sql);

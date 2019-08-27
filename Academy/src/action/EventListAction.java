@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +20,22 @@ public class EventListAction implements Action {
 		EventListService eventListService = new EventListService();
 		
 		ArrayList<NoticeBean> eventList = eventListService.getEventList();
-		request.setAttribute("eventList", eventList);
+		
+		if(eventList == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('이벤트 조회 실패')");
+			out.println("</script>");
+		}else {
+			System.out.println("이벤트 조회 성공");
+			request.setAttribute("eventList", eventList);
+			forward.setPath("notice_event/event.jsp");
+			forward.setRedirect(false);
+		}
 		
 		
-		forward.setPath("notice_event/event.jsp");
-		forward.setRedirect(false);
+
 		return forward;
 	}
 

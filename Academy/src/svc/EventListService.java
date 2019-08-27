@@ -15,6 +15,7 @@ public class EventListService {
 		noticeDAO.setConnection(con);
 		
 		ArrayList<NoticeBean> eventList = noticeDAO.getEventList();
+		//System.out.println("eventList 크기 " + eventList.size() );
 		
 		close(con);
 		return eventList;
