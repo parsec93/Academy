@@ -4,7 +4,6 @@
 	// 세션값 가져 오기 
 	String sId = (String)session.getAttribute("sId");
 	
-	
 	%>
 <header class="header_area">
 	<div class="main_menu">
@@ -81,9 +80,9 @@
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="notice.no">공지사항</a></li>
 								<li class="nav-item"><a class="nav-link" href="event.no">이벤트</a></li>
-							<%if(sId.equals("admin")) {%>
+							<%if(sId != null){if(sId.equals("admin")) {%>
 								<li class="nav-item"><a class="nav-link" href="noticeWriteForm.no">공지사항&이벤트입력</a></li>
-							<% }%>
+							<% }}%>
 							</ul></li>
 						<!-- <li class="nav-item submenu dropdown">
                   <a

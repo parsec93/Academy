@@ -90,7 +90,7 @@ public class NoticeDAO {
 		
 		
 		try {
-			String sql = "SELECT * FROM notice  LIMIT ?,?";
+			String sql = "SELECT * FROM notice  LIMIT ?,? ORDER BY notice_idx DESC";
 			//전체 게시판 목록 조회
 			
 			pstmt = con.prepareStatement(sql);
@@ -143,7 +143,7 @@ public class NoticeDAO {
 		return listCount;
 	}
 	
-	
+	//이벤트 목록 가져오기
 	public ArrayList<NoticeBean> getEventList(){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
