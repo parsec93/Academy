@@ -61,9 +61,9 @@ public class NoticeDAO {
 			pstmt.setString(2, notice.getNotice_subject());
 			pstmt.setString(3, notice.getNotice_content());
 			pstmt.setString(4, notice.getNotice_file());
-			pstmt.setDate(5, null);
-			pstmt.setDate(6, null);
-			pstmt.setInt(7, 1);
+			pstmt.setDate(5, notice.getEvent_start_day());
+			pstmt.setDate(6, notice.getEvent_end_day());
+			pstmt.setInt(7, notice.getIsNotice());
 			
 			insertCount = pstmt.executeUpdate(); // 글 등록 처리 결과를 int형 값으로 리턴 받음
 			
@@ -148,7 +148,7 @@ public class NoticeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<NoticeBean> eventList = null;
-		String sql = "SELECT * FROM notice WHERE isNotice=2 AND event_end_day >= now() ORDER BY notice_idx DESC,event_end_day DESC";
+		String sql = "SELECT * FROM notice WHERE isNotice=2 AND event_end_day >= (now()-1) ORDER BY notice_idx DESC, event_end_day DESC";
 		
 		try {	
 			//이벤트 게시판 목록 가져오기

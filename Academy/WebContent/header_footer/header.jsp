@@ -80,7 +80,7 @@
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="notice.no">공지사항</a></li>
 								<li class="nav-item"><a class="nav-link" href="event.no">이벤트</a></li>
-							<%if(sId != null){if(sId.equals("admin")) {%>
+							<%if(sId != null){if(sId.equals("admin1234")) {%>
 								<li class="nav-item"><a class="nav-link" href="noticeWriteForm.no">공지사항&이벤트입력</a></li>
 							<% }}%>
 							</ul></li>

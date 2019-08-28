@@ -31,10 +31,9 @@ public class NoticeFrontController extends HttpServlet {
         if(command.equals("/noticeWriteForm.no")) {
             // member 폴더의 loginForm.jsp 페이지로 이동
             forward = new ActionForward();
-            forward.setPath("/noticeWriteForm.jsp");
+            forward.setPath("notice_event/noticeWriteForm.jsp");
         } else if (command.equals("/NoticeWritePro.no")) {
-        	action = new NoticeWriteProAction();
-        	
+        	action = new NoticeWriteProAction();      	
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -43,7 +42,6 @@ public class NoticeFrontController extends HttpServlet {
         }else if(command.equals("/notice.no")) {
         	System.out.println("notice.no FrontController");
         	action = new NoticeListAction();
-        	
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

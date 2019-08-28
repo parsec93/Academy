@@ -74,8 +74,8 @@ String sid = (String)session.getAttribute("sid");
               <p>
 				공지사항
               </p>
-              <%if(noticeList == null) {%>
-              <h1>작성된 글이 없습니다.</h1>
+              <%if(noticeList.size() == 0) {%>
+              <h1><b>작성된 글이 없습니다.</b></h1>
               <%}else{ %>
 				<table border="1" width="500">
 				<tr>
@@ -100,7 +100,9 @@ String sid = (String)session.getAttribute("sid");
 
 <!-- // 페이징 처리 구역  -->
 	<section id="noticeList">
-		<%if(nowPage <= 1 ) { %>
+	
+		<%if(noticeList.size() > 10  ){
+		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
 			<a href="notice.no?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
@@ -118,7 +120,7 @@ String sid = (String)session.getAttribute("sid");
 			&nbsp;[다음]
 		<%} else {  %>
 			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
-		<%} %>
+		<%} }%>
 	</section>
 
 <!-- 페이징 처리 구역 종료 -->

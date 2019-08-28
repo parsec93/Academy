@@ -43,13 +43,18 @@ public class NoticeWriteProAction implements Action {
         noticeBean.setNotice_content(multi.getParameter("notice_content"));
         noticeBean.setIsNotice(Integer.parseInt(multi.getParameter("isNotice")));// 1 : 공지사항 / 2: 이벤트
         
+        
+        System.out.println(multi.getParameter("event_start_day"));
+        System.out.println(multi.getParameter("event_end_day"));
         //이벤트 시작일 및 종료일 
         Date event_start_day, event_end_day;
-        
+        if(Integer.parseInt(multi.getParameter("isNotice")) == 2) {
         event_start_day = Date.valueOf(multi.getParameter("event_start_day"));
         event_end_day = Date.valueOf(multi.getParameter("event_end_day"));
+
         noticeBean.setEvent_start_day(event_start_day);
         noticeBean.setEvent_end_day(event_end_day);
+        }
 
 //        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_start_day")));
 //        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_end_day")));

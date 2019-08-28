@@ -63,21 +63,30 @@ NoticeBean noticeBean = (NoticeBean)request.getAttribute("noticeBean");
 					<% if(noticeBean.getIsNotice() == 1){ %>
 													<input type="radio" name="isNotice" value="1" checked="checked">공지사항
 					<%}else if(noticeBean.getIsNotice()==2){ %>
-													<input type="radio" name="isNotice" value="2" checked="checked">이벤트</td>
-					<%}else{} %>
+													<input type="radio" name="isNotice" value="2" checked="checked">이벤트
+					<%}else{%>
+					일반 게시물
+					<%} %></td>
 				</tr>
 				<%//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
+				<%if(noticeBean.getIsNotice() == 2){ %>
 				<tr><td class="td_left">이벤트 시작일 : </td><td class="td_right"><%=noticeBean.getEvent_start_day() %></td>
 				</tr>
 				<tr><td class="td_left"> 이벤트 종료일 : </td><td class="td_right"><%=noticeBean.getEvent_end_day() %></td>
 				</tr>
-								<tr>
+				<%} %>
+					<tr>
 					<td class="td_left"><label for="notice_file">파일첨부</label></td>
+					<%if(noticeBean.getNotice_file() == null){ %>
+					<td class="td_right"><b>첨부된 파일이 없습니다.</b></td>
+					<%}else{ %>
 					<td class="td_right"><%=noticeBean.getNotice_file() %></td>
+				<% } %>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="notice_content">내용</label></td>
-					<td class="td_right"><img src="noticeUpload/<%=noticeBean.getNotice_file()%>"><br>
+					<%if(noticeBean.getNotice_file() != null){ %>
+					<td class="td_right"><img src="noticeUpload/<%=noticeBean.getNotice_file()%>"><br> <%} %>
 					<%=noticeBean.getNotice_content() %></td>
 				</tr>
 
