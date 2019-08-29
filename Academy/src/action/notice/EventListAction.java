@@ -1,4 +1,4 @@
-package action;
+package action.notice;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.EventListService;
+import action.Action;
+import svc.notice.EventListService;
 import vo.ActionForward;
 import vo.NoticeBean;
 

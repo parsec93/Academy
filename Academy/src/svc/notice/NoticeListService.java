@@ -1,4 +1,4 @@
-package svc;
+package svc.notice;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;

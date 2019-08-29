@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 NoticeBean noticeBean = (NoticeBean)request.getAttribute("noticeBean");
+String sId = (String)session.getAttribute("sId");
 %>
 <!DOCTYPE html>
 <html>
@@ -94,6 +95,9 @@ NoticeBean noticeBean = (NoticeBean)request.getAttribute("noticeBean");
 			<section id="commandCell">
 				<input type="button" value="공지사항 목록보기" onclick="location.href='notice.no'"/>&nbsp;&nbsp;
 				<input type="button" value="이벤트 목록보기" onclick="location.href='event.no'"/>
+				<%if(sId != null){if(sId.equals("admin1234")){ %>
+					<a href="noticeUpdateForm.no?notice_idx=<%=noticeBean.getNotice_idx()%>"><input type="button" value="수정" /></a>
+					<%}} %>
 			</section>
 		</form>	
 	</section>

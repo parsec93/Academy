@@ -1,9 +1,10 @@
-package action;
+package action.notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.NoticeViewService;
+import action.Action;
+import svc.notice.NoticeViewService;
 import vo.ActionForward;
 import vo.NoticeBean;
 

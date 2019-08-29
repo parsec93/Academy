@@ -1,4 +1,4 @@
-package svc;
+package svc.notice;
 
 import java.sql.Connection;
 import java.util.ArrayList;

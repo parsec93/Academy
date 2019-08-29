@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.EventListAction;
-import action.NoticeListAction;
-import action.NoticeViewAction;
-import action.NoticeWriteProAction;
+import action.notice.EventListAction;
+import action.notice.NoticeListAction;
+import action.notice.NoticeUpdateFormAction;
+import action.notice.NoticeUpdateProAction;
+import action.notice.NoticeViewAction;
+import action.notice.NoticeWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.no")
@@ -56,6 +58,21 @@ public class NoticeFrontController extends HttpServlet {
 			}
         }else if(command.equals("/noticeView.no")) {
         	action = new NoticeViewAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }else if(command.equals("/noticeUpdateForm.no")) {
+        	action = new NoticeUpdateFormAction();
+        	
+        	try {
+        		forward = action.execute(request, response);
+        	}catch (Exception e) {
+        		e.printStackTrace();
+			}
+        }else if(command.equals("/noticeUpdate.no")) {
+        	action = new NoticeUpdateProAction();
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

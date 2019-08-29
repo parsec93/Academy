@@ -1,4 +1,4 @@
-package svc;
+package svc.notice;
 
 import dao.NoticeDAO;
 import vo.NoticeBean;

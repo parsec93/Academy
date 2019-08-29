@@ -205,4 +205,28 @@ public class NoticeDAO {
 		return noticeBean;
 	}//NoticeView 처리(이벤트/공지 같이 사용)
 	
+	
+	public int isNoticeUpdate(NoticeBean notice) {
+		int updateCount=0;
+		PreparedStatement pstmt=null;
+		
+		String sql = "update notice set notice_subject=?, notice_content=?, notice_file=?,event_start_day=?,event_end_day=?, isNotice=?  where notice_idx=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_subject());
+			pstmt.setString(2, notice.getNotice_content());
+			pstmt.setString(3, notice.getNotice_file());
+			pstmt.setDate(4, notice.getEvent_start_day());
+			pstmt.setDate(5, notice.getEvent_end_day());
+			pstmt.setInt(6, notice.getIsNotice());
+			pstmt.setInt(7, notice.getNotice_idx());
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
 }

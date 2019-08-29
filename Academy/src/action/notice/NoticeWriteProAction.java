@@ -1,8 +1,7 @@
-package action;
+package action.notice;
 
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import svc.NoticeWriteProService;
+import action.Action;
+import svc.notice.NoticeWriteProService;
 import vo.ActionForward;
 import vo.NoticeBean;
 
@@ -55,10 +55,6 @@ public class NoticeWriteProAction implements Action {
         noticeBean.setEvent_start_day(event_start_day);
         noticeBean.setEvent_end_day(event_end_day);
         }
-
-//        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_start_day")));
-//        noticeBean.setEvent_start_day((Date)sdf.parse(multi.getParameter("event_end_day")));
-        //
         
         
         // 업로드 파일명은 별도의 메서드 getOriginalFileName()를 호출하여 가져오기 
