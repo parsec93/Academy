@@ -42,8 +42,8 @@ create table member(
 
 로 실행 
 
-insert into member(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678');
-
+insert into member values(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678');
+insert into member values(1, 'admin1234', 'admin1234', 'admin1234', 'admin1234@admin.co.kr', '12345', 'busan', 'busan', '01012345678');
 관리자 계정 추가.
 
 //-------------------------------------------------------------
