@@ -112,6 +112,7 @@ function sandEmail() {
 			}).open();
 		}
 	</script>
+	<!-- 아이디 저장 -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -165,6 +166,7 @@ function sandEmail() {
 	    return unescape(cookieValue);
 	}
 </script>
+	
 <body>
 
     <!--================ Start Login Area =================-->
@@ -183,7 +185,7 @@ function sandEmail() {
                         <label for="id">Your id</label> 
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password"> 
                         <label for="password">Your password</label> 
-                        <input type="checkbox" id="remember" class="checkbox" checked> 
+                        <input type="checkbox" id="remember" class="checkbox" > 
                         <label for="remember">Remember me</label>
                         <div class="submit-wrap">
                             <input type="submit" value="Sign in" class="submit"> 

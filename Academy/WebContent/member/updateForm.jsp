@@ -4,6 +4,8 @@
 <%
 String sId = (String)session.getAttribute("sId");
 request.setCharacterEncoding("utf-8");
+String email =request.getParameter("email");
+String[] arrayEamil = email.split("@");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +26,22 @@ request.setCharacterEncoding("utf-8");
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
 </head>
+<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script type="text/javascript">
+		function openDaumZipAddress() {
+			new daum.Postcode({
+				oncomplete:function(data) {
+// 					jQuery("#postcode1").val(data.postcode1);
+// 					jQuery("#postcode2").val(data.postcode2);
+					jQuery("#postcode").val(data.zonecode);
+					jQuery("#address_more1").val(data.address);
+					jQuery("#address_more2").focus();
+					console.log(data);
+				}
+			}).open();
+		}
+	</script>
 
 <body>
 
@@ -45,16 +63,18 @@ request.setCharacterEncoding("utf-8");
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                         
                         <label for="email">Your email</label>
-                        <input type="email" name="email" id="email" class="inpt_04" value="<%=request.getParameter("email") %>" required="required" placeholder="Your email">
-                     
-                        
+                        <input type="text" name="email1" id="email1" value="<%=arrayEamil[0] %>" class="inpt_04" required="required" placeholder="Your email">
+                        &nbsp;@&nbsp;
+                        <input type="text" name="email2" id="email2" value="<%=arrayEamil[1] %>" class="inpt_04" required="required" placeholder="직접입력">
+                        &nbsp;
+                        <input type="text" name="postcode" id="postcode" value="<%=request.getParameter("postcode") %>" class="inpt_02" required="required" placeholder="우편번호">
+                        <label for="address">우편번호</label>
+                        <input type="button" value="우편번호 찾기" class="inpt_03" onClick="openDaumZipAddress();"><br>
+                        <input type="text" name="add1" id="address_more1" value="<%=request.getParameter("add1") %>" class="inpt" required="required" placeholder="주소1">
+                        <label for="address_more">주소1</label>
+                        <input type="text" name="add2" id="address_more2" value="<%=request.getParameter("add2") %>" class="inpt" required="required" placeholder="상세주소2">
+                        <label for="address_more">상세주소2</label>
                     
-                        <label for="address">우편번호</label><br>
-                        <input type="text" name="address" id="address" class="inpt_02" value="<%=request.getParameter("address") %>" required="required" placeholder="우편번호">
-                        <label for="address_more1">상세주소</label>
-                        <input type="text" name="address_more1" id="address_more1" class="inpt" value="<%=request.getParameter("address_more1") %>" required="required" placeholder="상세주소">
-                        <input type="text" name="address_more2" id="address_more2" class="inpt" value="<%=request.getParameter("address_more2") %>" required="required" placeholder="상세주소">
-                        
                         <label for="name">Your phone</label>
                         <input type="text" name="phone" id="phone" class="inpt" value="<%=request.getParameter("phone") %>" required="required" placeholder="휴대폰 번호"> 
                         

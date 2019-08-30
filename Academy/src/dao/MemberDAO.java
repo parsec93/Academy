@@ -164,6 +164,7 @@ public class MemberDAO {
 	   public int isUpdateMember(MemberBean mb) {
 	      int updateCount =0;
 	      PreparedStatement pstmt = null;
+
 	      
 	      String sql = "UPDATE member SET member_name=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=? WHERE member_id=?";
 	      try {

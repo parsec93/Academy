@@ -69,12 +69,12 @@ function mySubmit(index) {
                         
                     
                         <label for="address">우편번호 : </label> <%=memberBean.getMember_postcode() %><br> 
-                        <input type="hidden" name="address" id="address" class="inpt_02" value="<%=memberBean.getMember_postcode() %>" required="required" placeholder="우편번호">
+                        <input type="hidden" name="postcode" id="postcode" class="inpt_02" value="<%=memberBean.getMember_postcode() %>" required="required" placeholder="우편번호">
                         
                         <label for="address_more1">상세주소 : </label><%=memberBean.getMember_add1() %><%=memberBean.getMember_add2() %><br>
                         
-                        <input type="hidden" name="address_more1" id="address_more1" class="inpt" value="<%=memberBean.getMember_add1() %>" required="required" placeholder="상세주소">
-                        <input type="hidden" name="address_more2" id="address_more2" class="inpt" value="<%=memberBean.getMember_add2() %>" required="required" placeholder="상세주소">
+                        <input type="hidden" name="add1" id="address_more1" class="inpt" value="<%=memberBean.getMember_add1() %>" required="required" placeholder="상세주소">
+                        <input type="hidden" name="add2" id="address_more2" class="inpt" value="<%=memberBean.getMember_add2() %>" required="required" placeholder="상세주소">
                         
                         <label for="name">Your phone : </label><%=memberBean.getMember_phone() %><br>
                         <input type="hidden" name="phone" id="phone" class="inpt" value="<%=memberBean.getMember_phone() %>" required="required" placeholder="휴대폰 번호"> 

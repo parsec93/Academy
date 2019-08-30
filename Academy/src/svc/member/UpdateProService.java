@@ -20,6 +20,8 @@ public class UpdateProService {
       return isPassword;
    }
    public boolean updateMember (MemberBean mb) {
+	  System.out.println("updateMember");
+	  System.out.println(mb.getMember_email());
       Connection con = getConnection();
       MemberDAO memberDAO =MemberDAO.getInstance();
       memberDAO.setConnection(con);

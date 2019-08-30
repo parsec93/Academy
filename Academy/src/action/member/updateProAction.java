@@ -20,13 +20,14 @@ public class updateProAction implements Action {
       HttpSession session = request.getSession();
       String sId = (String)session.getAttribute("sId");
       String password = request.getParameter("password");
+      String email = request.getParameter("email1") + "@" + request.getParameter("email2");
       MemberBean mb = new MemberBean();
       mb.setMember_name(request.getParameter("name"));
       mb.setMember_pass(password);
-      mb.setMember_email(request.getParameter("email"));
-      mb.setMember_postcode(request.getParameter("address"));
-      mb.setMember_add1(request.getParameter("address_more1"));
-      mb.setMember_add2(request.getParameter("address_more2"));
+      mb.setMember_email(email);
+      mb.setMember_postcode(request.getParameter("postcode"));
+      mb.setMember_add1(request.getParameter("add1"));
+      mb.setMember_add2(request.getParameter("add2"));
       mb.setMember_phone(request.getParameter("phone"));
       mb.setMember_id(sId);
       
