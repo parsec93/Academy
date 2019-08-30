@@ -20,8 +20,6 @@ public class MemberJoinProAction implements Action{
 		MemberBean mb = new MemberBean();
 		
 		String email = request.getParameter("email1") + "@" +request.getParameter("email2");
-		Email em = new Email();
-		em.send(email);
 		mb.setMember_name(request.getParameter("name"));
 		mb.setMember_id(request.getParameter("id"));
 		mb.setMember_pass(request.getParameter("password"));

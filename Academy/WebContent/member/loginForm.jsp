@@ -19,7 +19,31 @@
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
 </head>
+<script src="../js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#emailCheck').click(function(){
+		var email1 = document.up.email1.value;
+		var email2 = document.up.email2.value;
+		if(email1==""){
+	  		alert("이메일을 입력하세요");
+	  		document.up.email1.focus();
+	  		return;
+	  	}else if(email2==""){
+	  		alert("이메일을 입력하세요");
+	  		document.up.email2.focus();
+	  		return;
+	  	}
+		$.ajax('../emailCheck.me',{
+			data:{email1:$('#email1').val(), email2:$('#email2').val()},
+			success : function(data) {
+ 			document.getElementById('rNum').value = data;
+			}
+		});
+		alert("인증번호 발송 완료");
+	});
+});
 function idCheck() {
   	 id=document.up.id.value;
   	if(id==""){
@@ -52,10 +76,10 @@ function passCheck2(pass2) {
  pass1 = document.up.password.value;
  
  if(pass1!=pass2){
-	 document.getElementById('result2').value = "비밀번호 틀림";
+	 document.getElementById('result2').value = "비밀번호 불일치";
      document.getElementById('result2').style.color="red";
  }else{
-	 document.getElementById('result2').value = "비밀번호 맞음";
+	 document.getElementById('result2').value = "비밀번호 일치";
     document.getElementById('result2').style.color="green";
  }
 }
@@ -79,21 +103,16 @@ function joinCheck() {
 		alert("중복확인이 필요합니다.");
 		return false;
 	}
-}
-function sandEmail() {
-	var email1 = document.up.email1.value;
-	var email2 = document.up.email2.value;
-	if(email1==""){
-  		alert("이메일을 입력하세요");
-  		document.up.email1.focus();
-  		return;
-  	}else if(email2==""){
-  		alert("이메일을 입력하세요");
-  		document.up.email2.focus();
-  		return;
-  	}
+	//인증번호 확인
+	email_more = document.up.email_more.value;
+	rNum = document.up.rNum.value;
 	
+	if(Number(rNum) != Number(email_more)){
+		alert("이메일 인증번호가 일치하지 않습니다");
+		return false;
+	}
 }
+
 </script>
 <!--  우편번호 -->
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
@@ -221,7 +240,8 @@ function sandEmail() {
 <!-- 							<option value="itwill.co.kr">itwillbs.co.kr</option> -->
 <!-- 						</select> -->
                         <input type="text" name="email_more" id="email_more" class="inpt_02" required="required" >
-                        <input type="button" value="인증번호 발송" class="inpt_03" onclick="sandEmail();"><br>
+                        <input type="button" value="인증번호 발송" id="emailCheck" class="inpt_03" ><br>
+                        <input type="hidden" id="rNum" name="rNum">
                         <input type="text" name="postcode" id="postcode" class="inpt_02" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label>
                         <input type="button" value="우편번호 찾기" class="inpt_03" onClick="openDaumZipAddress();"><br>

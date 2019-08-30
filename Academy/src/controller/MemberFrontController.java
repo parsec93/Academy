@@ -35,15 +35,10 @@ public class MemberFrontController extends HttpServlet {
             // member 폴더의 loginForm.jsp 페이지로 이동
             forward = new ActionForward();
             forward.setPath("/member/loginForm.jsp");
-        }else if(command.equals("/MemberLoginPro.me")) {
-//			action = new MemberLoginProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else if(command.equals("/MemberJoinPro.me")) {
+        }else if(command.equals("/emailCheck.me")) {
+            forward = new ActionForward();
+            forward.setPath("/member/emailCheck.jsp");
+        }else if(command.equals("/MemberJoinPro.me")) {
 			action = new MemberJoinProAction();
 			try {
 				forward = action.execute(request, response);

@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Email {
 
-    public void send(String email) {
+    public void send(String email, int rNum) {
 
         final String username = "rootLake12";
         final String password = "Lakeroot12";
@@ -28,13 +28,13 @@ public class Email {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(""));
+            message.setFrom(new InternetAddress("rootLake12@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Testing Gmail TLS");
-            message.setText("회원가입이 완료되었습니다.");
+            message.setSubject("academy 회원가입 인증번호");
+            message.setText("인증 번호 : " + rNum);
 
             Transport.send(message);
 
