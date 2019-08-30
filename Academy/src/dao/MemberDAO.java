@@ -83,7 +83,7 @@ public class MemberDAO {
 	public boolean selectLogin(String id, String password) {
 	      boolean isLoginMember = false;
 	      String sql = "SELECT * FROM member WHERE member_id=? AND member_pass=?";
-	      
+	     
 	      try {
 	         pstmt= con.prepareStatement(sql);
 	         pstmt.setString(1, id);

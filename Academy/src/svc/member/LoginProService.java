@@ -11,11 +11,14 @@ public class LoginProService {
 	public boolean isLoginMember(String id,String password) {
 		System.out.println("LoginProService");
 		System.out.println(id + password);
+		boolean isLoginMember = false;
+		
 		Connection con =getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		boolean isLoginMember = memberDAO.selectLogin(id,password);
 		
+		isLoginMember = memberDAO.selectLogin(id,password);
+	
 		close(con);
 		return isLoginMember; 
 	}
