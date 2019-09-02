@@ -19,6 +19,18 @@
 		</div>
 		<div class="nav-topwrap">
 		<ul class="nav-top">
+		<%
+		if(sId != null){
+			if(sId.equals("admin1234"))
+			{%>
+			 
+				<li><a class="nav-top-link" href="admin/adminMain.jsp">관리자페이지</a></li><% 
+				
+				
+			}
+		}
+		%>
+		
 			<%
 		if(sId == null){ 
 %> 
