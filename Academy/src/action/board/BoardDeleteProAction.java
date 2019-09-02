@@ -1,4 +1,4 @@
-package action;
+package action.board;
 
 import java.io.PrintWriter;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.BoardDeleteProService;
+import svc.board.BoardDeleteProService;
 import vo.ActionForward;
 import vo.BoardBean;
 

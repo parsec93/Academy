@@ -1,4 +1,4 @@
-package svc;
+package svc.board;
 
 import static db.JdbcUtil.close;
 import static db.JdbcUtil.commit;
@@ -8,6 +8,7 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 
 import dao.BoardDAO;
+import db.JdbcUtil;
 import vo.BoardBean;
 
 public class BoardReplyProService {
@@ -17,7 +18,7 @@ public class BoardReplyProService {
         boolean isReplySuccess = false;
         
         // 객체 가져오기
-        Connection con = getConnection();
+        Connection con = JdbcUtil.getConnection();
         BoardDAO dao = BoardDAO.getInstance();
         dao.setConnection(con); // DAO 객체에 Connection 객체 전달
         
@@ -38,6 +39,7 @@ public class BoardReplyProService {
         close(con);
         
         // replySuccess 변수값 리턴
+        
         return isReplySuccess;
         
         

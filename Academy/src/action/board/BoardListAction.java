@@ -1,14 +1,17 @@
-package action;
+package action.board;
 
 import java.io.PrintWriter;
+
 
 import java.util.ArrayList;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import svc.BoardListService;
+import action.Action;
+import svc.board.BoardListService;
 import vo.ActionForward;
 import vo.BoardBean;
 import vo.BoardPageInfo;
@@ -16,10 +19,14 @@ import vo.BoardPageInfo;
 // 글 목록 보기 요청을 처리하는 BoardListAction
 public class BoardListAction implements Action {
 
+	
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("BoardListAction!");
-
+        String board_id = (String) request.getAttribute("board_id");
+        
+        
+        
         // 게시물 목록 정보를 받아와서 저장할 ArrayList 타입 변수 선언(제네릭 타입 BoardBean 타입으로 지정)
         ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
         
@@ -31,11 +38,11 @@ public class BoardListAction implements Action {
         if(request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
-        
+
         BoardListService boardListService = new BoardListService();
-        int listCount = boardListService.getBoardListCount(); // 전체 게시물 수 가져오기
+        int listCount = boardListService.getBoardListCount(board_id); // 전체 게시물 수 가져오기
         
-        articleList = boardListService.getArticleList(page, limit); // 전체 게시물 목록 가져오기(10개 한정)
+        articleList = boardListService.getArticleList(page, limit,board_id); // 전체 게시물 목록 가져오기(10개 한정)
         
         // 전체 페이지(마지막 페이지) 수 계산
         int maxPage = (int)((double)listCount / limit + 0.95);
@@ -56,14 +63,20 @@ public class BoardListAction implements Action {
         BoardPageInfo boardpageInfo = new BoardPageInfo(page, maxPage, startPage, endPage, listCount);
         
         // request 객체에 PageInfo 객체(pageInfo)와 ArrayList 객체(articleList)를 파라미터로 저장
+        request.setAttribute("board_id", board_id);
         request.setAttribute("boardPageInfo", boardpageInfo);
         request.setAttribute("articleList", articleList);
         
         // ActionForward 객체를 생성하여 Dispatcher 방식으로 board 폴더 내의 qna_board_list.jsp 페이지로 이동
        
-
-        forward.setPath("board/board_list.jsp");
-		forward.setRedirect(false);
+		if (board_id.equals("free")) {
+			forward.setPath("board/board_free.jsp");
+			forward.setRedirect(false);
+		} else if (board_id.equals("qna")) {
+			forward.setPath("board/board_qna.jsp");
+			forward.setRedirect(false);
+		}
+		
 
         
         return forward;

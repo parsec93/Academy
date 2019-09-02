@@ -1,11 +1,12 @@
-package action;
+package action.board;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardModifyProService;
+import action.Action;
+import svc.board.BoardModifyProService;
 import vo.ActionForward;
 import vo.BoardBean;
 

@@ -6,7 +6,8 @@
 	BoardBean article = (BoardBean)request.getAttribute("article");
 	//page 파라미터 값 가져오기(page 식별자 지정 불가) => page 디렉티브 때문에 JSP의 예약어로 취급됨
 	String nowPage = request.getParameter("page"); 
-	
+	String board_id = request.getParameter("board_id");
+	System.out.println(board_id+"이거니");
 %>
 <!DOCTYPE html>
 <html>
@@ -58,6 +59,7 @@
 			<input type="hidden" name="board_re_ref" value="<%=article.getBoard_re_ref()%>" />
 			<input type="hidden" name="board_re_lev" value="<%=article.getBoard_re_lev()%>" />
 			<input type="hidden" name="board_re_seq" value="<%=article.getBoard_re_seq()%>" />
+			<input type="hidden" name="board_id" value="<%=board_id%>" />
 			<table>
 				<tr>
 					<!-- label 태그를 사용하여 해당 레이블 클릭 시 for 속성에 지정된 이름과 같은 id 속성을 갖는 텍스트필드로 커서 요청 -->

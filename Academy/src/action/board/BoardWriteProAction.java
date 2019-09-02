@@ -1,6 +1,8 @@
-package action;
+package action.board;
 
 import java.io.PrintWriter;
+
+
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import svc.BoardWriteProService;
+import action.Action;
+import svc.board.BoardWriteProService;
 import vo.ActionForward;
 import vo.BoardBean;
 
@@ -18,7 +21,11 @@ public class BoardWriteProAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        System.out.println("BoardWriteProAction!");
-        
+        	
+    	String board_id = request.getParameter("board_id");
+    	request.setCharacterEncoding("UTF-8");
+    	request.setAttribute("board_id", board_id);
+    	System.out.println(board_id);
         ActionForward forward = null;
         
         String realFolder = ""; // 실제 업로드 폴더(톰캣)
@@ -38,9 +45,12 @@ public class BoardWriteProAction implements Action {
         // request 객체를 MultipartRequest 객체에 전달했으므로 multi.getParameter() 메서드로 파라미터 가져오기
         boardBean.setBoard_subject(multi.getParameter("board_subject"));
         boardBean.setBoard_content(multi.getParameter("board_content"));
+        boardBean.setBoard_id(board_id);
+        
+        
         // 업로드 파일명은 별도의 메서드 getOriginalFileName()를 호출하여 가져오기 
         boardBean.setBoard_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
-        
+        boardBean.setBoard_id(board_id);
         // 비즈니스 로직을 처리할 Service 클래스 인스턴스 생성
         BoardWriteProService boardWriteProService = new BoardWriteProService();
         // Service 클래스의 registArticle() 메서드를 호출하여 글쓰기 로직 처리(BoardBean 객체 전달)
@@ -58,7 +68,7 @@ public class BoardWriteProAction implements Action {
         } else { // 글 쓰기에 성공했을 경우
             // ActionForward 객체 생성하여 포워딩 정보 설정
             forward = new ActionForward();
-            forward.setPath("BoardList.bo"); // 포워딩 경로 설정
+            forward.setPath(board_id+"board.bo"); // 포워딩 경로 설정
             // 글 목록 출력을 위해 BoardList.bo 페이지로 새로운 요청이 이루어지므로 Redirect 방식으로 포워딩
             forward.setRedirect(true); // Redirect 방식 지정
         }

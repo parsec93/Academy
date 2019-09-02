@@ -41,8 +41,12 @@
 <body>
 	<!-- 게시판 글 등록 -->
 	<section id="writeForm">
+	
 		<h2>게시판 글 등록</h2>
-		<form action="BoardWritePro.bo" method="post" enctype="multipart/form-data" name="boardform">
+		<%String board_id =(String)request.getParameter("board_id"); System.out.println(board_id);%>
+			
+		<form action="BoardWritePro.bo?board_id=<%=board_id%>" method="post" enctype="multipart/form-data" name="boardform">
+
 			<table>
 				<tr>
 					<td class="td_left"><label for="board_subject">제목</label></td>
@@ -56,7 +60,9 @@
 					<td class="td_left"><label for="board_file">파일첨부</label></td>
 					<td class="td_right"><input type="file" name="board_file" id="board_file" required="required" /></td>
 				</tr>
+				
 			</table>
+				
 			<section id="commandCell">
 				<input type="submit" value="등록" />&nbsp;&nbsp;
 				<input type="reset" value="다시쓰기" />

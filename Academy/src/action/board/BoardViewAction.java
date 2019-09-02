@@ -1,9 +1,10 @@
-package action;
+package action.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardViewService;
+import action.Action;
+import svc.board.BoardViewService;
 import vo.ActionForward;
 import vo.BoardBean;
 
@@ -15,6 +16,9 @@ public class BoardViewAction implements Action {
         
         // 파라미터로 전달된 board_num, page 데이터 가져오기
         int board_num = Integer.parseInt(request.getParameter("board_num"));
+        
+        String board_id = request.getParameter("board_id");
+        
         String page = request.getParameter("page"); // 직접 사용할 파라미터가 아니므로 int 형변환 필요없음 
 
         BoardViewService boardViewService = new BoardViewService();
@@ -24,12 +28,11 @@ public class BoardViewAction implements Action {
         
         // page 값 request 객체에 저장
         // 글 상세 내용 BoardBean 객체 request 객체에 저장
-        request.setAttribute("page", page);
         request.setAttribute("article", article);
-        
+        System.out.println(page+"하하");
         // /board/qna_board_view.jsp 페이지로 포워딩(Dispatcher 방식)
         ActionForward forward = new ActionForward();
-        forward.setPath("board/board_view.jsp"); // 포워딩 주소 지정
+        forward.setPath("board/board_view.jsp?page="+page+"&board_id="+board_id); // 포워딩 주소 지정
         forward.setRedirect(false); // 포워딩 방식 지정 => Dispatcher 방식은 false 전달(생략 가능)
         
         return forward; // ActionForward 객체 리턴

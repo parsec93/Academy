@@ -76,7 +76,8 @@
 							href="#"data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">자유게시판</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="BoardList.bo">자유게시판1</a></li>
+								<li class="nav-item"><a class="nav-link" href="freeboard.bo">자유게시판</a></li>
+								<li class="nav-item"><a class="nav-link" href="qnaboard.bo">Q&A게시판</a></li>
 							</ul></li>
 						
 

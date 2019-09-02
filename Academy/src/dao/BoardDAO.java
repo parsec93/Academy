@@ -2,12 +2,14 @@ package dao;
 
 import static db.JdbcUtil.*;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import action.board.BoardListAction;
 
 import vo.BoardBean;
 
@@ -15,10 +17,13 @@ public class BoardDAO {
 	// -----------------------------------------------------
 	// DAO 인스턴스 생성 관리를 위한 싱글톤 디자인 패턴
 	private static BoardDAO instance;
-
+	
+	
 	private BoardDAO() {
+	
 	}
 
+	
 	public static BoardDAO getInstance() {
 		// 기존의 BoardDAO 인스턴스가 없을 경우에만 인스턴스를 새로 생성
 		if (instance == null) {
@@ -34,13 +39,14 @@ public class BoardDAO {
 	// Service 클래스로부터 Connection 객체 전달받는 메서드
 	public void setConnection(Connection con) {
 		this.con = con;
+		
 	}
 
 	// 글 등록 요청을 처리하는 insertArticle() 메서드
 	public int insertArticle(BoardBean article) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		int insertCount = 0; // 게시물 등록 성공 여부를 저장할 변수(성공 = 1, 실패 = 0)
 
 		try {
@@ -57,18 +63,19 @@ public class BoardDAO {
 			}
 
 			// 게시물 등록 구문 작성(마지막 컬럼인 board_date 항목은 DB 현재 시각 정보 사용)
-			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 게시물 번호(새로 계산한 번호 사용)
 			// board_name, board_pass, board_subject, board_content, board_file - BoardBean
 			// 객체 값 사용
-			pstmt.setString(2, article.getBoard_subject());
-			pstmt.setString(3, article.getBoard_content());
-			pstmt.setString(4, article.getBoard_file());
-			pstmt.setInt(5, num); // 참조 게시물 번호 = 새 글이므로 현재 게시물 번호로 설정
-			pstmt.setInt(6, 0); // 들여쓰기 레벨 = 새 글이므로 0
-			pstmt.setInt(7, 0); // 글 순서번호 = 새 글이므로 0
-			pstmt.setInt(8, 0); // 조회수 = 새 글이므로 0
+			pstmt.setString(2, article.getBoard_id());
+			pstmt.setString(3, article.getBoard_subject());
+			pstmt.setString(4, article.getBoard_content());
+			pstmt.setString(5, article.getBoard_file());
+			pstmt.setInt(6, num); // 참조 게시물 번호 = 새 글이므로 현재 게시물 번호로 설정
+			pstmt.setInt(7, 0); // 들여쓰기 레벨 = 새 글이므로 0
+			pstmt.setInt(8, 0); // 글 순서번호 = 새 글이므로 0
+			pstmt.setInt(9, 0); // 조회수 = 새 글이므로 0
 
 			insertCount = pstmt.executeUpdate(); // 글 등록 처리 결과를 int 형 값으로 리턴받음
 
@@ -89,15 +96,17 @@ public class BoardDAO {
 	}
 
 	// 전체 게시물 갯수를 조회하여 리턴
-	public int selectListCount() {
+	public int selectListCount(String board_id) {
 		int listCount = 0; // 게시물 갯수를 저장하는 변수
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT COUNT(*) FROM board";
+			System.out.println(board_id);
+			String sql = "SELECT COUNT(*) FROM board WHERE board_id=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board_id);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -116,7 +125,7 @@ public class BoardDAO {
 	}
 
 	// 게시물 목록 조회하여 리턴
-	public ArrayList<BoardBean> selectArticleList(int page, int limit) {
+	public ArrayList<BoardBean> selectArticleList(int page, int limit,String board_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -128,10 +137,11 @@ public class BoardDAO {
 			// SELECT 구문 : board 테이블 데이터 전체 조회
 			// => board_re_ref 기준 내림차순, board_re_seq 기준 오름차순
 			// => 전체 갯수가 아닌 시작 레코드 번호 ~ limit 갯수 만큼 읽어오기
-			String sql = "SELECT * FROM board ORDER BY board_re_ref DESC,board_re_seq ASC LIMIT ?,?";
+			String sql = "SELECT * FROM board WHERE board_id=? ORDER BY board_re_ref DESC,board_re_seq ASC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, board_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 
 			// ResultSet 객체 내의 모든 레코드를 각각 레코드별로 BoardBean 에 담아서 ArrayList 객체에 저장
@@ -295,16 +305,17 @@ public class BoardDAO {
 			board_re_lev += 1;
 			
 			// 답변글 등록 => 파일을 제외한 나머지 등록
-			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 게시물 번호(새로 계산한 번호 사용)
-			pstmt.setString(2, "[답글]" + article.getBoard_subject());
-			pstmt.setString(3, article.getBoard_content());
-			pstmt.setString(4, ""); // 답글 파일 업로드 없음
-			pstmt.setInt(5, board_re_ref);
-			pstmt.setInt(6, board_re_lev);
-			pstmt.setInt(7, board_re_seq);
-			pstmt.setInt(8, 0); // 조회수 = 새 글이므로 0
+			pstmt.setString(2, article.getBoard_id());
+			pstmt.setString(3, "[답글]" + article.getBoard_subject());
+			pstmt.setString(4, article.getBoard_content());
+			pstmt.setString(5, ""); // 답글 파일 업로드 없음
+			pstmt.setInt(6, board_re_ref);
+			pstmt.setInt(7, board_re_lev);
+			pstmt.setInt(8, board_re_seq);
+			pstmt.setInt(9, 0); // 조회수 = 새 글이므로 0
 
 			insertCount = pstmt.executeUpdate();
 
@@ -319,48 +330,37 @@ public class BoardDAO {
 	}
 
 	// 댓글
-	public void insertCommentArticle(BoardBean article) {
-		Connection con = null;
+	public int insertCommentArticle(BoardBean article) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		int board_num = article.getBoard_num();
+		int commentCount = 0;
+		int board_num = (int)article.getBoard_num();
 //		String id = article.getBoard_id();
-		String comment = article.getComment();
+		String comment = (String)article.getComment();
 
-		System.out.println(board_num);
-		System.out.println(comment);
+		System.out.println(board_num+"dao");
+		System.out.println(comment+"dao");	
 		try {
 			// 현재 게시물에서 가장 큰 번호 조회
 			
-			con = getConnection();
-			String sql = "insert into comment values(NULL,? , ?)";
+			
+			String sql = "INSERT INTO comment VALUES (NULL,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			pstmt.setString(2, comment);
-			pstmt.executeUpdate();
+			commentCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// 예외(에러)가 발생하면 처리하는 곳
-			System.out.println("insertReplyArticle() 에러 - " + e.getMessage()+pstmt);
+//          e.printStackTrace();
+			System.out.println("insertCommentArticle() 에러 - " + e.getMessage());
+
+			// 만약, 외부로 예외를 던질 때 메세지를 직접 지정하고 싶을 경우 throw 키워드 사용하여
+			// Exception 객체 생성 시 예외 메세지를 지정하면 된다! => throws 키워드로 예외 던지기 필요!
+//          throw new Exception("insertArticle() 에러 - " + e.getMessage());
 		} finally {
-			// 예외발생 상관없이 처리되는 문장
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
-			if (pstmt != null)
-				try {
-					pstmt.close();
-				} catch (SQLException ex) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException ex) {
-				}
+			// static import 문을 사용하여 JdbcUtil 클래스명 지정 필요없음
+			close(pstmt);
 		}
+		return commentCount;
 	}
 
 	// 조회수 증가

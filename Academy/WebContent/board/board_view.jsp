@@ -7,8 +7,9 @@
 <%
 	BoardDAO boardDAO = BoardDAO.getInstance();
 	BoardBean boardBean = (BoardBean) request.getAttribute("article");
-	String nowPage = (String) request.getAttribute("page");
-	System.out.print(request.getAttribute("nowPage"));
+	String nowPage = (String) request.getParameter("page");
+	String board_id = (String) request.getParameter("board_id");
+	String sId = (String)session.getAttribute("sId");
 %>
 <!DOCTYPE html>
 <html>
@@ -88,8 +89,9 @@ width:100%;
 
 			</table>
 			<section id="commandCell">
+				
 				<a
-					href="BoardReplyForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>">[답변]</a>
+					href="BoardReplyForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>">[답변]</a>
 				<a href="BoardModifyForm.bo?board_num=<%=boardBean.getBoard_num()%>">[수정]</a>
 				<a
 					href="BoardDeleteForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>">[삭제]</a>
@@ -99,14 +101,13 @@ width:100%;
 		</form>
 	</section>
 
-
-	<form action="BoardComment.bo?page=<%=nowPage%>&board_num=<%=boardBean.getBoard_num()%>" method="post">
+	<%if(board_id.equals("free")){ %>
+	<form action="BoardComment.bo?page=<%=nowPage%>&board_num=<%=boardBean.getBoard_num()%>&board_id=<%=board_id%>" method="post">
 		
 		<div id="comment">
 			<br> <br> <br>
 			<%
 		List<BoardBean> commentList = null;
-
 		commentList = boardDAO.getCommentList(boardBean.getBoard_num());
 	%>
 			<section id="comment">
@@ -126,7 +127,8 @@ width:100%;
 						<td><%=bb2.getComment()%></td>
 					</tr>
 					<%
-						}
+						} 
+	
 					%>
 
 				</table>
@@ -138,6 +140,7 @@ width:100%;
 			</section>
 		</div>
 	</form>
+	<%} %>
 
 
 </body>

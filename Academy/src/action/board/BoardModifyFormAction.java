@@ -1,9 +1,10 @@
-package action;
+package action.board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardViewService;
+import action.Action;
+import svc.board.BoardViewService;
 import vo.ActionForward;
 import vo.BoardBean;
 

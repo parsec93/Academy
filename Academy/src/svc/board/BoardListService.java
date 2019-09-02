@@ -1,4 +1,4 @@
-package svc;
+package svc.board;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import static db.JdbcUtil.*; // db.JdbcUtil 클래스 내의 모든 static 메�
 public class BoardListService {
     
     // 전체 게시물 수를 조회하여 리턴하는 getListCount()
-    public int getBoardListCount() throws Exception {
+    public int getBoardListCount(String board_id) throws Exception {
         int listCount = 0; // 전체 게시물 수 저장하는 변수
         
         // Connection 객체 가져오기
@@ -35,7 +35,7 @@ public class BoardListService {
         boardDAO.setConnection(con);
         
         // selectListCount() 메서드 호출하여 전체 게시물 수 조회하여 listCount 변수에 저장
-        listCount = boardDAO.selectListCount();
+        listCount = boardDAO.selectListCount(board_id);
 //        System.out.println(listCount);
         // Connection 객체 반환
         close(con);
@@ -44,14 +44,14 @@ public class BoardListService {
     }
 
     // 전체 게시물 목록을 조회하여 리턴
-    public ArrayList<BoardBean> getArticleList(int page, int limit) throws Exception {
+    public ArrayList<BoardBean> getArticleList(int page, int limit,String board_id) throws Exception {
         ArrayList<BoardBean> articleList = null;
         
         Connection con = getConnection();  
         BoardDAO boardDAO = BoardDAO.getInstance();
         boardDAO.setConnection(con);
         
-        articleList = boardDAO.selectArticleList(page, limit);
+        articleList = boardDAO.selectArticleList(page, limit,board_id);
         
 //        System.out.println(articleList);
         

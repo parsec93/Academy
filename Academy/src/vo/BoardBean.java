@@ -4,7 +4,9 @@ import java.sql.Date;
 
 public class BoardBean {
     private int board_num;
-    private String board_subject;
+    private String board_id;
+
+	private String board_subject;
     private String board_content;
     private String board_file;
     private int board_re_ref;
@@ -82,4 +84,11 @@ public class BoardBean {
     public void setBoard_date(Date board_date) {
         this.board_date = board_date;
     }
+	public String getBoard_id() {
+		return board_id;
+	}
+	public void setBoard_id(String board_id) {
+		this.board_id = board_id;
+	}
+
 }

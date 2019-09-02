@@ -1,4 +1,4 @@
-package svc;
+package svc.board;
 
 import static db.JdbcUtil.*;
 

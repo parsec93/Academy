@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>게시판</title>
+    <title>자유게시판</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 <%
-
+request.setCharacterEncoding("UTF-8");
 // Action 클래스에서 request 객체의 setAttribute()메서드로 저장되어 전달된 객체 가져오기(Ojbect타입이므로 각각 형변환이 필요)
 ArrayList<BoardBean> articleList = (ArrayList<BoardBean>)request.getAttribute("articleList");   // 게시판 글 목록 을 위한 객체 
 BoardPageInfo boardPageInfo = (BoardPageInfo)request.getAttribute("boardPageInfo");
+String sId = (String)session.getAttribute("sId");
 
 //pageInfo 객체로부터 페이징 정보 가져오기 
 int listCount = boardPageInfo.getListCount();
@@ -37,7 +38,10 @@ int startPage = boardPageInfo.getStartPage();
 int endPage = boardPageInfo.getEndPage();
 int maxPage = boardPageInfo.getMaxPage();
 
+request.setCharacterEncoding("UTF-8");
+String board_id = (String)request.getAttribute("board_id");
 String sid = (String)session.getAttribute("sid");
+
 
 %>
   <body>
@@ -69,7 +73,7 @@ String sid = (String)session.getAttribute("sid");
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Board</h2>
+              <h2 class="mb-3">자유게시판</h2>
               <p>
 				게시판
               </p>
@@ -84,7 +88,7 @@ String sid = (String)session.getAttribute("sid");
 					for(int i =0 ; i<articleList.size(); i++){
 						BoardBean boardBean = (BoardBean)articleList.get(i);
 						%>	
-						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>'" >
+						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'" >
 							<td><%=boardBean.getBoard_num() %></td>
 							<td><%if(boardBean.getBoard_re_lev() != 0) { %>
 								<%for(int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) { %> 
@@ -103,26 +107,29 @@ String sid = (String)session.getAttribute("sid");
 
 <!-- // 페이징 처리 구역  -->
 	<section id="articleList">
+
 		<%if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="BoardList.bo?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "BoardList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "<%=board_id%>board.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="BoardList.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %><br><br>
-		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo'" style="float:right;"/>
+		<%if(sId!=null){ %>
+		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>'" style="float:right;"/>
+		<%} %>
 	</section>
 
 <!-- 페이징 처리 구역 종료 -->

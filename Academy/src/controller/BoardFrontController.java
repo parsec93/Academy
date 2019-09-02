@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,15 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.BoardCommentProAction;
-import action.BoardDeleteProAction;
-import action.BoardViewAction;
-import action.BoardListAction;
-import action.BoardModifyFormAction;
-import action.BoardModifyProAction;
-import action.BoardReplyFormAction;
-import action.BoardReplyProAction;
-import action.BoardWriteProAction;
+import action.board.BoardCommentProAction;
+import action.board.BoardDeleteProAction;
+import action.board.BoardListAction;
+
+import action.board.BoardModifyFormAction;
+import action.board.BoardModifyProAction;
+import action.board.BoardReplyFormAction;
+import action.board.BoardReplyProAction;
+import action.board.BoardViewAction;
+import action.board.BoardWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.bo")
@@ -52,7 +54,19 @@ public class BoardFrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(command.equals("/BoardList.bo")) {
+        } else if(command.equals("/freeboard.bo")) {
+        	String board_id = "free";
+            request.setAttribute("board_id", board_id);
+        	action = new BoardListAction();
+            
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if(command.equals("/qnaboard.bo")) {
+        	String board_id = "qna";
+            request.setAttribute("board_id", board_id);
             action = new BoardListAction();
             
             try {
@@ -60,7 +74,7 @@ public class BoardFrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(command.equals("/BoardComment.bo")) {
+        }else if(command.equals("/BoardComment.bo")) {
             action = new BoardCommentProAction();
             
             try {
@@ -70,7 +84,7 @@ public class BoardFrontController extends HttpServlet {
             }
         } else if(command.equals("/BoardView.bo")) {
             action = new BoardViewAction();
-            
+      
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
