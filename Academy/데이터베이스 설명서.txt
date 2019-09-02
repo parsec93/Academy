@@ -92,6 +92,7 @@ insert into notice values(
 
 CREATE TABLE `academy`.`board` (
   `board_num` INT(11) NOT NULL,
+  `board_id' VARCHAR(10) NOT NULL,
   `board_subject` VARCHAR(45) NOT NULL,
   `board_content` VARCHAR(500) NOT NULL,
   `board_file` VARCHAR(45) NULL,
