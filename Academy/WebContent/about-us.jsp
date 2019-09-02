@@ -10,7 +10,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>About Us</title>
+    <title>수강신청</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -34,11 +34,11 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>About Us</h2>
-                <div class="page_link">
-                  <a href="index.html">Home</a>
-                  <a href="about-us.html">About Us</a>
-                </div>
+                <h2>학원 소개</h2>
+<!--                 <div class="page_link"> -->
+<!--                   <a href="index.html"></a> -->
+<!--                   <a href="about-us.html"></a> -->
+<!--                 </div> -->
               </div>
             </div>
           </div>
@@ -59,20 +59,20 @@
           <div class="col-lg-6">
             <div class="h_blog_text">
               <div class="h_blog_text_inner left right">
-                <h4>Welcome to our Institute</h4>
+                <h4>명문 IT 교육 학원</h4>
                 <p>
-                  Subdue whales void god which living don't midst lesser
-                  yielding over lights whose. Cattle greater brought sixth fly
-                  den dry good tree isn't seed stars were.
+                  우리의 교육은 여러분의 뚜렷한 목표와 확실한 자신감을 이끌어내는 것에서 출발합니다.
+				오랜 시간동안 저희 컴퓨터학원은 참된 인재양성이라는 사명감 하나로 매진해 왔습니다. 
+				
                 </p>
                 <p>
-                  Subdue whales void god which living don't midst lesser yieldi
-                  over lights whose. Cattle greater brought sixth fly den dry
-                  good tree isn't seed stars were the boring.
+                오랜 전통과 경험을 바탕으로 한 명실상부한 대한민국 교육기관의 리더로서 앞으로도 최선을 다해 교육의 미래를 이끌어 나가겠습니다.
+				교육의 질적 향상과 다양한 분야로의 인재양성을 위해 혼신을 다하겠습니다.
+
                 </p>
-                <a class="primary-btn" href="#">
-                  Learn More <i class="ti-arrow-right ml-1"></i>
-                </a>
+<!--                 <a class="primary-btn" href="#"> -->
+<!--                   Learn More <i class="ti-arrow-right ml-1"></i> -->
+<!--                 </a> -->
               </div>
             </div>
           </div>
@@ -87,9 +87,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3 text-white">Awesome Feature</h2>
+              <h2 class="mb-3 text-white">전문 IT교육센터</h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+                기술력으로 대한민국 IT 직업훈련에 앞장 서겠습니다.
               </p>
             </div>
           </div>
@@ -99,10 +99,9 @@
             <div class="single_feature">
               <div class="icon"><span class="flaticon-student"></span></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Scholarship Facility</h4>
+                <h4 class="mt-3 mb-2">꿈과 보람의 삶터</h4>
                 <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
+                  직원 및 강사에 대한 비전
                 </p>
               </div>
             </div>
@@ -112,10 +111,9 @@
             <div class="single_feature">
               <div class="icon"><span class="flaticon-book"></span></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Sell Online Course</h4>
+                <h4 class="mt-3 mb-2">진화하는 기업</h4>
                 <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
+                  체계적인 직업훈련, 전문적인 취업지원
                 </p>
               </div>
             </div>
@@ -125,10 +123,9 @@
             <div class="single_feature">
               <div class="icon"><span class="flaticon-earth"></span></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Global Certification</h4>
+                <h4 class="mt-3 mb-2"> 사회에 공헌</h4>
                 <p>
-                  One make creepeth, man bearing theira firmament won't great
-                  heaven
+                  기업 맞춤 형 직업훈련 콘텐츠 
                 </p>
               </div>
             </div>
@@ -144,9 +141,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Client say about me</h2>
+              <h2 class="mb-3">VISION</h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+               국내 최고의 직업훈련기관의 새로운 패러다임을 제시합니다.
               </p>
             </div>
           </div>
@@ -161,11 +158,11 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>Elite Martin</h4>
+                    <h4>교육 콘텐츠 개발 온라인 교육</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      콘텐츠 개발 운영<br />
+                      오프라인 교육 운영<br />
+                      관련 소프트웨어 개발
                     </p>
                   </div>
                 </div>
@@ -178,11 +175,11 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>Davil Saden</h4>
+                    <h4>교육사업(오프라인)</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      컴퓨터 기술교육<br />
+                      컴퓨터 시스템 설계<br />
+                      대학, 고교 취업 지원 교육
                     </p>
                   </div>
                 </div>
@@ -195,11 +192,11 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>Elite Martin</h4>
+                    <h4>취업지원 사업</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      온라인 정보제공 사업<br />
+                      채용 대행 및 헤드헌팅 취업 컨설팅 <br />
+                      대학 취업 설명회, 캠프 운영
                     </p>
                   </div>
                 </div>
@@ -212,50 +209,49 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>Davil Saden</h4>
+                    <h4>VISION</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      확보된 고객 인프라와 기술력을 기반의 국내 최고의
+                      IT 직업훈련 기관
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>Elite Martin</h4>
-                    <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>Davil Saden</h4>
-                    <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--             <div class="testi_item"> -->
+<!--               <div class="row"> -->
+<!--                 <div class="col-lg-4 col-md-6"> -->
+<!--                   <img src="img/testimonials/t1.jpg" alt="" /> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-8"> -->
+<!--                   <div class="testi_text"> -->
+<!--                     <h4>Elite Martin</h4> -->
+<!--                     <p> -->
+<!--                       Him, made can't called over won't there on divide there -->
+<!--                       male fish beast own his day third seed sixth seas unto. -->
+<!--                       Saw from -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--             <div class="testi_item"> -->
+<!--               <div class="row"> -->
+<!--                 <div class="col-lg-4 col-md-6"> -->
+<!--                   <img src="img/testimonials/t2.jpg" alt="" /> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-8"> -->
+<!--                   <div class="testi_text"> -->
+<!--                     <h4>Davil Saden</h4> -->
+<!--                     <p> -->
+<!--                       Him, made can't called over won't there on divide there -->
+<!--                       male fish beast own his day third seed sixth seas unto. -->
+<!--                       Saw from -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
           </div>
         </div>
       </div>

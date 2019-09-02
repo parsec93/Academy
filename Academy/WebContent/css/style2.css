@@ -19,7 +19,6 @@ theme.
 /*Color Variables*/
 /*=================== fonts ====================*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500|Rubik:500, 600");
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /*---------------------------------------------------- */
@@ -164,13 +163,11 @@ button:focus {
     background: transparent;
     padding: 0px;
     border: 0px;
-    border-radius: 0px; 
-    width:1140px;
-    margin: 0 auto; }
+    border-radius: 0px; }
     .header_area .navbar .nav .nav-item {
       margin-right: 45px; }
       .header_area .navbar .nav .nav-item .nav-link {
-        font: 500 14px/80px 'Noto Sans KR', sans-serif;
+        font: 500 14px/80px "Rubik", sans-serif;
         text-transform: capitalize;
         color: #002347;
         padding: 0px;
@@ -323,119 +320,9 @@ button:focus {
     font-weight: 600;
     cursor: pointer;
     padding: 10px 0; }
-    
-/* css top nav 추가 180830 */
-.main_menu{
-}
-.nav-topwrap{
-	width:1140px;
-	margin:0 auto;
-	padding:20px 0;
-	position:relative;
-}
-.nav-topwrap .nav-top{
-	height:40px;
-	position:absolute;
-	top:0;
-	right:0;
-	padding:0;
-	margin:0;
-}
-.nav-topwrap .nav-top>li{
-	list-style:none;
-	float:left;
-	padding-right:30px;
-	height:40px;
-}
-.nav-topwrap .nav-top>li:last-child{
-	padding-right:15px;
-}
-.nav-topwrap .nav-top>li>a{
-	font:500 12px 'Noto Sans KR', sans-serif;
-	color:#fff;
-	float:left;
-	padding:20px 0;
-}
-.nav-topwrap .nav-top>li>a.nav-top-link-main{
-	font:500 12px 'Noto Sans KR', sans-serif;
-	float:left;
-	padding:20px 0;
-	color:#002347;
-}
-.nav-topwrap .nav-top>li:hover a{
-	color:#888;
-}
-.nav_topwarp{
-	width:100%;
-}
-.nav-top{}
-
 
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
-/**/
-/* Start Testimonial Area css
-============================================================================================ */
-.testimonial_area2 .owl-carousel .owl-dots {
-  display: block !important;
-  text-align: center; }
-  .testimonial_area2 .owl-carousel .owl-dots .owl-dot {
-    height: 10px;
-    width: 10px;
-    background: #d8d8d8;
-    border-radius: 17px;
-    display: inline-block;
-    margin-right: 10px;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s; }
-    .testimonial_area2 .owl-carousel .owl-dots .owl-dot.active {
-      height: 12px;
-      width: 12px;
-      background: #fdc632; }
-  @media (max-width: 991px) {
-    .testimonial_area2 .owl-carousel .owl-dots {
-      display: none !important; } }
-
-.testi_item2 {
-  padding: 50px 55px;
-  margin-bottom: 200px;
-  margin-left: 10px;
-  margin: 0px 10px 80px;
-  box-shadow: 0px 15px 30px 0px rgba(221, 221, 221, 0.3);
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s; }
-  @media (max-width: 991px) {
-    .testi_item2 {
-      margin-bottom: 0px; } }
-  @media (max-width: 575px) {
-    .testi_item2 {
-      padding: 30px 20px; } }
-  .testi_item2 img {
-    border-radius: 5px; }
-  .testi_item2 .col-lg-8 {
-    vertical-align: middle;
-    align-self: center; }
-  @media (max-width: 991px) {
-    .testi_item2 .testi_text {
-      margin-top: 50px; } }
-  .testi_item2 .testi_text h4 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    text-transform: capitalize; }
-  .testi_item2 .testi_text p {
-    margin-bottom: 0px; }
-  .testi_item2:hover {
-    box-shadow: 0px 10px 30px 0px rgba(0, 35, 71, 0.1); }
-
-/* End Testimonial Area css
-============================================================================================ */
-
-
-
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
@@ -555,10 +442,6 @@ button:focus {
 
 /* End Home Banner Area css
 ============================================================================================ */
-
-
-
-
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Start About Area css
@@ -901,7 +784,7 @@ button:focus {
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 5px;
-    margin-top: 25px; }
+    margin-top: 65px; }
     @media (max-width: 991px) {
       .clock_sec .clockinner {
         margin-top: 40px; } }
@@ -1695,9 +1578,6 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /*============== contact_area css ================*/
-.mapwrap{
-	margin-bottom:50px;
-}
 .mapBox {
   height: 420px;
   margin-bottom: 80px; }

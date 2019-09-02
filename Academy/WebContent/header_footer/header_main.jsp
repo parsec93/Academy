@@ -5,7 +5,7 @@
 	String sId = (String)session.getAttribute("sId");
 	
 	%>
-<header class="header_area white-header">
+<header class="header_area white">
 	<div class="main_menu">
 		<div class="search_input" id="search_input_box">
 			<div class="container">
@@ -22,11 +22,11 @@
 			<%
 		if(sId == null){ 
 %> 
-			<li><a class="nav-top-link" href="member/loginForm.jsp">로그인</a></li>
+			<li><a class="nav-top-link-main" href="member/loginForm.jsp">로그인</a></li>
 		<%}else {
 %> 
-			<li><a class="nav-top-link" href="InfoPro.me"><%=sId %>님</a></li>
-			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
+			<li><a class="nav-top-link-main" href="InfoPro.me"><%=sId %>님</a></li>
+			<li><a class="nav-top-link-main" href="LogoutPro.me">로그아웃</a></li>
 		<%}%>
 		</ul>
 		</div>
@@ -39,7 +39,7 @@
 		
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<a class="navbar-brand" href="index.jsp"><img
-					src="img/logo2.png" alt="" /></a>
+					src="img/logo.png" alt="" /></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
