@@ -25,7 +25,7 @@
 			<li><a class="nav-top-link" href="member/loginForm.jsp">로그인00</a></li>
 		<%}else if(sId.equals("admin1234")){
 %> 
-			<li><a class="nav-top-link" href="admin/adminMain.jsp">관리자페이지</a></li>
+			<li><a class="nav-top-link" href="admin/adminMain.jsp">관리자페이지00</a></li>
 			<li><a class="nav-top-link" href="InfoPro.me"><%=sId %>님</a></li>
 			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
 		<%}else {%>
