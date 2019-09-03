@@ -325,15 +325,20 @@ button:focus {
     padding: 10px 0; }
     
 /* css top nav 추가 180830 */
+.nav_topwarp{
+	width:100%;
+}
 .main_menu{
 }
-.nav-topwrap{
+.nav-topwrap,
+.nav-topwrap-white{
 	width:1140px;
 	margin:0 auto;
 	padding:20px 0;
 	position:relative;
 }
-.nav-topwrap .nav-top{
+.nav-topwrap .nav-top,
+.nav-topwrap-white .nav-top{
 	height:40px;
 	position:absolute;
 	top:0;
@@ -341,34 +346,41 @@ button:focus {
 	padding:0;
 	margin:0;
 }
-.nav-topwrap .nav-top>li{
+.nav-topwrap .nav-top>li,
+.nav-topwrap-white .nav-top>li{
 	list-style:none;
 	float:left;
 	padding-right:30px;
 	height:40px;
 }
-.nav-topwrap .nav-top>li:last-child{
+.nav-topwrap .nav-top>li:last-child,
+.nav-topwrap-white .nav-top>li:last-child{
 	padding-right:15px;
 }
-.nav-topwrap .nav-top>li>a{
+.nav-topwrap .nav-top>li>a,
+.nav-topwrap-white .nav-top>li>a{
 	font:500 12px 'Noto Sans KR', sans-serif;
-	color:#fff;
+	color:#002347;
 	float:left;
 	padding:20px 0;
 }
-.nav-topwrap .nav-top>li>a.nav-top-link-main{
+.nav-topwrap-white .nav-top>li>a{
+	color:#fff;
+}
+
+
+.nav-topwrap .nav-top>li>a.nav-top-link-main,
+.nav-topwrap-white .nav-top>li>a.nav-top-link-main{
 	font:500 12px 'Noto Sans KR', sans-serif;
 	float:left;
 	padding:20px 0;
 	color:#002347;
 }
-.nav-topwrap .nav-top>li:hover a{
+.nav-topwrap .nav-top>li:hover a,
+.nav-topwrap-white .nav-top>li:hover a{
 	color:#888;
 }
-.nav_topwarp{
-	width:100%;
-}
-.nav-top{}
+
 
 
 /*---------------------------------------------------- */
