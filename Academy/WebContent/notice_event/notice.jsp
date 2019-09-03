@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
+     <!-- board css -->
+	<link rel="stylesheet" href="css/board.css" />
   </head>
 <%
 
@@ -53,55 +55,64 @@ String sid = (String)session.getAttribute("sid");
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>Courses</h2>
-                <div class="page_link">
-                  <a href="index.jsp">Home</a>
-                  <a href="event.jsp">Notice</a>
+                <h2>공지사항</h2>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
     <!--================End Home Banner Area =================-->
-	 <div class="popular_courses section_gap_top">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3">NOTICE</h2>
-              <p>
-				공지사항
-              </p>
+<!-- 	 <div class="popular_courses section_gap_top"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row justify-content-center"> -->
+<!--           <div class="col-lg-5"> -->
+<!--             <div class="main_title"> -->
+<!--               <h2 class="mb-3"> -->
+	<!-- 리스트 공지사항 시작-->
+	<div class="boardwrap">
+	<h1>	공지사항</h1>
+	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
+	<caption>게시판 리스트</caption>
+    <colgroup>
+	<col width="10%">
+	<col width="60%">
+	<col width="20%">
+
+	</colgroup>
               <%if(noticeList.size() == 0) {%>
               <h1><b>작성된 글이 없습니다.</b></h1>
               <%}else{ %>
-				<table border="1" width="500">
+				<thead>
 				<tr>
-					<td>글 번호</td><td>글 제목</td><td>작성일</td>
+					<th scope="col">글 번호</td>
+					<th scope="col">글 제목</td>
+					<th scope="col">작성일</td>
+					
 				</tr>
+					</thead>
+
 					<%
 					for(int i =0 ; i<noticeList.size(); i++){
 						NoticeBean noticeBean = (NoticeBean)noticeList.get(i);
 						%>	
-						<tr style="cursor:pointer;" onclick="location.href='noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>'" onmouseover="window.status='https://www.happyjung.com/'" onmouseout="window.status=''">
-							<td><%=noticeBean.getNotice_idx() %></td>
-							<td><%=noticeBean.getNotice_subject() %></td>
-							<td><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
+					<tbody>
+						<tr onclick="location.href='noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>'">
+							<td class="num"><%=noticeBean.getNotice_idx() %></td>
+							<td class="title"><%=noticeBean.getNotice_subject() %></td>
+							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
 						</tr>
 						<%
 					}
-					%>
-				
-				
+					%>		
 				<%} %>
+				</tbody>
 				</table>
 
 <!-- // 페이징 처리 구역  -->
-	<section id="noticeList">
+	<div id="page_control">
 	
-		<%if(noticeList.size() > 10  ){
+		<%
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
@@ -120,15 +131,16 @@ String sid = (String)session.getAttribute("sid");
 			&nbsp;[다음]
 		<%} else {  %>
 			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
-		<%} }%>
-	</section>
+		<%} %>
+
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                      </div>
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
    
     <!--================ Start Popular Courses Area =================-->
    

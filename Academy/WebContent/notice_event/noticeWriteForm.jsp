@@ -5,61 +5,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>공지사항/이벤트 작성</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-<style type="text/css">
-	#registForm {
-		width: 500px;
-		height: 610px;
-		border: 1px solid red;
-		margin: auto;
-	}
-	
-	h2 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 450px;
-		border: 1px solid darkgray;
-	}
-	
-	.td_left {
-		width: 150px;
-		background: orange;
-	}
-	
-	.td_right {
-		width: 300px;
-		background: skyblue;
-	}
-	
-	#commandCell {
-		text-align: center;
-	}
-</style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/themify-icons.css" />
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
+    <!-- login css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- board css -->
+    <link rel="stylesheet" href="css/board.css" />
 </head>
 <body>
+    <!--================ Start Header Menu Area =================-->
+    <jsp:include page="../header_footer/header.jsp" />
+    <!--================ End Header Menu Area =================-->
+	  
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="banner_content text-center">
+                <h2>공지사항/이벤트 작성</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+
+
+
 	<!-- 게시판 글 등록 -->
-	<section id="writeForm">
-		<h2>게시판 글 등록</h2>
+	<div class="boardwrap">
+		<h1>공지사항/이벤트 글 등록</h1>
 		<form action="NoticeWritePro.no" method="post" enctype="multipart/form-data" name="boardform">
-			<table>
+			<table id="boardwrite">
 				<tr>
-					<td class="td_left"><label for="notice_subject">제목</label></td>
-					<td class="td_right"><input type="text" name="notice_subject" id="notice_subject" required="required" /></td>
+					<td class="ftwrite"><label for="notice_subject">제목</label></td>
+					<td class="fttitle"><input type="text" name="notice_subject" id="notice_subject" required="required" /></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="notice_subject">구분</label></td>
-					<td class="td_right"><input type="radio" name="isNotice" value="1">공지사항
+					<td class="ftwrite"><label for="notice_subject">구분</label></td>
+					<td class="fttitle"><input type="radio" name="isNotice" value="1">공지사항
 													<input type="radio" name="isNotice" value="2">이벤트</td>
 				</tr>
 				<%//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
-				<tr><td class="td_left">이벤트 시작일</td><td><input type="text" id="date_start" placeholder="이벤트시작일" name="event_start_day"></td>
+				<tr><td class="ftwrite">이벤트 시작일</td><td class="fttitle"><input type="text" id="date_start" placeholder="이벤트시작일" name="event_start_day"></td>
 						<script>
 $(function() {
   $( "#date_start" ).datepicker({
@@ -68,7 +70,7 @@ $(function() {
 });
 </script>
 				</tr>
-				<tr><td class="td_left"> 이벤트 종료일</td><td><input type="text" id="date_end" placeholder="이벤트 종료일" name="event_end_day"></td>
+				<tr><td class="ftwrite"> 이벤트 종료일</td><td class="fttitle"><input type="text" id="date_end" placeholder="이벤트 종료일" name="event_end_day"></td>
 						<script>
 $(function() {
   $( "#date_end" ).datepicker({
@@ -78,20 +80,20 @@ $(function() {
 </script>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="notice_content">내용</label></td>
-					<td class="td_right"><textarea name="notice_content" id="notice_content" cols="40" rows="15" required="required" ></textarea></td>
+					<td class="ftwrite"><label for="notice_content">내용</label></td>
+					<td class="fttitle"><textarea name="notice_content" id="notice_content" cols="40" rows="15" required="required" ></textarea></td>
 				</tr>
 				<tr>
-					<td class="td_left"><label for="notice_file">파일첨부</label></td>
-					<td class="td_right"><input type="file" name="notice_file" id="notice_file" /></td>
+					<td class="ftwrite"><label for="notice_file">파일첨부</label></td>
+					<td class="fttitle"><input type="file" name="notice_file" id="notice_file" /></td>
 				</tr>
 			</table>
-			<section id="commandCell">
-				<input type="submit" value="등록" />&nbsp;&nbsp;
-				<input type="reset" value="다시쓰기" />
-			</section>
+			<div id="table_search">
+				<input type="submit" value="등록" class="btn"/>&nbsp;&nbsp;
+				<input type="reset" value="다시쓰기" class="btn"/>
+			</div>
 		</form>	
-	</section>
+	</div>
 </body>
 </html>
 
