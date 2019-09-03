@@ -1,3 +1,6 @@
+<%@page import="vo.LecturePageInfo"%>
+<%@page import="vo.LectureBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +25,16 @@
     <!-- board css -->
     <link rel="stylesheet" href="css/board.css" />
   </head>
+  <%
+  ArrayList<LectureBean> lectureList = (ArrayList<LectureBean>)request.getAttribute("lectureList");
+  LecturePageInfo lecturePageInfo = (LecturePageInfo)request.getAttribute("lecturePageInfo");
+ 
+  int listCount = lecturePageInfo.getListCount();
+  int nowPage = lecturePageInfo.getPage();
+  int startPage = lecturePageInfo.getStartPage();
+  int endPage = lecturePageInfo.getEndPage();
+  int maxPage = lecturePageInfo.getMaxPage();
+  %>
 
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -62,6 +75,9 @@
 	<col width="15%">
 	<col width="15%">
 	</colgroup>
+	<%if(lectureList.size() == 0) {%>
+    <h1><b>작성된 글이 없습니다.</b></h1>
+    <%}else{ %>
 	<thead>
 	<tr>
 	<th scope="col">글번호</th>
@@ -72,28 +88,26 @@
 	<th scope="col">종료일</th>
 	</tr>
 	</thead>
+    <%
+    for(int i =0 ; i<lectureList.size(); i++){
+	LectureBean lectureBean = (LectureBean)lectureList.get(i);
+	%>	
+	
 	<tbody>
 	<tr>
-	<td class="num">1</td>
+	<td class="num"><%=lectureBean.getLecture_idx() %></td>
 	<td class="title">
-	<a href="testcontent.jsp">게시판 제목이 들어갑니다</a>
+	<a href="location.href='#'"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
-	<td class="name">글쓴이이름</td>
-	<td class="hit">1234</td>
-	<td class="date">2008/02/14</td>
-	<td class="date">2008/02/14</td>
+	<td class="name"><%=lectureBean.getLecture_course() %></td>
+	<td class="hit"><%=lectureBean.getLecture_teacher() %></td>
+	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
+	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
 	</tr>
-	<tr class="reply">
-	<td class="num">2</td>
-	<td class="title" style="padding-left:30px;">
-	<img width="13" height="12" class="reply" alt="첨부이미지" src="img/board/ic_reply.png"> <a href="#">블로그 개편 답글</a>
-	</td>
-	<td class="name">벤쿠버지사</td>
-	<td class="hit">1234</td>
- 	<td class="date">2008/02/14</td>
-	<td class="date">2008/02/14</td>
-	</tr>
+	<%
+		}
+	} %>
 	
 	<!-- tr이 제목 1줄입니다 보일 list 갯수만큼 li반복합니다.-->
 	</tbody>
@@ -110,11 +124,32 @@
 	
 	
 	<div id="page_control">
-	<a href="#">Prev</a>
-	<a href="#">1</a>
-	<a href="#">Next</a>
-	</div>
-	</div>
+	
+		<%
+		if(nowPage <= 1 ) { %>
+			[이전]&nbsp;
+		<%} else { %>
+			<a href="notice.no?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+		<%} %>
+		
+		<%for(int i = startPage ; i <= endPage; i++) {
+			if(i == nowPage) {%>
+				[<%=i %>]
+			<%} else { %>
+				<a href = "notice.no?page=<%=i %>">[<%=i %>]</a>&nbsp;
+			<%} %>
+		<%} %>
+		
+		<%if(nowPage >= maxPage){ %>
+			&nbsp;[다음]
+		<%} else {  %>
+			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+		<%} %>
+
+
+<!-- 페이징 처리 구역 종료 -->
+                    </div>
+                      </div>
 	<!-- 리스트 게시판 끝-->
 
 
