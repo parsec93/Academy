@@ -52,11 +52,16 @@
 	<table id="sub_news">
     <h1 id="bo_v_title">리스트 제목</h1>
     <section id="bo_v_info">
-        <h2>페이지 정보</h2>
-        작성자 <strong>닉네임</strong>
-        <span class="bo_v_date">작성일</span><strong>2000.00.00</strong>
-        조회<strong>0회</strong>
-        댓글<strong>0건</strong>
+    	<div class="boardleft">
+    		<p class="boardlefttext">작성자<span>닉네임</span></p>
+    		<p class="boardlefttext">작성일<span>2000.00.00</span></p>
+    		<p class="boardlefttext">조회<span>0회</span></p>
+    		<p class="boardlefttext">댓글<span>0개</span></p>
+    	</div>
+    	<div class="boardright">
+    		<p class="boardlefttext">첨부파일<span>첨부파일이름</span></p>
+    	</div>
+        
     </section>
     <section id="bo_v_atc">
     	내용~

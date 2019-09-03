@@ -146,22 +146,33 @@
 }
 
 #bo_v_info {
-	padding: 0 0 10px;
-	border-bottom: 1px solid #ddd
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+}
+#bo_v_info .boardleft{
+	float:left;
+}
+#bo_v_info .boardleft .boardlefttext{
+	float:left;
+	margin-bottom:0;
+	padding-right:20px;
+}
+#bo_v_info .boardright{
+	float:right;
+	
+}
+#bo_v_info .boardright .boardlefttext{
+	margin-bottom:10px;
+	padding-left:20px;
+	
+}
+#bo_v_info .boardleft .boardlefttext span,
+#bo_v_info .boardright .boardlefttext span{
+	font-style:normal;
+	padding-left:5px;
 }
 
-#bo_v_info h2 {
-	position: absolute;
-	font-size: 0;
-	line-height: 0;
-	overflow: hidden
-}
 
-#bo_v_info strong {
-	display: inline-block;
-	margin: 0 15px 0 5px;
-	font-weight: normal
-}
 
 #bo_v_date {
 	
