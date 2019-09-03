@@ -214,6 +214,7 @@ function joinCheck() {
                 </div>
                 <div class="signup-cont cont">
                     <form action="../MemberJoinPro.me" name="up" method="post" onsubmit="return joinCheck()">
+                    	<input type="hidden" name="member_isMember" value="0"/> 
                         <input type="text" name="name" id="name" class="inpt" required="required" placeholder="Your name"> 
                         <label for="name">Your name</label> 
                         

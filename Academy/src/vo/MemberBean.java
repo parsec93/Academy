@@ -10,6 +10,8 @@ public class MemberBean {
     private String member_add1;
     private String member_add2;
     private String member_phone;
+    private String member_isMember;
+    private String member_teacher_code;
     
     
 	public int getMember_idx() {
@@ -66,6 +68,20 @@ public class MemberBean {
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
+	public String getMember_isMember() {
+		return member_isMember;
+	}
+	public String getMember_teacher_code() {
+		return member_teacher_code;
+	}
+	public void setMember_isMember(String member_isMember) {
+		this.member_isMember = member_isMember;
+	}
+	public void setMember_teacher_code(String member_teacher_code) {
+		this.member_teacher_code = member_teacher_code;
+	}
+	
+
    
     
 }

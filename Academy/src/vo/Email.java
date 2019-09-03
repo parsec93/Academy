@@ -11,7 +11,7 @@ public class Email {
 
         final String username = "rootLake12";
         final String password = "Lakeroot12";
-
+        System.out.println(rNum);
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");

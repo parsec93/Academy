@@ -20,6 +20,9 @@ public class MemberJoinProAction implements Action{
 		MemberBean mb = new MemberBean();
 		
 		String email = request.getParameter("email1") + "@" +request.getParameter("email2");
+//		String isMember = request.getParameter("member_isMember");
+		System.out.println("에휴 ");
+		
 		mb.setMember_name(request.getParameter("name"));
 		mb.setMember_id(request.getParameter("id"));
 		mb.setMember_pass(request.getParameter("password"));
@@ -28,6 +31,8 @@ public class MemberJoinProAction implements Action{
 		mb.setMember_add1(request.getParameter("add1"));
 		mb.setMember_add2(request.getParameter("add2"));
 		mb.setMember_phone(request.getParameter("phone"));
+		mb.setMember_isMember(request.getParameter("member_isMember"));
+		mb.setMember_teacher_code("45");
 		System.out.println(request.getParameter("name"));
 		MemberJoinProService memberJoinProService = new MemberJoinProService();
 		boolean isJoinMember = memberJoinProService.insertMember(mb);

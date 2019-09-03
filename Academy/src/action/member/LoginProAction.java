@@ -32,10 +32,9 @@ public class LoginProAction implements Action {
 		}else {
 			String id =request.getParameter("id");
 			String password = request.getParameter("password");
-			String isMember = request.getParameter("isMember");
 			System.out.println(id + password);
 			LoginProService memberLoginProService = new LoginProService();
-			boolean isLoginMember = memberLoginProService.isLoginMember(id,password);
+			boolean isLoginMember = memberLoginProService.isLoginMember(id, password);
 			if(isLoginMember) {
 				System.out.println("로그인 성공!");
 				session.setAttribute("sId", id);

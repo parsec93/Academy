@@ -14,6 +14,7 @@ public class MemberJoinProService {
 		Connection con = getConnection();
 		MemberDAO mdao = MemberDAO.getInstance();
 		mdao.setConnection(con);
+		System.out.println("나는서비수");
 		
 		if(mdao.insertMember(mb)>0) {
 			isInsertSuccess = true;

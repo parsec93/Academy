@@ -31,17 +31,39 @@ public class MemberDAO {
 		
 		int isInsertCount = 0;
 		
+		
 		try {
-			String sql = "insert into member values(null,?,?,?,?,?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mb.getMember_name());
-			pstmt.setString(2, mb.getMember_id());
-			pstmt.setString(3, mb.getMember_pass());
-			pstmt.setString(4, mb.getMember_email());
-			pstmt.setString(5, mb.getMember_postcode());
-			pstmt.setString(6, mb.getMember_add1());
-			pstmt.setString(7, mb.getMember_add2());
-			pstmt.setString(8, mb.getMember_phone());
+			String member_isMember =mb.getMember_isMember();
+			if(member_isMember.equals("0")){
+				System.out.println("ㅎㅎDAO");
+				String sql = "insert into member values(null,?,?,?,?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mb.getMember_name());
+				pstmt.setString(2, mb.getMember_id());
+				pstmt.setString(3, mb.getMember_pass());
+				pstmt.setString(4, mb.getMember_email());
+				pstmt.setString(5, mb.getMember_postcode());
+				pstmt.setString(6, mb.getMember_add1());
+				pstmt.setString(7, mb.getMember_add2());
+				pstmt.setString(8, mb.getMember_phone());
+				pstmt.setString(9, "0");
+				pstmt.setString(10, "");
+			} else if(member_isMember.equals("1")){
+				String sql = "insert into member values(null,?,?,?,?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mb.getMember_name());
+				pstmt.setString(2, mb.getMember_id());
+				pstmt.setString(3, mb.getMember_pass());
+				pstmt.setString(4, mb.getMember_email());
+				pstmt.setString(5, mb.getMember_postcode());
+				pstmt.setString(6, mb.getMember_add1());
+				pstmt.setString(7, mb.getMember_add2());
+				pstmt.setString(8, mb.getMember_phone());
+				pstmt.setString(9, mb.getMember_isMember());
+				pstmt.setString(10, "0");
+				
+			}
+			
 			
 			isInsertCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
