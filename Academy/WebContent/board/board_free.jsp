@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- board css -->
+	<link rel="stylesheet" href="css/board.css" />
   </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -57,7 +59,7 @@ String sid = (String)session.getAttribute("sid");
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>Courses</h2>
+                <h2>자유게시판</h2>
                 <div class="page_link">
                   <a href="index.jsp">Home</a>
                 </div>
@@ -68,34 +70,46 @@ String sid = (String)session.getAttribute("sid");
       </div>
     </section>
     <!--================End Home Banner Area =================-->
-	 <div class="popular_courses section_gap_top">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3">자유게시판</h2>
-              <p>
-				게시판
-              </p>
+	 <div class="boardwrap">
+    <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
+	<caption>게시판 리스트</caption>
+    <colgroup>
+	<col width="10%">
+	<col width="60%">
+	<col width="20%">
+	<col width="10%">
+
+	</colgroup>
               <%if(articleList == null) {%>
               <h1>작성된 글이 없습니다.</h1>
               <%}else{ %>
-				<table border="1" width="500">
+				<thead>
 				<tr>
-					<td>글 번호</td><td>글 제목</td><td>작성일</td><td>조회수</td>
+					<th scope="col">글 번호</td>
+					<th scope="col">글 제목</td>
+					<th scope="col">작성일</td>
+					<th scope="col">조회수</td>
+					
 				</tr>
+					</thead>
 					<%
 					for(int i =0 ; i<articleList.size(); i++){
 						BoardBean boardBean = (BoardBean)articleList.get(i);
 						%>	
 						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'" >
-							<td><%=boardBean.getBoard_num() %></td>
-							<td><%if(boardBean.getBoard_re_lev() != 0) { %>
+							<td class="num"><%=boardBean.getBoard_num() %></td>
+							<td class="title"><%if(boardBean.getBoard_re_lev() != 0) { %>
 								<%for(int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) { %> 
 										&nbsp;
-								<%} %>▶<%} %><%=boardBean.getBoard_subject() %></td>
-							<td><%=new SimpleDateFormat("yyyy-MM-dd").format(boardBean.getBoard_date()) %></td>
-							<td><%=boardBean.getBoard_readcount() %></td>
+								<%} %><%} %>
+								<%if(boardBean.getBoard_re_lev() > 0){ %>
+								<img width="13" height="12" class="reply" alt="첨부이미지" src="img/board/ic_reply.png">
+								<%} %>
+								<%=boardBean.getBoard_subject() %>
+<!-- 								<a class="comment" href="#">[5]</a> -->
+								</td>
+							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(boardBean.getBoard_date()) %></td>
+							<td class="readcount"><%=boardBean.getBoard_readcount() %></td>
 						</tr>
 						<%
 					}
@@ -134,10 +148,7 @@ String sid = (String)session.getAttribute("sid");
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
    
     <!--================ Start Popular Courses Area =================-->
    
