@@ -19,6 +19,7 @@ import action.board.BoardReplyFormAction;
 import action.board.BoardReplyProAction;
 import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
+import action.lecture.LectureListeAction;
 import vo.ActionForward;
 
 @WebServlet("*.le")
@@ -35,9 +36,15 @@ public class LectureFrontController extends HttpServlet {
        
 
         if(command.equals("/lectureList.le")) {
-        	System.out.println("lecturefrontcontroller");
-            forward = new ActionForward();
-            forward.setPath("/admin/lecture/lectureList.jsp");
+        	
+        	action = new LectureListeAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
         }
         
         
