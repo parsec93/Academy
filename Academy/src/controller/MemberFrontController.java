@@ -104,6 +104,10 @@ public class MemberFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        } else if(command.equals("/LoginAdminPro.me")) {   
+        	System.out.println("/LoginAdminPro.me");
+        	forward = new ActionForward();
+            forward.setPath("/admin/loginAdminForm.jsp");
         }
         
         

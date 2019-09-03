@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>관리자 페이지</h1>
-<input type="button" value="교사관리" onclick="locaiton.href='#'">
-<input type="button" value="수업관리" onclick="locaiton.href='#'">
+<input type="button" value="교사관리" onclick="location.href='/admin/loginAdminForm.jsp'">
+<input type="button" value="수업관리" onclick="location.href='#'">
 </body>
 </html>
