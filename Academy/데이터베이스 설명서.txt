@@ -126,3 +126,22 @@ board_date date);
   `board_num` INT(11) NOT NULL,
   `comment` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`comment_num`));
+  
+  
+  
+  
+ 8. 수업 등록용 테이블 생성 및 기본 자료 등록 
+ 
+ create table lecture (
+lecture_idx int primary key auto_increment,
+lecture_subject varchar(50) not null,
+lecture_course varchar(10) not null,
+lecture_teacher varchar(10) not null,
+lecture_start_day date not null,
+lecture_end_day date not null,
+lecture_week_day varchar(20) not null,
+lecture_content varchar(200) not null,
+lecture_fee int(10) not null
+);
+
+insert into lecture values(null, '자바 6개월 완성', 'Java', '연태리', '2019-09-01', '2019-09-30',  '1', '6개월만 하면 취업 못해용', 990000);
