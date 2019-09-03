@@ -22,13 +22,7 @@
 			<%
 		if(sId == null){ 
 %> 
-<<<<<<< HEAD
 			<li><a class="nav-top-link" href="member/loginForm.jsp">로그인</a></li>
-=======
-
-			<li><a class="nav-top-link" href="member/loginForm.jsp">로그인00</a></li>
-
->>>>>>> branch 'master' of https://github.com/parsec93/Academy.git
 		<%}else if(sId.equals("admin1234")){
 %> 
 			<li><a class="nav-top-link" href="admin/adminMain.jsp">관리자페이지</a></li>
