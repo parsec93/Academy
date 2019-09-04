@@ -97,7 +97,7 @@
 	<tr>
 	<td class="num"><%=lectureBean.getLecture_idx() %></td>
 	<td class="title">
-	<a href="location.href='#'"><%=lectureBean.getLecture_subject() %></a>
+	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&nowPage=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>

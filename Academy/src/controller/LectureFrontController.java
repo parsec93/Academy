@@ -19,6 +19,7 @@ import action.board.BoardReplyFormAction;
 import action.board.BoardReplyProAction;
 import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
+import action.lecture.LectureDetailAction;
 import action.lecture.LectureListeAction;
 import vo.ActionForward;
 
@@ -45,6 +46,16 @@ public class LectureFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+        }else if(command.equals("/lectureDetail.le")) {
+        	
+        	action = new LectureDetailAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         
         

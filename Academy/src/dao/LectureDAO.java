@@ -80,5 +80,38 @@ public class LectureDAO {
 		return listCount;
 		
 	}
+	public LectureBean selectArticle(int lecture_idx) {
+		LectureBean lectureBean = new LectureBean();
+		String sql = "SELECT * FROM lecture WHERE lecture_idx =?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, lecture_idx);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
+				lectureBean.setLecture_course(rs.getString("lecture_course"));
+				lectureBean.setLecture_teacher(rs.getString("lecture_teacher"));
+				lectureBean.setLecture_start_day(rs.getDate("lecture_start_day"));
+				lectureBean.setLecture_end_day(rs.getDate("lecture_end_day"));
+				lectureBean.setLecture_week_day(rs.getString("lecture_week_day"));
+				lectureBean.setLecture_content(rs.getString("lecture_content"));
+				lectureBean.setLecture_fee(rs.getInt("lecture_fee"));
+				
+	
+			}
+		} catch (SQLException e) {
+            System.out.println("selectArticle() 에러 - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+            close(rs);
+            close(pstmt);
+        }
+        
+        return lectureBean;
+        
+			
+	}
 
 }
