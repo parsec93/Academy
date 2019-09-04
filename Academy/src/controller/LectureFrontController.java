@@ -21,6 +21,7 @@ import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
 import action.lecture.LectureDetailAction;
 import action.lecture.LectureListeAction;
+import action.lecture.LectureUpdate;
 import vo.ActionForward;
 
 @WebServlet("*.le")
@@ -56,7 +57,18 @@ public class LectureFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }else if(command.equals("/lectureUpdate.le")) {
+        	
+        	action = new LectureUpdate();
+        	
+        	try {
+				forward =action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
+        
         
         
         // if문에서 서블릿 주소 판별 후 요청 처리 뒤에 포워딩할 페이지를 ActionForward 객체로 생성했기 때문에

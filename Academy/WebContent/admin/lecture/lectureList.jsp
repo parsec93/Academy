@@ -97,7 +97,7 @@
 	<tr>
 	<td class="num"><%=lectureBean.getLecture_idx() %></td>
 	<td class="title">
-	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&nowPage=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
+	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&Page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
@@ -129,21 +129,21 @@
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="notice.no?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="lectureList.le?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "notice.no?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "lectureList.le.no?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="lectureList.le.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %>
 
 

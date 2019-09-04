@@ -74,10 +74,9 @@
     </section>
 	</table>
 	<div id="table_search">
-		<input type="button" value="글수정" class="btn" onclick="location.href='updateForm.jsp'">
- 		<input type="button" value="글삭제" class="btn" onclick="location.href='testdelete.jsp'">
-		<input type="button" value="답글쓰기" class="btn" onclick="location.href='reWriteForm.jsp'">    
-		<input type="button" value="글목록" class="btn" onclick="location.href='test.jsp'">
+		<input type="button" value="글수정" class="btn" onclick="location.href='lectureUpdate.le?page=<%=nowPage%>'">
+ 		<input type="button" value="글삭제" class="btn" onclick="location.href='lectureDelete.le?page=<%=nowPage%>'">   
+		<input type="button" value="글목록" class="btn" onclick="location.href='lectureList.le?page=<%=nowPage%>'">
 	</div>
 	
 <!-- 	<div class="comment"> -->

@@ -14,13 +14,13 @@ public class LectureDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("LectureDetailAction");
 		System.out.println(request.getParameter("lecture_idx"));
-		System.out.println(request.getParameter("nowPage"));
+		System.out.println(request.getParameter("Page"));
 		int lecture_idx = Integer.parseInt(request.getParameter("lecture_idx"));
-		String nowPage =request.getParameter("nowPage");
+		String Page =request.getParameter("Page");
 		LectureDetailService lectureDetailService = new LectureDetailService();
 		LectureBean article = lectureDetailService.getArticle(lecture_idx);
 		
-		request.setAttribute("nowPage", nowPage);
+		request.setAttribute("nowPage", Page);
 		request.setAttribute("article", article);
 		
 		ActionForward forward = new ActionForward();
