@@ -90,6 +90,7 @@ public class LectureDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				lectureBean.setLecture_idx(rs.getInt("lecture_idx"));
 				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
 				lectureBean.setLecture_course(rs.getString("lecture_course"));
 				lectureBean.setLecture_teacher(rs.getString("lecture_teacher"));
@@ -114,4 +115,25 @@ public class LectureDAO {
 			
 	}
 
+	
+	public int deleteLecture(int lecture_idx) {
+		PreparedStatement pstmt = null;
+		
+		int deleteCount = 0;
+		
+		try {
+			String sql = "DELETE FROM LECTURE WHERE lecture_idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, lecture_idx);
+			deleteCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
+	}
+	
+	
 }
