@@ -21,6 +21,7 @@ import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
 import action.lecture.LectureDeleteAction;
 import action.lecture.LectureDetailAction;
+import action.lecture.LectureInsertAction;
 import action.lecture.LectureListeAction;
 import action.lecture.LectureUpdateFormAction;
 import action.lecture.LectureUpdateProAction;
@@ -88,10 +89,21 @@ public class LectureFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-        }
-        
-        
-        
+        }else if(command.equals("/lectureInsert.le")) {
+            // member 폴더의 loginForm.jsp 페이지로 이동
+            forward = new ActionForward();
+            forward.setPath("/admin/lecture/lectureInsert.jsp");
+        }else if(command.equals("/lectureInsertPro.le")) {  	
+        	action = new LectureInsertAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        }   
+                
         // if문에서 서블릿 주소 판별 후 요청 처리 뒤에 포워딩할 페이지를 ActionForward 객체로 생성했기 때문에
         // ActionForward 객체 내의 포워딩 방식에 따라 지정된 URL 로 각각 다른 방식의 포워딩이 필요함
         if(forward != null) { // 예외 발생 시를 제외한 나머지(ActionForward 객체가 null 이 아닐 때)

@@ -165,6 +165,29 @@ public class LectureDAO {
 		
 		return deleteCount;
 	}
-	
+	public int lectureInsert(LectureBean lb) {
+		int isSuccess = 0;
+		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,lb.getLecture_subject());
+			pstmt.setString(2, lb.getLecture_course());
+			pstmt.setString(3, lb.getLecture_teacher());
+			pstmt.setDate(4, lb.getLecture_start_day());
+			pstmt.setDate(5, lb.getLecture_end_day());
+			pstmt.setString(6, lb.getLecture_week_day());
+			pstmt.setString(7, lb.getLecture_content());
+			pstmt.setInt(8, lb.getLecture_fee());
+			
+			isSuccess = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("lectureInsert() 에러" + e.getMessage());
+		}finally {
+			close(pstmt);
+		}
+		
+		return isSuccess;
+	}
 	
 }
