@@ -41,8 +41,14 @@ public class MemberJoinProAction implements Action{
 			System.out.println("회원가입 성공");
 			
 			forward = new ActionForward();
+			if(mb.getMember_isMember().equals("0")) {
 			forward.setPath("member/loginForm.jsp");
 			forward.setRedirect(true);
+			}else if(mb.getMember_isMember().equals("1")) {
+			forward.setPath("admin/teacherList.jsp");
+			forward.setRedirect(true);	
+				
+			}
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
