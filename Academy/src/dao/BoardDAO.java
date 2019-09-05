@@ -309,7 +309,7 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 게시물 번호(새로 계산한 번호 사용)
 			pstmt.setString(2, article.getBoard_id());
-			pstmt.setString(3, "[답글]" + article.getBoard_subject());
+			pstmt.setString(3, article.getBoard_subject());
 			pstmt.setString(4, article.getBoard_content());
 			pstmt.setString(5, ""); // 답글 파일 업로드 없음
 			pstmt.setInt(6, board_re_ref);
