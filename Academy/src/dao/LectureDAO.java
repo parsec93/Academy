@@ -90,6 +90,7 @@ public class LectureDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				lectureBean.setLecture_idx(lecture_idx);
 				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
 				lectureBean.setLecture_course(rs.getString("lecture_course"));
 				lectureBean.setLecture_teacher(rs.getString("lecture_teacher"));
@@ -112,6 +113,37 @@ public class LectureDAO {
         return lectureBean;
         
 			
+	}
+	public int isUpdateArticle(LectureBean article) {
+		int updateCount = 0;
+		
+		String sql = "UPDATE lecture SET lecture_subject=?,lecture_course=?,lecture_teacher=?,lecture_start_day=?,"
+				+ "lecture_end_day=?,lecture_week_day=?,lecture_content=?,lecture_fee=? WHERE lecture_idx=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getLecture_subject());
+			pstmt.setString(2, article.getLecture_course());
+			pstmt.setString(3, article.getLecture_teacher());
+			pstmt.setDate(4, article.getLecture_start_day());
+			pstmt.setDate(5, article.getLecture_end_day());
+			pstmt.setString(6, article.getLecture_week_day());
+			pstmt.setString(7, article.getLecture_content());
+			pstmt.setInt(8, article.getLecture_fee());
+			pstmt.setInt(9, article.getLecture_idx());
+			updateCount = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+            close(pstmt);
+        }
+        
+        return updateCount;
+		
+		
 	}
 
 }

@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <%
 	LectureBean article =(LectureBean)request.getAttribute("article");
-	String nowPage = (String)request.getAttribute("nowPage");	
+	String nowPage = (String)request.getAttribute("page");	
+	String Lecture_week_day="";
 %>
 <html lang="en">
   <head>
@@ -62,7 +63,13 @@
     		<p class="boardlefttext">선생님<span><%=article.getLecture_teacher() %></span></p>
     		<p class="boardlefttext">시작일<span><%=article.getLecture_start_day() %></span></p>
     		<p class="boardlefttext">종료일<span><%=article.getLecture_end_day() %></span></p>
-    		<p class="boardlefttext">요일<span><%=article.getLecture_week_day() %></span></p>
+    		
+    		<%if(article.getLecture_week_day().equals("1")) {
+    			Lecture_week_day =  "월,수,금";
+    	      }else if(article.getLecture_week_day().equals("2")){
+    	 		 Lecture_week_day =  "화,목";
+    	      } %>
+    		<p class="boardlefttext">요일<span><%=Lecture_week_day %></span></p>
     	</div>
     	<div class="boardright">
     		<p class="boardlefttext">가격<span><%=article.getLecture_fee() %></span></p>
@@ -74,8 +81,8 @@
     </section>
 	</table>
 	<div id="table_search">
-		<input type="button" value="글수정" class="btn" onclick="location.href='lectureUpdate.le?page=<%=nowPage%>'">
- 		<input type="button" value="글삭제" class="btn" onclick="location.href='lectureDelete.le?page=<%=nowPage%>'">   
+		<input type="button" value="글수정" class="btn" onclick="location.href='lectureUpdateForm.le?page=<%=nowPage%>&lecture_idx=<%=article.getLecture_idx()%>'">
+ 		<input type="button" value="글삭제" class="btn" onclick="location.href='lectureDelete.le?page=<%=nowPage%>&lecture_idx=<%=article.getLecture_idx()%>'">   
 		<input type="button" value="글목록" class="btn" onclick="location.href='lectureList.le?page=<%=nowPage%>'">
 	</div>
 	

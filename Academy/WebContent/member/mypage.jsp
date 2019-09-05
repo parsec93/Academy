@@ -29,8 +29,8 @@ request.setCharacterEncoding("utf-8");
 <link rel="stylesheet" href="../vendors/owl-carousel/owl.carousel.min.css" />
 <link rel="stylesheet" href="../vendors/nice-select/css/nice-select.css" />
 <!-- main css -->
-<link rel="stylesheet" href="../css/login.css" />
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <script>
 function mySubmit(index) {

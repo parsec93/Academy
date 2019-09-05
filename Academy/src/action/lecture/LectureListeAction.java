@@ -19,6 +19,7 @@ public class LectureListeAction implements Action {
 		System.out.println("LectureListeAction");
 		
 		ArrayList<LectureBean> lectureList = new ArrayList<LectureBean>();
+	
 		
 		int page = 1;
 		int limit = 10;

@@ -21,7 +21,8 @@ import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
 import action.lecture.LectureDetailAction;
 import action.lecture.LectureListeAction;
-import action.lecture.LectureUpdate;
+import action.lecture.LectureUpdateFormAction;
+import action.lecture.LectureUpdateProAction;
 import vo.ActionForward;
 
 @WebServlet("*.le")
@@ -57,9 +58,19 @@ public class LectureFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }else if(command.equals("/lectureUpdateForm.le")) {
+        	action = new LectureUpdateFormAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
         }else if(command.equals("/lectureUpdate.le")) {
         	
-        	action = new LectureUpdate();
+        	action = new LectureUpdateProAction();
         	
         	try {
 				forward =action.execute(request, response);
