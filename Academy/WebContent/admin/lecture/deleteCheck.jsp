@@ -10,7 +10,8 @@ int lecture_idx = Integer.parseInt(request.getParameter("lecture_idx"));
 <title>Insert title here</title>
 <script type="text/javascript">
 	function goPage(){
-		location.href="/Academy/lectureDelete.le?lecture_idx=<%=lecture_idx%>";
+		opener.location.href="/Academy/lectureDelete.le?lecture_idx=<%=lecture_idx%>";
+		window.close();
 	}
 </script>
 
