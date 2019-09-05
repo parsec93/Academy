@@ -253,6 +253,13 @@
 	cursor :pointer;
 	transition: background 0.5s;
 }
+
+#articleList {
+	text-align: center;
+	
+}
+
+
 #bo_v_can li .btn:hover{
 	background: #e84050;
 	color:#fff;

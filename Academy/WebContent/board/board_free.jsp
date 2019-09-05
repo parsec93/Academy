@@ -141,10 +141,11 @@ String sid = (String)session.getAttribute("sid");
 		<%} else {  %>
 			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %><br><br>
-		<%if(sId!=null){ %>
+		
+	</section>
+	<%if(sId!=null){ %>
 		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>'" style="float:right;"/>
 		<%} %>
-	</section>
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>
