@@ -32,7 +32,7 @@ public class LectureDeleteAction implements Action{
             out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("/Academy/index.jsp");
+			forward.setPath("../Academy/lectureList.le");
 			forward.setRedirect(true);
 		}
 		
