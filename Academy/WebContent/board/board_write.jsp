@@ -58,7 +58,7 @@
 				</tr>
 				<tr>
 					<td class="td_left"><label for="board_file">파일첨부</label></td>
-					<td class="td_right"><input type="file" name="board_file" id="board_file" required="required" /></td>
+					<td class="td_right"><input type="file" name="board_file" id="board_file" /></td>
 				</tr>
 				
 			</table>
