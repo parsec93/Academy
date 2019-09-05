@@ -10,6 +10,29 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항/이벤트 글 수정</title>
+    <script type="text/javascript">
+    function noticeCheck(){
+    	if(document.neform.isNotice[0].checked == false && document.neform.isNotice[1].checked == false){
+    		alert("공지사항/ 이벤트 중 하나를 선택하세요.");
+    		return false;
+    	}
+    	if(document.neform.isNotice[1].checked == true){
+    		if( document.neform.event_start_day.value == "" || document.neform.event_end_day.value == ""){
+    			alert("이벤트 시작일과 종료일을 적어주세요.");
+    			return false;
+    		}
+    		if( document.neform.event_start_day.value > document.neform.event_end_day.value){
+    			alert("이벤트 종료일은 시작일과 같거나 더 뒤에 종료되어야합니다.");
+    			return false;
+    		}
+    		if(document.neform.notice_file.value == "" ){
+    			alert("파일을 첨부하세요.");
+    			return false;
+    		}
+    	}
+    	return;
+    }
+    </script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -50,7 +73,7 @@
 	<!-- 게시판 글 등록 -->
 	<div class="boardwrap">
 		<h2>공지사항/이벤트 수정</h2>
-		<form action="noticeUpdate.no" method="post" enctype="multipart/form-data" name="boardform">
+		<form action="noticeUpdate.no" method="post" enctype="multipart/form-data" name="neform" onsubmit="return noticeCheck()">
 						<input type="hidden" name="notice_idx" value="<%=noticeBean.getNotice_idx() %>"/> 
 						<input type="hidden" name="notice_ofile" value="<%=noticeBean.getNotice_file() %>"/> 
 			<table id="boardwrite">

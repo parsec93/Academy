@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.board.BoardViewAction;
 import action.member.LoginProAction;
 import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
 import action.member.MemberJoinProAction;
+import action.member.TeacherListAction;
+import action.member.TeacherViewAction;
 import action.member.infoProAction;
 import action.member.updatePasswordProAction;
 import action.member.updateProAction;
@@ -105,7 +109,27 @@ public class MemberFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        } 
+        }else if(command.equals("/TeacherList.me")) {
+        	String member_isMember = "1";
+        	request.setAttribute("member_isMember", member_isMember);
+        	
+        	action = new TeacherListAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/TeacherView.me")) {
+            action = new TeacherViewAction();
+      
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         
         

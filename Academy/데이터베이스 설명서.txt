@@ -27,12 +27,12 @@ create database academy;
  member_add2 varchar(50) not null,
  member_phone varchar(13) not null,
  member_isMember varchar(1) not null,
- teacher_code varchar(5)
+ member_teacher_code varchar(5)
 ); 
 
-로 실행  ( isMember = 0 이면 학생 / isMember=1 이면 교직원)
+로 실행  ( isMember = 0 이면 학생 / isMember=1 이면 교직원 admin은 isMember=2 줘서 구분)
 
-insert into member values(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '1', '1' );
+insert into member values(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '2', '1' );
 insert into member values(2, 'admin1234', 'admin1234', 'admin1234', 'admin1234@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '1', '2');
 insert into member values(3, 'student', 'student', 'student', 'student@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '0', null );
 관리자 계정 추가.

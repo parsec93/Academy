@@ -19,6 +19,7 @@ import action.board.BoardReplyFormAction;
 import action.board.BoardReplyProAction;
 import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
+import action.lecture.LectureDeleteAction;
 import action.lecture.LectureDetailAction;
 import action.lecture.LectureListeAction;
 import action.lecture.LectureUpdateFormAction;
@@ -78,6 +79,15 @@ public class LectureFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }else if(command.contentEquals("/lectureDelete.le")) {
+        	System.out.println("LectureFrontController 의 lectureDelete 인식부분");
+        	action = new LectureDeleteAction();
+        	
+        	try {
+        		forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
         }
         
         
