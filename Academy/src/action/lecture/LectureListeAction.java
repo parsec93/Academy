@@ -46,7 +46,7 @@ public class LectureListeAction implements Action {
 		request.setAttribute("lectureList", lectureList);
 		
 		if(lectureList == null) {
-			response.setContentType("text/html;/charset=utf-8");
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
             out.println("alert('수업리스트 조회 실패!')");
