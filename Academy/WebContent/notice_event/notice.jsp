@@ -76,6 +76,7 @@ String sid = (String)session.getAttribute("sid");
 	<caption>게시판 리스트</caption>
     <colgroup>
 	<col width="10%">
+	<col width="6%">
 	<col width="60%">
 	<col width="20%">
 
@@ -85,9 +86,10 @@ String sid = (String)session.getAttribute("sid");
               <%}else{ %>
 				<thead>
 				<tr>
-					<th scope="col">글 번호</td>
-					<th scope="col">글 제목</td>
-					<th scope="col">작성일</td>
+					<th scope="col">글 번호</th>
+					<th scope="col"></th>
+					<th scope="col">글 제목</th>
+					<th scope="col">작성일</th>
 					
 				</tr>
 					</thead>
@@ -99,6 +101,14 @@ String sid = (String)session.getAttribute("sid");
 					<tbody>
 						<tr onclick="location.href='noticeView.no?notice_idx=<%=noticeBean.getNotice_idx()%>'">
 							<td class="num"><%=noticeBean.getNotice_idx() %></td>
+							<td>
+							<% if(noticeBean.getIsNotice() == 1){ %>
+													<b>[공지사항]&nbsp;&nbsp;</b>
+					<%}else if(noticeBean.getIsNotice()==2){ %>
+													<b>[이벤트]&nbsp;&nbsp;</b>
+					<%}else{%>
+					[일반 게시물]
+					<%} %></td>
 							<td class="title"><%=noticeBean.getNotice_subject() %></td>
 							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(noticeBean.getNotice_date()) %></td>
 						</tr>

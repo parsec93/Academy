@@ -106,7 +106,7 @@ public class NoticeDAO {
 				noticeBean.setNotice_idx(rs.getInt("notice_idx"));
 				noticeBean.setNotice_subject(rs.getString("notice_subject"));
 				noticeBean.setNotice_date(rs.getDate("notice_date"));
-				
+				noticeBean.setIsNotice(rs.getInt("isNotice"));
 				noticeList.add(noticeBean);
 				
 			}

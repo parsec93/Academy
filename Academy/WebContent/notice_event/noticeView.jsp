@@ -69,16 +69,7 @@ String sId = (String)session.getAttribute("sId");
 				<h1 id="bo_v_title"><b><%=noticeBean.getNotice_subject() %></b></h1>				
 					<section id="bo_v_info">
 					<div class="boardleft">
-					<p class="boardlefttext">
-					<% if(noticeBean.getIsNotice() == 1){ %>
-													<b>공지사항&nbsp;&nbsp;☞</b>
-					<%}else if(noticeBean.getIsNotice()==2){ %>
-													<b>이벤트&nbsp;&nbsp;☞</b>
-					<%}else{%>
-					일반 게시물
-					<%} %></p>
-					
-									<%//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
+
 				<%if(noticeBean.getIsNotice() == 2){ %>
 				 <span class="bo_v_date">
 				<p class="boardlefttext">이벤트 시작일 :<span> <%=noticeBean.getEvent_start_day() %></span></p>
@@ -93,7 +84,6 @@ String sId = (String)session.getAttribute("sId");
 					<%if(noticeBean.getNotice_file() == null){ %>
 					첨부된 파일이 없습니다.</span></p>
 					<%}else{ %>
-					<a href="noticeUpload/<%=noticeBean.getNotice_file() %>"><%=noticeBean.getNotice_file()%></a>
 					<a href="notice_event/ne_File_down.jsp?ne_File_name=<%=noticeBean.getNotice_file()%>"><%=noticeBean.getNotice_file() %></a>
 				<% } %></span></p>
 				</div>
