@@ -483,7 +483,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">교육생 취업 현황</h2>
+              <h2 class="mb-3">수상 이력</h2>
               <p>
                 성공적인 인생 스토리를 응원합니다.
               </p>

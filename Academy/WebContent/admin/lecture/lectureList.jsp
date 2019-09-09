@@ -13,7 +13,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>게시판TEST</title>
+    <title>수업관리</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -49,7 +49,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>게시판테스트</h2>
+                <h2>수업 목록</h2>
               </div>
             </div>
           </div>
@@ -63,8 +63,7 @@
 	<!-- 리스트 게시판 시작-->
 	
 	<div class="boardwrap">
-	<h1>게시판 제목</h1>
-	<p class="boardtotal">Total 0건 / 0 페이지</p>
+	<h1>수업 목록</h1>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
 	<colgroup>

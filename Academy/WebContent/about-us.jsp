@@ -141,7 +141,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">VISION</h2>
+              <h2 class="mb-3">수상 이력</h2>
               <p>
                국내 최고의 직업훈련기관의 새로운 패러다임을 제시합니다.
               </p>
