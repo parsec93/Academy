@@ -129,9 +129,10 @@
 							<input type="button" value="답글쓰기" class="btn"
 					onclick="location.href='BoardReplyForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>&board_sid=<%=sId%>&board_replyid=<%=boardBean.getBoard_sid()%>'">
 					<%} %>
+					<%} %>
 				<input type="button" value="글목록" class="btn"
 					onclick="location.href='<%=board_id%>board.bo?page=<%=nowPage%>'">
-				<%} %>
+				
 			</div>
 			<%if(sId!=null){ %>
 			<%
