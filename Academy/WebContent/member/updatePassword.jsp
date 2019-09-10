@@ -5,6 +5,8 @@
 String sId = (String)session.getAttribute("sId");
 request.setCharacterEncoding("utf-8");
 
+String password = request.getParameter("password");
+
 
 %>
 <!DOCTYPE html>
@@ -27,6 +29,33 @@ request.setCharacterEncoding("utf-8");
 <link rel="stylesheet" href="../css/style.css" />
 </head>
     <script type="text/javascript">
+    
+    function passCheck(val){
+    	pass2 = document.up.newPassword2.value;   
+        if(val.length <4){
+            document.getElementById('result').value = "쉬움";
+            document.getElementById('result').style.color="red";
+        }else if(val.length<8){
+            document.getElementById('result').value = "보통";
+            document.getElementById('result').style.color="orange";
+        }else {
+        	document.getElementById('result').value = "어려움";
+        	document.getElementById('result').style.color="green";
+        }
+        passCheck2(pass2)
+    }
+    function passCheck2(pass2) {
+     pass1 = document.up.newPassword1.value;
+     
+     if(pass1!=pass2){
+    	 document.getElementById('result2').value = "비밀번호 불일치";
+         document.getElementById('result2').style.color="red";
+     }else{
+    	 document.getElementById('result2').value = "비밀번호 일치";
+        document.getElementById('result2').style.color="green";
+     }
+    }
+
         function tocheckpw2() {
         	var password1 = document.getElementById("password1").value;
         	var password = document.getElementById("password").value;
@@ -62,13 +91,16 @@ request.setCharacterEncoding("utf-8");
 
                         <input type="password" name="password1" id="password1" class="inpt" required="required" placeholder="현재 비밀번호">
                         <label for="password">Your password</label>
-                        <input type="hidden" name="password" id="password" value="<%=request.getParameter("password") %>">
-                        
-                        <input type="password" name="newPassword1" id="newPassword1" class="inpt" required="required" placeholder="새로운 비밀번호">
-                        <label for="new password1">new password</label>
-                        
-                        <input type="password" name="newPassword2" id="newPassword2" class="inpt" required="required" placeholder="새로운 비밀번호 확인">
-                        <label for="new password2">new password check</label>
+                        <input type="hidden" name="password" id="password" class="inpt" value="<%=password %>" >
+                       
+                        <output id="result"></output>	
+                        <input type="password" name="newPassword1" id="newPassword1" class="inpt" required="required" placeholder="새로운 비밀번호" onkeyup="passCheck(this.value)">
+						
+<!--                         <label for="new password1">new password</label> -->
+                        <output id="result2"></output>
+                        <input type="password" name="newPassword2" id="newPassword2" class="inpt" required="required" placeholder="새로운 비밀번호 확인" onkeyup="passCheck2(this.value)">
+						
+<!--                         <label for="new password2">new password check</label> -->
                         
 
                         

@@ -15,9 +15,11 @@ public class updatePasswordProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("updatePasswordProAction");
+		System.out.println(request.getParameter("password"));
+		System.out.println(request.getParameter("password1"));
 		HttpSession session = request.getSession();
 		String sId =(String)session.getAttribute("sId");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password1");
 		String newPassword = request.getParameter("newPassword1");
 		
 		UpdateProService updateProService = new UpdateProService();

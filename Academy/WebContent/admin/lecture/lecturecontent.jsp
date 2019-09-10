@@ -42,7 +42,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>게시판글쓰기</h2>
+                <h2>수업 내용</h2>
               </div>
             </div>
           </div>

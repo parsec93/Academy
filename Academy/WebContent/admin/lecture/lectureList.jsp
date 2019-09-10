@@ -135,14 +135,14 @@
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "lectureList.le.no?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "lectureList.le?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="lectureList.le.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="lectureList.le?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %>
 
 

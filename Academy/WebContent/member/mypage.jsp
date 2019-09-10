@@ -72,7 +72,7 @@ function mySubmit(index) {
 	<!-- 게시판 글 등록 -->
 	<div class="boardwrap">
 		<h1>마이페이지</h1>
-		<form name='neform' method="post"enctype="multipart/form-data" >
+		<form name='neform' method="post" >
 			<table id="boardwrite">
 				<tr>
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
@@ -82,6 +82,7 @@ function mySubmit(index) {
 				<tr>
 					<td class="ftwrite"><label for="notice_subject">아이디</label></td>
 					<td class="fttitle"><label for="notice_subject"><%=sId %></label></td>
+					<input type="hidden" name="id" id="id" class="inpt_02" value="<%=sId %>" required="required" placeholder="Your id">
 					<input type="hidden" name="password" id="password" class="inpt" value="<%=memberBean.getMember_pass() %>" >
 				</tr>
 				<%//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
