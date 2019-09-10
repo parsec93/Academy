@@ -7,6 +7,8 @@
 	//page 파라미터 값 가져오기(page 식별자 지정 불가) => page 디렉티브 때문에 JSP의 예약어로 취급됨
 	String nowPage = request.getParameter("page"); 
 	String board_id = request.getParameter("board_id");
+	String board_sid = (String)request.getParameter("board_sid");
+	String board_replyid = request.getParameter("board_replyid");
 
 %>
 <!DOCTYPE html>
@@ -60,7 +62,10 @@
 				type="hidden" name="board_re_lev"
 				value="<%=article.getBoard_re_lev()%>" /> <input type="hidden"
 				name="board_re_seq" value="<%=article.getBoard_re_seq()%>" /> <input
-				type="hidden" name="board_id" value="<%=board_id%>" />
+				type="hidden" name="board_id" value="<%=board_id%>" /><input
+				type="hidden" name="board_sid" value="<%=board_sid%>" /><input
+				type="hidden" name="board_issecret" value="<%=article.getIsSecret()%>" /><input
+				type="hidden" name="board_replyid" value="<%=board_replyid%>" />
 			<table id="boardwrite">
 				<tr>
 					<td class="ftwrite">제목</td>

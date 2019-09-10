@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.board.BoardCommentListService;
 import svc.board.BoardListService;
 import vo.ActionForward;
 import vo.BoardBean;
@@ -24,6 +25,7 @@ public class BoardListAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("BoardListAction!");
         String board_id = (String) request.getAttribute("board_id");
+        String board_sid = (String) request.getAttribute("board_sid");
         
         
         
@@ -58,12 +60,14 @@ public class BoardListAction implements Action {
             endPage = maxPage;
         }
         
+     
         ActionForward forward = new ActionForward();
         // PageInfo 인스턴스 생성 후 페이징 처리 정보 저장
         BoardPageInfo boardpageInfo = new BoardPageInfo(page, maxPage, startPage, endPage, listCount);
         
         // request 객체에 PageInfo 객체(pageInfo)와 ArrayList 객체(articleList)를 파라미터로 저장
         request.setAttribute("board_id", board_id);
+        request.setAttribute("board_sid", board_sid);
         request.setAttribute("boardPageInfo", boardpageInfo);
         request.setAttribute("articleList", articleList);
         

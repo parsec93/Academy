@@ -20,6 +20,7 @@ public class BoardCommentProAction implements Action {
         System.out.println(board_id);
         BoardBean article = new BoardBean();
         article.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
+        article.setComment_sid(request.getParameter("board_sid"));
 //        article.setBoard_id(request.getParameter("board_id"));
         article.setComment(request.getParameter("comment"));
         
