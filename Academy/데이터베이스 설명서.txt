@@ -90,17 +90,22 @@ insert into notice values(
 
 6. 게시판 board 테이블 생성 
 
+ drop table board; 후
+
 CREATE TABLE `academy`.`board` (
   `board_num` INT(11) NOT NULL,
   `board_id' VARCHAR(10) NOT NULL,
+  `board_sid' VARCHAR(10) NOT NULL,
   `board_subject` VARCHAR(45) NOT NULL,
   `board_content` VARCHAR(500) NOT NULL,
   `board_file` VARCHAR(45) NULL,
   `board_re_ref` INT(11) NULL,
   `board_re_lev` INT(11) NULL,
   `board_re_seq` INT(11) NULL,
+  `board_issecret` INT(1) NOT NULL,
   `board_readcount` INT(11) NULL,
   `board_date` DATE NULL,
+  `board_replyid' VARCHAR(10) NULL,
   PRIMARY KEY (`board_num`));
   
   위 SQL 구문이 실행되지 않을 경우 아래 구문 실행 
@@ -108,14 +113,17 @@ CREATE TABLE `academy`.`board` (
   create table board(
 board_num int(11) not null primary key,
 board_id varchar(10) not null,
+board_sid varchar(10) not null,
 board_subject varchar(45) not null,
 board_content varchar(500) not null,
 board_file varchar(45),
 board_re_ref int(11),
 board_re_lev int(11),
 board_re_seq int(11),
+board_issecret int(1) not null,
 board_readcount int(11),
-board_date date);
+board_date date,
+board_replyid varchar(10));
 
 
   
@@ -124,6 +132,7 @@ board_date date);
   CREATE TABLE `academy`.`comment` (
   `comment_num` INT(11) NOT NULL  auto_increment,
   `board_num` INT(11) NOT NULL,
+  `comment_sid` VARCHAR(10) NOT NULL,
   `comment` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`comment_num`));
   

@@ -57,6 +57,7 @@ public class BoardFrontController extends HttpServlet {
         } else if(command.equals("/freeboard.bo")) {
         	String board_id = "free";
             request.setAttribute("board_id", board_id);
+            request.setAttribute("board_num", 0);
         	action = new BoardListAction();
             
             try {
@@ -67,6 +68,7 @@ public class BoardFrontController extends HttpServlet {
         } else if(command.equals("/qnaboard.bo")) {
         	String board_id = "qna";
             request.setAttribute("board_id", board_id);
+            request.setAttribute("board_num", 0);
             action = new BoardListAction();
             
             try {

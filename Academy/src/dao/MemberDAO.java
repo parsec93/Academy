@@ -147,6 +147,7 @@ public class MemberDAO {
 	            memberBean.setMember_add1(rs.getString("member_add1"));
 	            memberBean.setMember_add2(rs.getString("member_add2"));
 	            memberBean.setMember_phone(rs.getString("member_phone"));
+	            memberBean.setMember_isMember(rs.getString("member_isMember"));
 	            
 	            
 	         }

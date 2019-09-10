@@ -1,3 +1,4 @@
+<%@page import="svc.board.BoardCommentListService"%>
 <%@page import="vo.BoardPageInfo"%>
 <%@page import="vo.BoardBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -31,8 +32,7 @@ request.setCharacterEncoding("UTF-8");
 // Action 클래스에서 request 객체의 setAttribute()메서드로 저장되어 전달된 객체 가져오기(Ojbect타입이므로 각각 형변환이 필요)
 ArrayList<BoardBean> articleList = (ArrayList<BoardBean>)request.getAttribute("articleList");   // 게시판 글 목록 을 위한 객체 
 BoardPageInfo boardPageInfo = (BoardPageInfo)request.getAttribute("boardPageInfo");
-String sId = (String)session.getAttribute("sId");
-
+BoardCommentListService boardCommentListService = new BoardCommentListService();
 //pageInfo 객체로부터 페이징 정보 가져오기 
 int listCount = boardPageInfo.getListCount();
 int nowPage = boardPageInfo.getPage();
@@ -42,7 +42,7 @@ int maxPage = boardPageInfo.getMaxPage();
 
 request.setCharacterEncoding("UTF-8");
 String board_id = (String)request.getAttribute("board_id");
-String sid = (String)session.getAttribute("sid");
+String board_sid = (String)session.getAttribute("sId");
 
 
 %>
@@ -74,8 +74,9 @@ String sid = (String)session.getAttribute("sid");
     <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
-	<col width="10%">
-	<col width="60%">
+	<col width="8%">
+	<col width="12%">
+	<col width="50%">
 	<col width="20%">
 	<col width="10%">
 
@@ -86,6 +87,7 @@ String sid = (String)session.getAttribute("sid");
 				<thead>
 				<tr>
 					<th scope="col">글 번호</td>
+					<th scope="col">작성자</td>
 					<th scope="col">글 제목</td>
 					<th scope="col">작성일</td>
 					<th scope="col">조회수</td>
@@ -97,7 +99,8 @@ String sid = (String)session.getAttribute("sid");
 						BoardBean boardBean = (BoardBean)articleList.get(i);
 						%>	
 						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'" >
-							<td class="num"><%=boardBean.getBoard_num() %></td>
+							<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
+							<td class="sid"><%=boardBean.getBoard_sid() %></td>
 							<td class="title"><%if(boardBean.getBoard_re_lev() != 0) { %>
 								<%for(int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) { %> 
 										&nbsp;
@@ -106,7 +109,9 @@ String sid = (String)session.getAttribute("sid");
 								<img width="13" height="12" class="reply" alt="첨부이미지" src="img/board/ic_reply.png">
 								<%} %>
 								<%=boardBean.getBoard_subject() %>
-<!-- 								<a class="comment" href="#">[5]</a> -->
+								<%if(boardCommentListService.getCommentCount(boardBean.getBoard_num())>0){ %>
+								<a class="comment" href="#">[<%=boardCommentListService.getCommentCount(boardBean.getBoard_num())%>]</a>
+								<%} %>
 								</td>
 							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(boardBean.getBoard_date()) %></td>
 							<td class="readcount"><%=boardBean.getBoard_readcount() %></td>
@@ -143,8 +148,8 @@ String sid = (String)session.getAttribute("sid");
 		<%} %><br><br>
 		
 	</section>
-	<%if(sId!=null){ %>
-		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>'" style="float:right;"/>
+	<%if(board_sid!=null){ %>
+		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=board_sid%>'" style="float:right;"/>
 		<%} %>
 
 <!-- 페이징 처리 구역 종료 -->

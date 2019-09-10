@@ -32,9 +32,6 @@ request.setCharacterEncoding("UTF-8");
 ArrayList<BoardBean> articleList = (ArrayList<BoardBean>)request.getAttribute("articleList");   // 게시판 글 목록 을 위한 객체 
 BoardPageInfo boardPageInfo = (BoardPageInfo)request.getAttribute("boardPageInfo");
 String sId = (String)session.getAttribute("sId");
-
-
-
 //pageInfo 객체로부터 페이징 정보 가져오기 
 int listCount = boardPageInfo.getListCount();
 int nowPage = boardPageInfo.getPage();
@@ -42,9 +39,12 @@ int startPage = boardPageInfo.getStartPage();
 int endPage = boardPageInfo.getEndPage();
 int maxPage = boardPageInfo.getMaxPage();
 
+
 request.setCharacterEncoding("UTF-8");
 String board_id = (String)request.getAttribute("board_id");
+String board_sid = (String)session.getAttribute("sId");
 System.out.println(board_id);
+
 
 %>
   <body>
@@ -75,7 +75,8 @@ System.out.println(board_id);
     <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
-	<col width="10%">
+    <col width="8%">
+	<col width="12%">
 	<col width="60%">
 	<col width="20%">
 	<col width="10%">
@@ -88,6 +89,7 @@ System.out.println(board_id);
                 <thead>
 				<tr>
 					<th scope="col">글 번호</td>
+					<th scope="col">작성자</td>
 					<th scope="col">글 제목</td>
 					<th scope="col">작성일</td>
 					<th scope="col">조회수</td>
@@ -98,14 +100,19 @@ System.out.println(board_id);
 					for(int i =0 ; i<articleList.size(); i++){
 						BoardBean boardBean = (BoardBean)articleList.get(i);
 						%>	
-						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'" >
-							<td class="num"><%=boardBean.getBoard_num() %></td>
+						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>&board_sid=<%=board_sid%>'" >
+							<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
+							<td class="sid"><%=boardBean.getBoard_sid() %></td>
 							<td class="title"><%if(boardBean.getBoard_re_lev() != 0) { %>
 								<%for(int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) { %> 
 										&nbsp;
 								<%} %><%} %>
 								<%if(boardBean.getBoard_re_lev() > 0){ %>
 								<img width="13" height="12" class="reply" alt="첨부이미지" src="img/board/ic_reply.png">
+								<%} %>
+								<%System.out.println(boardBean.getIsSecret()); %>
+								<%if(boardBean.getIsSecret()==1){%>
+								<img alt="첨부이미지" src="img/board/secret.png">
 								<%} %>
 								<%=boardBean.getBoard_subject() %></td>
 							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(boardBean.getBoard_date()) %></td>
@@ -141,7 +148,7 @@ System.out.println(board_id);
 			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %><br><br>
 		<%if(sId!=null){ %>
-		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>'" style="float:right;"/>
+		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=sId%>'" style="float:right;"/>
 		<%} %>
 	</section>
 

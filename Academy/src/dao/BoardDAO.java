@@ -63,19 +63,21 @@ public class BoardDAO {
 			}
 
 			// 게시물 등록 구문 작성(마지막 컬럼인 board_date 항목은 DB 현재 시각 정보 사용)
-			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,?,?,now(),NULL)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 게시물 번호(새로 계산한 번호 사용)
 			// board_name, board_pass, board_subject, board_content, board_file - BoardBean
 			// 객체 값 사용
 			pstmt.setString(2, article.getBoard_id());
-			pstmt.setString(3, article.getBoard_subject());
-			pstmt.setString(4, article.getBoard_content());
-			pstmt.setString(5, article.getBoard_file());
-			pstmt.setInt(6, num); // 참조 게시물 번호 = 새 글이므로 현재 게시물 번호로 설정
-			pstmt.setInt(7, 0); // 들여쓰기 레벨 = 새 글이므로 0
-			pstmt.setInt(8, 0); // 글 순서번호 = 새 글이므로 0
-			pstmt.setInt(9, 0); // 조회수 = 새 글이므로 0
+			pstmt.setString(3, article.getBoard_sid());
+			pstmt.setString(4, article.getBoard_subject());
+			pstmt.setString(5, article.getBoard_content());
+			pstmt.setString(6, article.getBoard_file());
+			pstmt.setInt(7, num); // 참조 게시물 번호 = 새 글이므로 현재 게시물 번호로 설정
+			pstmt.setInt(8, 0); // 들여쓰기 레벨 = 새 글이므로 0
+			pstmt.setInt(9, 0); // 글 순서번호 = 새 글이므로 0
+			pstmt.setInt(10, 0); // 조회수 = 새 글이므로 0
+			pstmt.setInt(11, article.getIsSecret());
 
 			insertCount = pstmt.executeUpdate(); // 글 등록 처리 결과를 int 형 값으로 리턴받음
 
@@ -149,6 +151,7 @@ public class BoardDAO {
 			while (rs.next()) {
 				BoardBean boardBean = new BoardBean();
 				boardBean.setBoard_num(rs.getInt("board_num"));
+				boardBean.setBoard_sid(rs.getString("board_sid"));
 				boardBean.setBoard_subject(rs.getString("board_subject"));
 				boardBean.setBoard_content(rs.getString("board_content"));
 				boardBean.setBoard_file(rs.getString("board_file"));
@@ -157,6 +160,8 @@ public class BoardDAO {
 				boardBean.setBoard_re_seq(rs.getInt("board_re_seq"));
 				boardBean.setBoard_readcount(rs.getInt("board_readcount"));
 				boardBean.setBoard_date(rs.getDate("board_date"));
+				boardBean.setIsSecret(rs.getInt("board_issecret"));
+//				boardBean.setBoard_replyid(rs.getString("board_replyid"));
 
 				articleList.add(boardBean);
 			}
@@ -187,6 +192,7 @@ public class BoardDAO {
 			if (rs.next()) { // 조회된 게시물이 있을 경우
 				boardBean = new BoardBean();
 				boardBean.setBoard_num(rs.getInt("board_num"));
+				boardBean.setBoard_sid(rs.getString("board_sid"));
 				boardBean.setBoard_subject(rs.getString("board_subject"));
 				boardBean.setBoard_content(rs.getString("board_content"));
 				boardBean.setBoard_file(rs.getString("board_file"));
@@ -194,7 +200,9 @@ public class BoardDAO {
 				boardBean.setBoard_re_lev(rs.getInt("board_re_lev"));
 				boardBean.setBoard_re_seq(rs.getInt("board_re_seq"));
 				boardBean.setBoard_readcount(rs.getInt("board_readcount"));
+				boardBean.setIsSecret(rs.getInt("board_issecret"));
 				boardBean.setBoard_date(rs.getDate("board_date"));
+				boardBean.setBoard_replyid(rs.getString("board_replyid"));
 			}
 		} catch (SQLException e) {
 			System.out.println("selectArticle() 에러 - " + e.getMessage());
@@ -305,17 +313,20 @@ public class BoardDAO {
 			board_re_lev += 1;
 			
 			// 답변글 등록 => 파일을 제외한 나머지 등록
-			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 게시물 번호(새로 계산한 번호 사용)
 			pstmt.setString(2, article.getBoard_id());
-			pstmt.setString(3, article.getBoard_subject());
-			pstmt.setString(4, article.getBoard_content());
-			pstmt.setString(5, ""); // 답글 파일 업로드 없음
-			pstmt.setInt(6, board_re_ref);
-			pstmt.setInt(7, board_re_lev);
-			pstmt.setInt(8, board_re_seq);
-			pstmt.setInt(9, 0); // 조회수 = 새 글이므로 0
+			pstmt.setString(3, article.getBoard_sid());
+			pstmt.setString(4, article.getBoard_subject());
+			pstmt.setString(5, article.getBoard_content());
+			pstmt.setString(6, ""); // 답글 파일 업로드 없음
+			pstmt.setInt(7, board_re_ref);
+			pstmt.setInt(8, board_re_lev);
+			pstmt.setInt(9, board_re_seq);
+			pstmt.setInt(10, 0); // 조회수 = 새 글이므로 0
+			pstmt.setInt(11, article.getIsSecret());
+			pstmt.setString(12, article.getBoard_replyid());
 
 			insertCount = pstmt.executeUpdate();
 
@@ -335,18 +346,20 @@ public class BoardDAO {
 		int commentCount = 0;
 		int board_num = (int)article.getBoard_num();
 //		String id = article.getBoard_id();
+		String comment_sid = (String)article.getComment_sid();
 		String comment = (String)article.getComment();
-
+		
 		System.out.println(board_num+"dao");
 		System.out.println(comment+"dao");	
 		try {
 			// 현재 게시물에서 가장 큰 번호 조회
 			
 			
-			String sql = "INSERT INTO comment VALUES (NULL,?,?)";
+			String sql = "INSERT INTO comment VALUES (NULL,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
-			pstmt.setString(2, comment);
+			pstmt.setString(2, comment_sid);
+			pstmt.setString(3, comment);
 			commentCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -360,6 +373,35 @@ public class BoardDAO {
 			// static import 문을 사용하여 JdbcUtil 클래스명 지정 필요없음
 			close(pstmt);
 		}
+		return commentCount;
+	}
+	
+	// 전체 댓글 갯수를 조회하여 리턴
+	public int selectCommentCount(int board_num) {
+		int commentCount = 0; // 게시물 갯수를 저장하는 변수
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			System.out.println(board_num);
+			String sql = "SELECT COUNT(*) FROM comment WHERE board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				commentCount = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 에러 - " + e.getMessage());
+		} finally {
+			// static import 문을 사용하여 JdbcUtil 클래스명 지정 필요없음
+			close(rs);
+			close(pstmt);
+		}
+
 		return commentCount;
 	}
 
@@ -430,7 +472,7 @@ public class BoardDAO {
 				BoardBean bb = new BoardBean();
 				// 한개의 글 객체생성한 기억장소에 저장
 
-				
+				bb.setComment_sid(rs.getString("comment_sid"));
 				bb.setComment(rs.getString("comment"));
 				// 한개의 글 정보를 배열 한칸에 저장
 				commentList.add(bb);

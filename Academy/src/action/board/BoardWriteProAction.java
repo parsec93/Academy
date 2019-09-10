@@ -23,10 +23,14 @@ public class BoardWriteProAction implements Action {
 //        System.out.println("BoardWriteProAction!");
         	
     	String board_id = request.getParameter("board_id");
+    	String board_sid =  request.getParameter("board_sid");
     	request.setCharacterEncoding("UTF-8");
     	request.setAttribute("board_id", board_id);
+    	request.setAttribute("board_sid", board_sid);
     	System.out.println(board_id);
+    	System.out.println(board_sid+"호우");
         ActionForward forward = null;
+        
         
         String realFolder = ""; // 실제 업로드 폴더(톰캣)
         String saveFolder = "/boardUpload"; // 이클립스 상의 업로드 폴더
@@ -46,11 +50,22 @@ public class BoardWriteProAction implements Action {
         boardBean.setBoard_subject(multi.getParameter("board_subject"));
         boardBean.setBoard_content(multi.getParameter("board_content"));
         boardBean.setBoard_id(board_id);
-        
+        boardBean.setBoard_sid(board_sid);
+        if(board_id.equals("qna")) {
+        	if(multi.getParameter("board_issecret") != null) {
+        		boardBean.setIsSecret(Integer.parseInt(multi.getParameter("board_issecret")));
+        	}else {
+        	boardBean.setIsSecret(0);
+        	}
+        }else {
+        	
+        	boardBean.setIsSecret(0);
+        }
         
         // 업로드 파일명은 별도의 메서드 getOriginalFileName()를 호출하여 가져오기 
         boardBean.setBoard_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
         boardBean.setBoard_id(board_id);
+        
         // 비즈니스 로직을 처리할 Service 클래스 인스턴스 생성
         BoardWriteProService boardWriteProService = new BoardWriteProService();
         // Service 클래스의 registArticle() 메서드를 호출하여 글쓰기 로직 처리(BoardBean 객체 전달)

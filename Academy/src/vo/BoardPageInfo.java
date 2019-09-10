@@ -9,6 +9,7 @@ public class BoardPageInfo {
 	
 	
 	
+
 	public BoardPageInfo(int page, int maxPage, int startPage, int endPage, int listCount) {
 		super();
 		this.page = page;
@@ -16,7 +17,9 @@ public class BoardPageInfo {
 		this.startPage = startPage;
 		this.endPage = endPage;
 		this.listCount = listCount;
+
 	}
+
 	
 	public int getPage() {
 		return page;
@@ -48,6 +51,10 @@ public class BoardPageInfo {
 	public void setListCount(int listCount) {
 		this.listCount = listCount;
 	}
+
+
 	
 	
 }
+
+

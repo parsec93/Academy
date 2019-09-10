@@ -39,16 +39,21 @@
     </section>
 		
 		
-		<%String board_id =(String)request.getParameter("board_id"); System.out.println(board_id);%>
+		<%String board_id =(String)request.getParameter("board_id"); 
+		  String board_sid = (String)request.getParameter("board_sid");
+		System.out.println(board_id);%>
 
 	<div class="boardwrap">	
 	<h1>게시판 글 쓰기 </h1>
-	<form action="BoardWritePro.bo?board_id=<%=board_id%>" method="post" enctype="multipart/form-data" name="boardform">
+	<form action="BoardWritePro.bo?board_id=<%=board_id%>&board_sid=<%=board_sid%>" method="post" enctype="multipart/form-data" name="boardform">
 	<table id="boardwrite">
 	<tr>
 		<td class="ftwrite">제목</td>
 	    <td class="fttitle">
 	    	<input type="text" name="board_subject" id="board_subject" required="required" style="width:500px;">
+	    	<%if(board_id.equals("qna")){ %>
+	    	<input type="checkbox" name="board_issecret" id="board_issecret" value=1> 비밀글
+	    	<%} %>
 	   	</td>
 	</tr>
 	<tr>
@@ -62,6 +67,7 @@
 	    <td class="fttitle">
 	    	<textarea name="board_content" id="board_content" cols="40" rows="15" required="required"></textarea>
 	    </td>
+
 	</tr>
 	</table>
 	<div id="table_search">

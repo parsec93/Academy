@@ -260,7 +260,7 @@ function joinCheck() {
                         <input type="text" name="postcode" id="postcode" class="inpt_02" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label>
                         <input type="button" value="우편번호 찾기" class="inpt_03" onClick="openDaumZipAddress();"><br>
-                        <input type="text" name="add1" id="address_more1" class="inpt" required="required" placeholder="주소1">
+                        <input type="text" name="adksd1" id="address_more1" class="inpt" required="required" placeholder="주소1">
                         <label for="address_more">주소1</label>
                         <input type="text" name="add2" id="address_more2" class="inpt" required="required" placeholder="상세주소2">
                         <label for="address_more">상세주소2</label>
