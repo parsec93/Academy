@@ -65,7 +65,11 @@
 	<div class="boardwrap">
 	<h1>수업 목록</h1>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
-	<caption>게시판 리스트</caption>
+	<select name = "period">
+	<option value="1" selected="selected">진행중인 수업</option>
+	<option value="2">종료된 수업</option>
+	
+	</select>
 	<colgroup>
 	<col width="5%">
 	<col width="45%">

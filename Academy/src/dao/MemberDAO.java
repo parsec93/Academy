@@ -148,6 +148,7 @@ public class MemberDAO {
 	            memberBean.setMember_add2(rs.getString("member_add2"));
 	            memberBean.setMember_phone(rs.getString("member_phone"));
 	            
+	            
 	         }
 	      } catch (SQLException e) {
 	         e.printStackTrace();
