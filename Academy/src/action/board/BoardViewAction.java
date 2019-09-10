@@ -44,15 +44,20 @@ public class BoardViewAction implements Action {
 
         	if(isSecret==1) {
         		if(request.getParameter("board_sid").equals("null")) {
-        			out.println("<script>alert('비밀 글 입니다'); history.go(-1);</script>");
+        			out.println("<script>" );
+        			out.println("alert('비밀 글 입니다');");
+        			out.println("history.go(-1);");
+        			out.println("</script>");
         			out.flush();
         		}
         		else{
         			System.out.println(board_sid);
         			MemberBean memberBean = infoProService.getInfo(board_sid);
         			if(!memberBean.getMember_isMember().equals("2")&!memberBean.getMember_isMember().equals("1")&!board_sid.equals(article.getBoard_sid())&!board_sid.equals(article.getBoard_replyid())) {
-        			out.println("<script>alert('비밀 글 입니다'); history.go(-1);</script>");
-        			 
+        			out.println("<script>" );
+        			out.println("alert('비밀 글 입니다');");
+        			out.println("history.go(-1);");
+        			out.println("</script>");
         			out.flush();
         			}
         		}
