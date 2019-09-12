@@ -61,11 +61,14 @@ function inputIdCheck() {
 function passCheck(val){
 	pass2 = document.up.password_more.value;   
     if(val.length <4){
-        document.getElementById('result').value = "쉬움";
+        document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요";
         document.getElementById('result').style.color="red";
     }else if(val.length<8){
-        document.getElementById('result').value = "보통";
+        document.getElementById('result').value = "8자 이상 입력하세요";
         document.getElementById('result').style.color="orange";
+    }else if(!val.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)){
+    	document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.";
+    	document.getElementById('result').style.color="red";
     }else {
     	document.getElementById('result').value = "어려움";
     	document.getElementById('result').style.color="green";
@@ -87,13 +90,18 @@ function joinCheck() {
 	pass1=document.up.password.value; 
 	pass2 = document.up.password_more.value;
 	icv = document.up.idCheckValue.value;
-	//패스워드 유효성
+	//패스워드 유효성(길이 확인)
 	if(pass1.length<8){
-		alert("비밀번호는 8자이상입니다.");
+		alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요.");
     	document.up.password.focus();
         return false;
     }
-	//패스워드2 확인
+	//패스워드 유효성(영문 + 숫자 + 특수문자 모두 섞어서 사용할 것)
+	if(!pass1.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)) { 
+        alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.");
+        return false;
+    }
+	//패스워드2 확인 
 	if(pass1!=pass2){
 		alert("비밀번호가 다릅니다.");
 		 document.up.password_more.focus();

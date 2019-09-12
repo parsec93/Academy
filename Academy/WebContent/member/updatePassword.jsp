@@ -32,15 +32,18 @@ String password = request.getParameter("password");
     
     function passCheck(val){
     	pass2 = document.up.newPassword2.value;   
-        if(val.length <4){
-            document.getElementById('result').value = "쉬움";
+    	if(val.length <4){
+            document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요";
             document.getElementById('result').style.color="red";
         }else if(val.length<8){
-            document.getElementById('result').value = "보통";
+            document.getElementById('result').value = "8자 이상 입력하세요";
             document.getElementById('result').style.color="orange";
+        }else if(!val.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)){
+            document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.";
+            document.getElementById('result').style.color="red";
         }else {
-        	document.getElementById('result').value = "어려움";
-        	document.getElementById('result').style.color="green";
+            document.getElementById('result').value = "어려움";
+            document.getElementById('result').style.color="green";
         }
         passCheck2(pass2)
     }
