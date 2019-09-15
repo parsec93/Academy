@@ -213,7 +213,8 @@ function joinCheck() {
 					for(int i =0 ; i<teacherList.size(); i++){
 						MemberBean memberBean = (MemberBean)teacherList.get(i);
 						%>	
-						<tr style="cursor:pointer;" onclick="location.href='TeacherView.me?member_teacher_code=<%=memberBean.getMember_teacher_code()%>'" >
+						<tr style="cursor:pointer;" onclick="location.href='TeacherView.me?member_idx=<%=memberBean.getMember_idx() %>'" >
+							<td class="code"><%=memberBean.getMember_idx() %></td>
 							<td class="code"><%=memberBean.getMember_teacher_code() %></td>
 							<td class="name"><%=memberBean.getMember_name() %></td>
 							<td class="phone"><%=memberBean.getMember_phone()%></td>
@@ -228,7 +229,7 @@ function joinCheck() {
                     </form>
                 </div>
                 <div class="signup-cont cont">
-                    <form action="MemberJoinPro.me" name="up" method="post" onsubmit="return joinCheck()">
+                    <form action="MemberJoinPro.me" name="up" enctype="multipart/form-data" method="post" onsubmit="return joinCheck()">
                     	<input type="hidden" name="member_isMember" value="1"/> 
                         <input type="text" name="name" id="name" class="inpt" required="required" placeholder="Your name"> 
                         <label for="name">Your name</label> 
@@ -243,6 +244,11 @@ function joinCheck() {
                         <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2(this.value)">
                         <output id="result2"></output>
                         <label for="password_more">패스워드 확인</label>
+                        
+                       <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호 앞 6자리">
+                        &nbsp;-&nbsp;
+                        <input type="text" name="jumin2" id="jumin2" class="inpt_04" required="required" placeholder="주민번호 뒤 7자리">
+                        &nbsp;
                         
                         <input type="text" name="email1" id="email1" class="inpt_04" required="required" placeholder="Your email">
                         &nbsp;@&nbsp;
@@ -266,7 +272,21 @@ function joinCheck() {
                         <label for="address_more">상세주소2</label>
                         <input type="text" name="phone" id="phone" class="inpt" required="required" placeholder="휴대폰 번호"> 
                         <label for="name">Your phone</label>
-             
+             			<div>
+             			<select style="float: left;"name="bank" id="bank" >
+             			<option value="0">은행명</option>
+             			<option value="1">부산은행</option> <option value="2">국민은행</option>
+             			<option value="3">우리은행</option> <option value="4">하나은행</option> 
+             			<option value="5">농협</option>
+             			</select>
+             			
+             			<input type="text" name="accno" id="accno" class="inpt_02" required="required" placeholder="계좌번호 (숫자만 입력)">
+             			<label for="text">계좌번호</label>
+             			</div>
+             			
+             			<input type="file" name="picture" id="picture" class="inpt" required="required" placeholder="증명사진"> 
+                        <label for="file">Image</label>
+             			
                         <div class="submit-wrap">
                             <input type="submit" value="Sign up" class="submit"> 
                             <a href="#" class="more">Terms and conditions</a>

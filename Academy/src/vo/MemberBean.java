@@ -1,19 +1,50 @@
 package vo;
 
+
 public class MemberBean {
     private int member_idx;
     private String member_name;
     private String member_id;
     private String member_email;
     private String member_pass;
+    private String member_jumin;
     private String member_postcode;
     private String member_add1;
     private String member_add2;
     private String member_phone;
+    private String member_bank;
+    private String member_accno;
+    private String member_picture;
     private String member_isMember;
     private String member_teacher_code;
     
     
+    
+    
+	public String getMember_jumin() {
+		return member_jumin;
+	}
+	public void setMember_jumin(String member_jumin) {
+		this.member_jumin = member_jumin;
+	}
+	public String getMember_bank() {
+		return member_bank;
+	}
+	public void setMember_bank(String member_bank) {
+		this.member_bank = member_bank;
+	}
+	public String getMember_accno() {
+		return member_accno;
+	}
+	public void setMember_accno(String member_accno) {
+		this.member_accno = member_accno;
+	}
+	public String getMember_picture() {
+		return member_picture;
+	}
+	public void setMember_picture(String member_picture) {
+		this.member_picture = member_picture;
+	}
 	public int getMember_idx() {
 		return member_idx;
 	}

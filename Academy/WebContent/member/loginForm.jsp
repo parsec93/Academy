@@ -35,13 +35,13 @@ $(document).ready(function(){
 	  		document.up.email2.focus();
 	  		return;
 	  	}
-		$.ajax('../emailCheck.me',{
-			data:{email1:$('#email1').val(), email2:$('#email2').val()},
-			success : function(data) {
- 			document.getElementById('rNum').value = data;
-			}
-		});
-		alert("인증번호 발송 완료");
+// 		$.ajax('../emailCheck.me',{
+// 			data:{email1:$('#email1').val(), email2:$('#email2').val()},
+// 			success : function(data) {
+//  			document.getElementById('rNum').value = data;
+// 			}
+// 		});
+// 		alert("인증번호 발송 완료");
 	});
 });
 function idCheck() {
@@ -112,13 +112,13 @@ function joinCheck() {
 		return false;
 	}
 	//인증번호 확인
-	email_more = document.up.email_more.value;
-	rNum = document.up.rNum.value;
+// 	email_more = document.up.email_more.value;
+// 	rNum = document.up.rNum.value;
 	
-	if(Number(rNum) != Number(email_more)){
-		alert("이메일 인증번호가 일치하지 않습니다");
-		return false;
-	}
+// 	if(Number(rNum) != Number(email_more)){
+// 		alert("이메일 인증번호가 일치하지 않습니다");
+// 		return false;
+// 	}
 }
 
 </script>
@@ -221,7 +221,7 @@ function joinCheck() {
                     </form>
                 </div>
                 <div class="signup-cont cont">
-                    <form action="../MemberJoinPro.me" name="up" method="post" onsubmit="return joinCheck()">
+                    <form action="../MemberJoinPro.me" name="up" enctype="multipart/form-data" method="post" onsubmit="return joinCheck()">
                     	<input type="hidden" name="member_isMember" value="0"/> 
                         <input type="text" name="name" id="name" class="inpt" required="required" placeholder="Your name"> 
                         <label for="name">Your name</label> 
