@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.board.BoardCommentDeleteProAction;
 import action.board.BoardCommentProAction;
 import action.board.BoardDeleteProAction;
 import action.board.BoardListAction;
@@ -129,6 +130,17 @@ public class BoardFrontController extends HttpServlet {
             forward.setPath("/board/board_delete.jsp");
         } else if(command.equals("/BoardDeletePro.bo")) {
             action = new BoardDeleteProAction();
+            
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if(command.equals("/CommentDelete.bo")) {
+            forward = new ActionForward();
+            forward.setPath("/board/comment_delete.jsp");
+        }else if(command.equals("/CommentDeletePro.bo")) {
+            action = new BoardCommentDeleteProAction();
             
             try {
                 forward = action.execute(request, response);

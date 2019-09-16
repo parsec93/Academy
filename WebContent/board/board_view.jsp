@@ -12,7 +12,7 @@
 	BoardDAO boardDAO = BoardDAO.getInstance();
 	BoardBean boardBean = (BoardBean) request.getAttribute("article");
 	String nowPage = (String) request.getParameter("page");
-	String board_id = (String) request.getParameter("board_id");
+	String board_id = request.getParameter("board_id");
 	if(sId != null){
 	InfoProService infoProService = new InfoProService();
 	MemberBean memberBean = infoProService.getInfo(sId);
@@ -159,6 +159,13 @@
 						<p class="comment_more_text"><%=bb2.getComment_sid()%></p>
 						<p class="comment_more_text">:</p>
 						<p class="comment_more_text"><%=bb2.getComment()%></p>
+						<%if(bb2.getComment_sid().equals(sId)){ %>
+							<input type="button" value="삭제" class="btn"
+							
+					onclick="location.href='CommentDelete.bo?page=<%=nowPage%>&board_id=<%=board_id%>&board_num=<%=boardBean.getBoard_num()%>&comment_num=<%=bb2.getComment_num()%>'">
+							
+						
+						<%} %>
 					</div>
 					<%
 						}

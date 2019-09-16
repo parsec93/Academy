@@ -451,6 +451,7 @@ public class BoardDAO {
 
 				bb.setComment_sid(rs.getString("comment_sid"));
 				bb.setComment(rs.getString("comment"));
+				bb.setComment_num(rs.getInt("comment_num"));
 				// 한개의 글 정보를 배열 한칸에 저장
 				commentList.add(bb);
 			}
@@ -477,5 +478,27 @@ public class BoardDAO {
 		return commentList;
 
 	}
+	// 댓글 삭제
+		public int deleteComment(int comment_num) {
+			// DELETE 구문을 사용하여 board_num 에 해당하는 게시물 삭제
+			// => 삭제 결과를 int 형 변수로 리턴
+			PreparedStatement pstmt = null;
+
+			int deleteCount = 0;
+
+			try {
+				String sql = "DELETE FROM comment WHERE comment_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, comment_num);
+				deleteCount = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("deleteComment() 에러 - " + e.getMessage());
+			} finally {
+				close(pstmt);
+			}
+
+			return deleteCount;
+
+		}
 
 }
