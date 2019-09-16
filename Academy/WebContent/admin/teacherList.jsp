@@ -85,6 +85,7 @@ function passCheck2(pass2) {
     document.getElementById('result2').style.color="green";
  }
 }
+
 function joinCheck() {
 	pass1=document.up.password.value; 
 	pass2 = document.up.password_more.value;
@@ -105,7 +106,17 @@ function joinCheck() {
 		alert("중복확인이 필요합니다.");
 		return false;
 	}
-
+	if(document.up.jumin1.value.length != 6 ){
+		alert('주민번호 앞 6자리를 바르게 입력하세요.')
+		document.up.jumin1.focus();
+		return false;
+	}
+	
+	if(document.up.jumin2.value.length != 7 ){
+		alert('주민번호 뒤 7자리를 바르게 입력하세요.')
+		document.up.jumin2.focus();
+		return false;
+	}
 	
 }
 
@@ -244,7 +255,7 @@ function joinCheck() {
                         <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2(this.value)">
                         <output id="result2"></output>
                         <label for="password_more">패스워드 확인</label>
-                        
+                        <br>
                        <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호 앞 6자리">
                         &nbsp;-&nbsp;
                         <input type="text" name="jumin2" id="jumin2" class="inpt_04" required="required" placeholder="주민번호 뒤 7자리">
@@ -266,7 +277,7 @@ function joinCheck() {
                         <input type="text" name="postcode" id="postcode" class="inpt_02" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label>
                         <input type="button" value="우편번호 찾기" class="inpt_03" onClick="openDaumZipAddress();"><br>
-                        <input type="text" name="adksd1" id="address_more1" class="inpt" required="required" placeholder="주소1">
+                        <input type="text" name="add1" id="address_more1" class="inpt" required="required" placeholder="주소1">
                         <label for="address_more">주소1</label>
                         <input type="text" name="add2" id="address_more2" class="inpt" required="required" placeholder="상세주소2">
                         <label for="address_more">상세주소2</label>

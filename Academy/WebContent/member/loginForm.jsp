@@ -200,7 +200,7 @@ function joinCheck() {
     
     <div class="login_container">
         <article class="half">
-            <a href="index.jsp">컴퓨터 학원</a>
+            <a href="../index.jsp">edustage</a>
             <div class="tabs">
                 <span class="tab signin active"><a href="#signin">Sign in</a></span>
                 <span class="tab signup"><a href="#signup">Sign up</a></span>

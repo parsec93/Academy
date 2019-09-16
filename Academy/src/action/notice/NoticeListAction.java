@@ -20,7 +20,8 @@ public class NoticeListAction implements Action {
 		
 		System.out.println("NoticeListAction");
 		
-		
+		String  nt_ev = request.getParameter("nt_ev");
+		System.out.println(nt_ev);
 		
 		// 게시물 목록 정보를 받아와서 저장할 ArrayList 타입 변수 선언(제네릭 타입은 NoticeBean 으로 지정)
 		ArrayList<NoticeBean> noticeList = new ArrayList<NoticeBean>();
@@ -38,7 +39,7 @@ public class NoticeListAction implements Action {
 		
 		int listCount = noticeListService.getNoticeListCount(); // 전체 게시물 수 가져오기 
 		
-		noticeList = noticeListService.getNoticeList(page, limit); //전체 게시물 목록 가져오기 (10개 한정)	
+		
 		
 		//전체 페이지(마지막 페이지) 수 계산 
 		int maxPage = (int)((double)listCount / limit + 0.95);
@@ -62,7 +63,22 @@ public class NoticeListAction implements Action {
 		
 		// request 객체에 NoticePageInfo 객체(noticePageInfo)와 ArrayList 객체(noticeList) 를 파라미터로 저장
 		request.setAttribute("noticePageInfo", noticePageInfo);
-		request.setAttribute("noticeList", noticeList);
+		
+		int isNotice = 0;
+		if(nt_ev == null || nt_ev.equals("0")) {
+			isNotice = 0;
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			request.setAttribute("noticeList", noticeList);
+		}else if(nt_ev.equals("1")){
+			isNotice = 1;
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			request.setAttribute("noticeList", noticeList);
+		}else{
+			isNotice = 2;
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			request.setAttribute("noticeList", noticeList);
+		}
+		
 		
 		if(noticeList == null) {
 			response.setContentType("text/html;/charset=utf-8");
