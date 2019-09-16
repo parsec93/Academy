@@ -8,22 +8,6 @@ import dao.BoardDAO;
 
 public class BoardDeleteProService {
 
-    // 게시물 패스워드 확인
-    public boolean isArticleWriter(int board_num, String board_pass) throws Exception {
-        boolean isArticleWriter = false;
-        
-        // 객체 가져오기
-        Connection con = getConnection();
-        BoardDAO boardDAO = BoardDAO.getInstance();
-        boardDAO.setConnection(con); // DAO 객체에 Connection 객체 전달
-        
-        // BoardDAO 객체의 isArticleBoardWriter() 메서드를 호출하여 패스워드 확인
-        isArticleWriter = boardDAO.isArticleBoardWriter(board_num, board_pass);
-        
-        close(con);
-        
-        return isArticleWriter;
-    }
 
     // 글 번호를 전달받아 게시물 삭제(본인 확인 완료된 상태)
     public boolean removeArticle(int board_num) throws Exception {

@@ -116,7 +116,7 @@
 				<%if(sId!=null){ %>
 				 <%if(sId.equals(boardBean.getBoard_sid())|isMember=="1"|isMember=="2"){ %>
 				<input type="button" value="글수정" class="btn"
-					onclick="location.href='BoardModifyForm.bo?board_num=<%=boardBean.getBoard_num()%>'">
+					onclick="location.href='BoardModifyForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>&board_sid=<%=sId%>&board_replyid=<%=boardBean.getBoard_sid()%>'">
 				<input type="button" value="글삭제" class="btn"
 					onclick="location.href='BoardDeleteForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>'">
 					<%} %>

@@ -2,7 +2,6 @@ package dao;
 
 import static db.JdbcUtil.*;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,13 +16,11 @@ public class BoardDAO {
 	// -----------------------------------------------------
 	// DAO 인스턴스 생성 관리를 위한 싱글톤 디자인 패턴
 	private static BoardDAO instance;
-	
-	
+
 	private BoardDAO() {
-	
+
 	}
 
-	
 	public static BoardDAO getInstance() {
 		// 기존의 BoardDAO 인스턴스가 없을 경우에만 인스턴스를 새로 생성
 		if (instance == null) {
@@ -39,14 +36,14 @@ public class BoardDAO {
 	// Service 클래스로부터 Connection 객체 전달받는 메서드
 	public void setConnection(Connection con) {
 		this.con = con;
-		
+
 	}
 
 	// 글 등록 요청을 처리하는 insertArticle() 메서드
 	public int insertArticle(BoardBean article) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		int insertCount = 0; // 게시물 등록 성공 여부를 저장할 변수(성공 = 1, 실패 = 0)
 
 		try {
@@ -127,7 +124,7 @@ public class BoardDAO {
 	}
 
 	// 게시물 목록 조회하여 리턴
-	public ArrayList<BoardBean> selectArticleList(int page, int limit,String board_id) {
+	public ArrayList<BoardBean> selectArticleList(int page, int limit, String board_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -215,38 +212,6 @@ public class BoardDAO {
 
 	}
 
-	// 게시물 패스워드 확인
-	public boolean isArticleBoardWriter(int board_num, String board_pass) {
-//        System.out.println("BoardDAO - isArticleBoardWriter()");
-		// board_num 에 해당하는 게시물의 패스워드를 비교
-		boolean isArticleWriter = false;
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			// 게시물 번호에 해당하는 패스워드가 존재하는지 검색
-			String sql = "SELECT * FROM board WHERE board_num=? AND board_pass=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board_num);
-			pstmt.setString(2, board_pass);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				// 게시물 번호에 해당하는 패스워드가 일치하여 레코드가 검색될 경우
-				isArticleWriter = true;
-			}
-
-		} catch (SQLException e) {
-			System.out.println("isArticleBoardWriter() 에러 - " + e.getMessage());
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-
-		return isArticleWriter;
-	}
-
 	// 글 수정
 	public int isUpdateArticle(BoardBean article) {
 		int updateCount = 0;
@@ -254,13 +219,26 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			// 글 번호에 해당하는 레코드에 대해 제목(subject), 내용(content) 수정 후 결과값 리턴
-			String sql = "UPDATE board SET board_subject=?,board_content=? WHERE board_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getBoard_subject());
-			pstmt.setString(2, article.getBoard_content());
-			pstmt.setInt(3, article.getBoard_num());
-			updateCount = pstmt.executeUpdate();
+			if (article.getBoard_file() != null) {
+				// 글 번호에 해당하는 레코드에 대해 제목(subject), 내용(content) 수정 후 결과값 리턴
+				String sql = "UPDATE board SET board_file=?,board_subject=?,board_content=?,board_issecret=? WHERE board_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getBoard_file());
+				pstmt.setString(2, article.getBoard_subject());
+				pstmt.setString(3, article.getBoard_content());
+				pstmt.setInt(4, article.getIsSecret());
+				pstmt.setInt(5, article.getBoard_num());
+				updateCount = pstmt.executeUpdate();
+			} else {
+				String sql = "UPDATE board SET board_subject=?,board_content=?,board_issecret=? WHERE board_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getBoard_subject());
+				pstmt.setString(2, article.getBoard_content());
+				pstmt.setInt(3, article.getIsSecret());
+				pstmt.setInt(4, article.getBoard_num());
+				updateCount = pstmt.executeUpdate();
+
+			}
 
 		} catch (SQLException e) {
 			System.out.println("isUpdateArticle() 에러 - " + e.getMessage());
@@ -311,7 +289,7 @@ public class BoardDAO {
 			// 새 답글에 대한 순서 번호, 들여쓰기 레벨 1 증가시킴
 			board_re_seq += 1;
 			board_re_lev += 1;
-			
+
 			// 답변글 등록 => 파일을 제외한 나머지 등록
 			sql = "INSERT INTO board VALUES (?,?,?,?,?,?,?,?,?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
@@ -344,24 +322,23 @@ public class BoardDAO {
 	public int insertCommentArticle(BoardBean article) {
 		PreparedStatement pstmt = null;
 		int commentCount = 0;
-		int board_num = (int)article.getBoard_num();
+		int board_num = (int) article.getBoard_num();
 //		String id = article.getBoard_id();
-		String comment_sid = (String)article.getComment_sid();
-		String comment = (String)article.getComment();
-		
-		System.out.println(board_num+"dao");
-		System.out.println(comment+"dao");	
+		String comment_sid = (String) article.getComment_sid();
+		String comment = (String) article.getComment();
+
+		System.out.println(board_num + "dao");
+		System.out.println(comment + "dao");
 		try {
 			// 현재 게시물에서 가장 큰 번호 조회
-			
-			
+
 			String sql = "INSERT INTO comment VALUES (NULL,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			pstmt.setString(2, comment_sid);
 			pstmt.setString(3, comment);
 			commentCount = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 //          e.printStackTrace();
 			System.out.println("insertCommentArticle() 에러 - " + e.getMessage());
@@ -375,7 +352,7 @@ public class BoardDAO {
 		}
 		return commentCount;
 	}
-	
+
 	// 전체 댓글 갯수를 조회하여 리턴
 	public int selectCommentCount(int board_num) {
 		int commentCount = 0; // 게시물 갯수를 저장하는 변수
@@ -451,7 +428,7 @@ public class BoardDAO {
 	}
 
 	public List<BoardBean> getCommentList(int board_num) {
-		
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;

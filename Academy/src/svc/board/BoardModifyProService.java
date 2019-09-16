@@ -9,19 +9,6 @@ import static db.JdbcUtil.*;
 
 public class BoardModifyProService {
     
-    // 본인 확인을 위한 패스워드 비교
-    // 글 번호와 패스워드 전달받음
-    public boolean isArticleWriter(int board_num, String board_pass) throws Exception { 
-        Connection con = getConnection();
-        BoardDAO boardDAO = BoardDAO.getInstance();
-        boardDAO.setConnection(con);
-        
-        // 글 번호와 패스워드를 전달하여 본인 확인 후 결과 리턴
-        boolean isArticleWriter = boardDAO.isArticleBoardWriter(board_num, board_pass);
-        
-        close(con);
-        return isArticleWriter;
-    }
 
     // 글 수정
     public boolean modifyArticle(BoardBean article) throws Exception {
