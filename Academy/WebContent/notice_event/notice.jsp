@@ -72,6 +72,16 @@ String sid = (String)session.getAttribute("sid");
 	<!-- 리스트 공지사항 시작-->
 	<div class="boardwrap">
 	<h1>	공지사항</h1>
+<!-- 	<div> -->
+<!-- 	<form action="notice.no" method="get"> -->
+<!-- 	<select name = "nt_ev"> -->
+<!-- 	<option value = "0">[전체보기]</option> -->
+<!-- 	<option value = "1">[공지사항]</option> -->
+<!-- 	<option value="2">[이벤트]</option> -->
+<!-- 	</select> -->
+<!-- 	<input type="submit" value="분류별보기" class="btn"> -->
+<!-- 	</form> -->
+<!-- 	</div> -->
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
@@ -147,10 +157,10 @@ String sid = (String)session.getAttribute("sid");
 <!-- 페이징 처리 구역 종료 -->
                     </div>
                       </div>
-<!--                   </div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
    
     <!--================ Start Popular Courses Area =================-->
    

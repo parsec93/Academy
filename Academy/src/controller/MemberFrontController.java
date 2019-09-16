@@ -16,6 +16,7 @@ import action.member.LoginProAction;
 import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
 import action.member.MemberJoinProAction;
+import action.member.TeacherDeleteAction;
 import action.member.TeacherListAction;
 import action.member.TeacherViewAction;
 import action.member.infoProAction;
@@ -111,14 +112,11 @@ public class MemberFrontController extends HttpServlet {
 			}
         }else if(command.equals("/TeacherList.me")) {
         	String member_isMember = "1";
-        	request.setAttribute("member_isMember", member_isMember);
-        	
+        	request.setAttribute("member_isMember", member_isMember);       	
         	action = new TeacherListAction();
-        	
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }else if(command.equals("/TeacherView.me")) {
@@ -129,6 +127,16 @@ public class MemberFrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else if(command.equals("/TeacherDeleteForm.me")) {
+        	forward = new ActionForward();
+        	forward.setPath("/admin/teacherDelete.jsp");
+        }else if(command.equals("/TeacherDelete.me")) {
+        	action = new TeacherDeleteAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
 
         
