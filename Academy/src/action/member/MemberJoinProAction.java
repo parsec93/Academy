@@ -54,6 +54,7 @@ public class MemberJoinProAction implements Action{
 		mb.setMember_email(email);
 		mb.setMember_postcode(multi.getParameter("postcode"));
 		mb.setMember_add1(multi.getParameter("add1"));
+		System.out.println(multi.getParameter("add1"));
 		mb.setMember_add2(multi.getParameter("add2"));
 //		mb.setMember_add1("busan");
 //		mb.setMember_add2("busan");
