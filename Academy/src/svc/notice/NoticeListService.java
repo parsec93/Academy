@@ -30,7 +30,7 @@ public class NoticeListService {
 	}
 	
 	// 전체 게시물 개수를 조회하여 리턴하는 getNoticeListCount()
-	public int getNoticeListCount() throws Exception {
+	public int getNoticeListCount(int isNotice) throws Exception {
 		int listCount = 0; // 전체 게시물 수를 저장하는 변수 
 		
 		Connection con = getConnection();
@@ -40,7 +40,7 @@ public class NoticeListService {
 		noticeDAO.setConnection(con);
 		
 		// selectNoticeListCount() 메서드를 호출하여 전체 게시물 수를 조회하여 listCount 변수에 저장 
-		listCount = noticeDAO.selectNoticeListCount();
+		listCount = noticeDAO.selectNoticeListCount(isNotice);
 		
 		close(con);
 		

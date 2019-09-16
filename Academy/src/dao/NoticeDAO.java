@@ -126,14 +126,22 @@ public class NoticeDAO {
 	}
 	
 	// 전체 게시물 수를 조회하여 리턴 
-	public int selectNoticeListCount() {
+	public int selectNoticeListCount(int isNotice) {
 		int listCount = 0; // 게시물 개수를 저장하느니 변수 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String sql="";
+		if(isNotice == 1) {
+			sql = "SELECT COUNT(*) FROM notice where isNotice=1";
+		}else if(isNotice ==2) {
+			sql = "SELECT COUNT(*) FROM notice where isNotice=2";
+		}else {
+			sql = "SELECT COUNT(*) FROM notice";
+		}
 		
 		try {
-			String sql = "SELECT COUNT(*) FROM notice";
+
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
