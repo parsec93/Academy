@@ -39,6 +39,8 @@
 ArrayList<NoticeBean> noticeList = (ArrayList<NoticeBean>)request.getAttribute("noticeList");   // 게시판 글 목록 을 위한 객체 
 NoticePageInfo noticePageInfo = (NoticePageInfo)request.getAttribute("noticePageInfo");
 
+
+
 //pageInfo 객체로부터 페이징 정보 가져오기 
 int listCount = noticePageInfo.getListCount();
 int nowPage = noticePageInfo.getPage();
@@ -137,7 +139,7 @@ String sid = (String)session.getAttribute("sid");
 
 <!-- // 페이징 처리 구역  -->
 	<div id="page_control">
-	
+
 		<%
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
@@ -149,7 +151,8 @@ String sid = (String)session.getAttribute("sid");
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "notice.no?page=<%=i %>">[<%=i %>]</a>&nbsp;
+
+				<a href = "notice.no?page=<%=i %>&nt_ev=<%=request.getAttribute("isNotice")%>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
@@ -163,10 +166,7 @@ String sid = (String)session.getAttribute("sid");
 <!-- 페이징 처리 구역 종료 -->
                     </div>
                       </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+ 
    
     <!--================ Start Popular Courses Area =================-->
    

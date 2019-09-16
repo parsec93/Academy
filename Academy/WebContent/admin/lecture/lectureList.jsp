@@ -34,7 +34,25 @@
   int startPage = lecturePageInfo.getStartPage();
   int endPage = lecturePageInfo.getEndPage();
   int maxPage = lecturePageInfo.getMaxPage();
+  
+	String listType = (String)request.getAttribute("listType");
   %>
+  
+<!-- 	선택된 select value 값 넘기기 -->
+  <script type="text/javascript">
+  	function changePeriod() {
+  		
+  		var langSelect = document.getElementById("period"); 		
+  		var lt = langSelect.options[langSelect.selectedIndex].value
+  		if(lt == "now"){
+  			location.href = "./lectureList.le?listType=now";
+  		}else{
+  			location.href = "./lectureList.le?listType=end";
+  		}
+		
+	}
+  
+  </script>
 
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -64,8 +82,21 @@
 	
 	<div class="boardwrap">
 	<h1>수업 목록</h1>
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 			<a href="lectureList.le?listType=now">진행중</a></td> -->
+<!-- 			<td> -->
+<!-- 			<a href="lectureList.le?listType=end">종료</a></td></td> -->
+<!-- 		</tr> -->
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
-	<caption>게시판 리스트</caption>
+	
+	<select name = "period" id ="period" onchange="changePeriod()">
+		<option value="now" selected="selected" >진행중인 수업</option>
+		<option value="end" >종료된 수업</option>
+	</select>
+
+	
+	
 	<colgroup>
 	<col width="5%">
 	<col width="45%">
