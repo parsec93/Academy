@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="css/style.css" />
      <!-- board css -->
 	<link rel="stylesheet" href="css/board.css" />
+	<script type="text/javascript">
+	
+	function ne(op){
+		location.href="notice.no?nt_ev="+op;
+	}
+	</script>
+	
   </head>
 <%
 
@@ -72,16 +79,15 @@ String sid = (String)session.getAttribute("sid");
 	<!-- 리스트 공지사항 시작-->
 	<div class="boardwrap">
 	<h1>	공지사항</h1>
-<!-- 	<div> -->
-<!-- 	<form action="notice.no" method="get"> -->
-<!-- 	<select name = "nt_ev"> -->
-<!-- 	<option value = "0">[전체보기]</option> -->
-<!-- 	<option value = "1">[공지사항]</option> -->
-<!-- 	<option value="2">[이벤트]</option> -->
-<!-- 	</select> -->
-<!-- 	<input type="submit" value="분류별보기" class="btn"> -->
-<!-- 	</form> -->
-<!-- 	</div> -->
+	<div>
+ 	<form action="notice.no" name="fr" method="get" onchange="ne(nt_ev.value)"> 
+	<select name = "nt_ev">
+	<option value = "0">[전체보기]</option>
+	<option value = "1">[공지사항]</option>
+	<option value="2">[이벤트]</option>
+	</select>
+</form> 
+	</div>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
@@ -91,7 +97,7 @@ String sid = (String)session.getAttribute("sid");
 	<col width="20%">
 
 	</colgroup>
-              <%if(noticeList.size() == 0) {%>
+              <%if(noticeList == null) {%>
               <h1><b>작성된 글이 없습니다.</b></h1>
               <%}else{ %>
 				<thead>

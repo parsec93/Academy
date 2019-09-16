@@ -85,6 +85,7 @@ function passCheck2(pass2) {
     document.getElementById('result2').style.color="green";
  }
 }
+
 function joinCheck() {
 	pass1=document.up.password.value; 
 	pass2 = document.up.password_more.value;
@@ -105,7 +106,17 @@ function joinCheck() {
 		alert("중복확인이 필요합니다.");
 		return false;
 	}
-
+	if(document.up.jumin1.value.length != 6 ){
+		alert('주민번호 앞 6자리를 바르게 입력하세요.')
+		document.up.jumin1.focus();
+		return false;
+	}
+	
+	if(document.up.jumin2.value.length != 7 ){
+		alert('주민번호 뒤 7자리를 바르게 입력하세요.')
+		document.up.jumin2.focus();
+		return false;
+	}
 	
 }
 

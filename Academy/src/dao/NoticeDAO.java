@@ -80,17 +80,23 @@ public class NoticeDAO {
 	
 	
 	//Notice(공지사항) 게시판 출력 
-	public ArrayList<NoticeBean> selectNoticeList(int page, int limit){
+	public ArrayList<NoticeBean> selectNoticeList(int page, int limit, int nt_ev){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		ArrayList<NoticeBean> noticeList = new ArrayList<NoticeBean>();
-		
+		String sql="";
 		int startRow = (page -1 ) * 10; // 읽어올 목록의 첫 레코드 번호
-		
+		if(nt_ev == 1) {
+			sql = "SELECT * FROM notice where isNotice=1 ORDER BY notice_idx DESC  LIMIT ?,? ";
+		}else if(nt_ev ==2) {
+			sql = "SELECT * FROM notice where isNotice=2 ORDER BY notice_idx DESC  LIMIT ?,? ";
+		}else {
+			sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
+		}
 		
 		try {
-			String sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
+			//String sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
 			//전체 게시판 목록 조회
 			
 			pstmt = con.prepareStatement(sql);

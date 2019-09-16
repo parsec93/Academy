@@ -10,7 +10,7 @@ import vo.NoticeBean;
 public class NoticeListService {
 	
 	// 전체 게시물 목록을 조회하여 리턴 
-	public ArrayList<NoticeBean> getNoticeList(int page, int limit) throws Exception{
+	public ArrayList<NoticeBean> getNoticeList(int page, int limit, int nt_ev) throws Exception{
 		System.out.println("NoticeListService의 getNoticeList() 메서드 ");
 		
 		ArrayList<NoticeBean> noticeList = null;
@@ -21,7 +21,7 @@ public class NoticeListService {
 		
 		noticeDAO.setConnection(con);
 		
-		noticeList = noticeDAO.selectNoticeList(page, limit);
+		noticeList = noticeDAO.selectNoticeList(page, limit, nt_ev);
 		
 		close(con);
 		
