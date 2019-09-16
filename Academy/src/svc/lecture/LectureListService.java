@@ -9,7 +9,7 @@ import vo.LectureBean;
 
 public class LectureListService {
 	
-	public ArrayList<LectureBean> getLectureList(int page, int limit){
+	public ArrayList<LectureBean> getLectureList(int page, int limit, String listType){
 		System.out.println("LectureListService");
 		ArrayList<LectureBean> lectureList = null;
 		Connection con = getConnection();
@@ -18,7 +18,7 @@ public class LectureListService {
 		
 		lectureDAO.setConnection(con);
 		
-		lectureList = lectureDAO.selectLectureList(page,limit);
+		lectureList = lectureDAO.selectLectureList(page,limit,listType);
 		
 		close(con);
 		
