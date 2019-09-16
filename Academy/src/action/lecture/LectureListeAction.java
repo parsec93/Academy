@@ -17,9 +17,15 @@ public class LectureListeAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("LectureListeAction");
+		System.out.println(request.getParameter("listType"));
 		
 		ArrayList<LectureBean> lectureList = new ArrayList<LectureBean>();
-	
+		
+		//목록 종류(진행중인 수업 or 종료된 수업) 파라미터(listType)값 가져오기
+		String listType="";
+		if(request.getParameter("listType") != null) {
+			listType = request.getParameter("listType");
+		}
 		
 		int page = 1;
 		int limit = 10;
@@ -31,7 +37,8 @@ public class LectureListeAction implements Action {
 		
 		int listCount = lectureListService.getLectureListCount();
 		
-		lectureList = lectureListService.getLectureList(page, limit);
+		//영화목록조회 값 전달 
+		lectureList = lectureListService.getLectureList(page, limit , listType);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
@@ -44,6 +51,7 @@ public class LectureListeAction implements Action {
 		LecturePageInfo lecturePageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
 		request.setAttribute("lecturePageInfo", lecturePageInfo);
 		request.setAttribute("lectureList", lectureList);
+		
 		
 		if(lectureList == null) {
 			response.setContentType("text/html;charset=utf-8");

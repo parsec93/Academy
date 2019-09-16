@@ -119,27 +119,29 @@
 									onblur="this.placeholder = 'Enter Message'" required=""></textarea>
 							</div>
 						</div>
-						<div id="plusfriend-chat-button"></div>
-						<script type='text/javascript'>
-							//<![CDATA[
-							// 사용할 앱의 JavaScript 키를 설정해 주세요.
-							Kakao.init('a83803cb1296d9bee0a940f229d10bd1');
-							// 스토리 공유 버튼을 생성합니다.
-							Kakao.PlusFriend.createChatButton({
-								container : '#plusfriend-chat-button',
-								plusFriendId : '_xdsxhWT',
-								title : 'consult',
-								size : 'small',
-								color : 'yellow',
-								shape : 'pc',
-								supportMultipleDensities : true
-							});
-							//]]>
-						</script>
+
+						
 						<div class="col-md-12 text-right">
 							<button type="submit" value="submit" class="btn primary-btn">
-								보내기</button>
+								이메일 보내기</button>
 						</div>
+						
+						<!-----------------------------------카카오톡 플러스 친구 상담 버튼 및 기능  --------------------------->
+						<div class="col-md-12 text-right">
+							<input type="button"
+								onclick="location.href='javascript:void plusFriendChat()'"
+								class="btn primary-btn" value="카카오톡 상담">
+						</div>
+						<script type='text/javascript'>
+							Kakao.init('a83803cb1296d9bee0a940f229d10bd1');
+							function plusFriendChat() {
+								Kakao.PlusFriend.chat({
+									plusFriendId : '_xdsxhWT' 
+								});
+							}
+						</script>
+						<!-----------------------------------카카오톡 플러스 친구 상담 버튼 및 기능  --------------------------->
+						
 					</form>
 				</div>
 			</div>

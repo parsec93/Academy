@@ -28,10 +28,19 @@ public class LectureDAO {
 		this.con = con;
 	}
 	
-	public ArrayList<LectureBean> selectLectureList(int page, int limit){
+	public ArrayList<LectureBean> selectLectureList(int page, int limit, String listType){
 		ArrayList<LectureBean> lectureList = new ArrayList<LectureBean>();
 		int startRow = (page-1) *10;
-		String sql = "SELECT * FROM lecture ORDER BY lecture_idx DESC LIMIT ?,?";
+		String sql ="";
+		
+		if(listType.equals("")||listType.equals("now")) {
+			//진행중인 수업 일때
+			sql = "SELECT * FROM lecture where lecture_start_day <=now() and lecture_end_day >=now() ORDER BY lecture_idx DESC LIMIT ?,?";
+		}else if(listType.equals("end")) {
+			//종료된 수업 일때
+			sql = "SELECT * FROM lecture where lecture_end_day < now() ORDER BY lecture_idx DESC LIMIT ?,?";
+		}
+		
 		
 		try {
 			pstmt = con.prepareStatement(sql);
