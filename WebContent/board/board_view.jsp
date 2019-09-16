@@ -118,7 +118,7 @@
 				<input type="button" value="글수정" class="btn"
 					onclick="location.href='BoardModifyForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>&board_sid=<%=sId%>&board_replyid=<%=boardBean.getBoard_sid()%>'">
 				<input type="button" value="글삭제" class="btn"
-					onclick="location.href='BoardDeleteForm.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>'">
+					onclick="location.href='BoardDelete.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'">
 					<%} %>
 				<%if(board_id.equals("qna")){ %>
 				 <%if(isMember.equals("1")|isMember.equals("2")){ %>

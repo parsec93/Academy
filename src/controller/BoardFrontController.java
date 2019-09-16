@@ -124,9 +124,9 @@ public class BoardFrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(command.equals("/BoardDeleteForm.bo")) {
+        } else if(command.equals("/BoardDelete.bo")) {
             forward = new ActionForward();
-            forward.setPath("/board/qna_board_delete.jsp");
+            forward.setPath("/board/board_delete.jsp");
         } else if(command.equals("/BoardDeletePro.bo")) {
             action = new BoardDeleteProAction();
             

@@ -27,8 +27,7 @@ public class BoardWriteProAction implements Action {
     	request.setCharacterEncoding("UTF-8");
     	request.setAttribute("board_id", board_id);
     	request.setAttribute("board_sid", board_sid);
-    	System.out.println(board_id);
-    	System.out.println(board_sid+"호우");
+    	
         ActionForward forward = null;
         
         

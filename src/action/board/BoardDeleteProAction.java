@@ -16,8 +16,9 @@ public class BoardDeleteProAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        System.out.println("BoardDeleteProAction");
-        int board_num = Integer.parseInt(request.getParameter("board_num"));
-        String page = request.getParameter("page");
+    	int board_num = Integer.parseInt(request.getParameter("board_num"));
+        String page = request.getParameter("nowPage");
+        String board_id = request.getParameter("board_id");
         
         BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
         // 패스워드 확인
@@ -38,7 +39,7 @@ public class BoardDeleteProAction implements Action {
                 out.println("</script>");
             } else {
                 forward = new ActionForward();
-                forward.setPath("BoardList.bo?page=" + page);
+                forward.setPath(board_id+"board.bo?page=" + page);
                 forward.setRedirect(true); // Redirect 방식이므로 생략 불가
             }
         
