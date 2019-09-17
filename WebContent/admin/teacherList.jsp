@@ -43,7 +43,6 @@ $(document).ready(function(){
 	  		document.up.email2.focus();
 	  		return;
 	  	}
-	
 	});
 });
 function idCheck() {
@@ -53,21 +52,25 @@ function idCheck() {
   		document.up.id.focus();
   		return;
   	}else{
-  		window.open("member/idCheck.jsp?id="+id+"&check=2","","width=400,height=200");	
+  		window.open("admin/idCheck.jsp?id="+id+"&check=2","","width=400,height=200");	
   	}
   }
 //아이디 새로입력할때 마다 check초기화
 function inputIdCheck() {
 	document.up.idCheckValue.value="idUnCheck";
 }
+
 function passCheck(val){
 	pass2 = document.up.password_more.value;   
     if(val.length <4){
-        document.getElementById('result').value = "쉬움";
+        document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요";
         document.getElementById('result').style.color="red";
     }else if(val.length<8){
-        document.getElementById('result').value = "보통";
+        document.getElementById('result').value = "8자 이상 입력하세요";
         document.getElementById('result').style.color="orange";
+    }else if(!val.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)){
+    	document.getElementById('result').value = "비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.";
+    	document.getElementById('result').style.color="red";
     }else {
     	document.getElementById('result').value = "어려움";
     	document.getElementById('result').style.color="green";
@@ -86,35 +89,82 @@ function passCheck2(pass2) {
  }
 }
 
+function juminCheck(val){
+	if(!val.match(/([0-9])/)){
+		alert('숫자만 입력하세요.');
+		//document.getElementById('result3').value = "숫자만 입력하세요.";
+		document.up.jumin1.value="";
+		document.up.jumin1.focus();
+}
+}
+
+function juminCheck2(val){
+	if(!val.match(/([0-9])/)){
+		alert('숫자만 입력하세요.');
+		//document.getElementById('result3').value = "숫자만 입력하세요.";
+		document.up.jumin2.value="";
+		document.up.jumin2.focus();
+}
+}
+
+function phoneCheck(val){
+	if(!val.match(/([0-9])/)){
+		alert('숫자만 입력하세요.');
+		//document.getElementById('result3').value = "숫자만 입력하세요.";
+		document.up.phone.value="";
+		document.up.phone.focus();
+}
+}
+
+function accnoCheck(val){
+	if(!val.match(/([0-9])/)){
+		alert('숫자만 입력하세요.');
+		//document.getElementById('result3').value = "숫자만 입력하세요.";
+		document.up.accno.value="";
+		document.up.accno.focus();
+}
+}
+
 function joinCheck() {
 	pass1=document.up.password.value; 
 	pass2 = document.up.password_more.value;
 	icv = document.up.idCheckValue.value;
-	//패스워드 유효성
+	//패스워드 유효성(길이 확인)
 	if(pass1.length<8){
-		alert("비밀번호는 8자이상입니다.");
+		alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요.");
     	document.up.password.focus();
         return false;
     }
-	//패스워드2 확인
+	//패스워드 유효성(영문 + 숫자 + 특수문자 모두 섞어서 사용할 것)
+	if(!pass1.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)) { 
+        alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.");
+        return false;
+    }
+	//패스워드2 확인 
 	if(pass1!=pass2){
 		alert("비밀번호가 다릅니다.");
 		 document.up.password_more.focus();
         return false;
 	 }
+	
 	if(icv != "idCheck"){
 		alert("중복확인이 필요합니다.");
 		return false;
 	}
 	if(document.up.jumin1.value.length != 6 ){
-		alert('주민번호 앞 6자리를 바르게 입력하세요.')
+		alert('주민번호 앞 6자리를 바르게 입력하세요.');
 		document.up.jumin1.focus();
 		return false;
 	}
 	
 	if(document.up.jumin2.value.length != 7 ){
-		alert('주민번호 뒤 7자리를 바르게 입력하세요.')
+		alert('주민번호 뒤 7자리를 바르게 입력하세요.');
 		document.up.jumin2.focus();
+		return false;
+	}
+	
+	if(document.up.bank.value == "0"){
+		alert('은행을 선택하세요.');
 		return false;
 	}
 	
@@ -252,13 +302,13 @@ function joinCheck() {
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password" onkeyup="passCheck(this.value)">
                         <output id="result"></output>
                         <label for="password">Your password</label>
-                        <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2(this.value)">
+                        <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2()">
                         <output id="result2"></output>
                         <label for="password_more">패스워드 확인</label>
                         <br>
-                       <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호 앞 6자리">
+                       <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호앞6자리(숫자)" onkeyup="juminCheck(this.value)">
                         &nbsp;-&nbsp;
-                        <input type="text" name="jumin2" id="jumin2" class="inpt_04" required="required" placeholder="주민번호 뒤 7자리">
+                        <input type="text" name="jumin2" id="jumin2" class="inpt_04" required="required" placeholder="주민번호뒤7자리(숫자)" onKeyup="juminCheck2(this.value)">
                         &nbsp;
                         
                         <input type="text" name="email1" id="email1" class="inpt_04" required="required" placeholder="Your email">
@@ -281,7 +331,7 @@ function joinCheck() {
                         <label for="address_more">주소1</label>
                         <input type="text" name="add2" id="address_more2" class="inpt" required="required" placeholder="상세주소2">
                         <label for="address_more">상세주소2</label>
-                        <input type="text" name="phone" id="phone" class="inpt" required="required" placeholder="휴대폰 번호"> 
+                        <input type="text" name="phone" id="phone" class="inpt" required="required" placeholder="휴대폰 번호(숫자만 입력)" onKeyup="phoneCheck(this.value)"> 
                         <label for="name">Your phone</label>
              			<div>
              			<select style="float: left;"name="bank" id="bank" >
@@ -291,7 +341,8 @@ function joinCheck() {
              			<option value="5">농협</option>
              			</select>
              			
-             			<input type="text" name="accno" id="accno" class="inpt_02" required="required" placeholder="계좌번호 (숫자만 입력)">
+             			<input type="text"  draggable="false"  name="accno" id="accno" class="inpt_02" required="required" placeholder="계좌번호 (숫자만 입력)" 
+             			onKeyup="accnoCheck(this.value)">
              			<label for="text">계좌번호</label>
              			</div>
              			
