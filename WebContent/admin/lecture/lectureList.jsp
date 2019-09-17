@@ -28,6 +28,7 @@
   <%
   ArrayList<LectureBean> lectureList = (ArrayList<LectureBean>)request.getAttribute("lectureList");
   LecturePageInfo lecturePageInfo = (LecturePageInfo)request.getAttribute("lecturePageInfo");
+
  
   int listCount = lecturePageInfo.getListCount();
   int nowPage = lecturePageInfo.getPage();
@@ -46,8 +47,10 @@
   		var lt = langSelect.options[langSelect.selectedIndex].value
   		if(lt == "now"){
   			location.href = "./lectureList.le?listType=now";
-  		}else{
+  		}else if(lt == "end"){
   			location.href = "./lectureList.le?listType=end";
+  		}else if(lt == "pre"){
+  			location.href = "./lectureList.le?listType=pre";
   		}
 		
 	}
@@ -82,6 +85,11 @@
 	
 	<div class="boardwrap">
 	<h1>수업 목록</h1>
+	<select name = "period" id ="period" onchange="changePeriod()">
+		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
+		<option value="pre" <%if(listType.equals("pre")){ %> selected="selected"<%} %>>예정된 수업</option>
+		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>종료된 수업</option>
+	</select>
 <!-- 		<tr> -->
 <!-- 			<td> -->
 <!-- 			<a href="lectureList.le?listType=now">진행중</a></td> -->
@@ -90,10 +98,6 @@
 <!-- 		</tr> -->
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	
-	<select name = "period" id ="period" onchange="changePeriod()">
-		<option value="now" selected="selected" >진행중인 수업</option>
-		<option value="end" >종료된 수업</option>
-	</select>
 
 	
 	
@@ -125,7 +129,7 @@
 	
 	<tbody>
 	<tr>
-	<td class="num"><%=lectureBean.getLecture_idx() %></td>
+	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
 	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
@@ -145,12 +149,7 @@
 	<div id="table_search">
 	<input type="button" value="수업등록" class="btn" onclick="location.href='lectureInsert.le'">
 	</div>
-	<div id="table_search">
-	<form action="#" method="get">
-	<input type="text" name="search" class="input_box">
-	<input type="submit" value="search" class="btn">
-	</form>
-	</div>
+
 	
 	
 	<div id="page_control">
@@ -166,7 +165,7 @@
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "lectureList.le?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "lectureList.le?page=<%=i %>&listType=<%=listType%>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		

@@ -35,9 +35,10 @@ public class LectureListeAction implements Action {
 		}
 		LectureListService lectureListService = new LectureListService();
 		
-		int listCount = lectureListService.getLectureListCount();
+		//리스트 수 가져오기
+		int listCount = lectureListService.getLectureListCount(listType);
 		
-		//영화목록조회 값 전달 
+		//리스트 목록 가져오기
 		lectureList = lectureListService.getLectureList(page, limit , listType);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
@@ -51,6 +52,7 @@ public class LectureListeAction implements Action {
 		LecturePageInfo lecturePageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
 		request.setAttribute("lecturePageInfo", lecturePageInfo);
 		request.setAttribute("lectureList", lectureList);
+		request.setAttribute("listType", listType);
 		
 		
 		if(lectureList == null) {

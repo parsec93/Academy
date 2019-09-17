@@ -25,7 +25,7 @@ public class LectureListService {
 		return lectureList;
 	}
 	
-	public int getLectureListCount() {
+	public int getLectureListCount(String listType) {
 		
 		int listCount = 0;
 		Connection con =getConnection();
@@ -33,7 +33,7 @@ public class LectureListService {
 		LectureDAO lectureDAO = LectureDAO.getInstance();
 		lectureDAO.setConnection(con);
 		
-		listCount = lectureDAO.selectLectureListCount();
+		listCount = lectureDAO.selectLectureListCount(listType);
 		close(con);
 		return listCount;
 		
