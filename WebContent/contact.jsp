@@ -16,9 +16,39 @@
 <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
 <!-- main css -->
 <link rel="stylesheet" href="css/style.css" />
+<!--카카오톡 플러스톡 상담용 스크립트start-->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> 
+<!--카카오톡 플러스톡 상담용 스크립트end-->
+<script src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#sendEmail').click(function(){
+	    var name = document.Em.name.value;
+	    var email = document.Em.email.value;
+	    var subject = document.Em.subject.value;
+	    var message = document.Em.message.value;
+	    if(name==""){
+	    	alert("이름을 입력하세요");
+	    	document.Em.name.focus();
+	    	return;
+	    }else if(email==""){
+	    	alert("이메일을 입력하세요");
+	    	document.Em.email.focus();
+	    	return;
+	    }else if(subject==""){
+	    	alert("제목을 입력하세요");
+	    	document.Em.subject.focus();
+	    	return;
+	    }else if(message==""){
+	    	alert("내용을 입력하세요");
+	    	document.Em.message.focus();
+	    	return;
+	    }
+	});
+});
+</script>
 </head>
-
 <body>
 	<!--================ Start Header Menu Area =================-->
 	<jsp:include page="header_footer/header.jsp" />
@@ -76,7 +106,7 @@
 					</div>
 				</div>
 				<div class="col-lg-9">
-					<form class="row contact_form" action="#" method="post" id="contactForm" novalidate="novalidate">
+					<form class="row contact_form" name="Em" id="contactForm" novalidate="novalidate">
 						<div class="col-md-6">
 							<div class="form-group">
 								<input type="text" class="form-control" id="name" name="name" placeholder="이름"onfocus="this.placeholder = ''"
@@ -103,7 +133,7 @@
 
 						
 						<div class="col-md-12 text-right">
-							<input type="submit" value="이메일보내기" class="btn primary-btn">
+							<input type="button" value="이메일보내기" id ="sendEmail" class="btn primary-btn">
 						</div>
 						
 						<!-----------------------------------카카오톡 플러스 친구 상담 버튼 및 기능  --------------------------->
