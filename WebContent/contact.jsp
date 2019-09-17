@@ -5,8 +5,7 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="icon" href="img/favicon.png" type="image/png" />
 <title>오시는 길</title>
 <!-- Bootstrap CSS -->
@@ -17,7 +16,7 @@
 <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
 <!-- main css -->
 <link rel="stylesheet" href="css/style.css" />
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> 
 </head>
 
 <body>
@@ -34,10 +33,6 @@
 					<div class="col-lg-6">
 						<div class="banner_content text-center">
 							<h2>오시는 길</h2>
-							<!--                 <div class="page_link"> -->
-							<!--                   <a href="index.html">Home</a> -->
-							<!--                   <a href="contact.html">Contact</a> -->
-							<!--                 </div> -->
 						</div>
 					</div>
 				</div>
@@ -49,23 +44,11 @@
 	<!--================Contact Area =================-->
 	<section class="contact_area section_gap">
 		<div class="container">
-			<!--         <div -->
-			<!--           id="mapBox" -->
-			<!--           class="mapBox" -->
-			<!--           data-lat="40.701083" -->
-			<!--           data-lon="-74.1522848" -->
-			<!--           data-zoom="13" -->
-			<!--           data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia." -->
-			<!--           data-mlat="40.701083" -->
-			<!--           data-mlon="-74.1522848" -->
-			<!--         ></div> -->
 			<div class="mapwrap">
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13047.982132145402!2d129.06387384445802!3d35.156732154596945!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8e030b4b8ef4a2dd!2z7JWE7J207Yuw7JyMIOu2gOyCsOq1kOycoeyEvO2EsA!5e0!3m2!1sko!2skr!4v1567239896228!5m2!1sko!2skr"
-					width="100%" height="450" frameborder="0" style="border: 0;"
-					allowfullscreen=""></iframe>
+					width="100%" height="450" frameborder="0" style="border: 0;" allowfullscreen=""></iframe>
 			</div>
-
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="contact_info">
@@ -93,44 +76,39 @@
 					</div>
 				</div>
 				<div class="col-lg-9">
-					<form class="row contact_form" action="contact_process.php"
-						method="post" id="contactForm" novalidate="novalidate">
+					<form class="row contact_form" action="#" method="post" id="contactForm" novalidate="novalidate">
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" class="form-control" id="name" name="name"
-									placeholder="이름" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Enter your name'" required="" />
+								<input type="text" class="form-control" id="name" name="name" placeholder="이름"onfocus="this.placeholder = ''"
+								onblur="this.placeholder = '이름'" required="" />
 							</div>
 							<div class="form-group">
 								<input type="email" class="form-control" id="email" name="email"
-									placeholder="이메일" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Enter email address'" required="" />
+									placeholder="연락 받을 이메일" onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '연락 받을 이메일'" required="" />
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" id="subject"
 									name="subject" placeholder="제목" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Enter Subject'" required="" />
+									onblur="this.placeholder = '제목'" required="" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<textarea class="form-control" name="message" id="message"
 									rows="1" placeholder="메세지" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Enter Message'" required=""></textarea>
+									onblur="this.placeholder = '메세지'" required=""></textarea>
 							</div>
 						</div>
 
 						
 						<div class="col-md-12 text-right">
-							<button type="submit" value="submit" class="btn primary-btn">
-								이메일 보내기</button>
+							<input type="submit" value="이메일보내기" class="btn primary-btn">
 						</div>
 						
 						<!-----------------------------------카카오톡 플러스 친구 상담 버튼 및 기능  --------------------------->
 						<div class="col-md-12 text-right">
-							<input type="button"
-								onclick="location.href='javascript:void plusFriendChat()'"
-								class="btn primary-btn" value="카카오톡 상담">
+							<input type="button" onclick="location.href='javascript:void plusFriendChat()'"	class="btn primary-btn" value="카카오톡 상담">
 						</div>
 						<script type='text/javascript'>
 							Kakao.init('a83803cb1296d9bee0a940f229d10bd1');
@@ -153,40 +131,6 @@
 	<jsp:include page="header_footer/footer.jsp" />
 	<!--================ End footer Area  =================-->
 
-	<!--================Contact Success and Error message Area =================-->
-	<div id="success" class="modal modal-message fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<i class="ti-close"></i>
-					</button>
-					<h2>Thank you</h2>
-					<p>Your message is successfully sent...</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modals error -->
-
-	<div id="error" class="modal modal-message fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<i class="ti-close"></i>
-					</button>
-					<h2>Sorry !</h2>
-					<p>Something went wrong</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--================End Contact Success and Error message Area =================-->
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="js/jquery-3.2.1.min.js"></script>
@@ -203,7 +147,6 @@
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="js/gmaps.min.js"></script>
-	<script src="js/contact.js"></script>
 	<script src="js/theme.js"></script>
 </body>
 </html>
