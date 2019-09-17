@@ -30,7 +30,7 @@ public class LoginProAction implements Action {
 			out.println("location.href='Main.bo'");
 			out.println("</script>");
 		}else {
-			String id =request.getParameter("id");
+			String id =request.getParameter("idlg");
 			String password = request.getParameter("password");
 			System.out.println(id + password);
 			LoginProService memberLoginProService = new LoginProService();

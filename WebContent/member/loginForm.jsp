@@ -144,22 +144,22 @@ function joinCheck() {
 	$(document).ready(function(){
 		
 		var userInputId = getCookie("userInputId");
-		$("input[name='id']").val(userInputId);
+		$("input[name='idlg']").val(userInputId);
 
-	if($("input[name='id']").val() != ""){
+	if($("input[name='idlg']").val() != ""){
 		$("#remember").attr("checked", true);
 	}
 	$("#remember").change(function () {
 		if($("#remember").is(":checked")){
-			var userInputId = $("input[name='id']").val();
+			var userInputId = $("input[name='idlg']").val();
 			setCookie("userInputId",userInputId,7);
 		}else{
 			deleteCookie("userInputId");
 		}
 	});
-	$("input[name='id']").keyup(function(){
+	$("input[name='idlg']").keyup(function(){
 		if($("#remember").is(":checked")){
-			var userInputId = $("input[name='id']").val();
+			var userInputId = $("input[name='idlg']").val();
 			setCookie("userInputId", userInputId,7);
 		}
 	});
@@ -208,7 +208,7 @@ function joinCheck() {
             <div class="content">
                 <div class="signin-cont cont">
                     <form action="../LoginPro.me" method="post" >
-                        <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id"> 
+                        <input type="text" name="idlg" id="idlg" class="inpt" required="required" placeholder="Your id"> 
                         <label for="id">Your id</label> 
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password"> 
                         <label for="password">Your password</label> 

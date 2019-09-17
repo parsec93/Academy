@@ -60,7 +60,17 @@ function passCheck2(pass2) {
         function tocheckpw2() {
         	var pw1 = document.getElementById("password1").value;
         	var pw = document.getElementById("password").value;
-
+        	pass1 = document.up.newPassword1.value;
+        	if(pass1.length<8){
+        		alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&* 만 허용)를 혼용하여 8자 이상 입력해주세요.");
+            	document.up.password.focus();
+                return false;
+            }
+        	//패스워드 유효성(영문 + 숫자 + 특수문자 모두 섞어서 사용할 것)
+        	if(!pass1.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*])|([!,@,#,$,%,^,&,*].*[a-zA-Z0-9])/)) { 
+                alert("비밀번호는 영문(대소문자구분),숫자,특수문자(~!@#$%^&*()-_? 만 허용)를 혼용하여 8자 이상 입력해주세요.");
+                return false;
+            }
 			
 			if(pw == pw1){
             	alert('비밀번호 변경 성공');
