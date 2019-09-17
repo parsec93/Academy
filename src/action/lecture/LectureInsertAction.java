@@ -19,7 +19,7 @@ public class LectureInsertAction implements Action{
 		
 		LectureInsertService lectureInsertService = new LectureInsertService();
 		String lecture_room = request.getParameter("lecture_room");
-		System.out.println("daskjfhqwukqa"+lecture_room);
+		System.out.println("lecture_room 은"+lecture_room);
 		if(lecture_room == null) {
 			lecture_room = "1";
 		}
@@ -27,14 +27,13 @@ public class LectureInsertAction implements Action{
 		int[] lecture_counts = lectureInsertService.lectureCount(lecture_room);
 		if(list != null) {
 			System.out.println("LectureInsertAction 성공");
-			System.out.println(request.getParameter("lecture_subject"));
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('수업정보조회 성공')");
 
 			out.println("</script>");
-			
+			request.setAttribute("lecture_room", lecture_room);
 			request.setAttribute("list", list);
 			request.setAttribute("lecture_counts", lecture_counts);
 			forward = new ActionForward();

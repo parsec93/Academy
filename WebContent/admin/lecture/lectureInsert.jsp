@@ -25,15 +25,23 @@
 </head>
 <script type="text/javascript">
 	function insert(weekday, time, count){
-		var lecutre_room = document.up.lecutre_room.value;
-		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room=?"+lecutre_room,"","width=600,height=550");	
+		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
+		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room=?"+lecture_room_val,"","width=600,height=550");	
 	}
-
+	function changeRoom() {
+		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
+		location.href='lectureInsert.le?lecture_room=' + lecture_room_val;
+	}
 </script>
 <%
 	List<LectureBean> list = (List<LectureBean>)request.getAttribute("list");
 	int[] lecture_counts = (int[])request.getAttribute("lecture_counts");
 	int indexCount = 0;
+	String lecture_room = (String)request.getAttribute("lecture_room");
+	System.out.println("lecture_room은 "+lecture_room);
+	if(lecture_room == null){
+		lecture_room="1";
+	}
 %>
 <body>
     <!--================ Start Header Menu Area =================-->
@@ -63,11 +71,11 @@
      
 				<form action="lectureInsertPro.le" name="up" method="post" >
                     
-                    <table id="boardwrite">
-                    <select name="lecutre_room" id="lecutre_room" >
-                        <option value="1" selected="selected">1 강의실</option>
-                        <option value="2">2 강의실</option>
+                    <select name="lecture_room" id="lecture_room" onchange="changeRoom()">
+                        <option value="1" <%if(lecture_room.equals("1")){ %> selected="selected"<%} %>>1 강의실</option>
+                        <option value="2" <%if(lecture_room.equals("2")){ %> selected="selected"<%} %>>2 강의실</option>
                     </select>
+                    <table id="boardwrite">
                     
                     	<tr>
                     	<td>시간</td>
