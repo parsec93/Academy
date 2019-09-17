@@ -257,12 +257,13 @@ function joinCheck() {
             <div class="content">
                 <div class="signin-cont cont">
                     <form action="../LoginPro.me" method="post" >
-                        <table>
+                        <table class="teacherwrap">
               <%if(teacherList == null) {%>
               <h1>등록된 선생님이 없습니다</h1>
               <%}else{ %>
 				
 				<tr>
+					<td>교사번호</td>
 					<td>교사코드</td>
 					<td>이름</td>
 					<td>전화번호</td>
@@ -297,7 +298,7 @@ function joinCheck() {
                         
                         <input type="text" name="id" id="id" class="inpt_02" required="required" placeholder="Your id" onkeydown="inputIdCheck()"> 
                         <label for="id">Your Id</label>
-                        <input type="button" value="중복확인" class="inpt_03" onClick="idCheck()"><br>
+                        <input type="button" value="중복확인" class="inpt_03" onClick="idCheck()">
                         <input type="hidden" name="idCheckValue" value="idUncheck"> 
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password" onkeyup="passCheck(this.value)">
                         <output id="result"></output>
@@ -305,16 +306,19 @@ function joinCheck() {
                         <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2()">
                         <output id="result2"></output>
                         <label for="password_more">패스워드 확인</label>
-                        <br>
-                       <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호앞6자리(숫자)" onkeyup="juminCheck(this.value)">
-                        &nbsp;-&nbsp;
-                        <input type="text" name="jumin2" id="jumin2" class="inpt_04" required="required" placeholder="주민번호뒤7자리(숫자)" onKeyup="juminCheck2(this.value)">
-                        &nbsp;
+
+                        <div style="clear:both;">    
+                        <input type="text" name="jumin1" id="jumin1" class="inpt_04" required="required" placeholder="주민번호앞6자리(숫자)" onkeyup="juminCheck(this.value)">
+                        <p class="emailtext">-</p>
+                        <input type="text" name="jumin2" id="jumin2" class="inpt_05" required="required" placeholder="주민번호뒤7자리(숫자)" onKeyup="juminCheck2(this.value)">
+                      
+                        </div>
                         
+                        <div style="clear:both;"> 
                         <input type="text" name="email1" id="email1" class="inpt_04" required="required" placeholder="Your email">
-                        &nbsp;@&nbsp;
-                        <input type="text" name="email2" id="email2" class="inpt_04" required="required" placeholder="직접입력">
-                        &nbsp;
+                        <p class="emailtext">@</p>
+                        <input type="text" name="email2" id="email2" class="inpt_05" required="required" placeholder="직접입력">
+                        </div>
                         
 <!-- 						<select class="inpt_05" onChange="SelectValue(this)"> -->
 <!-- 							<option value="">직접입력</option> -->

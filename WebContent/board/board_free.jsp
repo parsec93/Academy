@@ -71,13 +71,14 @@ String board_sid = (String)session.getAttribute("sId");
     </section>
     <!--================End Home Banner Area =================-->
 	 <div class="boardwrap">
+	 <h1>자유게시판</h1>
     <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
-	<col width="8%">
-	<col width="12%">
-	<col width="50%">
-	<col width="20%">
+	<col width="5%">
+	<col width="60%">
+	<col width="10%">
+	<col width="10%">
 	<col width="10%">
 
 	</colgroup>
@@ -86,11 +87,12 @@ String board_sid = (String)session.getAttribute("sId");
               <%}else{ %>
 				<thead>
 				<tr>
-					<th scope="col">글 번호</td>
-					<th scope="col">작성자</td>
-					<th scope="col">글 제목</td>
-					<th scope="col">작성일</td>
-					<th scope="col">조회수</td>
+					<th scope="col">글 번호</th>
+					
+					<th scope="col">글 제목</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성일</th>
+					<th scope="col">조회수</th>
 					
 				</tr>
 					</thead>
@@ -100,7 +102,7 @@ String board_sid = (String)session.getAttribute("sId");
 						%>	
 						<tr style="cursor:pointer;" onclick="location.href='BoardView.bo?board_num=<%=boardBean.getBoard_num()%>&page=<%=nowPage%>&board_id=<%=board_id%>'" >
 							<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
-							<td class="sid"><%=boardBean.getBoard_sid() %></td>
+							
 							<td class="title"><%if(boardBean.getBoard_re_lev() != 0) { %>
 								<%for(int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) { %> 
 										&nbsp;
@@ -113,6 +115,7 @@ String board_sid = (String)session.getAttribute("sId");
 								<a class="comment" href="#">[<%=boardCommentListService.getCommentCount(boardBean.getBoard_num())%>]</a>
 								<%} %>
 								</td>
+								<td class="sid"><%=boardBean.getBoard_sid() %></td>
 							<td class="date"><%=new SimpleDateFormat("yyyy-MM-dd").format(boardBean.getBoard_date()) %></td>
 							<td class="readcount"><%=boardBean.getBoard_readcount() %></td>
 						</tr>
@@ -124,33 +127,37 @@ String board_sid = (String)session.getAttribute("sId");
 				<%} %>
 				</table>
 
-<!-- // 페이징 처리 구역  -->
+	<!-- // 페이징 처리 구역  -->
 	<section id="articleList">
 
 		<%if(nowPage <= 1 ) { %>
-			[이전]&nbsp;
+		<p class="pagetext">이전</p>
 		<%} else { %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">이전</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
-				[<%=i %>]
+			<p class="pagetext"><%=i %></p>
 			<%} else { %>
-				<a href = "<%=board_id%>board.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "<%=board_id%>board.bo?page=<%=i %>"><%=i %></a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
-			&nbsp;[다음]
+		<p class="pagetext">다음</p>
 		<%} else {  %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;다음</a>
 		<%} %><br><br>
 		
 	</section>
+	
 	<%if(board_sid!=null){ %>
-		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=board_sid%>'" style="float:right;"/>
+	<div id="table_search">
+		<input type="button" value="글쓰기" class="btn" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=board_sid%>'" />
+		</div>
 		<%} %>
+		
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>

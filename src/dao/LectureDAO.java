@@ -40,6 +40,9 @@ public class LectureDAO {
 		}else if(listType.equals("end")) {
 			//종료된 수업 일때
 			sql = "SELECT * FROM lecture where lecture_end_day < now() ORDER BY lecture_idx DESC LIMIT ?,?";
+		}else {
+			//예정된 수업 일때
+			sql = "SELECT * FROM lecture where lecture_start_day > now() ORDER BY lecture_idx DESC LIMIT ?,?";
 		}
 		
 		
@@ -68,10 +71,19 @@ public class LectureDAO {
 		}
 		return lectureList;
 	}
-	public int selectLectureListCount() {
+	public int selectLectureListCount(String listType) {
 		int listCount =0 ;
 		
-		String sql = "SELECT COUNT(*) FROM lecture";
+		String sql ="";
+		
+		if(listType.equals("")||listType.equals("now")) {
+			sql = "SELECT COUNT(*) FROM lecture WHERE lecture_start_day <=now() and lecture_end_day >=now()";	
+		}else if(listType.equals("end")) {
+			sql = "SELECT COUNT(*) FROM lecture WHERE  lecture_end_day <now()";	
+		}else {
+			sql = "SELECT COUNT(*) FROM lecture WHERE lecture_start_day > now() ";	
+		}
+			
 		
 		try {
 			pstmt = con.prepareStatement(sql);

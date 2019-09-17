@@ -157,10 +157,11 @@
 					%>
 					<div class="comment_more">
 						<p class="comment_more_text"><%=bb2.getComment_sid()%></p>
-						<p class="comment_more_text">:</p>
+						<p class="comment_more_text2">:</p>
 						<p class="comment_more_text"><%=bb2.getComment()%></p>
 						<%if(bb2.getComment_sid().equals(sId)){ %>
-							<input type="button" value="삭제" class="btn"
+							
+							<input type="button" value="삭제" class="btn2"
 							
 					onclick="location.href='CommentDelete.bo?page=<%=nowPage%>&board_id=<%=board_id%>&board_num=<%=boardBean.getBoard_num()%>&comment_num=<%=bb2.getComment_num()%>'">
 							
@@ -184,6 +185,7 @@
 			%>
 			
 		</div>
+		
 
 		<!-- 리스트 게시판 끝-->
 
