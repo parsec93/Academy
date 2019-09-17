@@ -1,7 +1,7 @@
 package action.lecture;
 
 import java.io.PrintWriter;
-import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,47 +14,41 @@ import vo.LectureBean;
 public class LectureInsertAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		ActionForward forward = null;
 		
-		LectureBean lb = new LectureBean();
-		lb.setLecture_subject(request.getParameter("lecture_subject"));
-		lb.setLecture_course(request.getParameter("lecture_course"));
-		lb.setLecture_teacher(request.getParameter("lecture_teacher"));
-		
-		Date lecture_start_day = Date.valueOf(request.getParameter("lecture_start_day"));
-		Date lecture_end_day = Date.valueOf(request.getParameter("lecture_end_day"));
-		lb.setLecture_start_day(lecture_start_day);
-		lb.setLecture_end_day(lecture_end_day);
-		
-		if(request.getParameter("weekday").equals("1")) {
-			lb.setLecture_week_day("월,수,금");
-		}else if(request.getParameter("weekday").equals("2")){
-			lb.setLecture_week_day("화,목");
-		}
-		System.out.println(request.getParameter("lecture_content")+"제목");
-		lb.setLecture_content(request.getParameter("lecture_content"));
-		lb.setLecture_fee(Integer.parseInt(request.getParameter("lecture_fee")));
-		
 		LectureInsertService lectureInsertService = new LectureInsertService();
-		boolean isSuccess = lectureInsertService.lectureInsert(lb);
-		
-		if(isSuccess) {
-			System.out.println("수업등록 성공");
+		String lecture_room = request.getParameter("lecture_room");
+		System.out.println("daskjfhqwukqa"+lecture_room);
+		if(lecture_room == null) {
+			lecture_room = "1";
+		}
+		List<LectureBean> list = lectureInsertService.lectureInsertList(lecture_room);
+		int[] lecture_counts = lectureInsertService.lectureCount(lecture_room);
+		if(list != null) {
+			System.out.println("LectureInsertAction 성공");
+			System.out.println(request.getParameter("lecture_subject"));
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('수업정보조회 성공')");
+
+			out.println("</script>");
 			
+			request.setAttribute("list", list);
+			request.setAttribute("lecture_counts", lecture_counts);
 			forward = new ActionForward();
-			forward.setPath("lectureList.le");
-			forward.setRedirect(true);
+			forward.setPath("./admin/lecture/lectureInsert.jsp");
+			forward.setRedirect(false);
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('수업등록 실패')");
+			out.println("alert('수업정보조회 실패')");
 			out.println("history.back()");
 			out.println("</script>");
+		
 		}
-		
-		
-		
 		return forward;
 	}
 }

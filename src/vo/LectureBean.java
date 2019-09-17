@@ -12,7 +12,17 @@ public class LectureBean {
 	private String lecture_week_day;
 	private String lecture_content;
 	private int lecture_fee;
+	private String lecture_time;
+	private String lecture_room;
+	private int lecture_count;
 	
+	
+	public int getLecture_count() {
+		return lecture_count;
+	}
+	public void setLecture_count(int lecture_count) {
+		this.lecture_count = lecture_count;
+	}
 	public int getLecture_idx() {
 		return lecture_idx;
 	}
@@ -66,6 +76,18 @@ public class LectureBean {
 	}
 	public void setLecture_fee(int lecture_fee) {
 		this.lecture_fee = lecture_fee;
+	}
+	public String getLecture_time() {
+		return lecture_time;
+	}
+	public void setLecture_time(String lecture_time) {
+		this.lecture_time = lecture_time;
+	}
+	public String getLecture_room() {
+		return lecture_room;
+	}
+	public void setLecture_room(String lecture_room) {
+		this.lecture_room = lecture_room;
 	}
 	
 	

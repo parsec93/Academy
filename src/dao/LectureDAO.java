@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.LectureBean;
 
@@ -174,9 +175,9 @@ public class LectureDAO {
 		
 		return deleteCount;
 	}
-	public int lectureInsert(LectureBean lb) {
+	public int lectureInsert(LectureBean lb, int lecture_count) {
 		int isSuccess = 0;
-		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?)";
+		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -188,7 +189,9 @@ public class LectureDAO {
 			pstmt.setString(6, lb.getLecture_week_day());
 			pstmt.setString(7, lb.getLecture_content());
 			pstmt.setInt(8, lb.getLecture_fee());
-			
+			pstmt.setString(9, lb.getLecture_time());
+			pstmt.setString(10, lb.getLecture_room());
+			pstmt.setInt(11, lecture_count);
 			isSuccess = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("lectureInsert() 에러" + e.getMessage());
@@ -197,6 +200,66 @@ public class LectureDAO {
 		}
 		
 		return isSuccess;
+	}
+	public List<LectureBean> lectureInsertList(String lecture_room) {
+		
+		List<LectureBean> list = new ArrayList<LectureBean>();
+		String sql = "SELECT * FROM lecture where lecture_room=? order by lecture_count";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, lecture_room);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				LectureBean lectureBean = new LectureBean();
+				lectureBean.setLecture_idx(rs.getInt("lecture_idx"));
+				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
+				lectureBean.setLecture_course(rs.getString("lecture_course"));
+				lectureBean.setLecture_teacher(rs.getString("lecture_teacher"));
+				lectureBean.setLecture_start_day(rs.getDate("lecture_start_day"));
+				lectureBean.setLecture_end_day(rs.getDate("lecture_end_day"));
+				lectureBean.setLecture_week_day(rs.getString("lecture_week_day"));
+				lectureBean.setLecture_content(rs.getString("lecture_content"));
+				lectureBean.setLecture_fee(rs.getInt("lecture_fee"));
+				lectureBean.setLecture_time(rs.getString("lecture_time"));
+				lectureBean.setLecture_room(rs.getString("lecture_room"));
+				list.add(lectureBean);
+			}
+		} catch (SQLException e) {
+			System.out.println("lectureInsertList() 에러 " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	// 수업정보등록 표위치
+	public int[] lectureCount(String lecture_room) {
+		int[] lecture_counts = new int[6];
+		String sql = "SELECT * FROM lecture where lecture_room=? order by lecture_count";
+		int c = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, lecture_room);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				lecture_counts[c] = rs.getInt("lecture_count");
+				c++;
+			}
+		} catch (SQLException e) {
+			System.out.println("lectureCount() 에러 " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return lecture_counts;
 	}
 	
 }

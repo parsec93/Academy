@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="vo.LectureBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,6 +23,18 @@
     <!-- board css -->
     <link rel="stylesheet" href="css/board.css" />
 </head>
+<script type="text/javascript">
+	function insert(weekday, time, count){
+		var lecutre_room = document.up.lecutre_room.value;
+		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room=?"+lecutre_room,"","width=600,height=550");	
+	}
+
+</script>
+<%
+	List<LectureBean> list = (List<LectureBean>)request.getAttribute("list");
+	int[] lecture_counts = (int[])request.getAttribute("lecture_counts");
+	int indexCount = 0;
+%>
 <body>
     <!--================ Start Header Menu Area =================-->
     <jsp:include page="/header_footer/header.jsp" />
@@ -48,58 +62,89 @@
     <h1>수업 정보</h1>
      
 				<form action="lectureInsertPro.le" name="up" method="post" >
-    	<table id="boardwrite">
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_subject">수업명</label></td> 
-                        <td class="fttitle"><input type="text" name="lecture_subject" id="lecture_subject"  required="required" placeholder="수업명"></td>
-                        </tr> 
-                        
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_course">과목명</label> </td> 
-                        <td class="fttitle"><input type="text" name="lecture_course" id="lecture_course"  required="required" placeholder="과목명"> </td></tr>
-                        
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td> 
-                        <td class="fttitle"><input type="text" name="lecture_teacher" id="lecture_teacher"  required="required" placeholder="수업강사"> </td></tr>
-                        
-                        
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_content">수업기간</label></td> 
-
-                        <td class="fttitle"><input type="text" id="date_start"  placeholder="이벤트시작일" name="lecture_start_day">
-                        <script>
-$(function() {
-  $( "#date_start" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-</script>
-                        &nbsp;~&nbsp;
-                        <input type="text" id="date_end" placeholder="이벤트 종료일" name="lecture_end_day"></td></tr>
-                        <script>
-$(function() {
-  $( "#date_end" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-</script>
-                        <tr>
-                        <td class="ftwrite"><label for="weekday">수업요일</label></td> 
-                        <td class="fttitle"><select name="weekday">
-                        <option value="1">월,수,금</option>
-                        <option value="2">화,목</option>
-                        </select></td></tr>
-                                                
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_content">수업내용</label> </td> 
-                        <td class="fttitle"><textarea name="lecture_content" rows="5" cols="100"></textarea></td></tr>
-                        
-             			<tr>
-             			<td class="ftwrite"><label for="lecture_fee">회비</label></td> 
-             			<td class="fttitle"><input type="text" name="lecture_fee" id="lecture_fee"  required="required" placeholder="회비"> </td></tr>
-
-                       
+                    
+                    <table id="boardwrite">
+                    <select name="lecutre_room" id="lecutre_room" >
+                        <option value="1" selected="selected">1 강의실</option>
+                        <option value="2">2 강의실</option>
+                    </select>
+                    
+                    	<tr>
+                    	<td>시간</td>
+                    	<td>월,수,금</td> 
+                    	<td>화,목</td> 
+                    	</tr>
+                    	<tr>
+                    	<td class="ftwrite">오전</td>
+                    	<td onClick="insert(1,1,1)">
+                    	<%if(lecture_counts[indexCount] == 1){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    		}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	<td onClick="insert(2,1,2)">
+                    	<%if(lecture_counts[indexCount] == 2){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    	}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	</tr>
+                    	<tr>
+                    	<td class="ftwrite">오후</td>
+                    	<td onClick="insert(1,2,3)">
+                    	<%if(lecture_counts[indexCount] == 3){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    	}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	<td onClick="insert(2,2,4)">
+                    	<%if(lecture_counts[indexCount] == 4){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    	}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	</tr>
+                    	<tr>
+                    	<td class="ftwrite">저녁</td>
+                    	<td onClick="insert(1,3,5)">
+                    	<%if(lecture_counts[indexCount] == 5){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    	}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	<td onClick="insert(2,3,6)">
+                    	<%if(lecture_counts[indexCount] == 6){ 
+                    		LectureBean lb = list.get(indexCount);%>
+                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_teacher() %>  
+                    	<%indexCount++;
+                    	}else{ %>
+                    		수업등록
+                    	<%} %>
+                    	</td> 
+                    	</tr>
                     </table>
+                    
                     <div id="table_search">
 				<input type="submit" value="등록" class="btn"/>&nbsp;&nbsp;
 				<input type="reset" value="취소" class="btn"/>
