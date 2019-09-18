@@ -26,7 +26,6 @@
 	String time = request.getParameter("time");
 	String lecture_count = request.getParameter("lecture_count");
 	String lecture_room = request.getParameter("lecture_room");
-	System.out.println("lecture_room은 ㅇㅁㄴㅇㅁ"+lecture_room);
 	String lecture_month = request.getParameter("lecture_month");
 %>
 

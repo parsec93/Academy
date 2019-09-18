@@ -29,13 +29,14 @@ public class LectureInsertProAction implements Action{
 		Date lecture_start_day = Date.valueOf(year+"-"+lecture_month+"-"+01);
 		Date lecture_end_day = Date.valueOf(year+"-"+lecture_month+"-"+30);
 		int m = Integer.parseInt(lecture_month);
+		System.out.println("m은?"+m);
 		//1 3 5 7 8 10 12
-		if(m==1 && m==3 && m==5 && m==7 && m==8) {
+		if(m==1 || m==3 || m==5 || m==7 || m==8) {
 			lecture_start_day = Date.valueOf(year+"-0"+lecture_month+"-"+01);
 			lecture_end_day = Date.valueOf(year+"-0"+lecture_month+"-"+31);
-		}else if(m==10 && m==12) {
+		}else if(m==10 || m==12) {
 			lecture_end_day = Date.valueOf(year+"-"+lecture_month+"-"+31);
-		}else if(m==2 && m==4 && m==6 && m==9) {
+		}else if(m==2 || m==4 || m==6 || m==9) {
 			lecture_start_day = Date.valueOf(year+"-0"+lecture_month+"-"+01);
 			lecture_end_day = Date.valueOf(year+"-0"+lecture_month+"-"+30);
 		}
