@@ -102,6 +102,7 @@ public class NoticeListAction implements Action {
             out.println("</script>");
 		}else {
 			System.out.println("공지사항 조회 성공");
+			request.setAttribute("nt_ev", nt_ev);
 			forward.setPath("notice_event/notice.jsp");
 			forward.setRedirect(false);
 		}

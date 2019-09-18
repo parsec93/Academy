@@ -49,7 +49,10 @@ int endPage = noticePageInfo.getEndPage();
 int maxPage = noticePageInfo.getMaxPage();
 
 String sid = (String)session.getAttribute("sid");
-
+String nt_ev = (String)request.getAttribute("nt_ev");
+if(nt_ev == null){
+	nt_ev="0";
+}
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -84,9 +87,9 @@ String sid = (String)session.getAttribute("sid");
 	<div>
  	<form action="notice.no" name="fr" method="get" onchange="ne(nt_ev.value)"> 
 	<select name = "nt_ev">
-	<option value = "0">[전체보기]</option>
-	<option value = "1">[공지사항]</option>
-	<option value="2">[이벤트]</option>
+	<option value = "0" <%if(nt_ev.equals("0")){ %> selected="selected"<%} %>>[전체보기]</option>
+	<option value = "1" <%if(nt_ev.equals("1")){ %> selected="selected"<%} %>>[공지사항]</option>
+	<option value="2" <%if(nt_ev.equals("2")){ %> selected="selected"<%} %>>[이벤트]</option>
 	</select>
 </form> 
 	</div>
