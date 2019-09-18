@@ -26,7 +26,7 @@
 <script type="text/javascript">
 	function insert(weekday, time, count){
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
-		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room=?"+lecture_room_val,"","width=600,height=550");	
+		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room="+lecture_room_val,"","width=600,height=550");	
 	}
 	function changeRoom() {
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
@@ -87,7 +87,7 @@
                     	<td onClick="insert(1,1,1)">
                     	<%if(lecture_counts[indexCount] == 1){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>    
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     		}else{ %>
@@ -97,7 +97,7 @@
                     	<td onClick="insert(2,1,2)">
                     	<%if(lecture_counts[indexCount] == 2){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
@@ -110,7 +110,7 @@
                     	<td onClick="insert(1,2,3)">
                     	<%if(lecture_counts[indexCount] == 3){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
@@ -120,7 +120,7 @@
                     	<td onClick="insert(2,2,4)">
                     	<%if(lecture_counts[indexCount] == 4){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
@@ -133,7 +133,7 @@
                     	<td onClick="insert(1,3,5)">
                     	<%if(lecture_counts[indexCount] == 5){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
@@ -143,7 +143,7 @@
                     	<td onClick="insert(2,3,6)">
                     	<%if(lecture_counts[indexCount] == 6){ 
                     		LectureBean lb = list.get(indexCount);%>
-                    		<%=lb.getLecture_subject() %>    
+                    		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>

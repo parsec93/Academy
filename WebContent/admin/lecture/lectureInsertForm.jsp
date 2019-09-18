@@ -32,7 +32,7 @@ if(request.getParameter("lecture_course")!=null){
 	%>
 
 <script type="text/javascript">
-
+		opener.location.href="lectureInsert.le";
 		window.close();
 	
 </script>
