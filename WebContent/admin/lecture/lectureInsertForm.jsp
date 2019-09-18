@@ -25,18 +25,11 @@
 	String weekday = request.getParameter("weekday");
 	String time = request.getParameter("time");
 	String lecture_count = request.getParameter("lecture_count");
-	String lecutre_room = request.getParameter("lecutre_room");
+	String lecture_room = request.getParameter("lecture_room");
+	System.out.println("lecture_room은 ㅇㅁㄴㅇㅁ"+lecture_room);
+	String lecture_month = request.getParameter("lecture_month");
 %>
-<%
-if(request.getParameter("lecture_course")!=null){
-	%>
 
-<script type="text/javascript">
-		opener.location.href="lectureInsert.le";
-		window.close();
-	
-</script>
-<%}%>
 <body>
 	  
 
@@ -59,29 +52,6 @@ if(request.getParameter("lecture_course")!=null){
                         <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td> 
                         <td class="fttitle"><input type="text" name="lecture_teacher" id="lecture_teacher"  required="required" placeholder="수업강사"> </td></tr>
                         
-                        
-                        <tr>
-                        <td class="ftwrite"><label for="lecture_content">수업기간</label></td> 
-
-                        <td class="fttitle"><input type="text" id="date_start"  placeholder="이벤트시작일" name="lecture_start_day">
-                        <script>
-$(function() {
-  $( "#date_start" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-</script>
-                        &nbsp;~&nbsp;
-                        <input type="text" id="date_end" placeholder="이벤트 종료일" name="lecture_end_day"></td></tr>
-                        <script>
-$(function() {
-  $( "#date_end" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-</script>
-                       
-                                                
                         <tr>
                         <td class="ftwrite"><label for="lecture_content">수업내용</label> </td> 
                         <td class="fttitle"><textarea name="lecture_content" rows="10" cols="50" style="resize: none;"></textarea></td>
@@ -95,7 +65,8 @@ $(function() {
 						<input type="hidden" name="weekday" value="<%=weekday %>" >
 						<input type="hidden" name="time" value="<%=time %>" >
 						<input type="hidden" name="lecture_count" value="<%=lecture_count %>" >
-                        <input type="hidden" name="lecutre_room" value="<%=lecutre_room %>" >
+                        <input type="hidden" name="lecture_room" value="<%=lecture_room %>" >
+                        <input type="hidden" name="lecture_month" value="<%=lecture_month %>" >
                     </table>
                     <div id="table_search">
 				<input type="submit" value="등록" class="btn" onClick="insertSubmit()"/>&nbsp;&nbsp;
@@ -104,6 +75,18 @@ $(function() {
                     </form>	
 	
 	</div>
+	<%
+if(request.getParameter("lecture_course")!=null){
+	%>
+
+<script type="text/javascript">
+		var lecture_room = document.up.lecture_room.value;
+		var lecture_month = document.up.lecture_month.value;
+		opener.location.href="lectureInsert.le?lecture_room="+lecture_room+"&lecture_month="+lecture_month;
+		window.close();
+	
+</script>
+<%}%>
 </body>
 </html>
 

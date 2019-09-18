@@ -2,6 +2,7 @@ package action.lecture;
 
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +22,23 @@ public class LectureInsertProAction implements Action{
 		lb.setLecture_course(request.getParameter("lecture_course"));
 		lb.setLecture_teacher(request.getParameter("lecture_teacher"));
 		
-		Date lecture_start_day = Date.valueOf(request.getParameter("lecture_start_day"));
-		Date lecture_end_day = Date.valueOf(request.getParameter("lecture_end_day"));
+		String lecture_month = request.getParameter("lecture_month");
+		Calendar cal = Calendar.getInstance();
+		//현재 년도
+		int year = cal.get ( cal.YEAR);
+		Date lecture_start_day = Date.valueOf(year+"-"+lecture_month+"-"+01);
+		Date lecture_end_day = Date.valueOf(year+"-"+lecture_month+"-"+30);
+		int m = Integer.parseInt(lecture_month);
+		//1 3 5 7 8 10 12
+		if(m==1 && m==3 && m==5 && m==7 && m==8) {
+			lecture_start_day = Date.valueOf(year+"-0"+lecture_month+"-"+01);
+			lecture_end_day = Date.valueOf(year+"-0"+lecture_month+"-"+31);
+		}else if(m==10 && m==12) {
+			lecture_end_day = Date.valueOf(year+"-"+lecture_month+"-"+31);
+		}else if(m==2 && m==4 && m==6 && m==9) {
+			lecture_start_day = Date.valueOf(year+"-0"+lecture_month+"-"+01);
+			lecture_end_day = Date.valueOf(year+"-0"+lecture_month+"-"+30);
+		}
 		lb.setLecture_start_day(lecture_start_day);
 		lb.setLecture_end_day(lecture_end_day);
 		
@@ -40,7 +56,7 @@ public class LectureInsertProAction implements Action{
 		}else if(request.getParameter("time").equals("3")){
 			lb.setLecture_time("저녁");
 		}
-		lb.setLecture_room(request.getParameter("lecutre_room"));
+		lb.setLecture_room(request.getParameter("lecture_room"));
 		lb.setLecture_fee(Integer.parseInt(request.getParameter("lecture_fee")));
 		int lecture_count = Integer.parseInt(request.getParameter("lecture_count"));
 		

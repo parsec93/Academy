@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.LectureBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -26,11 +27,14 @@
 <script type="text/javascript">
 	function insert(weekday, time, count){
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
-		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecutre_room="+lecture_room_val,"","width=600,height=550");	
+		var lecture_month_val = lecture_month.options[lecture_month.selectedIndex].value;
+		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecture_room="+lecture_room_val+"&lecture_month="+lecture_month_val,"","width=600,height=550");	
 	}
-	function changeRoom() {
+	
+	function change_Room_Month() {
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
-		location.href='lectureInsert.le?lecture_room=' + lecture_room_val;
+		var lecture_month_val = lecture_month.options[lecture_month.selectedIndex].value;
+		location.href='lectureInsert.le?lecture_room=' + lecture_room_val +"&lecture_month=" + lecture_month_val;
 	}
 </script>
 <%
@@ -38,9 +42,17 @@
 	int[] lecture_counts = (int[])request.getAttribute("lecture_counts");
 	int indexCount = 0;
 	String lecture_room = (String)request.getAttribute("lecture_room");
-	System.out.println("lecture_room은 "+lecture_room);
+	System.out.println("lecture_room은? "+lecture_room);
 	if(lecture_room == null){
 		lecture_room="1";
+	}
+	
+	Calendar cal = Calendar.getInstance();
+	//현재 월
+	int month = cal.get ( cal.MONTH ) + 1 ;
+	String lecture_month = (String)request.getAttribute("lecture_month");
+	if(lecture_month == null){
+		lecture_month= Integer.toString(month);
 	}
 %>
 <body>
@@ -71,9 +83,23 @@
      
 				<form action="lectureInsertPro.le" name="up" method="post" >
                     
-                    <select name="lecture_room" id="lecture_room" onchange="changeRoom()">
+                    <select name="lecture_room" id="lecture_room" onchange="change_Room_Month()">
                         <option value="1" <%if(lecture_room.equals("1")){ %> selected="selected"<%} %>>1 강의실</option>
                         <option value="2" <%if(lecture_room.equals("2")){ %> selected="selected"<%} %>>2 강의실</option>
+                    </select>
+                    <select name="lecture_month" id="lecture_month" onchange="change_Room_Month()">
+                    	<option value="1" <%if(lecture_month.equals("1")){ %> selected="selected"<%} %>>1월</option>
+                    	<option value="2" <%if(lecture_month.equals("2")){ %> selected="selected"<%} %>>2월</option>
+                    	<option value="3" <%if(lecture_month.equals("3")){ %> selected="selected"<%} %>>3월</option>
+                    	<option value="4" <%if(lecture_month.equals("4")){ %> selected="selected"<%} %>>4월</option>
+                    	<option value="5" <%if(lecture_month.equals("5")){ %> selected="selected"<%} %>>5월</option>
+                    	<option value="6" <%if(lecture_month.equals("6")){ %> selected="selected"<%} %>>6월</option>
+                    	<option value="7" <%if(lecture_month.equals("7")){ %> selected="selected"<%} %>>7월</option>
+                    	<option value="8" <%if(lecture_month.equals("8")){ %> selected="selected"<%} %>>8월</option>
+                    	<option value="9" <%if(lecture_month.equals("9")){ %> selected="selected"<%} %>>9월</option>
+                    	<option value="10" <%if(lecture_month.equals("10")){ %> selected="selected"<%} %>>10월</option>
+                    	<option value="11" <%if(lecture_month.equals("11")){ %> selected="selected"<%} %>>11월</option>
+                    	<option value="12" <%if(lecture_month.equals("12")){ %> selected="selected"<%} %>>12월</option>
                     </select>
                     <table id="boardwrite">
                     

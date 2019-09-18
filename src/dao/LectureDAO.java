@@ -3,6 +3,7 @@ package dao;
 import static db.JdbcUtil.close;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -213,14 +214,16 @@ public class LectureDAO {
 		
 		return isSuccess;
 	}
-	public List<LectureBean> lectureInsertList(String lecture_room) {
+	public List<LectureBean> lectureInsertList(String lecture_room, Date lecture_start_day) {
 		
 		List<LectureBean> list = new ArrayList<LectureBean>();
-		String sql = "SELECT * FROM lecture where lecture_room=? order by lecture_count";
+		String sql = "SELECT * FROM lecture where lecture_room=? and lecture_start_day=? order by lecture_count";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, lecture_room);
+			String lecture_start_day2 = String.valueOf(lecture_start_day);
+			pstmt.setString(2, lecture_start_day2);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -250,13 +253,15 @@ public class LectureDAO {
 		return list;
 	}
 	// 수업정보등록 표위치
-	public int[] lectureCount(String lecture_room) {
+	public int[] lectureCount(String lecture_room, Date lecture_start_day) {
 		int[] lecture_counts = new int[6];
-		String sql = "SELECT * FROM lecture where lecture_room=? order by lecture_count";
+		String sql = "SELECT * FROM lecture where lecture_room=? and lecture_start_day=? order by lecture_count";
 		int c = 0;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, lecture_room);
+			String lecture_start_day2 = String.valueOf(lecture_start_day);
+			pstmt.setString(2, lecture_start_day2);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
