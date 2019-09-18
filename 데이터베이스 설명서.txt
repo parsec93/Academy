@@ -156,7 +156,7 @@ lecture_week_day varchar(20) not null,
 lecture_content varchar(200) not null,
 lecture_fee int(10) not null,
 lecture_time varchar(2) not null,
-lecutre_room varchar(10) not null,
+lecture_room varchar(10) not null,
 lecture_count int
 );
 
