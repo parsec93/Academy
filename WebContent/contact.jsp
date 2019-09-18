@@ -38,13 +38,20 @@ $(document).ready(function(){
 	    	return;
 	    }else if(subject==""){
 	    	alert("제목을 입력하세요");
-	    	document.Em.subject.focus();
+	    	document.Em.subject.focus(); 
 	    	return;
 	    }else if(message==""){
 	    	alert("내용을 입력하세요");
 	    	document.Em.message.focus();
 	    	return;
 	    }
+	    
+	    $.ajax('/sendEmail.no',{
+			data:{name:$('#name').val(), email:$('#email').val(), subject:$('subject').val(), message:$('message').val()},
+			success : function(data) {
+			}
+		});
+		alert("메일 발송 완료");
 	});
 });
 </script>

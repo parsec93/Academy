@@ -78,6 +78,9 @@ public class NoticeFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+        }else if(command.contentEquals("/sendEmail.no")) {
+        	forward = new ActionForward();
+        	forward.setPath("/sendEmail.jsp");
         }
         
         
