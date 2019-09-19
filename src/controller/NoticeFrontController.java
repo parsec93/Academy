@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.notice.ContactEmailAction;
 import action.notice.EventListAction;
 import action.notice.NoticeListAction;
 import action.notice.NoticeUpdateFormAction;
@@ -79,8 +80,13 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(command.contentEquals("/sendEmail.no")) {
-        	forward = new ActionForward();
-        	forward.setPath("/sendEmail.jsp");
+        	System.out.println("NoticeFrontController");
+        	action = new ContactEmailAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
         
         

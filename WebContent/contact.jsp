@@ -19,7 +19,7 @@
 <!--카카오톡 플러스톡 상담용 스크립트start-->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> 
 <!--카카오톡 플러스톡 상담용 스크립트end-->
-<script src="../js/jquery-3.4.1.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -46,12 +46,8 @@ $(document).ready(function(){
 	    	return;
 	    }
 	    
-	    $.ajax('/sendEmail.no',{
-			data:{name:$('#name').val(), email:$('#email').val(), subject:$('subject').val(), message:$('message').val()},
-			success : function(data) {
-			}
-		});
-		alert("메일 발송 완료");
+	    location.href="sendEmail.no?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
+		//alert("메일 발송 완료");
 	});
 });
 </script>
