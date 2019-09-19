@@ -172,4 +172,4 @@ apply_purchase_date date,
 apply_ischeck varchar(1) not null
 );
 
-insert into apply(null, 'student', 1, '2019-09-01', '0');
+insert into apply values(null, 'student', 1, '2019-09-01', '0');
