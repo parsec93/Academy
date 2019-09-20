@@ -53,7 +53,7 @@
         <div class="row h_blog_item">
           <div class="col-lg-6">
             <div class="h_blog_img">
-              <img class="img-fluid" src="img/about.png" alt="" />
+              <img class="img-fluid" src="img/computer.jpg" alt="" />
             </div>
           </div>
           <div class="col-lg-6">
@@ -143,7 +143,7 @@
             <div class="main_title">
               <h2 class="mb-3">수상 이력</h2>
               <p>
-               국내 최고의 직업훈련기관의 새로운 패러다임을 제시합니다.
+                성공적인 인생 스토리를 응원합니다.
               </p>
             </div>
           </div>
@@ -154,15 +154,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="img/testimonials/Innovative.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>교육 콘텐츠 개발 온라인 교육</h4>
+                    <h4>MOST INNOVATEIVE</h4>
                     <p>
-                      콘텐츠 개발 운영<br />
-                      오프라인 교육 운영<br />
-                      관련 소프트웨어 개발
+                      2017 최고의 혁신상 수상
                     </p>
                   </div>
                 </div>
@@ -171,15 +169,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
+                  <img src="img/testimonials/bestFX.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>교육사업(오프라인)</h4>
+                    <h4>BEST FX</h4>
                     <p>
-                      컴퓨터 기술교육<br />
-                      컴퓨터 시스템 설계<br />
-                      대학, 고교 취업 지원 교육
+                      2017 최고의 효과
                     </p>
                   </div>
                 </div>
@@ -188,15 +184,14 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="img/testimonials/forex.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>취업지원 사업</h4>
+                    <h4>BEST ONLINE</h4>
                     <p>
-                      온라인 정보제공 사업<br />
-                      채용 대행 및 헤드헌팅 취업 컨설팅 <br />
-                      대학 취업 설명회, 캠프 운영
+                      BEST ONLINE <br>
+                      FOREX TRADING
                     </p>
                   </div>
                 </div>
@@ -205,53 +200,19 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
+                  <img src="img/testimonials/customer.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>VISION</h4>
+                    <h4>BEST CUSTOMER&SERIVCE</h4>
                     <p>
-                      확보된 고객 인프라와 기술력을 기반의 국내 최고의
-                      IT 직업훈련 기관
+                      2017 BEST CUSTOMER<br>
+                      SERVICE
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-<!--             <div class="testi_item"> -->
-<!--               <div class="row"> -->
-<!--                 <div class="col-lg-4 col-md-6"> -->
-<!--                   <img src="img/testimonials/t1.jpg" alt="" /> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                   <div class="testi_text"> -->
-<!--                     <h4>Elite Martin</h4> -->
-<!--                     <p> -->
-<!--                       Him, made can't called over won't there on divide there -->
-<!--                       male fish beast own his day third seed sixth seas unto. -->
-<!--                       Saw from -->
-<!--                     </p> -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--             <div class="testi_item"> -->
-<!--               <div class="row"> -->
-<!--                 <div class="col-lg-4 col-md-6"> -->
-<!--                   <img src="img/testimonials/t2.jpg" alt="" /> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                   <div class="testi_text"> -->
-<!--                     <h4>Davil Saden</h4> -->
-<!--                     <p> -->
-<!--                       Him, made can't called over won't there on divide there -->
-<!--                       male fish beast own his day third seed sixth seas unto. -->
-<!--                       Saw from -->
-<!--                     </p> -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
           </div>
         </div>
       </div>
