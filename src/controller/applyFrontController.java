@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.apply.ApplyInfoAction;
-
+import action.apply.ApplyListAction;
 import vo.ActionForward;
 
 @WebServlet("*.al")
@@ -29,7 +28,7 @@ public class applyFrontController extends HttpServlet{
 	        
 	        if(command.equals("/ApplyInfo.al")) {
 	        	
-	        	action = new ApplyInfoAction();
+	        	action = new ApplyListAction();
 	        	
 	        	try {
 					forward = action.execute(request, response);
