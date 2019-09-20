@@ -212,84 +212,6 @@
     </div>
     <!--================ End Popular Courses Area =================-->
 
-    <!--================ Start Registration Area =================-->
-    <div class="section_gap registration_area">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="row clock_sec clockdiv" id="clockdiv">
-              <div class="col-lg-12">
-                <h1 class="mb-3">MESSAGE</h1>
-                <p>
-                  저희 컴퓨터학원은 창업 이래 IT 인재양성에 전념해 왔습니다.<br />
-                  현재 IT 분야의 국비지원 과정과 직업상담, 직업알선 등의 종합서비스를 제공하고 있으며,<br />
-                  전문 취업지원팀을 운영하여 1:1 맞춤 취업컨설팅을 진행하고 있습니다.<br />
-                  훌륭한 인재를 필요로 하는 기업과 IT 전문인으로서 직업을 갖고자 하는 분들에게<br />
-					좋은 안내자가 되기 위해 더욱 노력하겠습니다. 
-                </p>
-              </div>
-              <div class="col clockinner1 clockinner">
-                <h1 class="days">7</h1>
-                <span class="smalltext">Year</span>
-              </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="hours">2555</h1>
-                <span class="smalltext">Day</span>
-              </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="minutes">61320</h1>
-                <span class="smalltext">Hours</span>
-              </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="seconds">3679200</h1>
-                <span class="smalltext">Mins</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 offset-lg-1">
-            <div class="register_form">
-              <h3>무료 상담 신청</h3>
-              <p>아래의 내용을 작성해주세요.</p>
-              <form
-                class="form_area"
-                id="myForm"
-                action="mail.html"
-                method="post"
-              >
-                <div class="row">
-                  <div class="col-lg-12 form_group">
-                    <input
-                      name="name"
-                      placeholder="이름"
-                      required=""
-                      type="text"
-                    />
-                    <input
-                      name="name"
-                      placeholder="휴대폰 번호"
-                      required=""
-                      type="tel"
-                    />
-                    <input
-                      name="email"
-                      placeholder="이메일 주소"
-                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                      required=""
-                      type="email"
-                    />
-                  </div>
-                  <div class="col-lg-12 text-center">
-                    <button class="primary-btn">전송</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--================ End Registration Area =================-->
-
     <!--================ Start Trainers Area =================-->
     <section class="trainer_area section_gap_top">
       <div class="container">
@@ -318,12 +240,6 @@
                   노련함이 느껴지는 교육을 진행하겠습니다. 
                 </p>
               </div>
-<!--               <div class="align-items-center justify-content-center d-flex"> -->
-<!--                 <a href="#"><i class="ti-facebook"></i></a> -->
-<!--                 <a href="#"><i class="ti-twitter"></i></a> -->
-<!--                 <a href="#"><i class="ti-linkedin"></i></a> -->
-<!--                 <a href="#"><i class="ti-pinterest"></i></a> -->
-<!--               </div> -->
             </div>
           </div>
 
@@ -340,12 +256,6 @@
                   폭 넓은 지식을 쉽고 빠르게<br />전달해 드립니다!
                 </p>
               </div>
-<!--               <div class="align-items-center justify-content-center d-flex"> -->
-<!--                 <a href="#"><i class="ti-facebook"></i></a> -->
-<!--                 <a href="#"><i class="ti-twitter"></i></a> -->
-<!--                 <a href="#"><i class="ti-linkedin"></i></a> -->
-<!--                 <a href="#"><i class="ti-pinterest"></i></a> -->
-<!--               </div> -->
             </div>
           </div>
 
@@ -363,12 +273,6 @@
                   폭 넓은 지식을 제공해 드립니다.
                 </p>
               </div>
-<!--               <div class="align-items-center justify-content-center d-flex"> -->
-<!--                 <a href="#"><i class="ti-facebook"></i></a> -->
-<!--                 <a href="#"><i class="ti-twitter"></i></a> -->
-<!--                 <a href="#"><i class="ti-linkedin"></i></a> -->
-<!--                 <a href="#"><i class="ti-pinterest"></i></a> -->
-<!--               </div> -->
             </div>
           </div>
 
@@ -385,12 +289,6 @@
                   같이 길을 찾을 수 있게 도와드리겠습니다.
                 </p>
               </div>
-<!--               <div class="align-items-center justify-content-center d-flex"> -->
-<!--                 <a href="#"><i class="ti-facebook"></i></a> -->
-<!--                 <a href="#"><i class="ti-twitter"></i></a> -->
-<!--                 <a href="#"><i class="ti-linkedin"></i></a> -->
-<!--                 <a href="#"><i class="ti-pinterest"></i></a> -->
-<!--               </div> -->
             </div>
           </div>
         </div>
@@ -496,14 +394,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="img/testimonials/Innovative.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>소프트위드솔루션</h4>
+                    <h4>MOST INNOVATEIVE</h4>
                     <p>
-                      이동기, 네트워크 & 서버<br />
-                      ICT 보안 네트워크 엔지니어 양성
+                      2017 최고의 혁신상 수상
                     </p>
                   </div>
                 </div>
@@ -512,14 +409,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
+                  <img src="img/testimonials/bestFX.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>노아에이티에스</h4>
+                    <h4>BEST FX</h4>
                     <p>
-                      박윤호, 프로그래밍<br />
-                      빅데이터 분석 활용 자바 웹서비스 개발자
+                      2017 최고의 효과
                     </p>
                   </div>
                 </div>
@@ -528,14 +424,14 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="img/testimonials/forex.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>(주)파솔</h4>
+                    <h4>BEST ONLINE</h4>
                     <p>
-                      김성훈, 프로그래밍<br />
-                      스마트웹 하이브리드앱 자바 개발자
+                      BEST ONLINE <br>
+                      FOREX TRADING
                     </p>
                   </div>
                 </div>
@@ -544,46 +440,14 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
+                  <img src="img/testimonials/customer.png" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>(주)화승</h4>
+                    <h4>BEST CUSTOMER&SERIVCE</h4>
                     <p>
-                      박경현, 네트워크&서버<br />
-                      ICT 보안 네트워크 엔지니어
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>(주)삼주</h4>
-                    <p>
-                      김예린, 프로그래밍<br />
-                      스마트웹 하이브리드앱 자바 개발자
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>(주)사랑모아금융서비스</h4>
-                    <p>
-                      김인중, 프로그래밍<br />
-                      빅데이터 활용 자바(JAVA) 개발자
+                      2017 BEST CUSTOMER<br>
+                      SERVICE
                     </p>
                   </div>
                 </div>
