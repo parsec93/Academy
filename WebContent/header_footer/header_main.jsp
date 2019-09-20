@@ -60,7 +60,7 @@
 <!-- 							href="index.jsp">Home</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="about-us.jsp">학원소개</a></li>
 						<li class="nav-item"><a class="nav-link" href="contact.jsp">오시는 길</a></li>	
-						<li class="nav-item"><a class="nav-link" href="about-us.jsp">수강신청</a></li>
+						<li class="nav-item"><a class="nav-link" href="enrolment.jsp">수강신청</a></li>
 <!-- 						<li class="nav-item submenu dropdown"> -->
 <!-- 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" -->
 <!-- 							role="button" aria-haspopup="true" aria-expanded="false">강의안내</a> -->
