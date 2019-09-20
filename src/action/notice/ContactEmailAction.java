@@ -48,7 +48,7 @@ public class ContactEmailAction implements Action {
             message.setFrom(new InternetAddress("eudstage12@edustage.com")); 
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("sang5879@naver.com") // 이메일을 받을 주소 입력. Ex.상담 담당자 이메일 주소.
+                    InternetAddress.parse("rnjs8657@naver.com") // 이메일을 받을 주소 입력. Ex.상담 담당자 이메일 주소.
             );
             message.setSubject(subject);
             message.setText("이름 : " + name + "\n" + "보낸 사람 : "+ email + "\n" + "본문 : "+body);
@@ -56,6 +56,7 @@ public class ContactEmailAction implements Action {
             Transport.send(message);
 
             System.out.println("Done");
+            
             response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
             out.println("<script>");
@@ -63,7 +64,7 @@ public class ContactEmailAction implements Action {
 			out.println("</script>");
 			
 			
-			forward.setPath("contact.jsp");
+			forward.setPath("contactSuccess.jsp");
 			forward.setRedirect(false);
         } catch (MessagingException e) {
             e.printStackTrace();
