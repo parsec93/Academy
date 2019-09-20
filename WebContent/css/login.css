@@ -191,11 +191,11 @@ body .login_container .content input.inpt_03{
 }
 body .login_container .content input.inpt_04{
 	float:left;
-	width:45%;
+	width:35%;
 }
 body .login_container .content input.inpt_05{
 	float:right;
-	width:45%;
+	width:55%;
 }
 
 body .login_container .content input.inpt_03:hover {
