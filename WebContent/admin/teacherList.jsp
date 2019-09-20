@@ -256,7 +256,7 @@ function joinCheck() {
             </div>
             <div class="content">
                 <div class="signin-cont cont">
-                    <form action="../LoginPro.me" method="post" >
+
                         <table class="teacherwrap">
               <%if(teacherList == null) {%>
               <h1>등록된 선생님이 없습니다</h1>
@@ -288,7 +288,7 @@ function joinCheck() {
 
 				</table>
   
-                    </form>
+
                 </div>
                 <div class="signup-cont cont">
                     <form action="MemberJoinPro.me" name="up" enctype="multipart/form-data" method="post" onsubmit="return joinCheck()">

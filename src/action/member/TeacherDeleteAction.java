@@ -16,8 +16,8 @@ public class TeacherDeleteAction implements Action {
 		System.out.println("TeacherDeleteAction()");
 		int member_idx =Integer.parseInt(request.getParameter("member_idx"));
 		String member_id = request.getParameter("id");
-		String member_name = request.getParameter("name");
-		
+		//String member_name = request.getParameter("name");
+
 		TeacherDeleteService teacherDeleteService = new TeacherDeleteService();
 		boolean isTeacherDelete = teacherDeleteService.isTeacher(member_idx, member_id);
 		

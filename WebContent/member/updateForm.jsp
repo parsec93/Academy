@@ -52,7 +52,8 @@ String[] arrayEamil = email.split("@");
             <a href="index.jsp">컴퓨터 학원</a>
             <div class="content">
 
-                    <form action="../UpdatePro.me" method="post" >
+                    <form action="../UpdatePro.me" method="post" enctype="multipart/form-data" >
+                    <input type="hidden" name="member_isMember" value="0"/>
                         <label for="name">Your name</label> 
                         <input type="text" name="name" id="name" class="inpt" value="<%=request.getParameter("name") %>" required="required" placeholder="Your name"> 
                         

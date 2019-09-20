@@ -21,6 +21,7 @@
 </head>	
 <body>
 <%
+request.setCharacterEncoding("utf-8");
 String member_idx=request.getParameter("member_idx");
 String id = request.getParameter("id");
 String name = request.getParameter("name");
@@ -28,7 +29,7 @@ String name = request.getParameter("name");
     <!--================ Start Login Area =================-->
 
             <a href="index.jsp">교직원 계정 삭제</a>
-                    <form action="TeacherDelete.me?member_idx=<%=member_idx %>" method="post" >
+                    <form action="../TeacherDelete.me?member_idx=<%=member_idx %>" method="post" >
                       <label for="id">id</label> 
                       <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id" value="<%=id%>"> 
                       <br>

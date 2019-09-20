@@ -127,9 +127,6 @@ public class MemberFrontController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if(command.equals("/TeacherDeleteForm.me")) {
-        	forward = new ActionForward();
-        	forward.setPath("/admin/teacherDelete.jsp");
         }else if(command.equals("/TeacherDelete.me")) {
         	action = new TeacherDeleteAction();
         	try {
@@ -137,6 +134,9 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+        }else if(command.equals("/TeacherUpdate.me")) {
+        	forward = new ActionForward();
+        	forward.setPath("/admin/teacherUpdate.jsp");
         }
 
         

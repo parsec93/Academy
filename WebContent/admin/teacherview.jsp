@@ -5,7 +5,7 @@
 <%
 	MemberDAO memberDAO = MemberDAO.getInstance();
 	MemberBean memberBean = (MemberBean) request.getAttribute("teacher");
-
+	request.setCharacterEncoding("utf-8");
 %>
 <!DOCTYPE html>
 <html>
@@ -36,6 +36,17 @@
 // }
 </script>
 </head>
+<script>
+function mySubmit(index) {
+	if (index == 1) {
+	document.up.action='admin/teacherUpdate.jsp';
+	}
+	if (index == 2) {
+	document.up.action='admin/teacherDelete.jsp';
+	}
+	document.up.submit();
+}
+</script>
 <body>
     <!--================ Start Header Menu Area =================-->
     <jsp:include page="../header_footer/header.jsp" />
@@ -60,9 +71,10 @@
 	<!-- 게시판 글 등록 -->
 	<div class="boardwrap">
 		<h1>마이페이지</h1>
-		<form action="TeacherDeleteForm.me?member_idx=<%=memberBean.getMember_idx() %>" name='up' method="post" >
+		<form name='up' method="post" >
+		<input type="hidden" name="member_idx"  value="<%=memberBean.getMember_idx()%>">
 		<input type="hidden" name="id"  value="<%=memberBean.getMember_id()%>">
-<%-- 		<input type="hidden" name="name"  value="<%=memberBean.getMember_name()%>"> --%>
+		<input type="hidden" name="picture"  value="<%=memberBean.getMember_picture()%>">
 			<table id="boardwrite">
 				<tr>
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
@@ -135,7 +147,8 @@
 
 			</table>
                <div  id="table_search">
-					<input type="submit" value="계정 삭제" class="btn">
+              		<input type="button" value="계정 수정" class="btn" onClick='mySubmit(1)'>
+					<input type="button" value="계정 삭제" class="btn" onClick='mySubmit(2)'>
 					<input type='button' value="교사 목록" onClick="location.href='TeacherList.me'" class="btn">
 <!-- 					<input type='button' value="비밀번호 수정" onClick='mySubmit(2)' class="btn"> -->
                </div>

@@ -200,28 +200,51 @@ public class MemberDAO {
 	   public int isUpdateMember(MemberBean mb) {
 	      int updateCount =0;
 	      PreparedStatement pstmt = null;
-
-	      
-	      String sql = "UPDATE member SET member_name=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=? WHERE member_id=?";
+	      System.out.println("isUpdateMember");
+	      String sql ="";
+			String member_isMember =mb.getMember_isMember();
+			System.out.println(member_isMember);
 	      try {
-	         pstmt = con.prepareStatement(sql);
-	         pstmt.setString(1, mb.getMember_name());
-	         pstmt.setString(2, mb.getMember_email());
-	         pstmt.setString(3, mb.getMember_postcode());
-	         pstmt.setString(4, mb.getMember_add1());
-	         pstmt.setString(5, mb.getMember_add2());
-	         pstmt.setString(6, mb.getMember_phone());
-	         pstmt.setString(7, mb.getMember_id());
-	         updateCount = pstmt.executeUpdate();
+	    	  if(member_isMember.equals("1")){//관리자가 교직원 계정 수정
+	 				sql = "UPDATE member SET member_name=? , member_pass=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=?, member_bank=?, member_accno=?, member_picture=? WHERE member_id=?";
+	 				pstmt = con.prepareStatement(sql);
+	 		         pstmt.setString(1, mb.getMember_name());
+		 			pstmt.setString(2, mb.getMember_pass());
+	 		         pstmt.setString(3, mb.getMember_email());
+	 		         pstmt.setString(4, mb.getMember_postcode());
+	 		         pstmt.setString(5, mb.getMember_add1());
+	 		         pstmt.setString(6, mb.getMember_add2());
+	 		         pstmt.setString(7, mb.getMember_phone());
+	 				pstmt.setString(8, mb.getMember_bank());
+	 				pstmt.setString(9, mb.getMember_accno());
+	 				pstmt.setString(10, mb.getMember_picture());
+	 		         pstmt.setString(11, mb.getMember_id());
+	 				
+	 			}else{ // 일반 계정 수정
+	 				System.out.println("ㅎㅎDAO");
+	 				sql = "UPDATE member SET member_name=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=? WHERE member_id=?";
+	 				pstmt = con.prepareStatement(sql);
+	 		         pstmt.setString(1, mb.getMember_name());
+	 		         pstmt.setString(2, mb.getMember_email());
+	 		         pstmt.setString(3, mb.getMember_postcode());
+	 		         pstmt.setString(4, mb.getMember_add1());
+	 		         pstmt.setString(5, mb.getMember_add2());
+	 		         pstmt.setString(6, mb.getMember_phone());
+	 		         pstmt.setString(7, mb.getMember_id());
+
+	 			}
+	                  
+		         updateCount = pstmt.executeUpdate();
+	         
 	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }finally {
 	            close(pstmt);
-	        }
-	        
+	        }        
 	        return updateCount;
 	    }
+	   
+	   
 	   public int isUpdatepassword(String id, String newPassword) {
 		   int updateCount = 0;
 		   PreparedStatement pstmt =null;
@@ -386,7 +409,7 @@ public class MemberDAO {
 			PreparedStatement pstmt = null;
 			int deleteCount = 0;
 			try {
-				String sql="DELETE FROM member where member_idx=?";
+				String sql="DELETE FROM member WHERE member_idx=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, member_idx);
 				deleteCount = pstmt.executeUpdate();
