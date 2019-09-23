@@ -29,25 +29,28 @@ public class ApplyDAO {
 		this.con = con;
 	}
 	
-	public ArrayList<LectureBean> selectApplyList(int page, int limit, String sId){
+	public ArrayList<LectureBean> selectApplyList(int listCount, int page, int limit, String sId){
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		int startRow = (page-1)*10;
-		int num =0;
+		int[] num = new int[listCount];
+		int i = 0;
 		
-		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ";
+		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ORDER BY apply_purchase_date DESC LIMIT ?,?";
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1,sId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs =pstmt.executeQuery();
 			
 			while(rs.next()) {
-				num = rs.getInt("apply_lecture_idx");
-				
-		
-				sql ="SELECT * from lecture where lecture_idx=? ORDER BY lecture_idx DESC LIMIT ?,? ";
-				pstmt.setInt(1, num);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, limit);
+				num[i] = rs.getInt("apply_lecture_idx");
+				i++;	
+			}
+			i = 0;
+			while(i<listCount) {
+				sql ="SELECT * from lecture where lecture_idx=? ";
+				pstmt.setInt(1, num[i]);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					LectureBean lectureBean = new LectureBean();
@@ -72,9 +75,6 @@ public class ApplyDAO {
 		}
 		
 		return applyList;
-	
-		
-		
 		
 	}
 	

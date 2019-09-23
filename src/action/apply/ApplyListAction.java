@@ -1,5 +1,6 @@
 package action.apply;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import svc.apply.ApplyListService;
 import vo.ActionForward;
 import vo.ApplyBean;
 import vo.LectureBean;
+import vo.LecturePageInfo;
 
 public class ApplyListAction implements Action {
 
@@ -21,6 +23,11 @@ public class ApplyListAction implements Action {
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
+		
+		String listType="";
+		if(request.getParameter("listType") != null) {
+			listType = request.getParameter("listType");
+		}
 		
 		int page = 1;
 		int limit = 10;
@@ -33,13 +40,35 @@ public class ApplyListAction implements Action {
 		
 		int listCount = applyInfoService.getApplyListCount();
 		
-		applyList = applyInfoService.getApplyList(page, limit, sId);
+		applyList = applyInfoService.getApplyList(listCount, page, limit, sId);
 		
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
+		int endPage = startPage +10 -1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
 		
+		if(applyList != null) {
+			forward = new ActionForward();
+			System.out.println("수업리스트 조회 성공");
+			LecturePageInfo applyPageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
+			request.setAttribute("applyPageInfo", applyPageInfo);
+			request.setAttribute("applyList", applyList);
+			request.setAttribute("listType", listType);
+			forward.setPath("apply/applyList.jsp");
+			forward.setRedirect(false);
+		}else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+            out.println("alert('수업리스트 조회 실패!')");
+            out.println("history.back()");
+            out.println("</script>");
+		}
 		
-		
-		
-		return null;
+
+		return forward;
 	}
 
 }
