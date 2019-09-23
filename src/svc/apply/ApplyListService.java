@@ -8,20 +8,21 @@ import dao.ApplyDAO;
 import static db.JdbcUtil.*;
 
 import vo.ApplyBean;
+import vo.LectureBean;
 
 public class ApplyListService {
 	
 	
-	public ArrayList<ApplyBean> getApplyList(int page, int limit){
+	public ArrayList<LectureBean> getApplyList(int page, int limit, String sId){
 		System.out.println("ApplyListService");
-		ArrayList<ApplyBean> applyList = null;
+		ArrayList<LectureBean> applyList = null;
 		Connection con = getConnection();
 		
 		ApplyDAO applyDAO = ApplyDAO.getInstance();
 		
 		applyDAO.setConnection(con);
 		
-		applyList = applyDAO.selectApplyList(page, limit);
+		applyList = applyDAO.selectApplyList(page, limit, sId);
 		
 		close(con);
 		

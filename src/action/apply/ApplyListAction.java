@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.apply.ApplyInfoService;
 import svc.apply.ApplyListService;
 import vo.ActionForward;
 import vo.ApplyBean;
+import vo.LectureBean;
 
 public class ApplyListAction implements Action {
 
@@ -20,7 +20,7 @@ public class ApplyListAction implements Action {
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
-		ArrayList<ApplyBean> applyList = new ArrayList<ApplyBean>();
+		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		
 		int page = 1;
 		int limit = 10;
@@ -33,7 +33,7 @@ public class ApplyListAction implements Action {
 		
 		int listCount = applyInfoService.getApplyListCount();
 		
-		applyList = applyInfoService.getApplyList(page, limit);
+		applyList = applyInfoService.getApplyList(page, limit, sId);
 		
 		
 		
