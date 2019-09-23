@@ -23,7 +23,7 @@ public class ApplyListAction implements Action {
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
-		
+		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
 		String listType="";
 		if(request.getParameter("listType") != null) {
 			listType = request.getParameter("listType");
@@ -40,7 +40,8 @@ public class ApplyListAction implements Action {
 		
 		int listCount = applyInfoService.getApplyListCount();
 		
-		applyList = applyInfoService.getApplyList(listCount, page, limit, sId);
+		applyList = applyInfoService.getApplyList(page, limit, sId);
+		applyList2 = applyInfoService.getApplyList2(page, limit, sId);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
@@ -55,6 +56,7 @@ public class ApplyListAction implements Action {
 			LecturePageInfo applyPageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
 			request.setAttribute("applyPageInfo", applyPageInfo);
 			request.setAttribute("applyList", applyList);
+			request.setAttribute("applyList2", applyList2);
 			request.setAttribute("listType", listType);
 			forward.setPath("apply/applyList.jsp");
 			forward.setRedirect(false);

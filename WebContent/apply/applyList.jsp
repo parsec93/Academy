@@ -1,3 +1,4 @@
+<%@page import="vo.ApplyBean"%>
 <%@page import="vo.LecturePageInfo"%>
 <%@page import="vo.LectureBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,6 +28,7 @@
   </head>
   <%
   ArrayList<LectureBean> applyList = (ArrayList<LectureBean>)request.getAttribute("applyList");
+  ArrayList<ApplyBean> applyList2 = (ArrayList<ApplyBean>)request.getAttribute("applyList2");
   LecturePageInfo applyPageInfo = (LecturePageInfo)request.getAttribute("applyPageInfo");
 
  
@@ -125,6 +127,7 @@
     <%
     for(int i =0 ; i<applyList.size(); i++){
 	LectureBean lectureBean = (LectureBean)applyList.get(i);
+	ApplyBean applyBean = (ApplyBean)applyList2.get(i);
 	%>	
 	
 	<tbody>
@@ -135,7 +138,7 @@
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
-	<td class="hit"><%=lectureBean.getLecture_teacher() %></td>
+	<td class="hit"><%=applyBean.getApply_purchase_date() %></td>
 	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
 	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
 	</tr>

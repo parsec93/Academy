@@ -29,42 +29,31 @@ public class ApplyDAO {
 		this.con = con;
 	}
 	
-	public ArrayList<LectureBean> selectApplyList(int listCount, int page, int limit, String sId){
+	public ArrayList<LectureBean> selectApplyList(int page, int limit, String sId){
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
-		int startRow = (page-1)*10;
-		int[] num = new int[listCount];
-		int i = 0;
 		
-		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ORDER BY apply_purchase_date DESC LIMIT ?,?";
+		int startRow = (page-1)*10;
+		
+//		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ORDER BY apply_purchase_date DESC LIMIT ?,?";
+		String sql = "select l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
+		+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ?";
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1,sId);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
+//			pstmt.setString(2, "1");
+//			pstmt.setInt(2, startRow);
+//			pstmt.setInt(3, limit);
 			rs =pstmt.executeQuery();
 			
 			while(rs.next()) {
-				num[i] = rs.getInt("apply_lecture_idx");
-				i++;	
-			}
-			i = 0;
-			while(i<listCount) {
-				sql ="SELECT * from lecture where lecture_idx=? ";
-				pstmt.setInt(1, num[i]);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					LectureBean lectureBean = new LectureBean();
-					lectureBean.setLecture_subject(rs.getString("lecture_subject"));
-					lectureBean.setLecture_course(rs.getString("lecture_course"));
-					lectureBean.setLecture_teacher(rs.getString("lecture_teacher"));
-					lectureBean.setLecture_start_day(rs.getDate("lecture_start_day"));
-					lectureBean.setLecture_end_day(rs.getDate("lecture_end_day"));
-					lectureBean.setLecture_week_day(rs.getString("lecture_week_day"));
-					applyList.add(lectureBean);
+				LectureBean lb = new LectureBean();
+				lb.setLecture_subject(rs.getString("lecture_subject"));
+				lb.setLecture_course(rs.getString("lecture_course"));
+				lb.setLecture_start_day(rs.getDate("lecture_start_day"));
+				lb.setLecture_end_day(rs.getDate("lecture_end_day"));
 				
-				}
+				applyList.add(lb);
 			}
-			
 			
 		} catch (SQLException e) {
 			System.out.println("selectApplyList() 에러" + e.getMessage());
@@ -73,9 +62,38 @@ public class ApplyDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+				
 		return applyList;
-		
+	}
+	public ArrayList<ApplyBean> selectApplyList2(int page, int limit, String sId) {
+		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
+		int startRow = (page-1)*10;
+		String sql = "select a.apply_purchase_date "
+				+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ?";
+				try {
+					pstmt =con.prepareStatement(sql);
+					pstmt.setString(1,sId);
+//					pstmt.setString(2, "1");
+//					pstmt.setInt(2, startRow);
+//					pstmt.setInt(3, limit);
+					rs =pstmt.executeQuery();
+					
+					while(rs.next()) {
+						ApplyBean ab = new ApplyBean();
+						ab.setApply_purchase_date(rs.getDate("apply_purchase_date"));
+						
+						applyList2.add(ab);
+					}
+					
+				} catch (SQLException e) {
+					System.out.println("selectApplyList() 에러" + e.getMessage());
+				}
+				finally {
+					close(rs);
+					close(pstmt);
+				}
+						
+				return applyList2;
 	}
 	
 	
@@ -101,6 +119,7 @@ public class ApplyDAO {
 		return listCount;
 		
 	}
+	
 	
 
 }

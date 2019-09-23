@@ -13,7 +13,7 @@ import vo.LectureBean;
 public class ApplyListService {
 	
 	
-	public ArrayList<LectureBean> getApplyList(int listCount, int page, int limit, String sId){
+	public ArrayList<LectureBean> getApplyList(int page, int limit, String sId){
 		System.out.println("ApplyListService");
 		ArrayList<LectureBean> applyList = null;
 		Connection con = getConnection();
@@ -22,13 +22,27 @@ public class ApplyListService {
 		
 		applyDAO.setConnection(con);
 		
-		applyList = applyDAO.selectApplyList(listCount, page, limit, sId);
+		applyList = applyDAO.selectApplyList(page, limit, sId);
 		
 		close(con);
 		
 		return applyList;
 	}
-	
+	public ArrayList<ApplyBean> getApplyList2(int page, int limit, String sId){
+		System.out.println("ApplyListService");
+		ArrayList<ApplyBean> applyList2 = null;
+		Connection con = getConnection();
+		
+		ApplyDAO applyDAO = ApplyDAO.getInstance();
+		
+		applyDAO.setConnection(con);
+		
+		applyList2 = applyDAO.selectApplyList2(page, limit, sId);
+		
+		close(con);
+		
+		return applyList2;
+	}
 	
 	public int getApplyListCount() {
 		int listCount=0;
