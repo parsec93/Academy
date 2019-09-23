@@ -88,8 +88,8 @@
 	<div class="boardwrap">
 	<h1>수강 목록</h1>
 	<select name = "period" id ="period" onchange="changePeriod()">
-		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
-		<option value="pre" <%if(listType.equals("pre")){ %> selected="selected"<%} %>>예정된 수업</option>
+		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>전체</option>
+		<option value="pre" <%if(listType.equals("pre")){ %> selected="selected"<%} %>>수강중인 수업</option>
 		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>종료된 수업</option>
 	</select>
 <!-- 		<tr> -->
@@ -119,7 +119,7 @@
 	<th scope="col">글번호</th>
 	<th scope="col">제목</th>
 	<th scope="col">과목</th>
-	<th scope="col">선생님</th>
+	<th scope="col">구매일</th>
 	<th scope="col">시작일</th>
 	<th scope="col">종료일</th>
 	</tr>
@@ -150,7 +150,7 @@
 	</tbody>
 	</table>
 	<div id="table_search">
-	<input type="button" value="수업등록" class="btn" onclick="location.href='lectureInsert.le'">
+<!-- 	<input type="button" value="수업등록" class="btn" onclick="location.href='lectureInsert.le'"> -->
 	</div>
 
 	
