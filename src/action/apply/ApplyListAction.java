@@ -38,10 +38,10 @@ public class ApplyListAction implements Action {
 		
 		ApplyListService applyInfoService = new ApplyListService();
 		
-		int listCount = applyInfoService.getApplyListCount();
+		int listCount = applyInfoService.getApplyListCount(sId,listType);
 		
-		applyList = applyInfoService.getApplyList(page, limit, sId);
-		applyList2 = applyInfoService.getApplyList2(page, limit, sId);
+		applyList = applyInfoService.getApplyList(page, limit, sId, listType);
+		applyList2 = applyInfoService.getApplyList2(page, limit, sId, listType);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;

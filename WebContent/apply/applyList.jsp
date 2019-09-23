@@ -51,8 +51,8 @@
   			location.href = "./ApplyInfo.al?listType=now";
   		}else if(lt == "end"){
   			location.href = "./ApplyInfo.al?listType=end";
-  		}else if(lt == "pre"){
-  			location.href = "./ApplyInfo.al?listType=pre";
+  		}else if(lt == "all"){
+  			location.href = "./ApplyInfo.al?listType=all";
   		}
 		
 	}
@@ -88,8 +88,8 @@
 	<div class="boardwrap">
 	<h1>수강 목록</h1>
 	<select name = "period" id ="period" onchange="changePeriod()">
-		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>전체</option>
-		<option value="pre" <%if(listType.equals("pre")){ %> selected="selected"<%} %>>수강중인 수업</option>
+		<option value="all" <%if(listType.equals("all")){ %> selected="selected"<%} %>>전체 수업</option>
+		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
 		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>종료된 수업</option>
 	</select>
 <!-- 		<tr> -->
@@ -134,7 +134,7 @@
 	<tr>
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
-	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
+	<a href="#=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
@@ -161,21 +161,21 @@
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="lectureList.le?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="ApplyInfo.al?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "lectureList.le?page=<%=i %>&listType=<%=listType%>">[<%=i %>]</a>&nbsp;
+				<a href = "ApplyInfo.al?page=<%=i %>&listType=<%=listType%>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="lectureList.le?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="ApplyInfo.al?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %>
 
 

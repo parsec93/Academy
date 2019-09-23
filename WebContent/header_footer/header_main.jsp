@@ -30,7 +30,7 @@
 			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
 		<%}else {%>
 			<li><a class="nav-top-link" href="InfoPro.me"><%=sId %>님</a></li>
-			<li><a class="nav-top-link" href="ApplyInfo.al">내 강의실</a></li>
+			<li><a class="nav-top-link" href="ApplyInfo.al?listType=all">내 강의실</a></li>
 			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
 		<%}%>
 		</ul>
