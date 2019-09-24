@@ -137,6 +137,9 @@ public class MemberFrontController extends HttpServlet {
         }else if(command.equals("/TeacherUpdate.me")) {
         	forward = new ActionForward();
         	forward.setPath("/admin/teacherUpdate.jsp");
+        }else if(command.equals("/Member.me")) {
+        	forward = new ActionForward();
+        	forward.setPath("/admin/memberList.jsp");
         }
 
         

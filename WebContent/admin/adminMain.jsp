@@ -37,8 +37,9 @@ f
 <body>
 <h1>관리자 페이지</h1>
 <div class="btnwrap">
-<input type="button" class="btn" value="교사관리" onclick="location.href='../TeacherList.me'">
-<input type="button" class="btn" value="수업관리" onclick="location.href='../lectureList.le'">
+<input type="button" class="btn" value="교사관리" onclick="location.href='../TeacherList.me'"><br><br>
+<input type="button" class="btn" value="수업관리" onclick="location.href='../lectureList.le'"><br><br>
+<input type="button" class="btn" value="학생관리" onclick="location.href='../Member.me'">
 </div>
 
 </body>
