@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="vo.ApplyBean"%>
 <%@page import="vo.LecturePageInfo"%>
 <%@page import="vo.LectureBean"%>
@@ -25,6 +26,17 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- board css -->
     <link rel="stylesheet" href="css/board.css" />
+    
+   <!--  progress 바 css  -->
+    <style type="text/css">
+  	body#progress { 
+        position:absolute;
+        left:50%;
+        top:8px;
+        font-weight:bold;
+        margin-left:-40px;
+    }
+</style>
   </head>
   <%
   ArrayList<LectureBean> applyList = (ArrayList<LectureBean>)request.getAttribute("applyList");
@@ -39,10 +51,14 @@
   int maxPage = applyPageInfo.getMaxPage();
   
 	String listType = (String)request.getAttribute("listType");
+	Calendar cal =Calendar.getInstance();
+	double day = (double)cal.get(cal.DATE);
+	int progress=0;
   %>
   
 <!-- 	선택된 select value 값 넘기기 -->
   <script type="text/javascript">
+  
   	function changePeriod() {
   		
   		var langSelect = document.getElementById("period"); 		
@@ -56,6 +72,9 @@
   		}
 		
 	}
+  	
+
+
   
   </script>
 
@@ -98,11 +117,8 @@
 <!-- 			<td> -->
 <!-- 			<a href="lectureList.le?listType=end">종료</a></td></td> -->
 <!-- 		</tr> -->
-	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
-	
+	<table class="sub_news" id="apt" border="1" cellspacing="0" summary="게시판의 글제목 리스트" >
 
-	
-	
 	<colgroup>
 	<col width="5%">
 	<col width="45%">
@@ -134,14 +150,21 @@
 	<tr>
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
-	<a href="#=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
-	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
+	<a href="#=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %><br>
+	<%if(listType.equals("now")){
+		
+		String[] en = lectureBean.getLecture_end_day().toString().split("-");
+		progress = (int)(day/Integer.parseInt(en[2])*100);
+	%>
+      <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress><%=progress%>%</a>
+   <%}%>
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
 	<td class="hit"><%=applyBean.getApply_purchase_date() %></td>
 	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
 	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
 	</tr>
+	
 	<%
 		}
 	} %>
