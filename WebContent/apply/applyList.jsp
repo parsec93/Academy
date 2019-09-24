@@ -39,6 +39,7 @@
   int maxPage = applyPageInfo.getMaxPage();
   
 	String listType = (String)request.getAttribute("listType");
+	String review = (String)request.getAttribute("review");
   %>
   
 <!-- 	선택된 select value 값 넘기기 -->
@@ -57,6 +58,9 @@
 		
 	}
   
+  	function applyReview() {
+  		window.open("./apply/applyReview.jsp","","width=800,height=200");	
+	}
   </script>
 
   <body>
@@ -100,17 +104,26 @@
 <!-- 		</tr> -->
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	
-
-	
-	
-	<colgroup>
-	<col width="5%">
-	<col width="45%">
-	<col width="10%">
-	<col width="10%">
-	<col width="15%">
-	<col width="15%">
+	<%if(listType.equals("end")){%>
+		<colgroup>
+			<col width="5%">
+			<col width="35%">
+			<col width="10%">
+			<col width="10%">
+			<col width="15%">
+			<col width="15%">
+			<col width="10%">
 	</colgroup>
+	<%}else{%>
+		<colgroup>
+		<col width="5%">
+		<col width="45%">
+		<col width="10%">
+		<col width="10%">
+		<col width="15%">
+		<col width="15%">
+		</colgroup>
+	<%}%>
 	<%if(applyList.size() == 0) {%>
     <h1><b>작성된 글이 없습니다.</b></h1>
     <%}else{ %>
@@ -122,6 +135,9 @@
 	<th scope="col">구매일</th>
 	<th scope="col">시작일</th>
 	<th scope="col">종료일</th>
+	<%if(listType.equals("end")){%>
+		<th scope="col">후기</th>
+	<%}%>
 	</tr>
 	</thead>
     <%
@@ -135,13 +151,16 @@
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
 	<a href="#=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
-	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
 	<td class="hit"><%=applyBean.getApply_purchase_date() %></td>
 	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
 	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
+	<%if(listType.equals("end")){%>
+		<td><input type="button" name="review" value="후기등록" onClick="applyReview()"></td>
+	<%}%>
 	</tr>
+	
 	<%
 		}
 	} %>
