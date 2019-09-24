@@ -44,11 +44,11 @@ public class updateProAction implements Action {
     	 sId = multi.getParameter("id");
      }
 
-   //  if(multi.getParameter("member_idx")==null) {
-    //	 member_idx =0;
- ///   }else {
+     if(multi.getParameter("member_idx")==null) {
+    	 member_idx =0;
+    }else {
     	 member_idx = Integer.parseInt(multi.getParameter("member_idx"));
-//     }
+     }
       String password = multi.getParameter("password");
       String email = multi.getParameter("email1") + "@" + multi.getParameter("email2");
       MemberBean mb = new MemberBean();
@@ -60,11 +60,7 @@ public class updateProAction implements Action {
       isMember = multi.getParameter("member_isMember");
      // }
       
-      //교사 계정 사진 변경시
-      String opicture = multi.getParameter("opicture");
-      String picture = multi.getOriginalFileName((String)multi.getFileNames().nextElement());
-      System.out.println(opicture);
-      System.out.println(picture);
+
       
       mb.setMember_name(multi.getParameter("name"));
       mb.setMember_pass(password);
@@ -78,6 +74,11 @@ public class updateProAction implements Action {
       if(isMember.equals("1")) {
     	  mb.setMember_bank(multi.getParameter("bank"));
     	  mb.setMember_accno(multi.getParameter("accno"));
+          //교사 계정 사진 변경시
+          String opicture = multi.getParameter("opicture");
+          String picture = multi.getOriginalFileName((String)multi.getFileNames().nextElement());
+          System.out.println(opicture);
+          System.out.println(picture);
 
     	  if(picture != null) {
     		  mb.setMember_picture(picture);

@@ -163,7 +163,7 @@ function joinCheck() {
              			<label for="text">계좌번호</label>
              			</div>
              			<img alt="증명사진" src="../memberUpload/<%=opicture%>" width="250" height="300"><%=opicture%>
-             			<input type="file" name="picture" id="picture" class="inpt" required="required" placeholder="증명사진"> 
+             			<input type="file" name="picture" id="picture" class="inpt"  placeholder="증명사진"> 
                         <label for="file">Image</label>
 						
              				
