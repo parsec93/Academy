@@ -157,7 +157,9 @@ lecture_content varchar(200) not null,
 lecture_fee int(10) not null,
 lecture_time varchar(2) not null,
 lecture_room varchar(10) not null,
-lecture_count int
+lecture_count int,
+lecture_image varchar(45) not null
+
 );
 
 insert into lecture values(null, '자바 6개월 완성', 'Java', '가즈아', '2019-09-01', '2019-09-30',  '1', '6개월만 하면 취업 못해용', 990000, '오전', '1' ,1);
