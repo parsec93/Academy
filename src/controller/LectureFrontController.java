@@ -21,6 +21,7 @@ import action.board.BoardViewAction;
 import action.board.BoardWriteProAction;
 import action.lecture.LectureDeleteAction;
 import action.lecture.LectureDetailAction;
+import action.lecture.LectureEnrolmentAction;
 import action.lecture.LectureInsertAction;
 import action.lecture.LectureInsertProAction;
 import action.lecture.LectureListeAction;
@@ -106,7 +107,15 @@ public class LectureFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }   
+        }else if(command.equals("/lectureEnrolment.le")) {  	
+        	action = new LectureEnrolmentAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } 
                 
         // if문에서 서블릿 주소 판별 후 요청 처리 뒤에 포워딩할 페이지를 ActionForward 객체로 생성했기 때문에
         // ActionForward 객체 내의 포워딩 방식에 따라 지정된 URL 로 각각 다른 방식의 포워딩이 필요함
