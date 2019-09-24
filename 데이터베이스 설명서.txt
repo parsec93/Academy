@@ -175,3 +175,15 @@ apply_ischeck varchar(1) not null
 );
 
 insert into apply values(null, 'student', 1, '2019-09-01', '0');
+insert into apply values(null, 'student', 1, '2019-09-01', '1');
+insert into apply values(null, 'student', 2, '2019-09-01', '1');
+
+ 10. 수강 후기 테이블 생성
+ 
+ create table review (
+review_idx int primary key auto_increment,
+review_member_id varchar(20) not null,
+review_lecture_idx int not null,
+review_content varchar(200) not null
+);
+
