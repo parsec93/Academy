@@ -26,8 +26,8 @@ public class FindService {
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		
-		pass = memberDAO.findId(id, email);
+		System.out.println(id + ", " + email);
+		pass = memberDAO.findPass(id, email);
 		
 		close(con);
 		return pass;

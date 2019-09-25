@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
     <div class="login_container">
         <article class="half">
@@ -44,20 +45,19 @@
                         </div>
                     </form>
                 </div>
-                <%
-                String id = (String)request.getAttribute("id");
+                <div>
+   <% 
+//                  String id = (String)request.getAttribute("id");
                         		
-                        		if(id==null){
-                        			out.println("해당하는 아이디 업숴!");
-                        		}else{
-                        		 out.println(id);
-                        		}
-                %>
-
+//                          		if(id!=null){
+//                         		 out.println(id);
+//                         		}
+                 %> 
+</div>
                 
                 <div class="signup-cont cont">
                     <form action="../FindPass.me" method="post" >
-                        <input type="text" name="idlg" id="idlg" class="inpt" required="required" placeholder="Your id"> 
+                        <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id"> 
                         <label for="id">Your id</label> 
                         <input type="text" name="phone" id="phone" class="inpt" required="required" placeholder="휴대폰 번호"> 
                         <label for="name">Your phone</label>
@@ -69,10 +69,44 @@
                         </div>
                     </form>
                 </div>
+                <div>
+                
+ <% 
+//                  String pass = (String)request.getAttribute("pass");
+                        		
+//                          		if(pass!=null){
+//                         		 out.println(pass);
+//                         		}
+                 %> 
+                </div>
             </div>
           </article>
         <div class="half bg"></div>
     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.tabs .tab').click(function() {
+            if ($(this).hasClass('signin')) {
+                $('.tabs .tab').removeClass('active');
+                $(this).addClass('active');
+                $('.cont').hide();
+                $('.signin-cont').show();
+            }
+            if ($(this).hasClass('signup')) {
+                $('.tabs .tab').removeClass('active');
+                $(this).addClass('active');
+                $('.cont').hide();
+                $('.signup-cont').show();
+            }
+        });
+        $('.container .bg').mousemove(
+                function(e) {
+                    var amountMovedX = (e.pageX * -1 / 30);
+                    var amountMovedY = (e.pageY * -1 / 9);
+                    $(this).css('background-position',
+                            amountMovedX + 'px ' + amountMovedY + 'px');
+                });     
+    </script>
     
 
 </body>

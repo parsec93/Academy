@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import svc.member.FindService;
 import vo.ActionForward;
+import vo.MemberBean;
 
 public class FindIdAction implements Action {
 
@@ -21,24 +22,28 @@ public class FindIdAction implements Action {
 		
 		FindService findService = new FindService();
 		String id = findService.FindIdService(name,email);
-		
-		request.setAttribute("id", id);
-		
-		if(id == null) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-            out.println("<script>");
-            out.println("alert('해당하는 ID가 없습니다.')");
-            out.println("history.back()");
 
-		}else {
+//
+//		if(id==null) {
+//			response.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//            out.println("<script>");
+//            out.println("alert('해당하는 ID가 없습니다.')");
+//            out.println("history.back()");
+//            out.println("</script>");
+//
+//		}else {
 			System.out.println("아이디찾기 성공");
+//			MemberBean memberbean = new MemberBean();
+//			String id = memberbean.getMember_id();
+			request.setAttribute("id", id);
+			
 			forward = new ActionForward();
-			forward.setPath("/find.me");
+			forward.setPath("/member/findId.jsp");
 			forward.setRedirect(false);
 
 
-	}
+//	}
 		return forward;
 	}
 

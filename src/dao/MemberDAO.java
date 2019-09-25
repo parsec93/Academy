@@ -291,7 +291,7 @@ public class MemberDAO {
 	   }
 	   
 	   public String findPass(String id, String email){
-		   System.out.println("FIND ID DAO");
+		   System.out.println("FIND Pass DAO");
 		   String pass = null;
 		   PreparedStatement pstmt = null;
 		   ResultSet rs = null;
@@ -304,7 +304,7 @@ public class MemberDAO {
 			   pstmt.setString(2, email);
 			   rs = pstmt.executeQuery();
 			   if(rs.next()) {
-				   id = rs.getString("member_id");
+				   pass = rs.getString("member_pass");
 			   }
 		} catch (SQLException e) {
 			e.printStackTrace();

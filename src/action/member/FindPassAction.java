@@ -14,30 +14,30 @@ public class FindPassAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("FindIdAction()");
+		System.out.println("FindPassAction()");
 		ActionForward forward  = null;
 		
 		String id = request.getParameter("id");
 		String email = request.getParameter("email1") + "@" + request.getParameter("email2");
 		
 		FindService findService = new FindService();
-		String pass = findService.FindIdService(id,email);
+		String pass = findService.FindPassService(id,email);
 		
-		request.setAttribute("pass", pass);
+
 		
 		if(pass == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
             out.println("<script>");
-            out.println("alert('아이디/이메일을 확인해 주세요!')");
+            out.println("alert('ID / E-mail을 정확하게 입력 바랍니다.')");
             out.println("history.back()");
-
-		}else {
-            
+            out.println("</script>");
+		}else {          
 			System.out.println("비밀번호 찾기 성공!");
+			request.setAttribute("pass", pass);
 			forward = new ActionForward();
-			forward.setPath("/find.me");
-			forward.setRedirect(true);
+			forward.setPath("/member/findPass.jsp");
+			forward.setRedirect(false);
 
 		}
 		return forward;
