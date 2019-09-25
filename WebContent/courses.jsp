@@ -36,9 +36,9 @@
               <div class="banner_content text-center">
                 <h2>강의 안내</h2>
                 <div class="page_link">
-                  <a href="#">JAVA</a>
-                  <a href="#">JSP</a>
-                  <a href="#">ORACLE</a>
+                  <a href="coures_java.jsp">JAVA</a>
+                  <a href="coures_jsp.jsp">JSP</a>
+                  <a href="coures_oracle.jsp">ORACLE</a>
                 </div>
               </div>
             </div>
@@ -73,12 +73,12 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">JAVA</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">자바,빅데이터 전문가 양성</a>
+                    <a href="course_java.jsp">자바 프로그래밍 언어 활용</a>
                   </h4>
                   <p>
-                    Front-end, Back-end를 모두 갖춘<br />
-                    Full-stack 개발자 양성 과정<br />
-                    빅데이터 분석과 활용으로 경쟁력 확보
+                    자바 응용소프트웨어 개발에 사용되는 자바 프로그래밍 언어의
+                    기초문법을 적용하고 언어의 특징과 라이브러리를 활용하여
+                    기본 응용소프트웨어를 구현하는 능력을 함양할 수 있다.
           
                   </p>
                   <div
@@ -86,7 +86,7 @@
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author1.png" alt="" />
-                      <span class="d-inline-block ml-2">권민섭</span>
+                      <span class="d-inline-block ml-2">이연태</span>
                     </div>
                     
                   </div>
@@ -99,21 +99,21 @@
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">PYTHON</span>
+                  <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">빅데이터 전문가 양성</a>
+                    <a href="course_jsp.jsp">자바 서버프로그램 구현</a>
                   </h4>
                   <p>
-                    코딩교육 의무화시대<br />
-                    최고의 프로그래밍언어 파이썬 교육으로
-                    빅데이터 전문가를 양성합니다.
+                  자바(JAVA) 서버프로그램 구현(JSP)에 필요한 환경을 구성하고, 
+                  자바 프로그래밍 언어와 도구를 활용하여 공통모듈, 업무 프로그램과 배치 프로그램을 구현하는 능력을 함양할 수 있다. 
+                    
                   </p>
                   <div
                     class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author2.png" alt="" />
-                      <span class="d-inline-block ml-2">권근호</span>
+                      <span class="d-inline-block ml-2">홍진숙</span>
                     </div>
                     
                   </div>
@@ -126,13 +126,14 @@
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">오라클 DBA 양성</a>
+                    <a href="course_jsp.jsp">자바 스프링 프레임워크</a>
                   </h4>
                   <p>
-                    어디에서도 배울 수 없는 데이터베이스 실무 교육으로
-                    경력직 우대하는 DBA 전문가로 진입할 수 있는 유일한 기회
+                    컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행, 사용자에게 배포, 
+                    버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
+                    
                     
                   </p>
                   <div
@@ -140,68 +141,124 @@
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">김영진</span>
+                      <span class="d-inline-block ml-2">홍진숙</span>
                     </div>
                    
                   </div>
                 </div>
               </div>
+              
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">9월</span>
+                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <h4 class="mb-3">
+                    <a href="course_oracle.jsp">오라클 패키지 과정(OCP12c)</a>
+                  </h4>
+                  <p>
+                    데이터베이스 구현을 위하여 오라클 DBMS 설치, 데이터베이스 생성, 
+                    데이터베이스 오브젝트를 계획, 설계하고 구현하는 능력을 함양할 수 있다.
+                    
+                    
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="img/courses/author3.png" alt="" />
+                      <span class="d-inline-block ml-2">송지태</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+              
             </div>
           </div>
         </div>
       </div>
     </div>
     <!--================ End Popular Courses Area =================-->
-
-   
-
-    <!--================ Start Feature Area =================-->
-    <section class="feature_area section_gap_top">
+    
+    <!--================ Start Trainers Area =================-->
+    <section class="trainer_area section_gap_top">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Hello, World!</h2>
+              <h2 class="mb-3">강사 소개</h2>
               <p>
-                학원만의 차별화된 최고의 교육 및 상담을 받아보세요.
+                
               </p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-student"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">JAVA</h4>
+        <div class="row justify-content-center d-flex align-items-center">
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t1.jpg" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>홍진숙</h4>
+              <p class="designation">자바프로그래밍</p>
+              <div class="mb-4">
                 <p>
-                    언어의 기초문법, 라이브러리 활용으로
-					프로그래밍의 구조를 학습합니다.
+                  백견이 불여일타!<br />
+                  손이 저절로 움직여 코딩 할 수 있도록
+                  노련함이 느껴지는 교육을 진행하겠습니다. 
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-book"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">ORACLE</h4>
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t2.jpg" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>이연태</h4>
+              <p class="designation">네트워크&보안</p>
+              <div class="mb-4">
                 <p>
-                  오라클 데이터베이스를 활용한 인프라스트럭처 전문가를 양성합니다.
+                  프로그래밍 & 네트워크<br />정보보안에 대한<br />
+                  폭 넓은 지식을 쉽고 빠르게<br />전달해 드립니다!
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-earth"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">JSP</h4>
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t3.jpg" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>송지태</h4>
+              <p class="designation">DB</p>
+              <div class="mb-4">
                 <p>
-                  Java 언어를 기반으로 하는 Server Side 스크립트 언어를 배우게 됩니다.
+                  오라클 DBMS!<br />
+                  부담없이 친근하게 다가가도록 하겠습니다!
+                  폭 넓은 지식을 제공해 드립니다.
+                </p>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t4.jpg" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>김희영</h4>
+              <p class="designation">NCS 직업기초 및 취업 관리</p>
+              <div class="mb-4">
+                <p>
+                  정답을 드리기보다 경우의 수를 같이 고민하고 대비하고자 합니다.
+                  같이 길을 찾을 수 있게 도와드리겠습니다.
                 </p>
               </div>
             </div>
@@ -209,6 +266,64 @@
         </div>
       </div>
     </section>
+    <!--================ End Trainers Area =================-->
+
+   
+
+    <!--================ Start Feature Area =================-->
+<!--     <section class="feature_area section_gap_top"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row justify-content-center"> -->
+<!--           <div class="col-lg-5"> -->
+<!--             <div class="main_title"> -->
+<!--               <h2 class="mb-3">Hello, World!</h2> -->
+<!--               <p> -->
+<!--                 학원만의 차별화된 최고의 교육 및 상담을 받아보세요. -->
+<!--               </p> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="row"> -->
+<!--           <div class="col-lg-4 col-md-6"> -->
+<!--             <div class="single_feature"> -->
+<!--               <div class="icon"><span class="flaticon-student"></span></div> -->
+<!--               <div class="desc"> -->
+<!--                 <h4 class="mt-3 mb-2">JAVA</h4> -->
+<!--                 <p> -->
+<!--                     언어의 기초문법, 라이브러리 활용으로 -->
+<!-- 					프로그래밍의 구조를 학습합니다. -->
+<!--                 </p> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+
+<!--           <div class="col-lg-4 col-md-6"> -->
+<!--             <div class="single_feature"> -->
+<!--               <div class="icon"><span class="flaticon-book"></span></div> -->
+<!--               <div class="desc"> -->
+<!--                 <h4 class="mt-3 mb-2">ORACLE</h4> -->
+<!--                 <p> -->
+<!--                   오라클 데이터베이스를 활용한 인프라스트럭처 전문가를 양성합니다. -->
+<!--                 </p> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+
+<!--           <div class="col-lg-4 col-md-6"> -->
+<!--             <div class="single_feature"> -->
+<!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
+<!--               <div class="desc"> -->
+<!--                 <h4 class="mt-3 mb-2">JSP</h4> -->
+<!--                 <p> -->
+<!--                   Java 언어를 기반으로 하는 Server Side 스크립트 언어를 배우게 됩니다. -->
+
+<!--                 </p> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </section> -->
     <!--================ End Feature Area =================-->
     <!--================ Start footer Area  =================-->
     <jsp:include page="header_footer/footer.jsp" />
