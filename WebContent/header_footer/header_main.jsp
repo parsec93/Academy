@@ -73,7 +73,16 @@
 <!-- 								<li class="nav-item"><a class="nav-link" -->
 <!-- 									href="elements.jsp">Elements</a></li> -->
 <!-- 							</ul></li> -->
-							<li class="nav-item"><a class="nav-link" href="courses.jsp">강의안내</a></li>
+							<li class="nav-item submenu dropdown"><a class="nav-link dropdown-toggle" style="cursor: pointer;"
+							data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false" onclick="location.href='courses.jsp'">강의안내</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item"><a class="nav-link" href="course_java.jsp">JAVA</a></li>
+								<li class="nav-item"><a class="nav-link" href="course_jsp.jsp">JSP</a></li>
+								<li class="nav-item"><a class="nav-link" href="course_oracle.jsp">ORACLE</a></li>
+							</ul>
+							
+							</li>
 						<li class="nav-item submenu dropdown"><a class="nav-link dropdown-toggle"
 							href="#"data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">자유게시판</a>
