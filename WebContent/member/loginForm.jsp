@@ -216,7 +216,7 @@ function joinCheck() {
                         <label for="remember">Remember me</label>
                         <div class="submit-wrap">
                             <input type="submit" value="Sign in" class="submit"> 
-                            <a href="#" class="more">Forgot your password?</a>
+                            <a href="findId_Pass.jsp" class="more">ID/PASSWORD 찾기</a>
                         </div>
                     </form>
                 </div>
