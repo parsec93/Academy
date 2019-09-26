@@ -13,6 +13,7 @@ if(content != null){
 
 
 String sId = (String)session.getAttribute("sId");
+String isMember =(String)request.getAttribute("isMember");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,10 @@ String sId = (String)session.getAttribute("sId");
 </head>
 <body>
 <!--================ Start Header Menu Area =================-->
-    <jsp:include page="../header_footer/header.jsp" />
+        <jsp:include page="../header_footer/header_main.jsp" >
+    	<jsp:param name="isMember" value="<%=isMember %>"/>
+    </jsp:include>
+    
     <!--================ End Header Menu Area =================-->
 	  
     <!--================Home Banner Area =================-->
