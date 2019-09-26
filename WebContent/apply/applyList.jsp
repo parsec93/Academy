@@ -54,8 +54,6 @@
 	Calendar cal =Calendar.getInstance();
 	double day = (double)cal.get(cal.DATE);
 	int progress=0;
-
-
   %>
   
 <!-- 	선택된 select value 값 넘기기 -->
@@ -74,11 +72,10 @@
   		}
 		
 	}
-  	
-
 
   	function applyReview() {
-  		window.open("./apply/applyReview.jsp","","width=800,height=200");	
+  		var lecture_idx = document.getElementById("lecture_idx").value; 
+  		window.open("./apply/applyReview.jsp?lecture_idx="+lecture_idx ,"","width=800,height=300");	
 	}
   </script>
 
@@ -188,11 +185,15 @@
 	<td class="hit"><%=applyBean.getApply_purchase_date() %></td>
 	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
 	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
-	<%if(listType.equals("end")){%>
-		<td><input type="button" name="review" value="후기등록" onClick="applyReview()"></td>
-	<%}%>
+	<%if(listType.equals("end")){
+		if(applyBean.getApply_review() != null){%>
+			<td><input type="text" value="등록완료"></td>
+		<%}else{ %>
+			<td><input type="button" name="review" value="후기등록" onClick="applyReview()"></td>
+			<td><input type="hidden" id="lecture_idx" value="<%=lectureBean.getLecture_idx()%>"></td>
+		<%}
+	}%>
 	</tr>
-	
 	<%
 		}
 	} %>

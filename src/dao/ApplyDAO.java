@@ -39,17 +39,17 @@ public class ApplyDAO {
 
 		String sql = ""; 
 		if(listType.equals("")||listType.equals("now")) {
-			sql = "select l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
+			sql = "select l.lecture_idx, l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
 		+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ? AND a.apply_ischeck = ?"
 		+ "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() "
 		+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";
 		}else if(listType.equals("end")) {
-			sql = "select l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
+			sql = "select l.lecture_idx, l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
 		+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ? AND a.apply_ischeck = ?"
 		+ "AND l.lecture_end_day < now() "
 		+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 		}else {
-			sql = "select l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
+			sql = "select l.lecture_idx, l.lecture_subject, l.lecture_start_day, l.lecture_end_day, l.lecture_course "
 		+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ? AND a.apply_ischeck = ?"
 		+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 			
@@ -64,6 +64,7 @@ public class ApplyDAO {
 			
 			while(rs.next()) {
 				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs.getInt("lecture_idx"));
 				lb.setLecture_subject(rs.getString("lecture_subject"));
 				lb.setLecture_course(rs.getString("lecture_course"));
 				lb.setLecture_start_day(rs.getDate("lecture_start_day"));
@@ -87,17 +88,17 @@ public class ApplyDAO {
 		int startRow = (page-1)*10;
 		String sql = "";
 				if(listType.equals("")||listType.equals("now")) {
-					sql ="select a.apply_purchase_date "
+					sql ="select a.apply_purchase_date, a.apply_review "
 				+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id =? AND a.apply_ischeck = ?" 
                 + "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() "
 				+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";
 				}else if(listType.equals("end")) {
-					sql ="select a.apply_purchase_date "
+					sql ="select a.apply_purchase_date, a.apply_review "
 				+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ? AND a.apply_ischeck = ?" 
 				+ "AND l.lecture_end_day < now() "
 				+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 				}else {					
-					sql ="select a.apply_purchase_date "
+					sql ="select a.apply_purchase_date, a.apply_review "
 						+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id =? AND a.apply_ischeck = ?" 
 						+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 					
@@ -113,7 +114,7 @@ public class ApplyDAO {
 					while(rs.next()) {
 						ApplyBean ab = new ApplyBean();
 						ab.setApply_purchase_date(rs.getDate("apply_purchase_date"));
-						
+						ab.setApply_review(rs.getString("apply_review"));
 						applyList2.add(ab);
 					}
 					
@@ -166,6 +167,25 @@ public class ApplyDAO {
 		}
 		return listCount;
 		
+	}
+	public int reviewInsert(ApplyBean ab) {
+		System.out.println("insertReview");
+		int isInsertSuccess = 0;
+		
+		String sql = "update apply set apply_review =? where apply_lecture_idx=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ab.getApply_review());
+			pstmt.setInt(2, ab.getApply_lecture_idx());
+			
+			isInsertSuccess = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("insertReview 실패 - " + e.getMessage());
+		}finally {
+			close(pstmt);
+		}
+
+		return isInsertSuccess;
 	}
 	
 	public ArrayList<LectureBean> selectListTeacher(int page, int limit, String sId){

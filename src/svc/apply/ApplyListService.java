@@ -56,4 +56,5 @@ public class ApplyListService {
 		return listCount;
 		
 	}
+	
 }

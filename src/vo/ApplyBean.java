@@ -9,6 +9,7 @@ public class ApplyBean {
 	private int apply_lecture_idx;
 	private Date apply_purchase_date;
 	private String apply_ischeck;
+	private String apply_review;
 	
 	public int getApply_idx() {
 		return apply_idx;
@@ -40,8 +41,12 @@ public class ApplyBean {
 	public void setApply_ischeck(String apply_ischeck) {
 		this.apply_ischeck = apply_ischeck;
 	}
-	
-	
+	public String getApply_review() {
+		return apply_review;
+	}
+	public void setApply_review(String apply_review) {
+		this.apply_review = apply_review;
+	}
 	
 
 }
