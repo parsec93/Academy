@@ -266,6 +266,57 @@ public class MemberDAO {
 	    return updateCount;
 	   }
 	   
+	   public String findId(String name, String email){
+		   System.out.println("FIND ID DAO");
+		   String id = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rs = null;
+		   
+		   String sql = "SELECT member_id FROM member WHERE member_name=? AND member_email=?";
+		   
+		   try {
+			pstmt = con.prepareStatement(sql);
+			   pstmt.setString(1, name);
+			   pstmt.setString(2, email);
+			   rs = pstmt.executeQuery();
+			   if(rs.next()) {
+				   id = rs.getString("member_id");
+			   }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}		   
+		   return id;
+	   }
+	   
+	   public String findPass(String id, String email){
+		   System.out.println("FIND Pass DAO");
+		   String pass = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rs = null;
+		   
+		   String sql = "SELECT member_pass FROM member WHERE member_id=? AND member_email=?";
+		   
+		   try {
+			pstmt = con.prepareStatement(sql);
+			   pstmt.setString(1, id);
+			   pstmt.setString(2, email);
+			   rs = pstmt.executeQuery();
+			   if(rs.next()) {
+				   pass = rs.getString("member_pass");
+			   }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}		   
+		   return pass;
+	   }
+//------------------------------------------------- Teacher ------------------------------------------------------------	   
+	   
 		public int selectListCount(String member_isMember) {
 			int listCount = 0; // 선생님 인원수를 저장하는 변수
 

@@ -99,7 +99,7 @@
 						
 
 						<li class="nav-item submenu dropdown"><a class="nav-link dropdown-toggle"
-							href="#"data-toggle="dropdown"
+							href="notice.no"data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false">학원소식</a>
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="notice.no">공지사항</a></li>

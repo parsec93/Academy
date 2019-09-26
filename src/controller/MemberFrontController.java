@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.board.BoardViewAction;
+import action.member.FindIdAction;
+import action.member.FindPassAction;
 import action.member.LoginProAction;
 import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
@@ -120,8 +122,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(command.equals("/TeacherView.me")) {
-            action = new TeacherViewAction();
-      
+            action = new TeacherViewAction();    
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
@@ -140,6 +141,23 @@ public class MemberFrontController extends HttpServlet {
         }else if(command.equals("/Member.me")) {
         	forward = new ActionForward();
         	forward.setPath("/admin/memberList.jsp");
+        }else if(command.equals("/FindId.me")) {
+        action = new FindIdAction();
+        try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        }else if(command.equals("/FindPass.me")) {
+        	action = new FindPassAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }else if(command.equals("/find.me")){
+        	forward = new ActionForward();
+        	forward.setPath("/member/findId_Pass.jsp");
         }
 
         
