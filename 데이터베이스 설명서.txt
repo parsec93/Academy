@@ -171,12 +171,13 @@ apply_idx int primary key auto_increment,
 apply_member_id varchar(20) not null,
 apply_lecture_idx int not null,
 apply_purchase_date date,
-apply_ischeck varchar(1) not null
+apply_ischeck varchar(1) not null,
+apply_review varchar(200) 
 );
 
-insert into apply values(null, 'student', 1, '2019-09-01', '0');
-insert into apply values(null, 'student', 1, '2019-09-01', '1');
-insert into apply values(null, 'student', 2, '2019-09-01', '1');
+insert into apply values(null, 'student', 1, '2019-09-01', '0',null);
+insert into apply values(null, 'student', 1, '2019-09-01', '1',null);
+insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
 
  10. 수강 후기 테이블 생성
  

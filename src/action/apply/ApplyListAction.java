@@ -36,12 +36,12 @@ public class ApplyListAction implements Action {
 			page =Integer.parseInt(request.getParameter("page"));
 		}
 		
-		ApplyListService applyInfoService = new ApplyListService();
+		ApplyListService applyListService = new ApplyListService();
 		
-		int listCount = applyInfoService.getApplyListCount(sId,listType);
+		int listCount = applyListService.getApplyListCount(sId,listType);
 		
-		applyList = applyInfoService.getApplyList(page, limit, sId, listType);
-		applyList2 = applyInfoService.getApplyList2(page, limit, sId, listType);
+		applyList = applyListService.getApplyList(page, limit, sId, listType);
+		applyList2 = applyListService.getApplyList2(page, limit, sId, listType);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
@@ -49,6 +49,9 @@ public class ApplyListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
+		
+		
+		
 		
 		if(applyList != null) {
 			forward = new ActionForward();

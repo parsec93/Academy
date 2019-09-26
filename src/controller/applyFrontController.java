@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.apply.ApplyListAction;
+import action.apply.ApplyReviewInsertAction;
 import vo.ActionForward;
 
 @WebServlet("*.al")
@@ -36,7 +37,17 @@ public class applyFrontController extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	        }
+	        }else if(command.equals("/reviewInsert.al")) {
+	        	
+	        	action = new ApplyReviewInsertAction();
+	        	try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	       }
 	       
 
 	       
