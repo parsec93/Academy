@@ -8,7 +8,7 @@ import static db.JdbcUtil.*;
 
 public class LoginProService {
 	
-	public boolean isLoginMember(String id,String password) {
+	public boolean isLoginMember(String id,String password, String isMember) {
 		System.out.println("LoginProService");
 		System.out.println(id + password);
 		boolean isLoginMember = false;
@@ -17,7 +17,7 @@ public class LoginProService {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 		
-		isLoginMember = memberDAO.selectLogin(id,password);
+		isLoginMember = memberDAO.selectLogin(id,password, isMember);
 	
 		close(con);
 		return isLoginMember; 

@@ -192,6 +192,20 @@ function joinCheck() {
 	    }
 	    return unescape(cookieValue);
 	}
+// 	teacher 식별 코드
+
+	function loginCheck() {
+
+		if($("#check_YN").is(":checked")){
+			document.getElementById('tYN').value = "1";
+		}else{
+			document.getElementById('tYN').value = "0";
+		}
+		
+		return true;
+	}		
+
+	
 </script>
 	
 <body>
@@ -207,13 +221,16 @@ function joinCheck() {
             </div>
             <div class="content">
                 <div class="signin-cont cont">
-                    <form action="../LoginPro.me" method="post" >
+                    <form action="../LoginPro.me" method="post" name="login" onsubmit="return loginCheck()">
                         <input type="text" name="idlg" id="idlg" class="inpt" required="required" placeholder="Your id"> 
                         <label for="id">Your id</label> 
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password"> 
                         <label for="password">Your password</label> 
                         <input type="checkbox" id="remember" class="checkbox" > 
                         <label for="remember">Remember me</label>
+                        <input type="checkbox" id="check_YN" class="checkbox1" name="check_YN" > 
+                        <input type="hidden" id="tYN" name="tYN">
+                        <label for="remember">Teacher</label>
                         <div class="submit-wrap">
                             <input type="submit" value="Sign in" class="submit"> 
                             <a href="#" class="more">Forgot your password?</a>

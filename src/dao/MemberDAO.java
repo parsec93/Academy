@@ -114,14 +114,15 @@ public class MemberDAO {
 		return Check;
 	}
 	
-	public boolean selectLogin(String id, String password) {
+	public boolean selectLogin(String id, String password, String isMember) {
 	      boolean isLoginMember = false;
-	      String sql = "SELECT * FROM member WHERE member_id=? AND member_pass=?";
+	      String sql = "SELECT * FROM member WHERE member_id=? AND member_pass=? AND member_isMember=?";
 	     
 	      try {
 	         pstmt= con.prepareStatement(sql);
 	         pstmt.setString(1, id);
 	         pstmt.setString(2, password);
+	         pstmt.setString(3, isMember);
 	         rs = pstmt.executeQuery();
 	         if(rs.next()) {
 	            isLoginMember = true;

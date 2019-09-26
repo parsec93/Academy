@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import vo.ApplyBean;
 import vo.LectureBean;
+import vo.MemberBean;
 
 public class ApplyDAO {
 	private static ApplyDAO instance = null;
@@ -165,6 +166,106 @@ public class ApplyDAO {
 		}
 		return listCount;
 		
+	}
+	
+	public ArrayList<LectureBean> selectListTeacher(int page, int limit, String sId){
+		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
+		
+		int startRow = (page-1)*10;
+		
+//		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ORDER BY apply_purchase_date DESC LIMIT ?,?";
+
+		String sql = "select l.lecture_subject, l.lecture_week_day, l.lecture_room, l.lecture_time, l.lecture_end_day, l.lecture_idx "
+		+ "from lecture l join member m on (l.lecture_teacher_code = m.member_teacher_code) "
+		+ "WHERE m.member_id= ? "
+		+ "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() "
+		+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";
+	
+		try {
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1,sId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			rs =pstmt.executeQuery();
+			
+			while(rs.next()) {
+				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs.getInt("lecture_idx"));
+				lb.setLecture_subject(rs.getString("lecture_subject"));
+				lb.setLecture_week_day(rs.getString("lecture_week_day"));
+				lb.setLecture_room(rs.getString("lecture_room"));
+				lb.setLecture_time(rs.getString("lecture_time"));
+				lb.setLecture_end_day(rs.getDate("lecture_end_day"));
+				
+				applyList.add(lb);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectApplyList() 에러" + e.getMessage());
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return applyList;
+	}
+	
+	
+	
+	public int selectListCountTeacher(String sId) {
+		int listCount = 0;
+		
+		String 	sql="SELECT COUNT(*) FROM member m JOIN lecture l ON (m.member_teacher_code = l.lecture_teacher_code) "
+						+ "WHERE m.member_id= ? "
+						+ "AND l.lecture_start_day <=now() AND l.lecture_end_day >=now()";
+	
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount =rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("selectApplyListCount() 에러" + e.getMessage());			
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
+		
+	}
+	public ArrayList<MemberBean> selectApplyMemberList(String lecture_idx){
+		ArrayList<MemberBean> applyMemberList = new ArrayList<MemberBean>();
+		
+		String sql = "SELECT m.member_name, m.member_id, m.member_phone FROM member m JOIN apply a ON (m.member_id =a.apply_member_id)"
+				+ "WHERE a.apply_lecture_idx = ? AND apply_ischeck=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,lecture_idx);
+			pstmt.setString(2, "1");
+			rs =pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberBean mb = new MemberBean();
+				mb.setMember_name(rs.getString("member_name"));
+				mb.setMember_id(rs.getString("member_id"));
+				mb.setMember_phone(rs.getString("member_phone"));
+				applyMemberList.add(mb);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectApplyMemberList() 에러" + e.getMessage());		
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return applyMemberList;
 	}
 	
 	

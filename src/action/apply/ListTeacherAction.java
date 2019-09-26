@@ -8,28 +8,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.apply.ApplyListService;
+import svc.apply.ApplyListTeacherService;
+import svc.apply.ApplyMemberListService;
 import vo.ActionForward;
 import vo.ApplyBean;
 import vo.LectureBean;
 import vo.LecturePageInfo;
 
-public class ApplyListAction implements Action {
+public class ListTeacherAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ApplyListAction");	
+		System.out.println("ListTeacherAction");	
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
-		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
-		String isMember = request.getParameter("isMember");
-		String listType="";
-		if(request.getParameter("listType") != null) {
-			listType = request.getParameter("listType");
-		}
-		
+
 		int page = 1;
 		int limit = 10;
 		
@@ -37,12 +32,11 @@ public class ApplyListAction implements Action {
 			page =Integer.parseInt(request.getParameter("page"));
 		}
 		
-		ApplyListService applyInfoService = new ApplyListService();
+		ApplyListTeacherService infoTeacherService = new ApplyListTeacherService();
 		
-		int listCount = applyInfoService.getApplyListCount(sId,listType);
+		int listCount = infoTeacherService.getListCountTeacher(sId);
 		
-		applyList = applyInfoService.getApplyList(page, limit, sId, listType);
-		applyList2 = applyInfoService.getApplyList2(page, limit, sId, listType);
+		applyList = infoTeacherService.getListTeacher(page, limit, sId);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
@@ -57,10 +51,7 @@ public class ApplyListAction implements Action {
 			LecturePageInfo applyPageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
 			request.setAttribute("applyPageInfo", applyPageInfo);
 			request.setAttribute("applyList", applyList);
-			request.setAttribute("applyList2", applyList2);
-			request.setAttribute("listType", listType);
-			request.setAttribute("isMember", isMember);
-			forward.setPath("apply/applyList.jsp");
+			forward.setPath("apply/ListTeacher.jsp");
 			forward.setRedirect(false);
 		}else {
 			response.setContentType("text/html;charset=utf-8");
