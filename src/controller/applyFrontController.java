@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.apply.ApplyListAction;
 import action.apply.ApplyReviewInsertAction;
+import action.apply.ApplyMemberListAction;
+import action.apply.ListTeacherAction;
 import vo.ActionForward;
 
 @WebServlet("*.al")
@@ -37,6 +39,7 @@ public class applyFrontController extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 	        }else if(command.equals("/reviewInsert.al")) {
 	        	
 	        	action = new ApplyReviewInsertAction();
@@ -47,7 +50,27 @@ public class applyFrontController extends HttpServlet{
 					e.printStackTrace();
 				}
 
-	       }
+	       }else if(command.equals("/InfoTeacher.al")) {
+	        	
+	        	action = new ListTeacherAction();
+	        	
+	        	try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }else if(command.equals("/ApplyMemberList.al")) {
+	        	
+	        	action = new ApplyMemberListAction();
+	        	
+	        	try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
 	       
 
 	       

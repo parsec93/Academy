@@ -3,7 +3,7 @@
 	<%
 	// 세션값 가져 오기 
 	String sId = (String)session.getAttribute("sId");
-	
+	String isMember = request.getParameter("isMember");
 	%>
 <header class="header_area">
 	<div class="main_menu">
@@ -30,7 +30,12 @@
 			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
 		<%}else {%>
 			<li><a class="nav-top-link" href="InfoPro.me"><%=sId %>님</a></li>
-			<li><a class="nav-top-link" href="ApplyInfo.al?listType=all">내 강의실</a></li>
+			<%if(isMember.equals("0")) {%>
+			
+			<li><a class="nav-top-link" href="ApplyInfo.al?listType=all&isMember=<%=isMember%>">내 강의실</a></li>
+			<%}else {%>
+			<li><a class="nav-top-link" href="InfoTeacher.al?isMember=<%=isMember%>">내 강의실</a></li>
+			<% }%>
 			<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
 		<%}%>
 		</ul>

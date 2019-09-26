@@ -40,7 +40,6 @@
   </head>
   <%
   ArrayList<LectureBean> applyList = (ArrayList<LectureBean>)request.getAttribute("applyList");
-  ArrayList<ApplyBean> applyList2 = (ArrayList<ApplyBean>)request.getAttribute("applyList2");
   LecturePageInfo applyPageInfo = (LecturePageInfo)request.getAttribute("applyPageInfo");
   String isMember =(String)request.getAttribute("isMember"); 
  
@@ -50,39 +49,26 @@
   int endPage = applyPageInfo.getEndPage();
   int maxPage = applyPageInfo.getMaxPage();
   
-	String listType = (String)request.getAttribute("listType");
 	Calendar cal =Calendar.getInstance();
 	double day = (double)cal.get(cal.DATE);
 	int progress=0;
+	
+	String Lecture_week_day="";
+
   %>
   
 <!-- 	선택된 select value 값 넘기기 -->
   <script type="text/javascript">
-  
-  	function changePeriod() {
-  		
-  		var langSelect = document.getElementById("period"); 		
-  		var lt = langSelect.options[langSelect.selectedIndex].value
-  		if(lt == "now"){
-  			location.href = "./ApplyInfo.al?listType=now";
-  		}else if(lt == "end"){
-  			location.href = "./ApplyInfo.al?listType=end";
-  		}else if(lt == "all"){
-  			location.href = "./ApplyInfo.al?listType=all";
-  		}
-		
+  	function applyListMember(lecture_idx) {
+		window.open("ApplyMemberList.al?lecture_idx="+lecture_idx,"","width=600,height=550");		
 	}
 
-  	function applyReview() {
-  		var lecture_idx = document.getElementById("lecture_idx").value; 
-  		window.open("./apply/applyReview.jsp?lecture_idx="+lecture_idx ,"","width=800,height=300");	
-	}
   </script>
 
   <body>
     <!--================ Start Header Menu Area =================-->
     <jsp:include page="/header_footer/header.jsp" >
-        	<jsp:param name="isMember" value="<%=isMember %>"/>
+    	<jsp:param name="isMember" value="<%=isMember %>"/>
     </jsp:include>
     <!--================ End Header Menu Area =================-->
 	  
@@ -109,11 +95,7 @@
 	
 	<div class="boardwrap">
 	<h1>수강 목록</h1>
-	<select name = "period" id ="period" onchange="changePeriod()">
-		<option value="all" <%if(listType.equals("all")){ %> selected="selected"<%} %>>전체 수업</option>
-		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
-		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>종료된 수업</option>
-	</select>
+
 <!-- 		<tr> -->
 <!-- 			<td> -->
 <!-- 			<a href="lectureList.le?listType=now">진행중</a></td> -->
@@ -123,27 +105,15 @@
 
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	
-	<%if(listType.equals("end")){%>
-		<colgroup>
-			<col width="5%">
-			<col width="35%">
-			<col width="10%">
-			<col width="10%">
-			<col width="15%">
-			<col width="15%">
-			<col width="10%">
 
-	</colgroup>
-	<%}else{%>
 		<colgroup>
 		<col width="5%">
 		<col width="45%">
-		<col width="10%">
-		<col width="10%">
 		<col width="15%">
 		<col width="15%">
+		<col width="20%">
+
 		</colgroup>
-	<%}%>
 	<%if(applyList.size() == 0) {%>
     <h1><b>작성된 글이 없습니다.</b></h1>
     <%}else{ %>
@@ -151,19 +121,15 @@
 	<tr>
 	<th scope="col">글번호</th>
 	<th scope="col">제목</th>
-	<th scope="col">과목</th>
-	<th scope="col">구매일</th>
-	<th scope="col">시작일</th>
-	<th scope="col">종료일</th>
-	<%if(listType.equals("end")){%>
-		<th scope="col">후기</th>
-	<%}%>
+	<th scope="col">강의실</th>
+	<th scope="col">강의시간</th>
+	<th scope="col">요일</th>
 	</tr>
 	</thead>
     <%
     for(int i =0 ; i<applyList.size(); i++){
 	LectureBean lectureBean = (LectureBean)applyList.get(i);
-	ApplyBean applyBean = (ApplyBean)applyList2.get(i);
+
 	%>	
 	
 	<tbody>
@@ -171,32 +137,28 @@
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
 
-	<a href="#=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %><br>
-	<%if(listType.equals("now")){
-		
-		String[] en = lectureBean.getLecture_end_day().toString().split("-");
+	<a onclick="applyListMember(<%=lectureBean.getLecture_idx()%>)"><%=lectureBean.getLecture_subject() %>
+
+		<% 	String[] en = lectureBean.getLecture_end_day().toString().split("-");
 		progress = (int)(day/Integer.parseInt(en[2])*100);
 	%>
-      <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress><%=progress%>%</a>
-   <%}%>
-
+      <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress><%=progress%>%
+	</a>
 	</td>
-	<td class="name"><%=lectureBean.getLecture_course() %></td>
-	<td class="hit"><%=applyBean.getApply_purchase_date() %></td>
-	<td class="date"><%=lectureBean.getLecture_start_day() %></td>
-	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
-	<%if(listType.equals("end")){
-		if(applyBean.getApply_review() != null){%>
-			<td><input type="text" value="등록완료"></td>
-		<%}else{ %>
-			<td><input type="button" name="review" value="후기등록" onClick="applyReview()"></td>
-			<td><input type="hidden" id="lecture_idx" value="<%=lectureBean.getLecture_idx()%>"></td>
-		<%}
-	}%>
+	<td class="name"><%=lectureBean.getLecture_room() %>강의실</td>
+	<td class="hit"><%=lectureBean.getLecture_time() %></td>
+	 <%if(lectureBean.getLecture_week_day().equals("1")) {
+    		Lecture_week_day =  "월,수,금";
+    }else if(lectureBean.getLecture_week_day().equals("2")){
+    	 		 Lecture_week_day =  "화,목";
+    } %>
+	<td class="date"><%=Lecture_week_day%></td>
 	</tr>
+	
 	<%
 		}
-	} %>
+    }
+	%>
 	
 	<!-- tr이 제목 1줄입니다 보일 list 갯수만큼 li반복합니다.-->
 	</tbody>
@@ -213,21 +175,21 @@
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="ApplyInfo.al?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="InfoTeacher.al?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "ApplyInfo.al?page=<%=i %>&listType=<%=listType%>">[<%=i %>]</a>&nbsp;
+				<a href = "InfoTeacher.al?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="ApplyInfo.al?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="InfoTeacher.al?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %>
 
 

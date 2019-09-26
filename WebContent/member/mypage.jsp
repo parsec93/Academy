@@ -41,6 +41,9 @@ function mySubmit(index) {
 	if (index == 2) {
 	document.neform.action='member/updatePassword.jsp';
 	}
+	if(index == 3){
+		document.neform.action ='member/deleteForm.jsp'; 
+	}
 	document.neform.submit();
 }
 </script>
@@ -106,6 +109,7 @@ function mySubmit(index) {
                <div  id="table_search">
 					<input type='button' value="회원 수정" onClick='mySubmit(1)' class="btn">
 					<input type='button' value="비밀번호 수정" onClick='mySubmit(2)' class="btn">
+					<input type='button' value="탈퇴하기" onClick='mySubmit(3)' class="btn">
                </div>
          
 		</form>	

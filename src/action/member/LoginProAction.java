@@ -21,6 +21,13 @@ public class LoginProAction implements Action {
 		HttpSession session = request.getSession();
 		
 		String sId = (String)session.getAttribute("sId");
+		String id =request.getParameter("idlg");
+		String password = request.getParameter("password");
+		String isMember = request.getParameter("tYN");
+		if(id.equals("admin1234")) {
+			isMember = "2";
+		}
+		System.out.println("isMember"+isMember);
 		
 		if(sId !=null) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -30,17 +37,15 @@ public class LoginProAction implements Action {
 			out.println("location.href='Main.bo'");
 			out.println("</script>");
 		}else {
-			String id =request.getParameter("idlg");
-			String password = request.getParameter("password");
-			System.out.println(id + password);
 			LoginProService memberLoginProService = new LoginProService();
-			boolean isLoginMember = memberLoginProService.isLoginMember(id, password);
+			boolean isLoginMember = memberLoginProService.isLoginMember(id, password,isMember);
 			if(isLoginMember) {
+				forward = new ActionForward();
 				System.out.println("로그인 성공!");
 				session.setAttribute("sId", id);
-				forward = new ActionForward();
+				request.setAttribute("isMember", isMember);
 				forward.setPath("index.jsp");
-				forward.setRedirect(true);
+				forward.setRedirect(false);
 			}else {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
