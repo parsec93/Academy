@@ -29,6 +29,7 @@ public class LectureEnrolmentAction implements Action{
 		List<LectureBean> lectureList =null;
 		
 
+
 		LectureEnrolmentService lectureEnrolmentSesrvice = new LectureEnrolmentService();
 		lectureList= lectureEnrolmentSesrvice.enrolmentLecture(category_subject, category_day, category_time);
 		
