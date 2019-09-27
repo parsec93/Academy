@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.apply.ApplyAttendCheckAction;
 import action.apply.ApplyListAction;
 import action.apply.ApplyReviewInsertAction;
 import action.apply.ApplyMemberListAction;
@@ -63,6 +64,16 @@ public class applyFrontController extends HttpServlet{
 	        }else if(command.equals("/ApplyMemberList.al")) {
 	        	
 	        	action = new ApplyMemberListAction();
+	        	
+	        	try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }else if(command.equals("/ApplyAttendCheck.al")) {
+	        	
+	        	action = new ApplyAttendCheckAction();
 	        	
 	        	try {
 					forward = action.execute(request, response);

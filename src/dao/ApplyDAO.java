@@ -261,7 +261,7 @@ public class ApplyDAO {
 	public ArrayList<MemberBean> selectApplyMemberList(String lecture_idx){
 		ArrayList<MemberBean> applyMemberList = new ArrayList<MemberBean>();
 		
-		String sql = "SELECT m.member_name, m.member_id, m.member_phone FROM member m JOIN apply a ON (m.member_id =a.apply_member_id)"
+		String sql = "SELECT m.member_idx, m.member_name, m.member_id, m.member_phone FROM member m JOIN apply a ON (m.member_id =a.apply_member_id)"
 				+ "WHERE a.apply_lecture_idx = ? AND apply_ischeck=?";
 		
 		try {
@@ -272,6 +272,7 @@ public class ApplyDAO {
 			
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();
+				mb.setMember_idx(rs.getInt("member_idx"));
 				mb.setMember_name(rs.getString("member_name"));
 				mb.setMember_id(rs.getString("member_id"));
 				mb.setMember_phone(rs.getString("member_phone"));
@@ -286,6 +287,10 @@ public class ApplyDAO {
 			close(pstmt);
 		}
 		return applyMemberList;
+	}
+	public int isUpdateAttendcheck(String[] attendMemberArr, String[] attendCheckArr, int lecture_idx) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
