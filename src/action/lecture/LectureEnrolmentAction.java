@@ -44,7 +44,6 @@ public class LectureEnrolmentAction implements Action{
 			int termdays = (int)(term / (24 * 60 * 60 * 1000));
 			obj.put("subject", lb.getLecture_subject());
 			obj.put("course", lb.getLecture_course());
-			obj.put("image", lb.getLecture_image());
 			obj.put("termday", Integer.toString(termdays));
 			obj.put("day", lb.getLecture_week_day());
 			obj.put("time", lb.getLecture_time());
