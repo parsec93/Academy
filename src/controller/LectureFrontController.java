@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -107,7 +108,7 @@ public class LectureFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }else if(command.equals("/lectureEnrolment.le")) {  	
+        }else if(command.equals("/enrolment.le")) {  	
         	action = new LectureEnrolmentAction();
         	try {
 				forward = action.execute(request, response);
@@ -148,6 +149,9 @@ public class LectureFrontController extends HttpServlet {
     }
     
 }
+
+
+
 
 
 
