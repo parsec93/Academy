@@ -17,6 +17,7 @@ import action.member.FindPassAction;
 import action.member.LoginProAction;
 import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
+import action.member.MemberDelete;
 import action.member.MemberJoinProAction;
 import action.member.TeacherDeleteAction;
 import action.member.TeacherListAction;
@@ -158,6 +159,13 @@ public class MemberFrontController extends HttpServlet {
         }else if(command.equals("/find.me")){
         	forward = new ActionForward();
         	forward.setPath("/member/findId_Pass.jsp");
+        }else if(command.equals("/Delete.me")) {
+        	action = new MemberDelete();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
 
         

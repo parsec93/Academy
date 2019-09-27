@@ -33,7 +33,7 @@ String sId = (String)session.getAttribute("sId");
                       <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id" value="<%=sId%>"> 
                       <br>
                       <label for="password">name</label> 
-                      <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your Password"> 
+                      <input type="password" name="pass" id="pass" class="inpt" required="required" placeholder="Your Password"> 
 						
                         <div class="submit-wrap">
                             <input type="submit" value="계정 삭제" class="btn">

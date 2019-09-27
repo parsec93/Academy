@@ -15,8 +15,14 @@ public class LectureBean {
 	private String lecture_time;
 	private String lecture_room;
 	private int lecture_count;
+	private String lecture_image;
 	
-	
+	public String getLecture_image() {
+		return lecture_image;
+	}
+	public void setLecture_image(String lecture_image) {
+		this.lecture_image = lecture_image;
+	}
 	public int getLecture_count() {
 		return lecture_count;
 	}

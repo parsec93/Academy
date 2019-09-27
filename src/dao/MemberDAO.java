@@ -148,6 +148,7 @@ public class MemberDAO {
 	         
 	         if(rs.next()) {
 	            memberBean = new MemberBean();
+	            memberBean.setMember_idx(rs.getInt("member_idx"));
 	            memberBean.setMember_name(rs.getString("member_name"));
 	            memberBean.setMember_id(rs.getString("member_id"));
 	            memberBean.setMember_pass(rs.getString("member_pass"));
@@ -315,6 +316,49 @@ public class MemberDAO {
 		}		   
 		   return pass;
 	   }
+	   
+	   
+	   public boolean isMember(int member_idx, String member_id) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			boolean isMember = false;
+			
+			try {//board_num에 해당하는 게시물의 패스워드를 비교
+				String sql = "select * from member where member_idx=? AND member_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, member_idx);
+				pstmt.setString(2, member_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {//게시물 번호에 해당하는 패스워드가 일치하여 레코드가 검색될 경우
+					isMember=true;
+				}
+			} catch (SQLException e) {
+				System.out.println("isArticleWriter 에러 : " + e.getMessage());
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return isMember;
+		}//
+	   
+		public int deleteMember(String member_id, String member_pass) {
+			PreparedStatement pstmt = null;
+			int deleteCount = 0;
+			try {
+				String sql="DELETE FROM member WHERE member_id=? AND member_pass=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member_id);
+				pstmt.setString(2, member_pass);
+				deleteCount = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("deleteTeacher 에러 : " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			return deleteCount;
+		} //deleteArticle()
+	   
 //------------------------------------------------- Teacher ------------------------------------------------------------	   
 	   
 		public int selectListCount(String member_isMember) {

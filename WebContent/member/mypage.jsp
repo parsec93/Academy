@@ -81,6 +81,7 @@ function mySubmit(index) {
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
 					<td class="fttitle"><label for="notice_subject"><%=memberBean.getMember_name() %></label></td>
 					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" >
+					<input type="hidden" name="member_idx" id="member_idx" class="inpt" value="<%=memberBean.getMember_idx() %>" >
 				</tr>
 				<tr>
 					<td class="ftwrite"><label for="notice_subject">아이디</label></td>

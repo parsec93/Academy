@@ -160,7 +160,6 @@ lecture_fee int(10) not null,
 lecture_time varchar(2) not null,
 lecture_room varchar(10) not null,
 lecture_count int,
-lecture_image varchar(45) ,
 lecture_teacher_code varchar(5) not null
 
 );
