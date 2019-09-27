@@ -34,6 +34,7 @@ public class ApplyMemberListAction implements Action {
 		
 	
 		request.setAttribute("applyMemberList", applyMemberList);
+		request.setAttribute("lecture_idx", lecture_idx);
 
 		if(applyMemberList == null) {
 			response.setContentType("text/html;charset=utf-8");

@@ -261,7 +261,7 @@ public class ApplyDAO {
 	public ArrayList<MemberBean> selectApplyMemberList(String lecture_idx){
 		ArrayList<MemberBean> applyMemberList = new ArrayList<MemberBean>();
 		
-		String sql = "SELECT m.member_name, m.member_id, m.member_phone FROM member m JOIN apply a ON (m.member_id =a.apply_member_id)"
+		String sql = "SELECT m.member_idx, m.member_name, m.member_id, m.member_phone FROM member m JOIN apply a ON (m.member_id =a.apply_member_id)"
 				+ "WHERE a.apply_lecture_idx = ? AND apply_ischeck=?";
 		
 		try {
@@ -272,6 +272,7 @@ public class ApplyDAO {
 			
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();
+				mb.setMember_idx(rs.getInt("member_idx"));
 				mb.setMember_name(rs.getString("member_name"));
 				mb.setMember_id(rs.getString("member_id"));
 				mb.setMember_phone(rs.getString("member_phone"));
@@ -287,6 +288,62 @@ public class ApplyDAO {
 		}
 		return applyMemberList;
 	}
+	public int isUpdateAttendCheck(String[] attendMemberArr, String[] attendCheckArr, int lecture_idx) {
+		
+		int updateCount =0;
+		String[] sumAttend = new String[attendMemberArr.length];
+		String sql = "";
+		String sql2 = "";
+		String sql3 = "";
+
+		try {
+			sql = "select attend_check from attend where attend_member_id= ?"; 
+			pstmt = con.prepareStatement(sql);
+			for(int i = 0; attendMemberArr.length >i; i++ ) {
+				// i번 학생의 아이디를 넣어서
+				pstmt.setString(1, attendMemberArr[i]);
+				// 출석률을 가져온다
+				rs = pstmt.executeQuery();
+				// 출석률을 i번째 배열에 저장한다.
+				if(rs.next()) {
+					sumAttend[i] = rs.getString("attend_check");				
+				}
+			}
+			
+			
+	/*
+	 * update attend set attend_check = attend_check + "/ㅁㅁㅁㅁ" where ;
+	 */
+			
+		for(int i = 0; attendMemberArr.length >i; i++ ) {
+			sql2 += "when attend_member_id=? then ? ";
+			if(i==attendMemberArr.length-1) {
+				sql3 += lecture_idx;
+				break;
+			}
+			sql3 += lecture_idx + ",";
+		}
+		System.out.println(sql2+" , "+sql3);
+		sql ="update attend set attend_check=CASE " 
+				+sql2
+				+"end " 
+				+"where attend_lecture_idx in("
+				+sql3
+				+")";
+			pstmt = con.prepareStatement(sql);
+			for(int i = 0; attendMemberArr.length >i; i++ ) {
+				pstmt.setString((i+1)*2-1, attendMemberArr[i]);
+				pstmt.setString((i+1)*2, sumAttend[i]+ "/" + attendCheckArr[i]);
+			}
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+            close(pstmt);
+        }        
+        return updateCount;
+    }
 	
 	
 

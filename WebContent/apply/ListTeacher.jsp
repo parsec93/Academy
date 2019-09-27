@@ -133,11 +133,11 @@
 	%>	
 	
 	<tbody>
-	<tr>
+	<tr onclick="applyListMember(<%=lectureBean.getLecture_idx()%>)">
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
 
-	<a onclick="applyListMember(<%=lectureBean.getLecture_idx()%>)"><%=lectureBean.getLecture_subject() %>
+	<a ><%=lectureBean.getLecture_subject() %>
 
 		<% 	String[] en = lectureBean.getLecture_end_day().toString().split("-");
 		progress = (int)(day/Integer.parseInt(en[2])*100);
