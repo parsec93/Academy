@@ -6,6 +6,10 @@
 	MemberDAO memberDAO = MemberDAO.getInstance();
 	MemberBean memberBean = (MemberBean) request.getAttribute("teacher");
 	request.setCharacterEncoding("utf-8");
+	
+	
+// 	String id = memberBean.getMember_id();
+// 	String pas = memberBean.getMember_pass();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,24 +29,18 @@
     <link rel="stylesheet" href="css/board.css" />
 
 <script type="text/javascript">
-// function TeacherDelete(){
-// 	if (confirm("해당 계정을 삭제 하겠습니까?")){ 
-// 		document.up.action='techerDelete.jsp';
-// // 		location.href='TeacherList.me';
-// 		}else{ 
-// 		alert("삭제 취소 되었습니다."); 
-// 		return; 
-// 		}	
-// }
+
 </script>
 </head>
 <script>
 function mySubmit(index) {
+
 	if (index == 1) {
 	document.up.action='admin/teacherUpdate.jsp';
 	}
 	if (index == 2) {
-	document.up.action='admin/teacherDelete.jsp';
+<%-- 		window.open("admin/teacherDelete.jsp?member_idx="+<%=memberBean.getMember_idx()%>, "", "width=400,height =300");		 --%>
+		document.up.action='admin/teacherDelete.jsp';
 	}
 	document.up.submit();
 }
@@ -72,8 +70,8 @@ function mySubmit(index) {
 	<div class="boardwrap">
 		<h1>마이페이지</h1>
 		<form name='up' method="post" >
-		<input type="hidden" name="member_idx"  value="<%=memberBean.getMember_idx()%>">
-		<input type="hidden" name="id"  value="<%=memberBean.getMember_id()%>">
+		<input type="hidden" name="member_idx" id="member_idx" value="<%=memberBean.getMember_idx()%>">
+		<input type="hidden" name="id" id="member_id" value="<%=memberBean.getMember_id()%>">
 		<input type="hidden" name="picture"  value="<%=memberBean.getMember_picture()%>">
 			<table id="boardwrite">
 				<tr>
