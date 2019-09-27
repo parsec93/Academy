@@ -190,7 +190,7 @@ public class LectureDAO {
 	}
 	public int lectureInsert(LectureBean lb, int lecture_count) {
 		int isSuccess = 0;
-		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -204,7 +204,7 @@ public class LectureDAO {
 			pstmt.setInt(8, lb.getLecture_fee());
 			pstmt.setString(9, lb.getLecture_time());
 			pstmt.setString(10, lb.getLecture_room());
-			pstmt.setInt(11, lecture_count);
+			pstmt.setInt(11, lecture_count);	
 			isSuccess = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("lectureInsert() 에러" + e.getMessage());
