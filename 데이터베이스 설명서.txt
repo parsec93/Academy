@@ -190,3 +190,13 @@ review_lecture_idx int not null,
 review_content varchar(200) not null
 );
 
+11. 장바구니 테이블 생성
+
+ create table basket (
+ basket_idx int primary key auto_increment,
+ basket_member_id varchar(20) not null,
+ basket_lecture_idx int not null,
+ CONSTRAINT fk_basket_idx FOREIGN KEY (basket_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
+
+ );
+

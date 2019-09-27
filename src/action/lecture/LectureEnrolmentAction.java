@@ -42,6 +42,7 @@ public class LectureEnrolmentAction implements Action{
 			JSONObject obj=new JSONObject();
 			long term = (lb.getLecture_end_day().getTime() - lb.getLecture_start_day().getTime());
 			int termdays = (int)(term / (24 * 60 * 60 * 1000));
+			obj.put("lecture_id", Integer.toString(lb.getLecture_idx()));
 			obj.put("subject", lb.getLecture_subject());
 			obj.put("course", lb.getLecture_course());
 			obj.put("termday", Integer.toString(termdays));

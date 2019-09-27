@@ -288,7 +288,7 @@ public class LectureDAO {
 		System.out.println("데이"+day);
 		System.out.println("타임"+time);
 		System.out.println("코스"+course);
-		sql = "select lecture_subject, lecture_start_day, lecture_end_day, lecture_course, lecture_teacher, lecture_week_day, lecture_time, lecture_fee "
+		sql = "select lecture_idx,lecture_subject, lecture_start_day, lecture_end_day, lecture_course, lecture_teacher, lecture_week_day, lecture_time, lecture_fee "
 		+ "from lecture where lecture_course = ? AND lecture_week_day = ? AND lecture_time = ?"
 		+ "AND lecture_start_day >now() "
 		+ "ORDER BY lecture_idx DESC";
@@ -302,6 +302,7 @@ public class LectureDAO {
 			
 			while(rs.next()) {
 				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs.getInt("lecture_idx"));
 				lb.setLecture_subject(rs.getString("lecture_subject"));
 				lb.setLecture_course(rs.getString("lecture_course"));
 				lb.setLecture_week_day(rs.getString("lecture_week_day"));

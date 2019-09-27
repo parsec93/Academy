@@ -11,7 +11,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <link rel="icon" href="img/favicon.png" type="image/png" />
     <title>수강 신청</title>
     <!-- Bootstrap CSS -->
@@ -50,7 +50,7 @@
 	
 
 <script type="text/javascript" src="https://www.conects.com/js/course/common_player.js"></script>
-
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="//www.conects.com/js/course/online.js"></script>
 
 	<div class="class-combine_lecture-main">
@@ -126,6 +126,8 @@ var app = (function(){
 	var category2_value = 0;
 	var category3_value = 0;
 	
+	
+	
 	// ajax function
 	function _ajax(obj){
 		console.log(obj.type);
@@ -147,13 +149,13 @@ var app = (function(){
 				   $.each(JSON.parse(data)	, function(index, item) {
 						
 					   console.log(item.subject);
-					   console.log(item.course);
-					   console.log(item.image);
+					   console.log(item.course);	
 					   console.log(item.day);
 					   console.log(item.termday);
 					   console.log(item.time);
 					   console.log(item.fee);
 					   console.log(item.teacher);
+					   console.log(item.lecture_id);
 					   var image;
 						   if(item.course=="Java"){
 							  image = "java.png";
@@ -164,10 +166,11 @@ var app = (function(){
 						   }
 
 						$('#lecture_list_area').append(
-								
+								'<div style="display:none;">'+item.lecture_id+'</div>'+
 								'<div class="clearfix lecture-division">'+
 								'<div class="lecture-summary">'+
 								'<p class="summary-title">' +
+									
 									'<strong>'+item.course+'</strong>'+
 
 								'</p>'+
@@ -221,7 +224,7 @@ var app = (function(){
 								'<ul class="summary-order">'+
 									'<li>'+
 										'<div class="summary-order-detail clearfix">'+
-											'<input type="checkbox" class="order-check order-lecture">'+
+											'<input type="checkbox" class="order-check order-lecture" name="cb1" value='+item.lecture_id+'>'+
 											'<label class="label-order">'+
 												'<strong>강좌</strong>'+
 											'</label>'+
@@ -304,17 +307,42 @@ var app = (function(){
 			_ajax({type:'POST', url:'./enrolment.le', data:{category1 : category.category_1st, category2 : category.category_2nd, category3 : category.category_3rd}});
 		}
 	}
+	
+	$("input[name=cb1]").change(function(){
+		  if($("input[name=cb1]").is(":checked")){
+	          alert("체크");
+	      }else{
+	          alert("체크 해제");
+	      }
+
+
+//			console.log("체크");
+//					$("input[name=checkbox1]:checked").each(function(){
+//						var lecture_idx = $(this).val();
+//						console.log(lecture_idx);
+		
+//				});
+	});
+	
 }
 
 	
 )();
 
-$(document).ready(function () {
+$(document).ready(function(){
 	app.init();
 	
+
+
 });
 
+
+
+
 </script>
+
+
+
 
 			<!-- clearfix lecture-title-area -->
 			<div class="clearfix lecture-title-area">
@@ -351,7 +379,7 @@ $(document).ready(function () {
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--     <script src="js/jquery-3.2.1.min.js"></script> -->
     <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>	
     <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
     <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="js/owl-carousel-thumb.min.js"></script>
