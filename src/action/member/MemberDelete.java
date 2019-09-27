@@ -46,13 +46,21 @@ public class MemberDelete implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			}else {
+//				forward = new ActionForward();
 		session.invalidate(); //세션값 저장된거 없애기!
-		forward = new ActionForward();
-		forward.setPath("/Academy/index.jsp");
-		forward.setRedirect(true);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('회원탈퇴 되었습니다.')");		//안내창 띄우고
+		out.println("opener.location.href='/Academy/index.jsp'"); //부모창(마이페이지) => 메인으로 이동
+		out.println("window.close()"); //deleteForm 닫기 
+		out.println("</script>");
+//
+//		forward.setPath("/Academy/index.jsp");
+//		forward.setRedirect(true);
 			}	
 		}
-		return forward;	
+		return null;	
 	}
 
 }

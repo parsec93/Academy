@@ -9,25 +9,23 @@
     content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="icon" href="../img/favicon.png" type="image/png" />
 <title>login</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/bootstrap.css" />
-<link rel="stylesheet" href="../css/flaticon.css" />
-<link rel="stylesheet" href="../css/themify-icons.css" />
-<link rel="stylesheet" href="../vendors/owl-carousel/owl.carousel.min.css" />
-<link rel="stylesheet" href="../vendors/nice-select/css/nice-select.css" />
-<!-- main css -->
-<link rel="stylesheet" href="../css/login.css" />
-<link rel="stylesheet" href="../css/style.css" />
-</head>	
-<body>
+
 <%
 request.setCharacterEncoding("utf-8");
 String member_idx=request.getParameter("member_idx");
 String sId = (String)session.getAttribute("sId");
 %>
+</head>	
+<script type="text/javascript">
+function back(){
+	window.close();
+}
+</script>
+<body>
+
     <!--================ Start Login Area =================-->
 
-            <a href="index.jsp">회원 탈퇴</a>
+            <h1>회원 탈퇴하시겠습니까?</h1>
                     <form action="../Delete.me?member_idx=<%=member_idx %>" method="post" >
                       <label for="id">id</label> 
                       <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id" value="<%=sId%>"> 
@@ -37,7 +35,7 @@ String sId = (String)session.getAttribute("sId");
 						
                         <div class="submit-wrap">
                             <input type="submit" value="계정 삭제" class="btn">
-                            <input type="button" value="취소" onclick="history.back()" class="btn"> 
+                            <input type="button" value="취소" onclick="back()" class="btn"> 
 
                         </div>
                     </form>
