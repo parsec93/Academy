@@ -11,7 +11,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!--     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
     <link rel="icon" href="img/favicon.png" type="image/png" />
     <title>수강 신청</title>
     <!-- Bootstrap CSS -->
@@ -143,11 +143,15 @@ var app = (function(){
 			success : function(data){
 				   console.log("석세스");
 				   console.log(data);
-
+				   var i = 1;
 				   
 				   $('#lecture_list_area').empty();
+				   if(data=="[]"){
+					   $('#lecture_list_area').append("해당되는 강의가 없습니다");
+				   } else{
 				   $.each(JSON.parse(data)	, function(index, item) {
 						
+					   
 					   console.log(item.subject);
 					   console.log(item.course);	
 					   console.log(item.day);
@@ -165,6 +169,7 @@ var app = (function(){
 							   image = "oracle.png";
 						   }
 
+					
 						$('#lecture_list_area').append(
 								'<div style="display:none;">'+item.lecture_id+'</div>'+
 								'<div class="clearfix lecture-division">'+
@@ -224,7 +229,8 @@ var app = (function(){
 								'<ul class="summary-order">'+
 									'<li>'+
 										'<div class="summary-order-detail clearfix">'+
-											'<input type="checkbox" class="order-check order-lecture" name="cb1" value='+item.lecture_id+'>'+
+											'<input type="checkbox" class="check_lecture" name="ckb" value='+item.lecture_id+'>'+
+											
 											'<label class="label-order">'+
 												'<strong>강좌</strong>'+
 											'</label>'+
@@ -245,22 +251,28 @@ var app = (function(){
 							'</div>'+
 
 						'</div>'
-						
 						);
-
+						
+						
+						
 	                });
-				
-				
+						
+						$('#lecture_list_area').append('<input type="button" id="btn_basket" value="장바구니" onclick="fnGetdata();">');
+						
+				   }
+	
+				   
 			},error : function(){
 
 				alert('오류가 발생하였습니다.');
 
 			}
+			
+			
            	 });
 		
 		  
-     
-
+	
 	}
 	
 	
@@ -308,40 +320,84 @@ var app = (function(){
 		}
 	}
 	
-	$("input[name=cb1]").change(function(){
-		  if($("input[name=cb1]").is(":checked")){
-	          alert("체크");
-	      }else{
-	          alert("체크 해제");
-	      }
 
-
-//			console.log("체크");
-//					$("input[name=checkbox1]:checked").each(function(){
-//						var lecture_idx = $(this).val();
-//						console.log(lecture_idx);
-		
-//				});
-	});
 	
 }
 
 	
 )();
 
+
+
+
+
 $(document).ready(function(){
 	app.init();
+	
+// 	$("input[name=cb1]").change(function(){
+// 		  if($("input[name=cb1]").is(":checked")){
+// 	          alert("체크");
+// 	      }else{
+// 	          alert("체크 해제");
+// 	      }
+
+
+// 			console.log("체크");
+// 					$("input[name=checkbox1]:checked").each(function(){
+// 						var lecture_idx = $(this).val();
+// 						console.log(lecture_idx);
+		
+// 				});
+// 	});
+	
 	
 
 
 });
+
+function fnGetdata(){
+    var chkArray = new Array(); // 배열 선언
+
+    $('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+        chkArray.push(this.value);
+    });
+    $('#hiddenValue').val(chkArray);
+    
+    alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+    jQuery.ajaxSettings.traditional = true;
+
+    
+    $.ajax({
+		type : 'POST',
+		url  : 'basket.me',
+		data : {
+		'chkArray':	chkArray
+			},
+			
+		 success: function() {
+			 alert('장바구니에 추가되었습니다.');    	
+		 },
+		 error: function() {
+					
+			 alert('오류가 발생하였습니다.');
+		 }
+
+
+    });
+    
+}
+
 
 
 
 
 </script>
 
+<form>
 
+
+
+</form>
 
 
 			<!-- clearfix lecture-title-area -->
@@ -361,7 +417,10 @@ $(document).ready(function(){
 			
 			
 			</div>
+			
+			<input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
 		</div>
+		
 		
 		<!-- // Search Filter end -->
     </div>

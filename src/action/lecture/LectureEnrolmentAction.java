@@ -33,7 +33,7 @@ public class LectureEnrolmentAction implements Action{
 		LectureEnrolmentService lectureEnrolmentSesrvice = new LectureEnrolmentService();
 		lectureList= lectureEnrolmentSesrvice.enrolmentLecture(category_subject, category_day, category_time);
 		
-
+		
 		System.out.println(lectureList.size());
 		JSONArray arr=new JSONArray();
 		
