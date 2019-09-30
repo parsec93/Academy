@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.board.BoardViewAction;
+import action.member.MemberBasketAction;
 import action.member.FindIdAction;
 import action.member.FindPassAction;
 import action.member.LoginProAction;
@@ -148,7 +150,15 @@ public class MemberFrontController extends HttpServlet {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
+        }else if(command.equals("/basket.me")) {
+	        action = new MemberBasketAction();
+	        try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    
         }else if(command.equals("/FindPass.me")) {
         	action = new FindPassAction();
         	try {
