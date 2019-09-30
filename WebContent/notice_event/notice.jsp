@@ -77,13 +77,6 @@ String search =request.getParameter("search");
           </div>
         </div>
     </section>
-    <!--================End Home Banner Area =================-->
-<!-- 	 <div class="popular_courses section_gap_top"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row justify-content-center"> -->
-<!--           <div class="col-lg-5"> -->
-<!--             <div class="main_title"> -->
-<!--               <h2 class="mb-3"> -->
 	<!-- 리스트 공지사항 시작-->
 	<div class="boardwrap">
 	<h1>	공지사항</h1>

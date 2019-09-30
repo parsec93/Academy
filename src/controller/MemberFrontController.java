@@ -21,6 +21,7 @@ import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
 import action.member.MemberDelete;
 import action.member.MemberJoinProAction;
+import action.member.MemberListAction;
 import action.member.TeacherDeleteAction;
 import action.member.TeacherListAction;
 import action.member.TeacherViewAction;
@@ -142,8 +143,13 @@ public class MemberFrontController extends HttpServlet {
         	forward = new ActionForward();
         	forward.setPath("/admin/teacherUpdate.jsp");
         }else if(command.equals("/Member.me")) {
-        	forward = new ActionForward();
-        	forward.setPath("/admin/memberList.jsp");
+        	System.out.println("member.me FrontController");
+        	action = new MemberListAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }else if(command.equals("/FindId.me")) {
         action = new FindIdAction();
         try {

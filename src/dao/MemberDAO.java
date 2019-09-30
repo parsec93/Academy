@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import static db.JdbcUtil.*;
 
 import vo.BoardBean;
@@ -517,5 +519,73 @@ public class MemberDAO {
 			return deleteCount;
 		} //deleteArticle()
 	   
+		
+		
+		// 회원 목록 출력
+		public ArrayList<MemberBean> selectMemberList(int page, int limit){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			ArrayList<MemberBean> memberList = new ArrayList<MemberBean>();
+			String sql="";
+			
+			try {
+				int startRow = (page -1) * 10; // 읽어올 목록의 첫 레코드 번호 
+				sql = "SELECT * FROM MEMBER ORDER BY member_idx DESC LIMIT ?,?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, limit);
+				
+				rs = pstmt.executeQuery();
+				
+				// ResultSet 객체 내의 모든 레코드를 각각 레코드별로 MemberBean 에 담아서 ArrayList 객체에 저장
+				while(rs.next()) {
+					MemberBean memberBean = new MemberBean();
+					
+					memberBean.setMember_idx(rs.getInt("member_idx"));
+					memberBean.setMember_name(rs.getString("member_name"));
+					memberBean.setMember_id(rs.getString("member_id"));
+					memberBean.setMember_phone(rs.getString("member_phone"));
+					memberBean.setMember_email(rs.getString("member_email"));
+					
+				}
+			} catch (Exception e) {
+				System.out.println("selectMemberList() 에러"+e.getMessage());
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return memberList;
+		}
 	
+		
+		
+		
+		//전체 회원 수를 조회하여 리턴 
+		public int selectMembertListCount() {
+			int listCount = 0; // 회원 수를 저장하는 변수 
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql="";
+			
+			try {
+				sql = "SELECT COUNT(*) FROM member";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					listCount =  rs.getInt(1);
+				}
+			} catch (Exception e) {
+				System.out.println("selectMemberListCount() 에러"+e.getMessage());
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return listCount;
+		}
+		
+		
 }
