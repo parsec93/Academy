@@ -80,28 +80,45 @@ public class NoticeDAO {
 	
 	
 	//Notice(공지사항) 게시판 출력 
-	public ArrayList<NoticeBean> selectNoticeList(int page, int limit, int nt_ev){
+	public ArrayList<NoticeBean> selectNoticeList(int page, int limit, int nt_ev, String search){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		ArrayList<NoticeBean> noticeList = new ArrayList<NoticeBean>();
 		String sql="";
-		int startRow = (page -1 ) * 10; // 읽어올 목록의 첫 레코드 번호
-		if(nt_ev == 1) {
-			sql = "SELECT * FROM notice where isNotice=1 ORDER BY notice_idx DESC  LIMIT ?,? ";
-		}else if(nt_ev ==2) {
-			sql = "SELECT * FROM notice where isNotice=2 ORDER BY notice_idx DESC  LIMIT ?,? ";
-		}else {
-			sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
-		}
+
 		
 		try {
-			//String sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
-			//전체 게시판 목록 조회
-			
+			int startRow = (page -1 ) * 10; // 읽어올 목록의 첫 레코드 번호
+			if(search ==null) {
+			if(nt_ev == 1) {
+				sql = "SELECT * FROM notice where isNotice=1 ORDER BY notice_idx DESC  LIMIT ?,? ";
+			}else if(nt_ev ==2) {
+				sql = "SELECT * FROM notice where isNotice=2 ORDER BY notice_idx DESC  LIMIT ?,? ";
+			}else {
+				sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
+			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
+			}else {
+				if(nt_ev == 1) {
+					sql = "SELECT * FROM notice WHERE isNotice=1 AND notice_subject LIKE ? ORDER BY notice_idx DESC  LIMIT ?,? ";
+				}else if(nt_ev ==2) {
+					sql = "SELECT * FROM notice WHERE isNotice=2 AND notice_subject LIKE ? ORDER BY notice_idx DESC  LIMIT ?,? ";
+				}else {
+					sql = "SELECT * FROM notice WHERE notice_subject LIKE ? ORDER BY notice_idx DESC  LIMIT ?,? ";
+				}
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, limit);
+
+			}
+			//String sql = "SELECT * FROM notice ORDER BY notice_idx DESC  LIMIT ?,? ";
+			//전체 게시판 목록 조회
+			
+
 			rs = pstmt.executeQuery();
 			
 			//ResultSet 객체 내의 모든 레코드를 각각 레코드별로 NoticeBean 에 담아서 ArrayList 객체에 저장 
@@ -126,23 +143,35 @@ public class NoticeDAO {
 	}
 	
 	// 전체 게시물 수를 조회하여 리턴 
-	public int selectNoticeListCount(int isNotice) {
+	public int selectNoticeListCount(int isNotice, String search) {
 		int listCount = 0; // 게시물 개수를 저장하느니 변수 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql="";
-		if(isNotice == 1) {
-			sql = "SELECT COUNT(*) FROM notice where isNotice=1";
-		}else if(isNotice ==2) {
-			sql = "SELECT COUNT(*) FROM notice where isNotice=2";
-		}else {
-			sql = "SELECT COUNT(*) FROM notice";
-		}
-		
+System.out.println(search);
 		try {
+			if(search == null) {
+				if(isNotice == 1) {
+					sql = "SELECT COUNT(*) FROM notice WHERE isNotice=1";
+				}else if(isNotice ==2) {
+					sql = "SELECT COUNT(*) FROM notice where isNotice=2";
+				}else {
+					sql = "SELECT COUNT(*) FROM notice";
+				}
+				pstmt = con.prepareStatement(sql);
+			}else {
+				if(isNotice == 1) {
+					sql = "SELECT COUNT(*) FROM notice WHERE isNotice=1 AND notice_subject LIKE ?";
+				}else if(isNotice ==2) {
+					sql = "SELECT COUNT(*) FROM notice WHERE isNotice=2 AND notice_subject LIKE ?";
+				}else {
+					sql = "SELECT COUNT(*) FROM notice WHERE notice_subject LIKE ?";
+				}
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+search+"%");
+			}
 
-			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

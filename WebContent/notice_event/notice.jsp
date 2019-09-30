@@ -1,3 +1,4 @@
+
 <%@page import="vo.NoticePageInfo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.NoticeBean"%>
@@ -53,6 +54,8 @@ String nt_ev = (String)request.getAttribute("nt_ev");
 if(nt_ev == null){
 	nt_ev="0";
 }
+
+String search =request.getParameter("search");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -85,7 +88,7 @@ if(nt_ev == null){
 	<div class="boardwrap">
 	<h1>	공지사항</h1>
 	<div>
- 	<form action="notice.no" name="fr" method="get" onchange="ne(nt_ev.value)"> 
+ 	<form action="notice.no?nt_ev=<%=request.getAttribute("isNotice")%>" name="fr" method="get" onchange="ne(nt_ev.value)"> 
 	<select name = "nt_ev">
 	<option value = "0" <%if(nt_ev.equals("0")){ %> selected="selected"<%} %>>[전체보기]</option>
 	<option value = "1" <%if(nt_ev.equals("1")){ %> selected="selected"<%} %>>[공지사항]</option>
@@ -147,27 +150,39 @@ if(nt_ev == null){
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="notice.no?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="notice.no?page=<%=nowPage -1 %>&nt_ev=<%=request.getAttribute("isNotice")%>&search=<%=search%>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
-			<%} else { %>
-
-				<a href = "notice.no?page=<%=i %>&nt_ev=<%=request.getAttribute("isNotice")%>">[<%=i %>]</a>&nbsp;
+			<%} else { 
+   					if(search != null){  %>
+					<a href = "notice.no?page=<%=i %>&nt_ev=<%=request.getAttribute("isNotice")%>&search=<%=search%>">[<%=i %>]</a>&nbsp;
+ 					<%}else{%> 
+ 					<a href = "notice.no?page=<%=i %>&nt_ev=<%=request.getAttribute("isNotice")%>">[<%=i %>]</a>&nbsp;
+ 					<%} %> 
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<a href="notice.no?page=<%=nowPage +1 %>&nt_ev=<%=request.getAttribute("isNotice")%>&search=<%=search%>"> &nbsp;[다음]</a>
 		<%} %>
 
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>
+                    
+   <div id="table_search" style="float: right;">
+	<form action="notice.no" method="post" name="fr2">
+	<input type="text" name="search" class="input_box"  <%if(search != null){%>value="<%=search %>" <%} %>>
+	<input type="hidden" name="nt_ev" value="<%=nt_ev %>">
+	<input type="submit" value="search" class="btn">
+	</form>
+	</div>
+                    
                       </div>
  
    

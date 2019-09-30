@@ -21,6 +21,7 @@ public class NoticeListAction implements Action {
 		System.out.println("NoticeListAction");
 		
 		String  nt_ev = request.getParameter("nt_ev");
+		String search = request.getParameter("search");
 		System.out.println(nt_ev);
 		int isNotice = 0;
 		
@@ -41,13 +42,13 @@ public class NoticeListAction implements Action {
 		int listCount =0;
 		
 		if(nt_ev == null || nt_ev.equals("0")) {
-		listCount = noticeListService.getNoticeListCount(isNotice); // 전체 게시물 수 가져오기 
+		listCount = noticeListService.getNoticeListCount(isNotice,search); // 전체 게시물 수 가져오기 
 		}else if(nt_ev.equals("1")){
 			isNotice = 1;
-			listCount = noticeListService.getNoticeListCount(isNotice); // 전체 게시물 수 가져오기 
+			listCount = noticeListService.getNoticeListCount(isNotice,search); // 전체 게시물 수 가져오기 
 		}else{
 			isNotice = 2;
-			listCount = noticeListService.getNoticeListCount(isNotice); // 전체 게시물 수 가져오기 
+			listCount = noticeListService.getNoticeListCount(isNotice,search); // 전체 게시물 수 가져오기 
 		}
 		
 		
@@ -77,17 +78,17 @@ public class NoticeListAction implements Action {
 
 		if(nt_ev == null || nt_ev.equals("0")) {
 			isNotice = 0;
-			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice,search); //전체 게시물 목록 가져오기 (10개 한정)	
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("isNotice", isNotice);
 		}else if(nt_ev.equals("1")){
 			isNotice = 1;
-			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice,search); //전체 게시물 목록 가져오기 (10개 한정)	
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("isNotice", isNotice);
 		}else{
 			isNotice = 2;
-			noticeList = noticeListService.getNoticeList(page, limit, isNotice); //전체 게시물 목록 가져오기 (10개 한정)	
+			noticeList = noticeListService.getNoticeList(page, limit, isNotice,search); //전체 게시물 목록 가져오기 (10개 한정)	
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("isNotice", isNotice);
 		}
@@ -103,6 +104,7 @@ public class NoticeListAction implements Action {
 		}else {
 			System.out.println("공지사항 조회 성공");
 			request.setAttribute("nt_ev", nt_ev);
+			request.setAttribute("search", search);
 			forward.setPath("notice_event/notice.jsp");
 			forward.setRedirect(false);
 		}

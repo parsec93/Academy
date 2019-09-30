@@ -330,7 +330,9 @@ function joinCheck() {
                         <input type="text" name="email1" id="email1" class="inpt_04" required="required" placeholder="Your email">
                         <p class="emailtext">@</p>
                         
-                       <select name="email2" id="email2" class="inpt_05"  >
+                       <select name="email2" id="email2" class="inpt_05" 
+                       style="  font-size: 14px;  display: block;  width: 55%;  float:right;  height: 42px;  color: #999999;
+	  border: 1px solid #d9d9d9;  background: transparent;  -moz-border-radius: 2px;  -webkit-border-radius: 2px;  border-radius: 2px;" >
              			<option value="0">선택하세요.</option>
              			<option value="naver.com">naver.com</option> <option value="daum.net">daum.net</option>
              			<option value="gmail.com">gmail.com</option> <option value="nate.com">nate.com</option> 

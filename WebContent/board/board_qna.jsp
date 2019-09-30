@@ -45,7 +45,7 @@ String board_id = (String)request.getAttribute("board_id");
 String board_sid = (String)session.getAttribute("sId");
 System.out.println(board_id);
 
-
+String search =request.getParameter("search");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -71,7 +71,8 @@ System.out.println(board_id);
       </div>
     </section>
     <!--================End Home Banner Area =================-->
-	 <div class="boardwrap">
+	 <div class="boardwrap">	
+	  <h1>Q&A게시판</h1>
     <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
@@ -131,28 +132,38 @@ System.out.println(board_id);
 		<%if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
 		<%} else { %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>&search=<%=search%>">[이전]</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "<%=board_id%>board.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<a href = "<%=board_id%>board.bo?page=<%=i %>&search=<%=search%>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
 		<%} else {  %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
-		<%} %><br><br>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>&search=<%=search%>"> &nbsp;[다음]</a>
+		<%} %>
 		<%if(sId!=null){ %>
+		<br>
+		
 			<div id="table_search">
 		<input type="button" value="글쓰기" class="btn" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=sId%>'" style="float:right;"/>
 		</div>
 		<%} %>
 	</section>
+
+	<div id="table_search" style="float: right;">
+	<form action="qnaboard.bo" method="get">
+	<input type="text" name="search" class="input_box"  <%if(search != null){%>value="<%=search %>" <%} %>>
+	<input type="submit" value="search" class="btn">
+	</form>
+	</div>
+
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>

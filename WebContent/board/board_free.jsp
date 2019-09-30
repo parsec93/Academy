@@ -44,7 +44,7 @@ request.setCharacterEncoding("UTF-8");
 String board_id = (String)request.getAttribute("board_id");
 String board_sid = (String)session.getAttribute("sId");
 
-
+String search =request.getParameter("search");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -131,24 +131,28 @@ String board_sid = (String)session.getAttribute("sId");
 	<section id="articleList">
 
 		<%if(nowPage <= 1 ) { %>
-		<p class="pagetext">이전</p>
+<!-- 		<p class="pagetext">이전</p> -->
+			[이전]&nbsp;
 		<%} else { %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">이전</a>&nbsp;
+			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>&search=<%=search%>">이전</a>&nbsp;
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
-			<p class="pagetext"><%=i %></p>
+<%-- 			<p class="pagetext"><%=i %></p> --%>
+				[<%=i %>]
+
 			<%} else { %>
-				<a href = "<%=board_id%>board.bo?page=<%=i %>"><%=i %></a>&nbsp;
+				<a href = "<%=board_id%>board.bo?page=<%=i %>&search=<%=search%>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
-		<p class="pagetext">다음</p>
+					&nbsp;[다음]
+<!-- 		<p class="pagetext">다음</p> -->
 		<%} else {  %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;다음</a>
-		<%} %><br><br>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>&search=<%=search%>"> &nbsp;다음</a>
+		<%} %><br>
 		
 	</section>
 	
@@ -158,6 +162,12 @@ String board_sid = (String)session.getAttribute("sId");
 		</div>
 		<%} %>
 		
+	<div id="table_search" style="float: right;">
+	<form action="freeboard.bo" method="get">
+	<input type="text" name="search" class="input_box"  <%if(search != null){%>value="<%=search %>" <%} %>>
+	<input type="submit" value="search" class="btn">
+	</form>
+	</div>
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>

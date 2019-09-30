@@ -59,6 +59,7 @@ public class BoardFrontController extends HttpServlet {
         	String board_id = "free";
             request.setAttribute("board_id", board_id);
             request.setAttribute("board_num", 0);
+            request.setAttribute("search", request.getParameter("search"));
         	action = new BoardListAction();
             
             try {
@@ -70,6 +71,7 @@ public class BoardFrontController extends HttpServlet {
         	String board_id = "qna";
             request.setAttribute("board_id", board_id);
             request.setAttribute("board_num", 0);
+            request.setAttribute("search", request.getParameter("search"));
             action = new BoardListAction();
             
             try {
