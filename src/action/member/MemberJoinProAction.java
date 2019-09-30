@@ -56,21 +56,24 @@ public class MemberJoinProAction implements Action{
 		mb.setMember_add1(multi.getParameter("add1"));
 		System.out.println(multi.getParameter("add1"));
 		mb.setMember_add2(multi.getParameter("add2"));
-//		mb.setMember_add1("busan");
-//		mb.setMember_add2("busan");
+
 
 		mb.setMember_phone(multi.getParameter("phone"));
 
 		mb.setMember_bank(multi.getParameter("bank"));
 		mb.setMember_accno(multi.getParameter("accno"));
 		
+		System.out.println(multi.getParameter("member_teacher_code"));
 		if(multi.getParameter("member_isMember").equals("1")) {
 		mb.setMember_picture(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
+		mb.setMember_teacher_code(multi.getParameter("member_teacher_code")); ///
+
 		}else {
 			mb.setMember_picture("");
+//			mb.setMember_teacher_code("");
 		}
 		mb.setMember_isMember(multi.getParameter("member_isMember"));
-		mb.setMember_teacher_code("45");
+
 		System.out.println(multi.getParameter("name"));
 		
 		MemberJoinProService memberJoinProService = new MemberJoinProService();

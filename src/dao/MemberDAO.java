@@ -72,7 +72,7 @@ public class MemberDAO {
 				pstmt.setString(11, mb.getMember_accno());
 				pstmt.setString(12, mb.getMember_picture());
 				pstmt.setString(13, mb.getMember_isMember());
-				pstmt.setString(14, "1");
+				pstmt.setString(14, mb.getMember_teacher_code());
 				
 			}
 			

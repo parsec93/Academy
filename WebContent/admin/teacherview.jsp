@@ -74,7 +74,7 @@ function mySubmit(index) {
 		<input type="hidden" name="id" id="member_id" value="<%=memberBean.getMember_id()%>">
 		<input type="hidden" name="picture"  value="<%=memberBean.getMember_picture()%>">
 			<table id="boardwrite">
-				<tr>
+				<tr>	
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
 					<td class="fttitle"><label for="notice_subject"><%=memberBean.getMember_name() %></label></td>
 					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" >
@@ -142,7 +142,37 @@ function mySubmit(index) {
 					<input type="hidden" name="bank" id="bank" class="inpt_02" value="<%=memberBean.getMember_bank() %>" required="required" placeholder="은행">
 					<input type="hidden" name="accno" id="accno" class="inpt" value="<%=memberBean.getMember_accno()%>" required="required" placeholder="계좌번호">
 				</tr>
-
+				<tr><td class="ftwrite"><label for="notice_subject">담당과목<br>(직원구분)</label></td>
+									<% String code = "";
+					switch(memberBean.getMember_teacher_code().substring(0, 2)){
+					case "j_" : 
+						code = "JAVA"; 
+						break;
+					case "s_" : 
+						code = "JSP"; 
+						break;
+					case "o_" : 
+						code = "Oracle"; 
+						break;
+					case "w_" : 
+						code = "WEB"; 
+						break;
+					case "n_" : 
+						code = "Network"; 
+						break;
+					case "l_" : 
+						code= "기타(외부강사/직업 등)"; 
+						break;
+					case "e_" : 
+						code = "기타(일반직원)"; 
+						break;	
+					default : 
+						code = "직원구분을 입력하세요.";
+					}%>
+					<td class="fttitle"><label for="notice_subject"><%=code %> &nbsp;(
+					<%=memberBean.getMember_teacher_code() %> )</label></td>
+					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_teacher_code() %>" >
+					</tr>
 			</table>
                <div  id="table_search">
               		<input type="button" value="계정 수정" class="btn" onClick='mySubmit(1)'>

@@ -148,7 +148,9 @@ System.out.println(board_id);
 			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
 		<%} %><br><br>
 		<%if(sId!=null){ %>
-		<input type="button" value="글쓰기" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=sId%>'" style="float:right;"/>
+			<div id="table_search">
+		<input type="button" value="글쓰기" class="btn" onclick="location='BoardWriteForm.bo?board_id=<%=board_id%>&board_sid=<%=sId%>'" style="float:right;"/>
+		</div>
 		<%} %>
 	</section>
 

@@ -114,7 +114,8 @@ $(function() {
 			</table>
 			<div id="table_search">
 				<input type="submit" value="등록" class="btn"/>&nbsp;&nbsp;
-				<input type="reset" value="다시쓰기" class="btn"/>
+				<input type="reset" value="다시쓰기" class="btn"/>&nbsp;&nbsp;
+				<input type="button" value="공지사항 목록" class="btn" onclick="location.href='notice.no'"/>
 			</div>
 		</form>	
 	</div>

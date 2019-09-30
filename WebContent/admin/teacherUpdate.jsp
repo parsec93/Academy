@@ -1,9 +1,12 @@
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="vo.MemberBean"%>
-    <%
-    request.setCharacterEncoding("utf-8");
-    String sId = (String)session.getAttribute("sId");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%
+ request.setCharacterEncoding("utf-8");
+String sId = (String)session.getAttribute("sId");
 String jumin = request.getParameter("jumin");
 String jumin1 = jumin.substring(0,6);
 String jumin2 = jumin.substring(6);
@@ -12,17 +15,11 @@ String email =request.getParameter("email");
 String[] arrayEamil = email.split("@");
 
 String opicture = request.getParameter("picture");
-
-    %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+%>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta   name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" href="img/favicon.png" type="image/png" />
 <title>Teacher 수정</title>
     <!-- Bootstrap CSS -->
@@ -32,11 +29,12 @@ String opicture = request.getParameter("picture");
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- login css -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- board css -->
-    <link rel="stylesheet" href="css/board.css" />
+<link rel="stylesheet" href="../css/login.css" />
+<link rel="stylesheet" href="../css/style.css" />
 </head>
-<script src="../js/jquery-3.4.1.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
+<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 function passCheck(val){
 	pass2 = document.up.password_more.value;   
@@ -108,17 +106,15 @@ function joinCheck() {
     
     <div class="login_container">
         <article class="half">
-            <a href="index.jsp">컴퓨터 학원</a>
+            <a href="../index.jsp">컴퓨터 학원</a>
             <div class="tabs">
-                <span class="tab signin active"><a href="#signin">교사계정생성</a></span>
-<!--                 <span class="tab signup active"><a href="#signup">Sign up</a></span> -->
+                <span class="tab signin active">교사계정수정</span>
             </div>
             <div class="content">
                 <div class="signin-cont cont">
                     <form action="../UpdatePro.me?member_idx=<%=request.getParameter("member_idx")%>" method="post" name="up" method="post" enctype="multipart/form-data" >
                   		<input type="hidden" name="member_isMember" value="1"/>
                   		<input type="hidden" name="opicture" value="<%=opicture%>"/>
-<%--                         <input type="hidden" name="member_idx" value="<%//=request.getParameter("member_idx")%>"> --%>
                         
                         <input type="text" name="name" id="name" class="inpt" value="<%=request.getParameter("name") %>" required="required" placeholder="Your name"> 
                         
@@ -151,8 +147,7 @@ function joinCheck() {
                         <label for="address_more">상세주소2</label>
                     
                         <label for="name">Your phone</label>
-                        <input type="text" name="phone" id="phone" class="inpt" value="<%=request.getParameter("phone") %>" required="required" placeholder="휴대폰 번호"> 
-             
+                        <input type="text" name="phone" id="phone" class="inpt" value="<%=request.getParameter("phone") %>" required="required" placeholder="휴대폰 번호">   
              			<div>
              			<select style="float: left;"name="bank" id="bank" >
              			<option value="0" <%if(request.getParameter("bank").equals("0")){%> selected="selected"<%} %>>은행명</option>
@@ -172,12 +167,8 @@ function joinCheck() {
              				
                         <div class="submit-wrap">
                             <input type="submit" value="수정 완료" class="submit"> 
-                            <a href="#" class="more">Terms and conditions</a>
                         </div>
                     </form>
-                </div>
-                <div class="signup-cont cont">
-
                 </div>
             </div>
         </article>

@@ -71,8 +71,10 @@
 	</tr>
 	</table>
 	<div id="table_search">
+
 	<input type="submit" value="글쓰기" class="btn">&nbsp;&nbsp;
-	<input type="reset" value="다시쓰기" class="btn"/>
+	<input type="reset" value="다시쓰기" class="btn"/>&nbsp;&nbsp;
+	<input type="button" value="글목록" class="btn" onclick="location.href='qnaboard.bo'">
 	</div>
 	</form>	
 	</div>
