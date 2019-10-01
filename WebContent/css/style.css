@@ -2925,7 +2925,9 @@ h6 {
 
 .default-select {
   height: 40px; }
-
+.nice-select{
+	margin-bottom:20px;
+} 
 .default-select .nice-select {
   border: none;
   border-radius: 0px;

@@ -110,15 +110,15 @@
     </section>
     <!--================ End Feature Area =================-->
 
-    <!--================ Start Popular Courses Area =================-->
-    <div class="popular_courses">
+<!--================ Start Popular Courses Area =================-->
+    <div class="popular_courses section_gap_top">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">수강신청</h2>
+              <h2 class="mb-3">9월 개강 임박 수업</h2>
               <p>
-                
+                해당 강의를 누르시면 자세한 정보를 확인할 수 있습니다.
               </p>
             </div>
           </div>
@@ -129,18 +129,18 @@
             <div class="owl-carousel active_course">
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c1.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c1.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">JAVA</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">자바,빅데이터 전문가 양성</a>
+                    <a href="course_java.jsp">자바 프로그래밍 언어 활용</a>
                   </h4>
                   <p>
-                    Front-end, Back-end를 모두 갖춘<br />
-                    Full-stack 개발자 양성 과정<br />
-                    빅데이터 분석과 활용으로 경쟁력 확보
+                    자바 응용소프트웨어 개발에 사용되는 자바 프로그래밍 언어의
+                    기초문법을 적용하고 언어의 특징과 라이브러리를 활용하여
+                    기본 응용소프트웨어를 구현하는 능력을 함양할 수 있다.
           
                   </p>
                   <div
@@ -148,7 +148,7 @@
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author1.png" alt="" />
-                      <span class="d-inline-block ml-2">권민섭</span>
+                      <span class="d-inline-block ml-2">이연태</span>
                     </div>
                     
                   </div>
@@ -157,25 +157,25 @@
 
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c2.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">PYTHON</span>
+                  <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">빅데이터 전문가 양성</a>
+                    <a href="course_jsp.jsp">자바 서버프로그램 구현</a>
                   </h4>
                   <p>
-                    코딩교육 의무화시대<br />
-                    최고의 프로그래밍언어 파이썬 교육으로
-                    빅데이터 전문가를 양성합니다.
+                  자바(JAVA) 서버프로그램 구현(JSP)에 필요한 환경을 구성하고, 
+                  자바 프로그래밍 언어와 도구를 활용하여 공통모듈, 업무 프로그램과 배치 프로그램을 구현하는 능력을 함양할 수 있다. 
+                    
                   </p>
                   <div
                     class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author2.png" alt="" />
-                      <span class="d-inline-block ml-2">권근호</span>
+                      <span class="d-inline-block ml-2">홍진숙</span>
                     </div>
                     
                   </div>
@@ -184,17 +184,18 @@
 
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">오라클 DBA 양성</a>
+                    <a href="course_jsp.jsp">자바 스프링 프레임워크</a>
                   </h4>
                   <p>
-                    어디에서도 배울 수 없는 데이터베이스 실무 교육으로
-                    경력직 우대하는 DBA 전문가로 진입할 수 있는 유일한 기회
+                    컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행, 사용자에게 배포, 
+                    버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
+                    
                     
                   </p>
                   <div
@@ -202,12 +203,42 @@
                   >
                     <div class="authr_meta">
                       <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">김영진</span>
+                      <span class="d-inline-block ml-2">홍진숙</span>
                     </div>
                    
                   </div>
                 </div>
               </div>
+              
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="img/courses/c3.png" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">9월</span>
+                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <h4 class="mb-3">
+                    <a href="course_oracle.jsp">오라클 패키지 과정(OCP12c)</a>
+                  </h4>
+                  <p>
+                    데이터베이스 구현을 위하여 오라클 DBMS 설치, 데이터베이스 생성, 
+                    데이터베이스 오브젝트를 계획, 설계하고 구현하는 능력을 함양할 수 있다.
+                    
+                    
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="img/courses/author3.png" alt="" />
+                      <span class="d-inline-block ml-2">송지태</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+              
             </div>
           </div>
         </div>
@@ -300,82 +331,82 @@
     <!--================ End Trainers Area =================-->
 
     <!--================ Start Events Area =================-->
-    <div class="events_area">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3 text-white">수강 후기</h2>
-              <p>
-                교육생들의 생생한 교육현장을 함께하세요.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <div class="single_event position-relative">
-              <div class="event_thumb">
-                <img src="img/event/e1.jpg" alt="" />
-              </div>
-              <div class="event_details">
-                <div class="d-flex mb-4">
-                  <div class="date"><span>6</span>month</div>
+<!--     <div class="events_area"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row justify-content-center"> -->
+<!--           <div class="col-lg-5"> -->
+<!--             <div class="main_title"> -->
+<!--               <h2 class="mb-3 text-white">수강 후기</h2> -->
+<!--               <p> -->
+<!--                 교육생들의 생생한 교육현장을 함께하세요. -->
+<!--               </p> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="row"> -->
+<!--           <div class="col-lg-6 col-md-6"> -->
+<!--             <div class="single_event position-relative"> -->
+<!--               <div class="event_thumb"> -->
+<!--                 <img src="img/event/e1.jpg" alt="" /> -->
+<!--               </div> -->
+<!--               <div class="event_details"> -->
+<!--                 <div class="d-flex mb-4"> -->
+<!--                   <div class="date"><span>6</span>month</div> -->
 
-                  <div class="time-location">
-                    <p>
-                      <span class="ti-time mr-2"></span> 04.01 ~ 09.01
-                    </p>
-                    <p>
-                      <span class="ti-location-pin mr-2"></span> 자바 개발자 양성
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  국비과정에 대해서 부정적인 얘기들을 많이 들어서 반신반의 하는 마음으로 왔지만, 
-                  시간이 지나면서 마음이 바뀌고···
-                </p>
-                <a href="#" class="primary-btn rounded-0 mt-3">자세히 보기</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="single_event position-relative">
-              <div class="event_thumb">
-                <img src="img/event/e2.jpg" alt="" />
-              </div>
-              <div class="event_details">
-                <div class="d-flex mb-4">
-                  <div class="date"><span>2</span> month</div>
+<!--                   <div class="time-location"> -->
+<!--                     <p> -->
+<!--                       <span class="ti-time mr-2"></span> 04.01 ~ 09.01 -->
+<!--                     </p> -->
+<!--                     <p> -->
+<!--                       <span class="ti-location-pin mr-2"></span> 자바 개발자 양성 -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <p> -->
+<!--                   국비과정에 대해서 부정적인 얘기들을 많이 들어서 반신반의 하는 마음으로 왔지만,  -->
+<!--                   시간이 지나면서 마음이 바뀌고··· -->
+<!--                 </p> -->
+<!--                 <a href="#" class="primary-btn rounded-0 mt-3">자세히 보기</a> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-lg-6 col-md-6"> -->
+<!--             <div class="single_event position-relative"> -->
+<!--               <div class="event_thumb"> -->
+<!--                 <img src="img/event/e2.jpg" alt="" /> -->
+<!--               </div> -->
+<!--               <div class="event_details"> -->
+<!--                 <div class="d-flex mb-4"> -->
+<!--                   <div class="date"><span>2</span> month</div> -->
 
-                  <div class="time-location">
-                    <p>
-                      <span class="ti-time mr-2"></span> 06.01 ~ 08.01
-                    </p>
-                    <p>
-                      <span class="ti-location-pin mr-2"></span> ORACLE 전문가
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  전공자지만 전공 부분에 있어서 부족하다고 느껴 학원에서 프로젝트를 준비하면서 취업준비를 병행하기 위해 신청하였는데···
+<!--                   <div class="time-location"> -->
+<!--                     <p> -->
+<!--                       <span class="ti-time mr-2"></span> 06.01 ~ 08.01 -->
+<!--                     </p> -->
+<!--                     <p> -->
+<!--                       <span class="ti-location-pin mr-2"></span> ORACLE 전문가 -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <p> -->
+<!--                   전공자지만 전공 부분에 있어서 부족하다고 느껴 학원에서 프로젝트를 준비하면서 취업준비를 병행하기 위해 신청하였는데··· -->
                   
-                </p>
-                <a href="#" class="primary-btn rounded-0 mt-3">자세히 보기</a>
-              </div>
-            </div>
-          </div>
+<!--                 </p> -->
+<!--                 <a href="#" class="primary-btn rounded-0 mt-3">자세히 보기</a> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
 
-          <div class="col-lg-12">
-            <div class="text-center pt-lg-5 pt-3">
-              <a href="#" class="event-link">
-                수강후기 더보기 <img src="img/next.png" alt="" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--           <div class="col-lg-12"> -->
+<!--             <div class="text-center pt-lg-5 pt-3"> -->
+<!--               <a href="#" class="event-link"> -->
+<!--                 수강후기 더보기 <img src="img/next.png" alt="" /> -->
+<!--               </a> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
     <!--================ End Events Area =================-->
 
     <!--================ Start Testimonial Area =================-->

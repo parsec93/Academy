@@ -110,7 +110,7 @@
 	<col width="15%">
 	</colgroup>
 	<%if(lectureList.size() == 0) {%>
-    <h1><b>작성된 글이 없습니다.</b></h1>
+    <p class="boardnone">작성된 글이 없습니다.</p>
     <%}else{ %>
 	<thead>
 	<tr>
