@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
 </head>
-<script src="../js/jquery-3.4.1.js"></script>
+	<script src="../js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	

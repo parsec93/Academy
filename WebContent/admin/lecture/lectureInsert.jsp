@@ -28,9 +28,9 @@
 	function insert(weekday, time, count){
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
 		var lecture_month_val = lecture_month.options[lecture_month.selectedIndex].value;
-		window.open("admin/lecture/lectureInsertForm.jsp?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecture_room="+lecture_room_val+"&lecture_month="+lecture_month_val,"","width=600,height=550");	
+		window.open("lectureInsertForm.le?weekday="+weekday+"&time="+time+"&lecture_count="+count+"&lecture_room="+lecture_room_val+"&lecture_month="+lecture_month_val,"","width=1150,height=800");	
 	}
-	
+	//select box
 	function change_Room_Month() {
 		var lecture_room_val = lecture_room.options[lecture_room.selectedIndex].value;
 		var lecture_month_val = lecture_month.options[lecture_month.selectedIndex].value;
@@ -110,69 +110,76 @@
                     	</tr>
                     	<tr>
                     	<td class="ftwrite">오전</td>
-                    	<td onClick="insert(1,1,1)">
                     	<%if(lecture_counts[indexCount] == 1){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>    
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     		}else{ %>
+                    	<td onClick="insert(1,1,1)">
                     		수업등록
                     	<%} %>
                     	</td> 
-                    	<td onClick="insert(2,1,2)">
                     	<%if(lecture_counts[indexCount] == 2){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
+                    	<td onClick="insert(2,1,2)">
                     		수업등록
                     	<%} %>
                     	</td> 
                     	</tr>
                     	<tr>
                     	<td class="ftwrite">오후</td>
-                    	<td onClick="insert(1,2,3)">
                     	<%if(lecture_counts[indexCount] == 3){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
+                    	<td onClick="insert(1,2,3)">
                     		수업등록
                     	<%} %>
                     	</td> 
-                    	<td onClick="insert(2,2,4)">
+                    	
                     	<%if(lecture_counts[indexCount] == 4){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
+                    	<td onClick="insert(2,2,4)">
                     		수업등록
                     	<%} %>
                     	</td> 
                     	</tr>
                     	<tr>
                     	<td class="ftwrite">저녁</td>
-                    	<td onClick="insert(1,3,5)">
                     	<%if(lecture_counts[indexCount] == 5){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
+                    	<td onClick="insert(1,3,5)">
                     		수업등록
                     	<%} %>
                     	</td> 
-                    	<td onClick="insert(2,3,6)">
                     	<%if(lecture_counts[indexCount] == 6){ 
                     		LectureBean lb = list.get(indexCount);%>
+                    	<td>	
                     		<%=lb.getLecture_subject() %><br>     
                     		<%=lb.getLecture_teacher() %>  
                     	<%indexCount++;
                     	}else{ %>
+                    	<td onClick="insert(2,3,6)">
                     		수업등록
                     	<%} %>
                     	</td> 

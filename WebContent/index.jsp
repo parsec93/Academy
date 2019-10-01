@@ -277,8 +277,7 @@
                     
                   </p>
                   <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
                     <div class="authr_meta">
                       <img src="img/courses/author1.png" alt="" />
                       <span class="d-inline-block ml-2">이상용</span>
