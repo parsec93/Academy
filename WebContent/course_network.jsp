@@ -10,7 +10,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>강의안내 - JAVA</title>
+    <title>강의안내 - NETWORK</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -34,12 +34,12 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>JAVA</h2>
+                <h2>NETWORK</h2>
                 <div class="page_link">
                   <a href="courses.jsp">강의안내</a>
+                  <a href="coures_java.jsp">JAVA</a>
                   <a href="coures_jsp.jsp">JSP</a>
                   <a href="coures_oracle.jsp">ORACLE</a>
-                  <a href="coures_network.jsp">NETWORK</a>
                   <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
@@ -56,15 +56,14 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details.png" alt="">
+                        <img class="img-fluid" src="img/courses/course-details4.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>
                         <div class="content">
-                            자바 응용소프트웨어 개발에 사용되는 자바 프로그래밍 언어의 기초문법을 적용하고 언어의 특징과 라이브러리를 활용하여 
-                            기본 응용소프트웨어를 구현하는 능력을 함양할 수 있다.
-                            실습 위주의 개인 과제수행을 통하여 실무에 바로 적용할 수 있는 응용소프트웨어 개발 능력을 함양할 수 있다.
-                            OCJP 국제공인자격증 취득이 가능하도록 합니다.
+                            프로그래밍, 데이터베이스, 서버 기초 기술을 습득하고, 
+                            사물인터넷(IoT)의 기반이 되는 유,무선 네트워크 및 보안 기술과 장비 실습을 통해 
+                            실무 환경을 경험할 수 있도록 통합 프로젝트를 진행하는 실무형 엔지니어 양성 과정이다.
                             <br>
                             <br>
 
@@ -72,10 +71,11 @@
 
                         <h4 class="title">주요 훈련 내용</h4>
                         <div class="content">
-                           	JAVA 언어의 기본 문법 및 객체지향 프로그래밍 개념<br />
-                            웹 애플리케이션 학습<br />
-                            JAVA 언어로 구현하는 Web 서버 응용 프로그램 학습
-                            
+                            네트워크 운영 및 관리<br />
+                            시스템 운영 및 관리(Linux/Windows)<br />
+                            데이터베이스 관리<br />
+                            네트워크 프로그래밍(JAVA 기반)<br />
+                            통합실무프로젝트
                             <br>
                             <br>
                         </div>
@@ -151,7 +151,7 @@
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육과정</p>
-                                <span class="or">JAVA를 아라보자~</span>
+                                <span class="or">network를 아라보자~</span>
                             </a>
                         </li>
                         <li>
@@ -223,14 +223,15 @@
 <!--                             </div> -->
 <!--                         </div> -->
                         <div class="comments-area mb-30">
+                            
                             <div class="comment-list">
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/courses/author2.png" alt="">
+                                            <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5><a href="#">홍진숙</a>
+                                            <h5><a href="#">강진석</a>
 <!--                                                 <div class="star"> -->
 <!--                                                     <span class="ti-star checked"></span> -->
 <!--                                                     <span class="ti-star checked"></span> -->
@@ -240,9 +241,10 @@
 <!--                                                 </div> -->
                                             </h5>
                                             <p class="comment">
-                                                JAVA, JSP, Spring, Android<br />
-                                                NCS 프로그래밍 언어활용<br />
-                                                NCS 애플리케이션 구현
+                                                시스코 네트워크(CCNA, CCNP)<br />구축 및 운영 관리<br />
+                                                정보보안(방화벽, 패킷 분석)<br />
+                                                리눅스 서버<br />
+                                                윈도우 서버
                                             </p>
                                         </div>
                                     </div>
@@ -255,7 +257,7 @@
                                             <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5><a href="#">신상국</a>
+                                            <h5><a href="#">이연태</a>
 <!--                                                 <div class="star"> -->
 <!--                                                     <span class="ti-star checked"></span> -->
 <!--                                                     <span class="ti-star checked"></span> -->
@@ -265,39 +267,11 @@
 <!--                                                 </div> -->
                                             </h5>
                                             <p class="comment">
-                                                JAVA, JSP Model1 & Model2<br />
-                                                JavaScript, JQuery, Ajax<br />
-                                                BootStrap<br />
-                                                Spring framework<br />
-                                                MyBatis framework<br />
-                                                Android, 사물인터넷 IOT<br />
-                                                NCS 프로그래밍 언어활용<br />
-                                                NCS 애플리케이션 구현​ 
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/courses/author1.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">정규태</a>
-<!--                                                 <div class="star"> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star"></span> -->
-<!--                                                     <span class="ti-star"></span> -->
-<!--                                                 </div> -->
-                                            </h5>
-                                            <p class="comment">
-                                                JAVA 8 재직자, 실업자 교육<br />
-                                                JSP Model1 / Model2(MVC)<br />
-                                                Spring 프레임워크 (MVC 패턴)
+                                                시스코 네트워크(CCNA, CCNP)<br />구축 및 운영 관리<br />
+                                                정보보안(방화벽, 패킷분석)<br />
+                                                자바 프로그래밍<br />
+                                                JSP 프로그래밍<br />
+                                                안드로이드 프로그래밍
                                             </p>
                                         </div>
                                     </div>
@@ -310,7 +284,7 @@
         </div>
     </section>
     <!--================ End Course Details Area =================-->
-
+    
     <!--================ Start footer Area  =================-->
     <jsp:include page="header_footer/footer.jsp" />
     <!--================ End footer Area  =================-->

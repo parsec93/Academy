@@ -814,7 +814,8 @@ button:focus {
       box-shadow: none;
       font-size: 12px;
       border-radius: 0px;
-      cursor: auto; }
+      cursor: auto;
+      height:50px; }
 /*       .course_details_left .course_list li .primary-btn:hover { */
 /*         background: #fdc632; */
 /*         color: #ffffff; } */
@@ -846,6 +847,7 @@ button:focus {
       font-weight: 500; }
 .course_text{
 	color:#7b838a;
+	width:80%;
 }
 .course_text:hover{
 	color:#002347;

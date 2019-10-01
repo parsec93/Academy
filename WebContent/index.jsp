@@ -112,7 +112,7 @@
             <div class="single_feature">
 <!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
               <div class="desc">
-                <h4 class="mt-3 mb-2">Network</h4>
+                <h4 class="mt-3 mb-2">NETWORK</h4>
                 <p>
                   기본부터 시작하여 물리적 보호구역을 통제하고 
                   사무실 및 시스템을 보호하기위한 보안 프로그래밍을 구축합니다.
@@ -416,6 +416,74 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t7.png" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>신상국</h4>
+              <p class="designation">자바프로그래밍</p>
+              <div class="mb-4">
+                <p>
+                  성공은 마냥 노력이 아니라 방향성입니다.
+                  실무경험을 바탕으로 실무위주의 교육을 하겠습니다. 
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t7.png" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>정규태</h4>
+              <p class="designation">자바프로그래밍</p>
+              <div class="mb-4">
+                <p>
+                  Write Once, Run Anywhere<br />
+                  ​자바는 더이상 선택이 아닌 필수다!!! 
+				  모르면 알때까지, 이해하면 활용할때까지!!!
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t5.png" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>정지윤</h4>
+              <p class="designation">DB</p>
+              <div class="mb-4">
+                <p>
+                  오라클 공인교육센터!!!<br />
+                  오라클 공인강사!!!<br />
+                  오라클 DBMS의 모든것!!! <br /><br />
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src="img/trainer/t6.png" alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>강진석</h4>
+              <p class="designation">네트워크&보안</p>
+              <div class="mb-4">
+                <p>
+                  단순 암기보다는 이해를 바탕으로 스스로 고민하고 나아가는
+
+				  인재로 만들어드리는게 목표입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
               <img class="img-fluid" src="img/trainer/t4.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
@@ -429,6 +497,8 @@
               </div>
             </div>
           </div>
+          
+          
         </div>
       </div>
     </section>
