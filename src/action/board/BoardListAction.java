@@ -69,27 +69,17 @@ public class BoardListAction implements Action {
         request.setAttribute("board_sid", board_sid);
         request.setAttribute("boardPageInfo", boardpageInfo);
         request.setAttribute("articleList", articleList);
-        
+        request.setAttribute("search", search); //페이지 search값 넘겨주기
         // ActionForward 객체를 생성하여 Dispatcher 방식으로 board 폴더 내의 qna_board_list.jsp 페이지로 이동
        
 		if (board_id.equals("free")) {
-			if(search == null) {
 			forward.setPath("board/board_free.jsp");
-			}else {
-				forward.setPath("board/board_free.jsp?search="+search);
-			}
-			forward.setRedirect(false);
 		} else if (board_id.equals("qna")) {
-			if(search ==null ) {
 			forward.setPath("board/board_qna.jsp");
-			}else {
-				forward.setPath("board/board_qna.jsp?seach="+search);
-			}
-			forward.setRedirect(false);
 		}
 		
 
-        
+		forward.setRedirect(false);
         return forward;
     }
 

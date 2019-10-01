@@ -44,7 +44,7 @@ request.setCharacterEncoding("UTF-8");
 String board_id = (String)request.getAttribute("board_id");
 String board_sid = (String)session.getAttribute("sId");
 
-String search =request.getParameter("search");
+String search =(String)request.getAttribute("search");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -142,8 +142,12 @@ String search =request.getParameter("search");
 <%-- 			<p class="pagetext"><%=i %></p> --%>
 				[<%=i %>]
 
-			<%} else { %>
+			<%} else { 
+			if(search!=null){%>
 				<a href = "<%=board_id%>board.bo?page=<%=i %>&search=<%=search%>">[<%=i %>]</a>&nbsp;
+				<% }else{ %>
+				<a href = "<%=board_id%>board.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<%} %>
 			<%} %>
 		<%} %>
 		

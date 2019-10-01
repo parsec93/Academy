@@ -104,7 +104,7 @@ public class BoardDAO {
 		try {
 			System.out.println(board_id);
 			System.out.println(search);
-			if(search ==null) {
+			if(search == null) {
 			String sql = "SELECT COUNT(*) FROM board WHERE board_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board_id);

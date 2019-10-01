@@ -45,7 +45,7 @@ String board_id = (String)request.getAttribute("board_id");
 String board_sid = (String)session.getAttribute("sId");
 System.out.println(board_id);
 
-String search =request.getParameter("search");
+String search =(String)request.getAttribute("search");
 %>
   <body>
     <!--================ Start Header Menu Area =================-->
@@ -138,8 +138,12 @@ String search =request.getParameter("search");
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 				[<%=i %>]
-			<%} else { %>
-				<a href = "<%=board_id%>board.bo?page=<%=i %>&search=<%=search%>">[<%=i %>]</a>&nbsp;
+			<%} else { 
+				if(search!=null){%>
+					<a href = "<%=board_id%>board.bo?page=<%=i %>&search=<%=search%>">[<%=i %>]</a>&nbsp;
+					<% }else{ %>
+					<a href = "<%=board_id%>board.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+				<%} %>
 			<%} %>
 		<%} %>
 		
