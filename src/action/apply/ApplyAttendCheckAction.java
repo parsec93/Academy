@@ -24,7 +24,7 @@ public class ApplyAttendCheckAction implements Action {
 		String cYN = request.getParameter("cYN");
 		int lecture_idx = Integer.parseInt(request.getParameter("lecture_idx"));
 		String attendmember = request.getParameter("attendmember");
-		String attendDay = request.getParameter("attendDay");
+		int attendDay = Integer.parseInt(request.getParameter("attendDay"));
 		System.out.println(attendmember);
 		System.out.println(lecture_idx);
 		System.out.println(cYN);
@@ -34,7 +34,7 @@ public class ApplyAttendCheckAction implements Action {
 		String[] attendCheckArr = cYN.split("/");
 		
 		ApplyAttendCheckService applyAttendCheckService = new ApplyAttendCheckService();
-		boolean isUpdateSuccess = applyAttendCheckService.UpdateAttendCheck(attendMemberArr, attendCheckArr, lecture_idx);
+		boolean isUpdateSuccess = applyAttendCheckService.UpdateAttendCheck(attendMemberArr, attendCheckArr, lecture_idx,attendDay);
 		
 		ActionForward forward = null;
         if(!isUpdateSuccess) {
@@ -46,14 +46,21 @@ public class ApplyAttendCheckAction implements Action {
             out.println("</script>");   
             
          }else {
-             forward = new ActionForward();
-             forward.setPath("apply/ListTeacher.jsp");
-             forward.setRedirect(false);
+        	 
+             response.setContentType("text/html;charset=UTF-8");
+             PrintWriter out = response.getWriter();
+             out.println("<script>");
+             out.println("alert('출석체크 성공!')");
+             out.println("window.close()");
+             out.println("</script>");  
+//             forward = new ActionForward();
+//             forward.setPath("apply/ListTeacher.jsp");
+//             forward.setRedirect(false);
         	 
       
          }
 	
-		return forward;
+		return null;
          
 	}
 }

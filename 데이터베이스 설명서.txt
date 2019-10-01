@@ -199,4 +199,14 @@ review_content varchar(200) not null
  CONSTRAINT fk_basket_idx FOREIGN KEY (basket_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
 
  );
+ 
+ 12. 출석체크 테이블 생성
+ 
+ create table attend (
+attend_idx int primary key auto_increment,
+attend_member_id varchar(20) not null,
+attend_lecture_idx int not null,
+attend_check varchar(150),
+attend_today int
+);
 
