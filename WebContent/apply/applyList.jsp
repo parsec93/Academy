@@ -187,7 +187,7 @@
 	<td class="date"><%=lectureBean.getLecture_end_day() %></td>
 	<%if(listType.equals("end")){
 		if(applyBean.getApply_review() != null){%>
-			<td><input type="text" value="등록완료"></td>
+			<td>등록완료</td>
 		<%}else{ %>
 			<td><input type="button" name="review" value="후기등록" onClick="applyReview()"></td>
 			<td><input type="hidden" id="lecture_idx" value="<%=lectureBean.getLecture_idx()%>"></td>

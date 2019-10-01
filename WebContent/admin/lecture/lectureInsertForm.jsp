@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,15 +13,15 @@
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/flaticon.css" />
-    <link rel="stylesheet" href="css/themify-icons.css" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/flaticon.css" />
+    <link rel="stylesheet" href="./css/themify-icons.css" />
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- login css -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <!-- board css -->
-    <link rel="stylesheet" href="css/board.css" />
+    <link rel="stylesheet" href="./css/board.css" />
 </head>
 <%
 	String weekday = request.getParameter("weekday");
@@ -27,8 +29,23 @@
 	String lecture_count = request.getParameter("lecture_count");
 	String lecture_room = request.getParameter("lecture_room");
 	String lecture_month = request.getParameter("lecture_month");
+	ArrayList<MemberBean> tc = (ArrayList<MemberBean>)request.getAttribute("tc");
 %>
+<script src="../js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
 
+$(document).ready(function(){
+	$("#lecture_course").change(function() {
+		$.ajax('test.jsp',{
+			data:{selCourse:$(this).val()},
+			success : function(data) {
+				
+				$("#lecture_teacher").append("<option value='1'>"+data+"</option>");
+			}
+		});
+	});
+});	
+</script>
 <body>
 	  
 
@@ -36,7 +53,7 @@
 	<div class="boardwrap">
     <h1>수업 정보</h1>
      
-				<form action="../../lectureInsertPro.le" name="up" method="get" >
+				<form action="lectureInsertPro.le" name="up" method="get" >
     	<table id="boardwrite">
                         <tr>
                         <td class="ftwrite"><label for="lecture_subject">수업명</label></td> 
@@ -44,12 +61,30 @@
                         </tr> 
                         
                         <tr>
-                        <td class="ftwrite"><label for="lecture_course">과목명</label> </td> 
-                        <td class="fttitle"><input type="text" name="lecture_course" id="lecture_course"  required="required" placeholder="과목명"> </td></tr>
+                        <td class="ftwrite"><label for="lecture_course">과목명</label></td>
+                        <td class="fttitle">
+                        <select name="lecture_course" id="lecture_course" >
+  							<option value="java">java</option>
+ 							<option value="jsp">jsp</option>
+<!--   							<option value="oracle" >oracle</option> -->
+<!--   							<option value="w_" >web</option> -->
+<!--   							<option value="n_" >network</option> -->
+						</select>
+                        </td>
+                        </tr>
                         
                         <tr>
-                        <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td> 
-                        <td class="fttitle"><input type="text" name="lecture_teacher" id="lecture_teacher"  required="required" placeholder="수업강사"> </td></tr>
+                         <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td> 
+                         <td class="fttitle">
+                         <select name="lecture_teacher" id="lecture_teacher" style="width: 10em">
+                         	<option>선택</option>
+                         </select>
+                         </td>
+                        </tr>
+                        
+<!--                         <tr> -->
+<!--                         <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td>  -->
+<!--                         <td class="fttitle"><input type="text" name="lecture_teacher" id="lecture_teacher"  required="required" placeholder="수업강사"> </td></tr> -->
                         
                         <tr>
                         <td class="ftwrite"><label for="lecture_content">수업내용</label> </td> 

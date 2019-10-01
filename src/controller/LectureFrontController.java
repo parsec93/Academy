@@ -23,6 +23,7 @@ import action.lecture.LectureDeleteAction;
 import action.lecture.LectureDetailAction;
 import action.lecture.LectureEnrolmentAction;
 import action.lecture.LectureInsertAction;
+import action.lecture.LectureInsertFormAction;
 import action.lecture.LectureInsertProAction;
 import action.lecture.LectureListeAction;
 import action.lecture.LectureUpdateFormAction;
@@ -101,6 +102,14 @@ public class LectureFrontController extends HttpServlet {
 			}
         }else if(command.equals("/lectureInsertPro.le")) {  	
         	action = new LectureInsertProAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/lectureInsertForm.le")) {
+        	action = new LectureInsertFormAction();
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.LectureBean;
+import vo.MemberBean;
 
 public class LectureDAO {
 	private static LectureDAO instance = null;
@@ -277,6 +278,28 @@ public class LectureDAO {
 		}
 		
 		return lecture_counts;
+	}
+	public ArrayList<MemberBean> selectTeatureCode() {
+
+		ArrayList<MemberBean> tc = new ArrayList<>();
+		String sql = "select member_teacher_code, member_name from member where member_isMember=1 ";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberBean mb = new MemberBean();
+				mb.setMember_name(rs.getNString("member_name"));
+				mb.setMember_teacher_code(rs.getString("member_teacher_code"));
+				tc.add(mb);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectTeatureCode() 에러 " + e.getMessage());
+			e.printStackTrace();
+		}
+		return tc;
 	}
 	
 }
