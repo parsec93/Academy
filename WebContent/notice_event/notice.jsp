@@ -140,13 +140,17 @@ String search =(String) request.getAttribute("search");
 		<%
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
-		<%} else { %>
+		<%} else  { 
+				if(search != null){  %>
 			<a href="notice.no?page=<%=nowPage -1 %>&isNotice=<%=isNotice%>&search=<%=search%>">[이전]</a>&nbsp;
+			 	<%}else{%> 
+			 				<a href="notice.no?page=<%=nowPage -1 %>&isNotice=<%=isNotice%>">[이전]</a>&nbsp;
+			 	<%} %> 
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
-				[<%=i %>]
+				<p class="pagetext">[<%=i %>]</p>
 			<%} else { 
    					if(search != null){  %>
 					<a href = "notice.no?page=<%=i %>&isNotice=<%=isNotice%>&search=<%=search%>">[<%=i %>]</a>&nbsp;
@@ -158,8 +162,12 @@ String search =(String) request.getAttribute("search");
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
-		<%} else {  %>
+		<%} else  { 
+				if(search != null){  %>
 			<a href="notice.no?page=<%=nowPage +1 %>&isNotice=<%=isNotice%>&search=<%=search%>"> &nbsp;[다음]</a>
+			 					<%}else{%> 
+			 						<a href="notice.no?page=<%=nowPage +1 %>&isNotice=<%=isNotice%>"> &nbsp;[다음]</a>
+			 		<%} %> 
 		<%} %>
 
 

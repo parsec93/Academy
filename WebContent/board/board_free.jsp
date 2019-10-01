@@ -133,14 +133,18 @@ String search =(String)request.getAttribute("search");
 		<%if(nowPage <= 1 ) { %>
 <!-- 		<p class="pagetext">이전</p> -->
 			[이전]&nbsp;
-		<%} else { %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>&search=<%=search%>">이전</a>&nbsp;
+		<%} else { 
+			if(search!=null){%>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>&search=<%=search%>">[이전]</a>&nbsp;
+							<% }else{ %>
+										<a href="<%=board_id%>board.bo?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+							<%} %>
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
 <%-- 			<p class="pagetext"><%=i %></p> --%>
-				[<%=i %>]
+				<p class="pagetext">[<%=i %>]</p>
 
 			<%} else { 
 			if(search!=null){%>
@@ -152,10 +156,14 @@ String search =(String)request.getAttribute("search");
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
-					&nbsp;[다음]
+					[다음]&nbsp;
 <!-- 		<p class="pagetext">다음</p> -->
-		<%} else {  %>
-			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>&search=<%=search%>"> &nbsp;다음</a>
+		<%} else  { 
+			if(search!=null){%>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>&search=<%=search%>"> &nbsp;[다음]</a>
+			<% }else{ %>
+			<a href="<%=board_id%>board.bo?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+			<%} %>
 		<%} %><br>
 		
 	</section>
