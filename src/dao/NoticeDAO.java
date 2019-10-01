@@ -149,7 +149,7 @@ public class NoticeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql="";
-System.out.println(search);
+		System.out.println(search);
 		try {
 			if(search == null) {
 				if(isNotice == 1) {

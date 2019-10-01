@@ -34,9 +34,7 @@ public class MemberListAction implements Action {
 		
 		MemberListService memberListService = new MemberListService();
 
-		int listCount = 0;
-		
-		listCount = memberListService.getMemberListCount();
+		int listCount = memberListService.getMemberListCount(); 
 		memberList = memberListService.getMemberList(page, limit);
 		
 		
@@ -44,7 +42,7 @@ public class MemberListAction implements Action {
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		
 		// 시작 페이지 수 계산
-		int startPage = (((int)((double)page / 1- + 0.9)) -1) * 10 + 1;
+		int startPage = (((int)((double)page / 10 + 0.9)) -1) * 10 + 1;
 		
 		//끝 페이지 수 계산
 		int endPage = startPage + 10 - 1;
@@ -60,7 +58,7 @@ public class MemberListAction implements Action {
 		NoticePageInfo noticePageInfo = new NoticePageInfo(page, maxPage, startPage, endPage, listCount);
 		
 		//request 객체에 NoticePageInfo 객체(noticePageInfo)와 ArrayList(memberList)를 파라미터로 저장 
-		request.setAttribute("noticePageInfo", noticePageInfo);
+		request.setAttribute("memberPageInfo", noticePageInfo);
 		request.setAttribute("memberList", memberList);
 		
 		if(memberList == null) {
