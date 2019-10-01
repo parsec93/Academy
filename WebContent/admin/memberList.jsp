@@ -37,14 +37,14 @@
 <%
 
 ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("memberList");// 멤버목록을 위한 객체 
-// NoticePageInfo noticePageInfo = (NoticePageInfo)request.getAttribute("noticePageInfo");
+NoticePageInfo noticePageInfo = (NoticePageInfo)request.getAttribute("noticePageInfo");
 
 //pageInfo 객체로부터 페이징 정보 가져오기 
-// int listCount = noticePageInfo.getListCount();
-// int nowPage = noticePageInfo.getPage();
-// int startPage = noticePageInfo.getStartPage();
-// int endPage = noticePageInfo.getEndPage();
-// int maxPage = noticePageInfo.getMaxPage();
+ int listCount = noticePageInfo.getListCount();
+ int nowPage = noticePageInfo.getPage();
+ int startPage = noticePageInfo.getStartPage();
+ int endPage = noticePageInfo.getEndPage();
+ int maxPage = noticePageInfo.getMaxPage();
 
 String sid = (String)session.getAttribute("sid");
 
@@ -104,7 +104,6 @@ String sid = (String)session.getAttribute("sid");
 					<th scope="col">E-mail</th>
 				</tr>
 					</thead>
-
 					<%
  					for(int i =0 ; i<memberList.size(); i++){
  						MemberBean memberBean = (MemberBean)memberList.get(i);
@@ -126,7 +125,7 @@ String sid = (String)session.getAttribute("sid");
 				</table>
 
 <!-- // 페이징 처리 구역  -->
-	<%-- <div id="page_control">
+	<div id="page_control">
 
 		<%
 		if(nowPage <= 1 ) { %>
@@ -139,7 +138,7 @@ String sid = (String)session.getAttribute("sid");
 			if(i == nowPage) {%>
 				[<%=i %>]
 			<%} else { %>
-				<a href = "Member.me?page=<%=i %>&mList=<%%>">[<%=i %>]</a>&nbsp;
+				<a href = "Member.me?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 		<%} %>
 		
@@ -147,14 +146,14 @@ String sid = (String)session.getAttribute("sid");
 			&nbsp;[다음]
 		<%} else {  %>
 			<a href="Member.me?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
-		<%} %> --%>
+		<%} %> 
 
 
 
 <input type="button" class="btn" value="메인으로" onclick="location.href='../Academy'">
 <!-- 페이징 처리 구역 종료 -->
                     </div>
-                      <!-- </div> -->
+                      </div>
  
     <!--================ Start footer Area  =================-->
     <jsp:include page="../header_footer/footer.jsp" />

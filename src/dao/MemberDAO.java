@@ -529,9 +529,9 @@ public class MemberDAO {
 			
 			ArrayList<MemberBean> memberList = new ArrayList<MemberBean>();
 			String sql="";
+			int startRow = (page - 1)*10;// 읽어올 목록의 첫 레코드 번호 
 			
 			try {
-				int startRow = (page -1) * 10; // 읽어올 목록의 첫 레코드 번호 
 				sql = "SELECT * FROM MEMBER ORDER BY member_idx DESC LIMIT ?,?";
 				
 				pstmt = con.prepareStatement(sql);
@@ -549,7 +549,7 @@ public class MemberDAO {
 					memberBean.setMember_id(rs.getString("member_id"));
 					memberBean.setMember_phone(rs.getString("member_phone"));
 					memberBean.setMember_email(rs.getString("member_email"));
-					
+					memberList.add(memberBean);
 				}
 			} catch (Exception e) {
 				System.out.println("selectMemberList() 에러"+e.getMessage());
