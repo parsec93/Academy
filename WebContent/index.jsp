@@ -62,7 +62,7 @@
             <div class="main_title">
               <h2 class="mb-3">Hello, World!</h2>
               <p>
-                학원만의 차별화된 최고의 교육 및 상담을 받아보세요.
+                EDUSTAGE만의 차별화된 최고의 교육 및 상담을 받아보세요.
               </p>
             </div>
           </div>
@@ -70,7 +70,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="single_feature">
-              <div class="icon"><span class="flaticon-student"></span></div>
+<!--               <div class="icon"><span class="flaticon-student"></span></div> -->
               <div class="desc">
                 <h4 class="mt-3 mb-2">JAVA</h4>
                 <p>
@@ -83,7 +83,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature">
-              <div class="icon"><span class="flaticon-book"></span></div>
+<!--               <div class="icon"><span class="flaticon-book"></span></div> -->
               <div class="desc">
                 <h4 class="mt-3 mb-2">ORACLE</h4>
                 <p>
@@ -95,7 +95,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature">
-              <div class="icon"><span class="flaticon-earth"></span></div>
+<!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
               <div class="desc">
                 <h4 class="mt-3 mb-2">JSP</h4>
                 <p>
@@ -105,6 +105,51 @@
               </div>
             </div>
           </div>
+          
+          <!-- 추가 -->
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+<!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
+              <div class="desc">
+                <h4 class="mt-3 mb-2">Network</h4>
+                <p>
+                  기본부터 시작하여 물리적 보호구역을 통제하고 
+                  사무실 및 시스템을 보호하기위한 보안 프로그래밍을 구축합니다.
+
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+<!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
+              <div class="desc">
+                <h4 class="mt-3 mb-2">WEB</h4>
+                <p>
+                  HTML5.0 + CSS3를 활용한 웹표준코딩으로 
+                  웹접근성, 호환성을 가진 웹사이트 제작기술을 배우게 됩니다.
+
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="single_feature">
+<!--               <div class="icon"><span class="flaticon-earth"></span></div> -->
+              <div class="desc">
+                <h4 class="mt-3 mb-2">취업지원</h4>
+                <p>
+                  여러분의 평생 IT 직무로 가져 갈 수 있도록 정확한 직무와 IT 기업을 안내하겠습니다.
+
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          
         </div>
       </div>
     </section>
@@ -116,7 +161,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">9월 개강 임박 수업</h2>
+              <h2 class="mb-3">9월 강의 안내</h2>
               <p>
                 해당 강의를 누르시면 자세한 정보를 확인할 수 있습니다.
               </p>
@@ -143,9 +188,7 @@
                     기본 응용소프트웨어를 구현하는 능력을 함양할 수 있다.
           
                   </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
+                  <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
                     <div class="authr_meta">
                       <img src="img/courses/author1.png" alt="" />
                       <span class="d-inline-block ml-2">이연태</span>
@@ -155,6 +198,96 @@
                 </div>
               </div>
 
+              
+
+              
+              
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="img/courses/c3.png" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">9월</span>
+                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <h4 class="mb-3">
+                    <a href="course_oracle.jsp">오라클 패키지 과정(OCP12c)</a>
+                  </h4>
+                  <p>
+                    데이터베이스 구현을 위하여 오라클 DBMS 설치, 데이터베이스 생성, 
+                    데이터베이스 오브젝트를 계획, 설계하고 구현하는 능력을 함양할 수 있다.
+                    
+                    
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="img/courses/author1.png" alt="" />
+                      <span class="d-inline-block ml-2">송지태</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">9월</span>
+                  <span class="tag mb-4 d-inline-block">JSP</span>
+                  <h4 class="mb-3">
+                    <a href="course_jsp.jsp">자바 스프링 프레임워크</a>
+                  </h4>
+                  <p>
+                    컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행, 사용자에게 배포, 
+                    버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
+                    
+                    
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="img/courses/author2.png" alt="" />
+                      <span class="d-inline-block ml-2">홍진숙</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="img/courses/c4.png" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">9월</span>
+                  <span class="tag mb-4 d-inline-block">Network</span>
+                  <h4 class="mb-3">
+                    <a href="course_oracle.jsp">사물인터넷(IoT) 기반<br >유무선 네트워크 구축</a>
+                  </h4>
+                  <p>
+                    프로그래밍, 데이터베이스, 서버 기초 기술을 습득하고, 
+                    사물인터넷(IoT)의 기반이 되는 유,무선 네트워크 및 보안 기술과 장비 실습을 통해 
+                    실무 환경을 경험할 수 있도록 통합 프로젝트를 진행하는 실무형 엔지니어 양성 과정이다.
+                    
+                    
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                      <img src="img/courses/author1.png" alt="" />
+                      <span class="d-inline-block ml-2">이상용</span>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
               <div class="single_course">
                 <div class="course_head">
                   <img class="img-fluid" src="img/courses/c2.png" alt="" />
@@ -181,48 +314,20 @@
                   </div>
                 </div>
               </div>
-
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">JSP</span>
-                  <h4 class="mb-3">
-                    <a href="course_jsp.jsp">자바 스프링 프레임워크</a>
-                  </h4>
-                  <p>
-                    컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행, 사용자에게 배포, 
-                    버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
-                    
-                    
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">홍진숙</span>
-                    </div>
-                   
-                  </div>
-                </div>
-              </div>
               
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.png" alt="" />
+                  <img class="img-fluid" src="img/courses/c5.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
-                  <span class="tag mb-4 d-inline-block">ORACLE</span>
+                  <span class="tag mb-4 d-inline-block">웹표준</span>
                   <h4 class="mb-3">
-                    <a href="course_oracle.jsp">오라클 패키지 과정(OCP12c)</a>
+                    <a href="course_oracle.jsp">반응형 웹표준(HTML5,CSS3)</a>
                   </h4>
                   <p>
-                    데이터베이스 구현을 위하여 오라클 DBMS 설치, 데이터베이스 생성, 
-                    데이터베이스 오브젝트를 계획, 설계하고 구현하는 능력을 함양할 수 있다.
+                    UI 요구사항을 확인하여 설계한 UI 설계를 기반으로 HTML5와 CSS3.0 
+                    웹표준과 웹접근성을 이용해서 웹디자이너가 만든 디자인시안을 동적인 반응형 웹페이지를 구현할 수 있다.
                     
                     
                   </p>
@@ -230,8 +335,8 @@
                     class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
                   >
                     <div class="authr_meta">
-                      <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">송지태</span>
+                      <img src="img/courses/author2.png" alt="" />
+                      <span class="d-inline-block ml-2">홍진숙</span>
                     </div>
                    
                   </div>
@@ -262,7 +367,7 @@
         <div class="row justify-content-center d-flex align-items-center">
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t1.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t1.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>홍진숙</h4>
@@ -279,7 +384,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t2.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t2.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>이연태</h4>
@@ -295,7 +400,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t3.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t3.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>송지태</h4>
@@ -312,7 +417,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t4.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t4.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>김희영</h4>

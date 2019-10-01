@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details.jpg" alt="">
+                        <img class="img-fluid" src="img/courses/course-details.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>

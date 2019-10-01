@@ -67,7 +67,7 @@
             <div class="owl-carousel active_course">
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c1.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c1.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
@@ -95,7 +95,7 @@
 
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c2.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
@@ -122,7 +122,7 @@
 
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c2.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
@@ -150,7 +150,7 @@
               
               <div class="single_course">
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
+                  <img class="img-fluid" src="img/courses/c3.png" alt="" />
                 </div>
                 <div class="course_content">
                   <span class="price">9월</span>
@@ -200,7 +200,7 @@
         <div class="row justify-content-center d-flex align-items-center">
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t1.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t1.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>홍진숙</h4>
@@ -217,7 +217,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t2.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t2.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>이연태</h4>
@@ -233,7 +233,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t3.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t3.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>송지태</h4>
@@ -250,7 +250,7 @@
 
           <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
             <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t4.jpg" alt="" />
+              <img class="img-fluid" src="img/trainer/t4.png" alt="" />
             </div>
             <div class="meta-text text-sm-center">
               <h4>김희영</h4>
