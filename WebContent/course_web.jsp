@@ -10,7 +10,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>강의안내 - JAVA</title>
+    <title>강의안내 - WEB</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -34,13 +34,13 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>JAVA</h2>
+                <h2>WEB</h2>
                 <div class="page_link">
                   <a href="courses.jsp">강의안내</a>
+                  <a href="coures_java.jsp">JAVA</a>
                   <a href="coures_jsp.jsp">JSP</a>
                   <a href="coures_oracle.jsp">ORACLE</a>
                   <a href="coures_network.jsp">NETWORK</a>
-                  <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
             </div>
@@ -56,15 +56,14 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details.png" alt="">
+                        <img class="img-fluid" src="img/courses/course-details5.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>
                         <div class="content">
-                            자바 응용소프트웨어 개발에 사용되는 자바 프로그래밍 언어의 기초문법을 적용하고 언어의 특징과 라이브러리를 활용하여 
-                            기본 응용소프트웨어를 구현하는 능력을 함양할 수 있다.
-                            실습 위주의 개인 과제수행을 통하여 실무에 바로 적용할 수 있는 응용소프트웨어 개발 능력을 함양할 수 있다.
-                            OCJP 국제공인자격증 취득이 가능하도록 합니다.
+                            웹표준을 이해하고, HTML5.0+CSS3를 활용한 웹표준코딩으로 보다 향상된 웹접근성, 호환성을 가진 웹사이트 제작기술을 함양시킨다.
+                            UI 요구사항을 확인하여 설계한 UI 설계를 기반으로 HTML5와 CSS3.0 웹표준과 웹접근성을 이용해서 웹디자이너가 만든
+						    디자인시안을 동적인 반응형 웹페이지를 구현할 수 있다.
                             <br>
                             <br>
 
@@ -72,9 +71,17 @@
 
                         <h4 class="title">주요 훈련 내용</h4>
                         <div class="content">
-                           	JAVA 언어의 기본 문법 및 객체지향 프로그래밍 개념<br />
-                            웹 애플리케이션 학습<br />
-                            JAVA 언어로 구현하는 Web 서버 응용 프로그램 학습
+                            HTML5의 구조<br />
+                            마크업 및 시멘틱 마크업을 위한 HTML5 요소<br />
+                            HTML5의 임베디드 요소<br />
+                            하이퍼링크 지정<br />
+                            구조화된 테이블<br />
+                            폼의 정의와 컨트롤 요소<br />
+                            텍스트 영역, 셀렉트 메뉴, 필드세트 요소<br />
+                            CSS3의 다양한 선택자와 속성<br />
+                            CSS3레이아웃과 애니메이션 구현<br />
+                            웹페이지레이아웃<br />
+                            반응형웹
                             
                             <br>
                             <br>
@@ -151,7 +158,7 @@
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육과정</p>
-                                <span class="or">JAVA를 아라보자~</span>
+                                <span class="or">웹표준을 아라보자~</span>
                             </a>
                         </li>
                         <li>
@@ -222,7 +229,7 @@
 <!--                                 <a href="#" class="primary-btn2 text-right rounded-0 text-white">Submit</a> -->
 <!--                             </div> -->
 <!--                         </div> -->
-                        <div class="comments-area mb-30">
+<div class="comments-area mb-30">
                             <div class="comment-list">
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
@@ -310,7 +317,7 @@
         </div>
     </section>
     <!--================ End Course Details Area =================-->
-
+    
     <!--================ Start footer Area  =================-->
     <jsp:include page="header_footer/footer.jsp" />
     <!--================ End footer Area  =================-->

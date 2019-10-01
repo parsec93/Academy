@@ -86,6 +86,8 @@
 								<li class="nav-item"><a class="nav-link" href="course_java.jsp">JAVA</a></li>
 								<li class="nav-item"><a class="nav-link" href="course_jsp.jsp">JSP</a></li>
 								<li class="nav-item"><a class="nav-link" href="course_oracle.jsp">ORACLE</a></li>
+								<li class="nav-item"><a class="nav-link" href="course_network.jsp">NETWORK</a></li>
+								<li class="nav-item"><a class="nav-link" href="course_web.jsp">WEB</a></li>
 							</ul>
 							
 							</li>

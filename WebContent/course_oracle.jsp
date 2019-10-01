@@ -39,6 +39,8 @@
                   <a href="courses.jsp">강의안내</a>
                   <a href="coures_java.jsp">JAVA</a>
                   <a href="coures_jsp.jsp">JSP</a>
+                  <a href="coures_network.jsp">NETWORK</a>
+                  <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
             </div>
@@ -54,7 +56,7 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details.jpg" alt="">
+                        <img class="img-fluid" src="img/courses/course-details3.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>
@@ -82,23 +84,33 @@
                         <div class="content">
                             <ul class="course_list">
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
                                 </li>
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
                                 </li>
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
                                 </li>
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
                                 </li>
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
+                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
                                 </li>
                                 
@@ -215,7 +227,7 @@
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/blog/c1.jpg" alt="">
+                                            <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
                                             <h5><a href="#">송지태</a>
@@ -240,7 +252,7 @@
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/blog/c2.jpg" alt="">
+                                            <img src="img/courses/author2.png" alt="">
                                         </div>
                                         <div class="desc">
                                             <h5><a href="#">정지윤</a>
