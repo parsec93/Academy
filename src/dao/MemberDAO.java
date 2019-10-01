@@ -588,9 +588,11 @@ public class MemberDAO {
 			return listCount;
 		}
 		
+		
 		public void insertBasket(String member_id, int lecture_idx) {
 			
-
+			System.out.println(member_id);
+			System.out.println(lecture_idx);
 			
 			try {
 				
@@ -598,12 +600,15 @@ public class MemberDAO {
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, member_id);
 					pstmt.setInt(2, lecture_idx);
+					
+					
+					sql = "DELETE FROM basket" + 
+							"WHERE basket_idx not in ( SELECT basket_idx from ( SELECT basket_idx from basket group by basket_member_id,basket_lecture_idx ) as basket_member_id )";
+					pstmt = con.prepareStatement(sql);
 					pstmt.executeUpdate();
-				
-				
-				
-				 
+					
 			} catch (SQLException e) {
+				
 				System.out.println("insertBasket 실패 - " + e.getMessage());
 			}finally {
 				close(pstmt);

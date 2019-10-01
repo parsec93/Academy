@@ -32,7 +32,7 @@
 			<%}else {%>
 				<li><a class="nav-top-link" href="InfoPro.me"><%=sId %>님</a></li>
 					<%if(isMember.equals("0")) {%>	
-					<li><a class="nav-top-link" href="memberbasket.me?&sId=<%=sId%>">장바구니</a></li>
+					<li><a class="nav-top-link" href="memberbasket.me">장바구니</a></li>
 					<li><a class="nav-top-link" href="ApplyInfo.al?listType=all&isMember=<%=isMember%>">내 강의실</a></li>
 					<%}else {%>
 					<li><a class="nav-top-link" href="InfoTeacher.al?isMember=<%=isMember%>">내 강의실</a></li>
