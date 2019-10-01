@@ -181,16 +181,8 @@ insert into apply values(null, 'student', 1, '2019-09-01', '0',null);
 insert into apply values(null, 'student', 1, '2019-09-01', '1',null);
 insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
 
- 10. 수강 후기 테이블 생성
- 
- create table review (
-review_idx int primary key auto_increment,
-review_member_id varchar(20) not null,
-review_lecture_idx int not null,
-review_content varchar(200) not null
-);
 
-11. 장바구니 테이블 생성
+10. 장바구니 테이블 생성
 
  create table basket (
  basket_idx int primary key auto_increment,
@@ -200,7 +192,7 @@ review_content varchar(200) not null
 
  );
  
- 12. 출석체크 테이블 생성
+ 11. 출석체크 테이블 생성
  
  create table attend (
 attend_idx int primary key auto_increment,
