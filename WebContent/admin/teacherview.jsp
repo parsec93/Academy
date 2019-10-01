@@ -36,11 +36,11 @@
 function mySubmit(index) {
 
 	if (index == 1) {
-	document.up.action='admin/teacherUpdate.jsp';
+	document.up.action='./admin/teacherUpdate.jsp';
 	}
 	if (index == 2) {
 <%-- 		window.open("admin/teacherDelete.jsp?member_idx="+<%=memberBean.getMember_idx()%>, "", "width=400,height =300");		 --%>
-		document.up.action='admin/teacherDelete.jsp';
+		document.up.action='./admin/teacherDelete.jsp';
 	}
 	document.up.submit();
 }
@@ -112,8 +112,7 @@ function mySubmit(index) {
 					<td class="ftwrite"><label for="notice_content">전화번호</label></td>
 					<td class="fttitle"><label for="notice_content"><%=memberBean.getMember_phone() %></label></td>
 					<input type="hidden" name="phone" id="phone" class="inpt" value="<%=memberBean.getMember_phone() %>" required="required" placeholder="휴대폰 번호">
-				</tr>
-				
+				</tr>			
 				<tr><td class="ftwrite">계좌번호</td>
 					<td class="fttitle"><label for="notice_subject">
 					<% String bank = "";
@@ -144,6 +143,7 @@ function mySubmit(index) {
 				</tr>
 				<tr><td class="ftwrite"><label for="notice_subject">담당과목<br>(직원구분)</label></td>
 									<% String code = "";
+						if(memberBean.getMember_teacher_code() != null){
 					switch(memberBean.getMember_teacher_code().substring(0, 2)){
 					case "j_" : 
 						code = "JAVA"; 
@@ -168,10 +168,14 @@ function mySubmit(index) {
 						break;	
 					default : 
 						code = "직원구분을 입력하세요.";
-					}%>
+					}
+					%>
+									<%} %>
 					<td class="fttitle"><label for="notice_subject"><%=code %> &nbsp;(
 					<%=memberBean.getMember_teacher_code() %> )</label></td>
-					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_teacher_code() %>" >
+
+					<input type="hidden" name="member_teacher_code" id="member_teacher_code" class="inpt" value="<%=memberBean.getMember_teacher_code() %>" >
+				
 					</tr>
 			</table>
                <div  id="table_search">

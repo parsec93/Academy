@@ -210,7 +210,7 @@ public class MemberDAO {
 			System.out.println(member_isMember);
 	      try {
 	    	  if(member_isMember.equals("1")){//관리자가 교직원 계정 수정
-	 				sql = "UPDATE member SET member_name=? , member_pass=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=?, member_bank=?, member_accno=?, member_picture=? WHERE member_id=?";
+	 				sql = "UPDATE member SET member_name=? , member_pass=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=?, member_bank=?, member_accno=?, member_picture=?, member_teacher_code=? WHERE member_id=?";
 	 				pstmt = con.prepareStatement(sql);
 	 		         pstmt.setString(1, mb.getMember_name());
 		 			pstmt.setString(2, mb.getMember_pass());
@@ -222,7 +222,8 @@ public class MemberDAO {
 	 				pstmt.setString(8, mb.getMember_bank());
 	 				pstmt.setString(9, mb.getMember_accno());
 	 				pstmt.setString(10, mb.getMember_picture());
-	 		         pstmt.setString(11, mb.getMember_id());
+					pstmt.setString(11, mb.getMember_teacher_code());
+	 		         pstmt.setString(12, mb.getMember_id());
 	 				
 	 			}else{ // 일반 계정 수정
 	 				System.out.println("ㅎㅎDAO");

@@ -15,6 +15,10 @@ String email =request.getParameter("email");
 String[] arrayEamil = email.split("@");
 
 String opicture = request.getParameter("picture");
+
+String teacher_code=request.getParameter("member_teacher_code");
+teacher_code = teacher_code.substring(0, 2);
+
 %>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
@@ -35,53 +39,7 @@ String opicture = request.getParameter("picture");
 <script src="js/jquery-3.4.1.js"></script>
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript">
-function passCheck(val){
-	pass2 = document.up.password_more.value;   
-    if(val.length <4){
-        document.getElementById('result').value = "쉬움";
-        document.getElementById('result').style.color="red";
-    }else if(val.length<8){
-        document.getElementById('result').value = "보통";
-        document.getElementById('result').style.color="orange";
-    }else {
-    	document.getElementById('result').value = "어려움";
-    	document.getElementById('result').style.color="green";
-    }
-    passCheck2(pass2)
-}
-function passCheck2(pass2) {
- pass1 = document.up.password.value;
- 
- if(pass1!=pass2){
-	 document.getElementById('result2').value = "비밀번호 불일치";
-     document.getElementById('result2').style.color="red";
- }else{
-	 document.getElementById('result2').value = "비밀번호 일치";
-    document.getElementById('result2').style.color="green";
- }
-}
-function joinCheck() {
-	pass1=document.up.password.value; 
-	pass2 = document.up.password_more.value;
 
-	//패스워드 유효성
-	if(pass1.length<8){
-		alert("비밀번호는 8자이상입니다.");
-    	document.up.password.focus();
-        return false;
-    }
-	//패스워드2 확인
-	if(pass1!=pass2){
-		alert("비밀번호가 다릅니다.");
-		 document.up.password_more.focus();
-        return false;
-	 }
-
-
-}
-
-</script>
 <!--  우편번호 -->
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -136,7 +94,14 @@ function joinCheck() {
                        <div style="clear:both;">
                         <input type="text" name="email1" id="email1" value="<%=arrayEamil[0] %>" class="inpt_04" required="required" placeholder="Your email">
                         <p class="emailtext">@</p>
-                        <input type="text" name="email2" id="email2" value="<%=arrayEamil[1] %>" class="inpt_05" required="required" placeholder="직접입력">
+                       <select name="email2" id="email2" class="inpt_05" 
+                       style="  font-size: 14px;  display: block;  width: 55%;  float:right;  height: 42px;  color: #999999;
+	  border: 1px solid #d9d9d9;  background: transparent;  -moz-border-radius: 2px;  -webkit-border-radius: 2px;  border-radius: 2px;" >
+             			<option value="0">선택하세요.</option>
+             			<option value="naver.com">naver.com</option> <option value="daum.net">daum.net</option>
+             			<option value="gmail.com">gmail.com</option> <option value="nate.com">nate.com</option> 
+             			<option value="itwill.co.kr">itwill.co.kr</option>
+             			</select>
                        </div>
                         <input type="text" name="postcode" id="postcode" value="<%=request.getParameter("postcode") %>" class="inpt_02" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label>
@@ -163,7 +128,18 @@ function joinCheck() {
              			<img alt="증명사진" src="../memberUpload/<%=opicture%>" width="250" height="300"><%=opicture%>
              			<input type="file" name="picture" id="picture" class="inpt"  placeholder="증명사진"> 
                         <label for="file">Image</label>
-						
+						<div style="border: 1px dashed Gray;padding: 10px;">
+             			<h3>직원 구분</h3>
+             			<input type="radio" name="member_teacher_code" value="j_"  <%if(teacher_code.equals("j_")){%> checked="checked"<%} %> >자바 &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="s_"  <%if(teacher_code.equals("s_")){%> checked="checked"<%} %>>JSP &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="o_"  <%if(teacher_code.equals("o_")){%> checked="checked"<%} %>>Oracle &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="w_" <%if(teacher_code.equals("w_")){%> checked="checked"<%} %> >WEB &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="n_"  <%if(teacher_code.equals("n_")){%> checked="checked"<%} %>>Network &nbsp;&nbsp;
+             			<br>
+             			<input type="radio" name="member_teacher_code" value="l_"  <%if(teacher_code.equals("l_")){%> checked="checked"<%} %>>기타(외부강사/직업 등) &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="e_"  <%if(teacher_code.equals("e_")){%> checked="checked"<%} %>>기타(일반직원) &nbsp;&nbsp;
+             			</div>
+             			<br>
              				
                         <div class="submit-wrap">
                             <input type="submit" value="수정 완료" class="submit"> 
