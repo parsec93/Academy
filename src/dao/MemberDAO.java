@@ -588,5 +588,29 @@ public class MemberDAO {
 			return listCount;
 		}
 		
+		public void insertBasket(String member_id, int lecture_idx) {
+			
+
+			
+			try {
+				
+					String sql = "insert into basket values(null,?,?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, member_id);
+					pstmt.setInt(2, lecture_idx);
+					pstmt.executeUpdate();
+				
+				
+				
+				 
+			} catch (SQLException e) {
+				System.out.println("insertBasket 실패 - " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			
+		
+		}
+		
 		
 }

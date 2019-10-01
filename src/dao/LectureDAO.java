@@ -305,23 +305,50 @@ public class LectureDAO {
 	public List<LectureBean> getLectureList(String course,String day,String time){
 		List<LectureBean> lectureList = new ArrayList<LectureBean>();
 		
+	
+		System.out.println("여기");
+		String courseSql = " lecture_course = ? " ;
+		if(course.equals("전체")) {
+			courseSql = " lecture_course is not ?";
+			course=null;
+		}
+		String daySql = " lecture_week_day = ? " ;
+		if(day.equals("3")) {
+			daySql = " lecture_week_day is not ? ";
+			day = null;
+		}
+		String timeSql = " lecture_time = ? ";
+		if(time.equals("전체")) {
+			timeSql = " lecture_time is not ? ";
+			time = null;
+		}
+		
 
 		String sql = ""; 
+		
+		System.out.println(courseSql);
+		System.out.println(daySql);
+		System.out.println(timeSql);
 		
 		System.out.println("데이"+day);
 		System.out.println("타임"+time);
 		System.out.println("코스"+course);
-		sql = "select lecture_idx,lecture_subject, lecture_start_day, lecture_end_day, lecture_course, lecture_teacher, lecture_week_day, lecture_time, lecture_fee "
-		+ "from lecture where lecture_course = ? AND lecture_week_day = ? AND lecture_time = ?"
-		+ "AND lecture_start_day >now() "
-		+ "ORDER BY lecture_idx DESC";
+		sql = "select * "
+		+ "from lecture where " + courseSql
+		+ " AND " + daySql 
+		+ " AND " + timeSql
+		+ " AND lecture_start_day >now() "
+		+ " ORDER BY lecture_idx DESC";
 
+		System.out.println(sql);
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1,course);
-			pstmt.setString(2, day);
-			pstmt.setString(3, time);
+			pstmt.setString(2,day);
+			pstmt.setString(3,time);
+			System.out.println(sql);
 			rs =pstmt.executeQuery();
+			
 			
 			while(rs.next()) {
 				LectureBean lb = new LectureBean();
@@ -339,7 +366,7 @@ public class LectureDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectApplyList() 에러" + e.getMessage());
+			System.out.println("selectgetLectureList() 에러" + e.getMessage());
 		}
 		finally {
 			close(rs);
