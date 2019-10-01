@@ -23,7 +23,7 @@
 		if(sId == null){ 
 %> 
 			<li><a class="nav-top-link" href="member/loginForm.jsp">로그인</a></li>
-		<%}else if(isMember != null){ ///sId가 null이 아닐경우
+	<%}else if(isMember != null){ ///sId가 null이 아닐경우
 				if(sId.equals("admin1234")){
 			%> 
 				<li><a class="nav-top-link" href="admin/adminMain.jsp">관리자페이지</a></li>
@@ -37,8 +37,8 @@
 					<li><a class="nav-top-link" href="InfoTeacher.al?isMember=<%=isMember%>">내 강의실</a></li>
 					<% }%>
 				<li><a class="nav-top-link" href="LogoutPro.me">로그아웃</a></li>
-		<%}
-		}%>
+		<% }
+	}%>
 		</ul>
 		</div>
 		

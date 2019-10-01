@@ -49,7 +49,10 @@ String[] arrayEamil = email.split("@");
     
     <div class="login_container">
         <article class="half">
-            <a href="index.jsp">컴퓨터 학원</a>
+            <a href="../index.jsp">컴퓨터 학원</a>
+                        <div class="tabs">
+                <span class="tab signin active">회원계정수정</span>
+            </div>
             <div class="content">
 
                     <form action="../UpdatePro.me" method="post" enctype="multipart/form-data" >
@@ -63,11 +66,12 @@ String[] arrayEamil = email.split("@");
                         <label for="password">Your password</label>
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password">
                         
+                         <div style="clear:both;">
                         <label for="email">Your email</label>
                         <input type="text" name="email1" id="email1" value="<%=arrayEamil[0] %>" class="inpt_04" required="required" placeholder="Your email">
-                        &nbsp;@&nbsp;
-                        <input type="text" name="email2" id="email2" value="<%=arrayEamil[1] %>" class="inpt_04" required="required" placeholder="직접입력">
-                        &nbsp;
+                        <p class="emailtext">@</p>
+                        <input type="text" name="email2" id="email2" value="<%=arrayEamil[1] %>" class="inpt_05" required="required" placeholder="직접입력">
+                       </div>
                         <input type="text" name="postcode" id="postcode" value="<%=request.getParameter("postcode") %>" class="inpt_02" required="required" placeholder="우편번호">
                         <label for="address">우편번호</label>
                         <input type="button" value="우편번호 찾기" class="inpt_03" onClick="openDaumZipAddress();"><br>
@@ -83,7 +87,7 @@ String[] arrayEamil = email.split("@");
                         
                         
                         <div class="submit-wrap">
-                            <input type="submit" value="Sign up" class="submit"> <a
+                            <input type="submit" value="수정완료" class="submit"> <a
                                 href="#" class="more">Terms and conditions</a>
                         </div>
                     </form>

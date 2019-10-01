@@ -36,24 +36,18 @@
   </head>
 <%
 
-// Action 클래스에서 request 객체의 setAttribute()메서드로 저장되어 전달된 객체 가져오기(Ojbect타입이므로 각각 형변환이 필요)
-//ArrayList<NoticeBean> noticeList = (ArrayList<NoticeBean>)request.getAttribute("noticeList");   // 게시판 글 목록 을 위한 객체 
-//NoticePageInfo noticePageInfo = (NoticePageInfo)request.getAttribute("noticePageInfo");
-
-
+ArrayList<MemberBean> memberList = (ArrayList<MemberBean>)request.getAttribute("memberList");// 멤버목록을 위한 객체 
+NoticePageInfo noticePageInfo = (NoticePageInfo)request.getAttribute("memberPageInfo");
 
 //pageInfo 객체로부터 페이징 정보 가져오기 
-// int listCount = noticePageInfo.getListCount();
-// int nowPage = noticePageInfo.getPage();
-// int startPage = noticePageInfo.getStartPage();
-// int endPage = noticePageInfo.getEndPage();
-// int maxPage = noticePageInfo.getMaxPage();
+ int listCount = noticePageInfo.getListCount();
+ int nowPage = noticePageInfo.getPage();
+ int startPage = noticePageInfo.getStartPage();
+ int endPage = noticePageInfo.getEndPage();
+ int maxPage = noticePageInfo.getMaxPage();
 
 String sid = (String)session.getAttribute("sid");
-// String mList = (String)request.getAttribute("mList");
-//if(mList == null){
-	int  mList=1;
-//}
+
 %>
 
   <!--================ Start Header Menu Area =================-->
@@ -68,7 +62,7 @@ String sid = (String)session.getAttribute("sid");
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>공지사항</h2>
+                <h2>회원명단</h2>
                 </div>
               </div>
             </div>
@@ -76,26 +70,20 @@ String sid = (String)session.getAttribute("sid");
         </div>
     </section>
     <!--================End Home Banner Area =================-->
-<!-- 	 <div class="popular_courses section_gap_top"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row justify-content-center"> -->
-<!--           <div class="col-lg-5"> -->
-<!--             <div class="main_title"> -->
-<!--               <h2 class="mb-3"> -->
 	<!-- 리스트 공지사항 시작-->
 	<div class="boardwrap">
-	<h1>	공지사항</h1>
+	<h1>회원명단</h1>
 	<div>
  	<form action="Member.me" name="fr" method="get" onchange="ne(mList.value)"> 
-	<select name = "mList">
-	<option value = "0" <%//if(mList.equals("0")){ %> selected="selected"<%//} %>>[전체 회원]</option>
-	<option value = "1" <%//if(mList.equals("1")){ %> selected="selected"<%//} %>>[수강중]</option>
-	<option value="2" <%//if(mList.equals("2")){ %> selected="selected"<%//} %>>[강의완료]</option>
-	</select>
+	<%-- <select name = "mList">
+	<option value = "0" <%if(mList.equals("0")){ %> selected="selected"<%//} %>>[전체 회원]</option>
+	<option value = "1" <%if(mList.equals("1")){ %> selected="selected"<%//} %>>[수강중]</option>
+	<option value="2" <%if(mList.equals("2")){ %> selected="selected"<%//} %>>[강의완료]</option>
+	</select> --%>
 </form> 
 	</div>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
-	<caption>게시판 리스트</caption>
+	<caption>회원 명단</caption>
     <colgroup>
 	<col width="10%">
 	<col width="6%">
@@ -104,41 +92,33 @@ String sid = (String)session.getAttribute("sid");
 	<col width="40%">
 
 	</colgroup>
-              <%if(mList == 0) {%>
+              <%if(memberList == null) {%>
               <h1><b>회원이 없습니다.</b></h1>
               <%}else{ %>
 				<thead>
 				<tr>
 					<th scope="col">회원번호</th>
-					<th scope="col">수강여부</th>
-					<th scope="col">회원성함</th>
+					<th scope="col">회원이름</th>
+					<th scope="col">회원ID</th>
 					<th scope="col">연락처</th>
 					<th scope="col">E-mail</th>
 				</tr>
 					</thead>
-
 					<%
-// 					for(int i =0 ; i<mList.size(); i++){
-// 						MemberBean memberBean = (MemberBean)mListList.get(i);
-						%>	
+ 					for(int i =0 ; i<memberList.size(); i++){
+ 						MemberBean memberBean = (MemberBean)memberList.get(i);
+						%>
 					<tbody>
 						<tr onclick="location.href='ApplyInfo.al?listType=all'">
-							<td class="num">1</td>
-							<td>
-							<%if(mList == 1){ %>
-													<b>[수강중]&nbsp;&nbsp;</b>
-					<%}else if(mList ==2){ %>
-													<b>[수강완료]&nbsp;&nbsp;</b>
-					<%//}else{%>
-					[일반 회원]
-					<%} %></td>
-							<td class="num">홍길동</td>
-							<td class="num">010-1234-5678</td>
-							<td class="num">hong@naver.com</td>
+							<td class="num"><%=memberBean.getMember_idx() %></td>
+							<td class="num"><%=memberBean.getMember_name() %></td>
+							<td class="num"><%=memberBean.getMember_id() %></td>
+							<td class="num"><%=memberBean.getMember_phone() %></td>
+							<td class="num"><%=memberBean.getMember_email() %></td>
 						</tr>
 						<%
-				//	}
-					%>		
+					}
+					%>	
 				<%} %>
 
 				</tbody>
@@ -148,50 +128,33 @@ String sid = (String)session.getAttribute("sid");
 	<div id="page_control">
 
 		<%
-		//if(nowPage <= 1 ) { %>
-			<!--  [이전]&nbsp; -->
-		<%//} else { %>
-			<a href="Member.me?page=<%//=nowPage -1 %>">[이전]</a>&nbsp;
-		<%//} %>
+		if(nowPage <= 1 ) { %>
+			[이전]&nbsp;
+		<%} else { %>
+			<a href="Member.me?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+		<%} %>
 		
-		<%//for(int i = startPage ; i <= endPage; i++) {
-			//if(i == nowPage) {%>
-				[<%//=i %>]
-			<%//} else { %>
-
-				<a href = "Member.me?page=<%//=i %>&mList=<%%>">[<%//=i %>]</a>&nbsp;
-			<%//} %>
-		<%//} %>
+		<%for(int i = startPage ; i <= endPage; i++) {
+			if(i == nowPage) {%>
+				[<%=i %>]
+			<%} else { %>
+				<a href = "Member.me?page=<%=i %>">[<%=i %>]</a>&nbsp;
+			<%} %>
+		<%} %>
 		
-		<%//if(nowPage >= maxPage){ %>
-			<!-- &nbsp;[다음]  -->
-		<%//} else {  %>
-			<a href="Member.me?page=<%//=nowPage +1 %>"> &nbsp;[다음]</a>
-		<%//} %>
+		<%if(nowPage >= maxPage){ %>
+			&nbsp;[다음]
+		<%} else {  %>
+			<a href="Member.me?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+		<%} %> 
 
 
 
-	<h5>현재 수강중 - 출결???????????????????????????</h5>
-	<h5>과목별 수업 이력 - 다음반 개설시 연락 줄수 있게 ???????-ㅁ-ㅁ-ㅁ-ㅁ-ㅁ-ㅁ-</h5>
-<h5>계정삭제 - 회원 클릭시 삭제 폼으로 연결????</h5>
 <input type="button" class="btn" value="메인으로" onclick="location.href='../Academy'">
 <!-- 페이징 처리 구역 종료 -->
                     </div>
                       </div>
  
-   
-    <!--================ Start Popular Courses Area =================-->
-   
-    <!--================ End Popular Courses Area =================-->
-
-    <!--================ Start Registration Area =================-->
-
-      <!--================ End Registration Area =================-->
-
-    <!--================ Start Feature Area =================-->
-
-    <!--================ End Feature Area =================-->
-
     <!--================ Start footer Area  =================-->
     <jsp:include page="../header_footer/footer.jsp" />
     <!--================ End footer Area  =================-->

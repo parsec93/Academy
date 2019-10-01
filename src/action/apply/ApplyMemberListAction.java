@@ -10,6 +10,7 @@ import action.Action;
 import svc.apply.ApplyMemberListService;
 import svc.lecture.LectureListService;
 import vo.ActionForward;
+import vo.AttendBean;
 import vo.LectureBean;
 import vo.LecturePageInfo;
 import vo.MemberBean;
@@ -30,10 +31,16 @@ public class ApplyMemberListAction implements Action {
 
 		applyMemberList = applyMemberListService.getApplyMemberList(lecture_idx);
 		
+		ArrayList<AttendBean> todayCheck = applyMemberListService.getTodayCheck(lecture_idx);
+		
+		
+		
 		ActionForward forward = new ActionForward();
 		
 	
 		request.setAttribute("applyMemberList", applyMemberList);
+		request.setAttribute("lecture_idx", lecture_idx);
+		request.setAttribute("todayCheck", todayCheck);
 
 		if(applyMemberList == null) {
 			response.setContentType("text/html;charset=utf-8");

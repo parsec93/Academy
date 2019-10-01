@@ -18,17 +18,26 @@
 <!-- main css -->
 <link rel="stylesheet" href="../css/login.css" />
 <link rel="stylesheet" href="../css/style.css" />
-</head>	
-<body>
 <%
 request.setCharacterEncoding("utf-8");
 String member_idx=request.getParameter("member_idx");
 String id = request.getParameter("id");
 String name = request.getParameter("name");
+String isMember =(String)request.getAttribute("isMember");
 %>
+</head>	
+<script type="text/javascript">
+// function back(){
+// 	window.close();
+// }
+</script>
+<body>
+
     <!--================ Start Login Area =================-->
 
-            <a href="index.jsp">교직원 계정 삭제</a>
+
+
+            <h1>교사계정을 삭제하시겠습니까?</h1>
                     <form action="../TeacherDelete.me?member_idx=<%=member_idx %>" method="post" >
                       <label for="id">id</label> 
                       <input type="text" name="id" id="id" class="inpt" required="required" placeholder="Your id" value="<%=id%>"> 

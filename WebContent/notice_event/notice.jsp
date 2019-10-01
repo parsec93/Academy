@@ -1,3 +1,4 @@
+
 <%@page import="vo.NoticePageInfo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.NoticeBean"%>
@@ -24,14 +25,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
      <!-- board css -->
-	<link rel="stylesheet" href="css/board.css" />
-	<script type="text/javascript">
-	
-	function ne(op){
-		location.href="notice.no?nt_ev="+op;
-	}
-	</script>
-	
+	<link rel="stylesheet" href="css/board.css" />	
   </head>
 <%
 
@@ -48,12 +42,21 @@ int startPage = noticePageInfo.getStartPage();
 int endPage = noticePageInfo.getEndPage();
 int maxPage = noticePageInfo.getMaxPage();
 
-String sid = (String)session.getAttribute("sid");
-String nt_ev = (String)request.getAttribute("nt_ev");
-if(nt_ev == null){
-	nt_ev="0";
+// String sid = (String)session.getAttribute("sid");
+String isNotice = (String)request.getAttribute("isNotice");
+if(isNotice == null){ //Action에서 받아오는 값이 null일 경우(첫페이지)  셀렉트 박스에 표시될 isNotice값 설정
+	isNotice="0";
 }
+
+String search =(String) request.getAttribute("search");
 %>
+
+	<script type="text/javascript">
+	
+	function ne(op){
+		location.href="notice.no?isNotice="+op;
+	}
+	</script>
   <body>
     <!--================ Start Header Menu Area =================-->
     <jsp:include page="../header_footer/header.jsp" />
@@ -74,25 +77,16 @@ if(nt_ev == null){
           </div>
         </div>
     </section>
-    <!--================End Home Banner Area =================-->
-<!-- 	 <div class="popular_courses section_gap_top"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row justify-content-center"> -->
-<!--           <div class="col-lg-5"> -->
-<!--             <div class="main_title"> -->
-<!--               <h2 class="mb-3"> -->
 	<!-- 리스트 공지사항 시작-->
 	<div class="boardwrap">
 	<h1>	공지사항</h1>
-	<div>
- 	<form action="notice.no" name="fr" method="get" onchange="ne(nt_ev.value)"> 
-	<select name = "nt_ev">
-	<option value = "0" <%if(nt_ev.equals("0")){ %> selected="selected"<%} %>>[전체보기]</option>
-	<option value = "1" <%if(nt_ev.equals("1")){ %> selected="selected"<%} %>>[공지사항]</option>
-	<option value="2" <%if(nt_ev.equals("2")){ %> selected="selected"<%} %>>[이벤트]</option>
+	<form action="notice.no" onchange="ne(isNotice.value)">
+	<select name = "isNotice"  id ="period" >
+	<option value = "0" <%if(isNotice.equals("0")){ %> selected="selected"<%} %>>[전체보기]</option>
+	<option value = "1" <%if(isNotice.equals("1")){ %> selected="selected"<%} %>>[공지사항]</option>
+	<option value="2" <%if(isNotice.equals("2")){ %> selected="selected"<%} %>>[이벤트]</option>
 	</select>
-</form> 
-	</div>
+	</form>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	<caption>게시판 리스트</caption>
     <colgroup>
@@ -146,28 +140,48 @@ if(nt_ev == null){
 		<%
 		if(nowPage <= 1 ) { %>
 			[이전]&nbsp;
-		<%} else { %>
-			<a href="notice.no?page=<%=nowPage -1 %>">[이전]</a>&nbsp;
+		<%} else  { 
+				if(search != null){  %>
+			<a href="notice.no?page=<%=nowPage -1 %>&isNotice=<%=isNotice%>&search=<%=search%>">[이전]</a>&nbsp;
+			 	<%}else{%> 
+			 				<a href="notice.no?page=<%=nowPage -1 %>&isNotice=<%=isNotice%>">[이전]</a>&nbsp;
+			 	<%} %> 
 		<%} %>
 		
 		<%for(int i = startPage ; i <= endPage; i++) {
 			if(i == nowPage) {%>
-				[<%=i %>]
-			<%} else { %>
-
-				<a href = "notice.no?page=<%=i %>&nt_ev=<%=request.getAttribute("isNotice")%>">[<%=i %>]</a>&nbsp;
+				<p class="pagetext">[<%=i %>]</p>
+			<%} else { 
+   					if(search != null){  %>
+					<a href = "notice.no?page=<%=i %>&isNotice=<%=isNotice%>&search=<%=search%>">[<%=i %>]</a>&nbsp;
+ 					<%}else{%> 
+ 					<a href = "notice.no?page=<%=i %>&isNotice=<%=isNotice%>">[<%=i %>]</a>&nbsp;
+ 					<%} %> 
 			<%} %>
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
 			&nbsp;[다음]
-		<%} else {  %>
-			<a href="notice.no?page=<%=nowPage +1 %>"> &nbsp;[다음]</a>
+		<%} else  { 
+				if(search != null){  %>
+			<a href="notice.no?page=<%=nowPage +1 %>&isNotice=<%=isNotice%>&search=<%=search%>"> &nbsp;[다음]</a>
+			 					<%}else{%> 
+			 						<a href="notice.no?page=<%=nowPage +1 %>&isNotice=<%=isNotice%>"> &nbsp;[다음]</a>
+			 		<%} %> 
 		<%} %>
 
 
 <!-- 페이징 처리 구역 종료 -->
                     </div>
+                    
+   <div id="table_search" style="float: right;">
+	<form action="notice.no" method="post" name="fr2">
+	<input type="text" name="search" class="input_box"  <%if(search != null){%>value="<%=search %>" <%} %>>
+	<input type="hidden" name="isNotice" value="<%=isNotice %>">
+	<input type="submit" value="search" class="btn">
+	</form>
+	</div>
+                    
                       </div>
  
    

@@ -24,6 +24,7 @@ public class ApplyListAction implements Action {
 		String sId = (String)session.getAttribute("sId");
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
+		
 		String isMember = request.getParameter("isMember");
 		String listType="";
 		if(request.getParameter("listType") != null) {
@@ -39,10 +40,12 @@ public class ApplyListAction implements Action {
 		
 		ApplyListService applyListService = new ApplyListService();
 		
+		
 		int listCount = applyListService.getApplyListCount(sId,listType);
 		
 		applyList = applyListService.getApplyList(page, limit, sId, listType);
 		applyList2 = applyListService.getApplyList2(page, limit, sId, listType);
+		 
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;

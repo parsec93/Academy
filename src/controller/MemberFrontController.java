@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.board.BoardViewAction;
+import action.member.MemberBasketAction;
 import action.member.FindIdAction;
 import action.member.FindPassAction;
 import action.member.LoginProAction;
 import action.member.LogoutProAction;
 import action.member.MemberCheckProAction;
+import action.member.MemberDelete;
 import action.member.MemberJoinProAction;
+import action.member.MemberListAction;
 import action.member.TeacherDeleteAction;
 import action.member.TeacherListAction;
 import action.member.TeacherViewAction;
@@ -139,15 +143,28 @@ public class MemberFrontController extends HttpServlet {
         	forward = new ActionForward();
         	forward.setPath("/admin/teacherUpdate.jsp");
         }else if(command.equals("/Member.me")) {
-        	forward = new ActionForward();
-        	forward.setPath("/admin/memberList.jsp");
+        	System.out.println("member.me FrontController");
+        	action = new MemberListAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }else if(command.equals("/FindId.me")) {
         action = new FindIdAction();
         try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
+        }else if(command.equals("/basket.me")) {
+	        action = new MemberBasketAction();
+	        try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    
         }else if(command.equals("/FindPass.me")) {
         	action = new FindPassAction();
         	try {
@@ -158,6 +175,13 @@ public class MemberFrontController extends HttpServlet {
         }else if(command.equals("/find.me")){
         	forward = new ActionForward();
         	forward.setPath("/member/findId_Pass.jsp");
+        }else if(command.equals("/Delete.me")) {
+        	action = new MemberDelete();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
 
         

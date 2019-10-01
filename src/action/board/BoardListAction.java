@@ -26,8 +26,7 @@ public class BoardListAction implements Action {
         System.out.println("BoardListAction!");
         String board_id = (String) request.getAttribute("board_id");
         String board_sid = (String) request.getAttribute("board_sid");
-        
-        
+        String search = (String)request.getAttribute("search");
         
         // 게시물 목록 정보를 받아와서 저장할 ArrayList 타입 변수 선언(제네릭 타입 BoardBean 타입으로 지정)
         ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
@@ -42,9 +41,9 @@ public class BoardListAction implements Action {
         }
 
         BoardListService boardListService = new BoardListService();
-        int listCount = boardListService.getBoardListCount(board_id); // 전체 게시물 수 가져오기
+        int listCount = boardListService.getBoardListCount(board_id, search); // 전체 게시물 수 가져오기
         
-        articleList = boardListService.getArticleList(page, limit,board_id); // 전체 게시물 목록 가져오기(10개 한정)
+        articleList = boardListService.getArticleList(page, limit,board_id,search); // 전체 게시물 목록 가져오기(10개 한정)
         
         // 전체 페이지(마지막 페이지) 수 계산
         int maxPage = (int)((double)listCount / limit + 0.95);
@@ -70,19 +69,17 @@ public class BoardListAction implements Action {
         request.setAttribute("board_sid", board_sid);
         request.setAttribute("boardPageInfo", boardpageInfo);
         request.setAttribute("articleList", articleList);
-        
+        request.setAttribute("search", search); //페이지 search값 넘겨주기
         // ActionForward 객체를 생성하여 Dispatcher 방식으로 board 폴더 내의 qna_board_list.jsp 페이지로 이동
        
 		if (board_id.equals("free")) {
 			forward.setPath("board/board_free.jsp");
-			forward.setRedirect(false);
 		} else if (board_id.equals("qna")) {
 			forward.setPath("board/board_qna.jsp");
-			forward.setRedirect(false);
 		}
 		
 
-        
+		forward.setRedirect(false);
         return forward;
     }
 

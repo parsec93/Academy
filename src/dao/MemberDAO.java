@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import static db.JdbcUtil.*;
 
 import vo.BoardBean;
@@ -72,7 +74,7 @@ public class MemberDAO {
 				pstmt.setString(11, mb.getMember_accno());
 				pstmt.setString(12, mb.getMember_picture());
 				pstmt.setString(13, mb.getMember_isMember());
-				pstmt.setString(14, "1");
+				pstmt.setString(14, mb.getMember_teacher_code());
 				
 			}
 			
@@ -148,6 +150,7 @@ public class MemberDAO {
 	         
 	         if(rs.next()) {
 	            memberBean = new MemberBean();
+	            memberBean.setMember_idx(rs.getInt("member_idx"));
 	            memberBean.setMember_name(rs.getString("member_name"));
 	            memberBean.setMember_id(rs.getString("member_id"));
 	            memberBean.setMember_pass(rs.getString("member_pass"));
@@ -207,7 +210,7 @@ public class MemberDAO {
 			System.out.println(member_isMember);
 	      try {
 	    	  if(member_isMember.equals("1")){//관리자가 교직원 계정 수정
-	 				sql = "UPDATE member SET member_name=? , member_pass=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=?, member_bank=?, member_accno=?, member_picture=? WHERE member_id=?";
+	 				sql = "UPDATE member SET member_name=? , member_pass=?, member_email=?, member_postcode=?,member_add1=?,member_add2=?,member_phone=?, member_bank=?, member_accno=?, member_picture=?, member_teacher_code=? WHERE member_id=?";
 	 				pstmt = con.prepareStatement(sql);
 	 		         pstmt.setString(1, mb.getMember_name());
 		 			pstmt.setString(2, mb.getMember_pass());
@@ -219,7 +222,8 @@ public class MemberDAO {
 	 				pstmt.setString(8, mb.getMember_bank());
 	 				pstmt.setString(9, mb.getMember_accno());
 	 				pstmt.setString(10, mb.getMember_picture());
-	 		         pstmt.setString(11, mb.getMember_id());
+					pstmt.setString(11, mb.getMember_teacher_code());
+	 		         pstmt.setString(12, mb.getMember_id());
 	 				
 	 			}else{ // 일반 계정 수정
 	 				System.out.println("ㅎㅎDAO");
@@ -315,6 +319,49 @@ public class MemberDAO {
 		}		   
 		   return pass;
 	   }
+	   
+	   
+	   public boolean isMember(int member_idx, String member_id) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			boolean isMember = false;
+			
+			try {//board_num에 해당하는 게시물의 패스워드를 비교
+				String sql = "select * from member where member_idx=? AND member_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, member_idx);
+				pstmt.setString(2, member_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {//게시물 번호에 해당하는 패스워드가 일치하여 레코드가 검색될 경우
+					isMember=true;
+				}
+			} catch (SQLException e) {
+				System.out.println("isArticleWriter 에러 : " + e.getMessage());
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return isMember;
+		}//
+	   
+		public int deleteMember(String member_id, String member_pass) {
+			PreparedStatement pstmt = null;
+			int deleteCount = 0;
+			try {
+				String sql="DELETE FROM member WHERE member_id=? AND member_pass=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member_id);
+				pstmt.setString(2, member_pass);
+				deleteCount = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("deleteTeacher 에러 : " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			return deleteCount;
+		} //deleteArticle()
+	   
 //------------------------------------------------- Teacher ------------------------------------------------------------	   
 	   
 		public int selectListCount(String member_isMember) {
@@ -473,5 +520,73 @@ public class MemberDAO {
 			return deleteCount;
 		} //deleteArticle()
 	   
+		
+		
+		// 회원 목록 출력
+		public ArrayList<MemberBean> selectMemberList(int page, int limit){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			ArrayList<MemberBean> memberList = new ArrayList<MemberBean>();
+			String sql="";
+			int startRow = (page - 1)*10;// 읽어올 목록의 첫 레코드 번호 
+			
+			try {
+				sql = "SELECT * FROM MEMBER ORDER BY member_idx DESC LIMIT ?,?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, limit);
+				
+				rs = pstmt.executeQuery();
+				
+				// ResultSet 객체 내의 모든 레코드를 각각 레코드별로 MemberBean 에 담아서 ArrayList 객체에 저장
+				while(rs.next()) {
+					MemberBean memberBean = new MemberBean();
+					
+					memberBean.setMember_idx(rs.getInt("member_idx"));
+					memberBean.setMember_name(rs.getString("member_name"));
+					memberBean.setMember_id(rs.getString("member_id"));
+					memberBean.setMember_phone(rs.getString("member_phone"));
+					memberBean.setMember_email(rs.getString("member_email"));
+					memberList.add(memberBean);
+				}
+			} catch (Exception e) {
+				System.out.println("selectMemberList() 에러"+e.getMessage());
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return memberList;
+		}
 	
+		
+		
+		
+		//전체 회원 수를 조회하여 리턴 
+		public int selectMembertListCount() {
+			int listCount = 0; // 회원 수를 저장하는 변수 
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql="";
+			
+			try {
+				sql = "SELECT COUNT(*) FROM member";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					listCount =  rs.getInt(1);
+				}
+			} catch (Exception e) {
+				System.out.println("selectMemberListCount() 에러"+e.getMessage());
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return listCount;
+		}
+		
+		
 }

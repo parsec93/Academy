@@ -191,7 +191,7 @@ public class LectureDAO {
 	}
 	public int lectureInsert(LectureBean lb, int lecture_count) {
 		int isSuccess = 0;
-		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into lecture values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -205,7 +205,7 @@ public class LectureDAO {
 			pstmt.setInt(8, lb.getLecture_fee());
 			pstmt.setString(9, lb.getLecture_time());
 			pstmt.setString(10, lb.getLecture_room());
-			pstmt.setInt(11, lecture_count);
+			pstmt.setInt(11, lecture_count);	
 			isSuccess = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("lectureInsert() 에러" + e.getMessage());
@@ -301,5 +301,53 @@ public class LectureDAO {
 		}
 		return tc;
 	}
+	
+	public List<LectureBean> getLectureList(String course,String day,String time){
+		List<LectureBean> lectureList = new ArrayList<LectureBean>();
+		
+
+		String sql = ""; 
+		
+		System.out.println("데이"+day);
+		System.out.println("타임"+time);
+		System.out.println("코스"+course);
+		sql = "select lecture_idx,lecture_subject, lecture_start_day, lecture_end_day, lecture_course, lecture_teacher, lecture_week_day, lecture_time, lecture_fee "
+		+ "from lecture where lecture_course = ? AND lecture_week_day = ? AND lecture_time = ?"
+		+ "AND lecture_start_day >now() "
+		+ "ORDER BY lecture_idx DESC";
+
+		try {
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1,course);
+			pstmt.setString(2, day);
+			pstmt.setString(3, time);
+			rs =pstmt.executeQuery();
+			
+			while(rs.next()) {
+				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs.getInt("lecture_idx"));
+				lb.setLecture_subject(rs.getString("lecture_subject"));
+				lb.setLecture_course(rs.getString("lecture_course"));
+				lb.setLecture_week_day(rs.getString("lecture_week_day"));
+				lb.setLecture_time(rs.getString("lecture_time"));
+				lb.setLecture_fee(rs.getInt("lecture_fee"));
+				lb.setLecture_teacher(rs.getString("lecture_teacher"));
+				lb.setLecture_start_day(rs.getDate("lecture_start_day"));
+				lb.setLecture_end_day(rs.getDate("lecture_end_day"));
+				
+				lectureList.add(lb);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectApplyList() 에러" + e.getMessage());
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return lectureList;
+	}
+	
 	
 }

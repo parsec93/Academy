@@ -95,7 +95,7 @@ public class BoardDAO {
 	}
 
 	// 전체 게시물 갯수를 조회하여 리턴
-	public int selectListCount(String board_id) {
+	public int selectListCount(String board_id, String search) {
 		int listCount = 0; // 게시물 갯수를 저장하는 변수
 
 		PreparedStatement pstmt = null;
@@ -103,9 +103,18 @@ public class BoardDAO {
 
 		try {
 			System.out.println(board_id);
+			System.out.println(search);
+			if(search == null) {
 			String sql = "SELECT COUNT(*) FROM board WHERE board_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board_id);
+			}else { //search 검색 단어가 있을 경우
+				String sql = "SELECT COUNT(*) FROM board WHERE board_id=? AND board_subject LIKE ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, board_id);
+				pstmt.setString(2, "%"+search+"%");
+			}
+
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -124,7 +133,7 @@ public class BoardDAO {
 	}
 
 	// 게시물 목록 조회하여 리턴
-	public ArrayList<BoardBean> selectArticleList(int page, int limit, String board_id) {
+	public ArrayList<BoardBean> selectArticleList(int page, int limit, String board_id, String search) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -136,11 +145,22 @@ public class BoardDAO {
 			// SELECT 구문 : board 테이블 데이터 전체 조회
 			// => board_re_ref 기준 내림차순, board_re_seq 기준 오름차순
 			// => 전체 갯수가 아닌 시작 레코드 번호 ~ limit 갯수 만큼 읽어오기
+			if(search ==null) {
 			String sql = "SELECT * FROM board WHERE board_id=? ORDER BY board_re_ref DESC,board_re_seq ASC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board_id);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, limit);
+			
+			}else { //search 검색 단어가 있을 경우
+				String sql = "SELECT * FROM board WHERE board_id=? AND board_subject LIKE ? ORDER BY board_re_ref DESC,board_re_seq ASC LIMIT ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, board_id);
+				pstmt.setString(2, "%"+ search+"%");
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, limit);
+				
+			}
 			rs = pstmt.executeQuery();
 
 			// ResultSet 객체 내의 모든 레코드를 각각 레코드별로 BoardBean 에 담아서 ArrayList 객체에 저장

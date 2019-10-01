@@ -6,6 +6,10 @@
 	MemberDAO memberDAO = MemberDAO.getInstance();
 	MemberBean memberBean = (MemberBean) request.getAttribute("teacher");
 	request.setCharacterEncoding("utf-8");
+	
+	
+// 	String id = memberBean.getMember_id();
+// 	String pas = memberBean.getMember_pass();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,24 +29,18 @@
     <link rel="stylesheet" href="css/board.css" />
 
 <script type="text/javascript">
-// function TeacherDelete(){
-// 	if (confirm("해당 계정을 삭제 하겠습니까?")){ 
-// 		document.up.action='techerDelete.jsp';
-// // 		location.href='TeacherList.me';
-// 		}else{ 
-// 		alert("삭제 취소 되었습니다."); 
-// 		return; 
-// 		}	
-// }
+
 </script>
 </head>
 <script>
 function mySubmit(index) {
+
 	if (index == 1) {
-	document.up.action='admin/teacherUpdate.jsp';
+	document.up.action='./admin/teacherUpdate.jsp';
 	}
 	if (index == 2) {
-	document.up.action='admin/teacherDelete.jsp';
+<%-- 		window.open("admin/teacherDelete.jsp?member_idx="+<%=memberBean.getMember_idx()%>, "", "width=400,height =300");		 --%>
+		document.up.action='./admin/teacherDelete.jsp';
 	}
 	document.up.submit();
 }
@@ -72,11 +70,11 @@ function mySubmit(index) {
 	<div class="boardwrap">
 		<h1>마이페이지</h1>
 		<form name='up' method="post" >
-		<input type="hidden" name="member_idx"  value="<%=memberBean.getMember_idx()%>">
-		<input type="hidden" name="id"  value="<%=memberBean.getMember_id()%>">
+		<input type="hidden" name="member_idx" id="member_idx" value="<%=memberBean.getMember_idx()%>">
+		<input type="hidden" name="id" id="member_id" value="<%=memberBean.getMember_id()%>">
 		<input type="hidden" name="picture"  value="<%=memberBean.getMember_picture()%>">
 			<table id="boardwrite">
-				<tr>
+				<tr>	
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
 					<td class="fttitle"><label for="notice_subject"><%=memberBean.getMember_name() %></label></td>
 					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" >
@@ -114,8 +112,7 @@ function mySubmit(index) {
 					<td class="ftwrite"><label for="notice_content">전화번호</label></td>
 					<td class="fttitle"><label for="notice_content"><%=memberBean.getMember_phone() %></label></td>
 					<input type="hidden" name="phone" id="phone" class="inpt" value="<%=memberBean.getMember_phone() %>" required="required" placeholder="휴대폰 번호">
-				</tr>
-				
+				</tr>			
 				<tr><td class="ftwrite">계좌번호</td>
 					<td class="fttitle"><label for="notice_subject">
 					<% String bank = "";
@@ -144,7 +141,42 @@ function mySubmit(index) {
 					<input type="hidden" name="bank" id="bank" class="inpt_02" value="<%=memberBean.getMember_bank() %>" required="required" placeholder="은행">
 					<input type="hidden" name="accno" id="accno" class="inpt" value="<%=memberBean.getMember_accno()%>" required="required" placeholder="계좌번호">
 				</tr>
+				<tr><td class="ftwrite"><label for="notice_subject">담당과목<br>(직원구분)</label></td>
+									<% String code = "";
+						if(memberBean.getMember_teacher_code() != null){
+					switch(memberBean.getMember_teacher_code().substring(0, 2)){
+					case "j_" : 
+						code = "JAVA"; 
+						break;
+					case "s_" : 
+						code = "JSP"; 
+						break;
+					case "o_" : 
+						code = "Oracle"; 
+						break;
+					case "w_" : 
+						code = "WEB"; 
+						break;
+					case "n_" : 
+						code = "Network"; 
+						break;
+					case "l_" : 
+						code= "기타(외부강사/직업 등)"; 
+						break;
+					case "e_" : 
+						code = "기타(일반직원)"; 
+						break;	
+					default : 
+						code = "직원구분을 입력하세요.";
+					}
+					%>
+									<%} %>
+					<td class="fttitle"><label for="notice_subject"><%=code %> &nbsp;(
+					<%=memberBean.getMember_teacher_code() %> )</label></td>
 
+					<input type="hidden" name="member_teacher_code" id="member_teacher_code" class="inpt" value="<%=memberBean.getMember_teacher_code() %>" >
+				
+					</tr>
 			</table>
                <div  id="table_search">
               		<input type="button" value="계정 수정" class="btn" onClick='mySubmit(1)'>

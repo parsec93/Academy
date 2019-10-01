@@ -162,9 +162,21 @@ function joinCheck() {
 		document.up.jumin2.focus();
 		return false;
 	}
+	if(document.up.email2.value == "0"){
+		alert('이메일을 선택하세요.');
+		return false;
+	}
 	
 	if(document.up.bank.value == "0"){
 		alert('은행을 선택하세요.');
+		return false;
+	}
+	
+	if(document.up.member_teacher_code[0].checked ==false &&document.up.member_teacher_code[1].checked ==false
+		&& document.up.member_teacher_code[2].checked ==false && document.up.member_teacher_code[3].checked ==false
+		&&document.up.member_teacher_code[4].checked ==false&& document.up.member_teacher_code[5].checked ==false 
+		&&document.up.member_teacher_code[6].checked ==false){
+		alert('직원 구분을 선택하세요.');
 		return false;
 	}
 	
@@ -317,7 +329,16 @@ function joinCheck() {
                         <div style="clear:both;"> 
                         <input type="text" name="email1" id="email1" class="inpt_04" required="required" placeholder="Your email">
                         <p class="emailtext">@</p>
-                        <input type="text" name="email2" id="email2" class="inpt_05" required="required" placeholder="직접입력">
+                        
+                       <select name="email2" id="email2" class="inpt_05" 
+                       style="  font-size: 14px;  display: block;  width: 55%;  float:right;  height: 42px;  color: #999999;
+	  border: 1px solid #d9d9d9;  background: transparent;  -moz-border-radius: 2px;  -webkit-border-radius: 2px;  border-radius: 2px;" >
+             			<option value="0">선택하세요.</option>
+             			<option value="naver.com">naver.com</option> <option value="daum.net">daum.net</option>
+             			<option value="gmail.com">gmail.com</option> <option value="nate.com">nate.com</option> 
+             			<option value="itwill.co.kr">itwill.co.kr</option>
+             			</select>
+<!--                         <input type="text" name="email2" id="email2" class="inpt_05" required="required" placeholder="직접입력"> -->
                         </div>
                         
 <!-- 						<select class="inpt_05" onChange="SelectValue(this)"> -->
@@ -352,7 +373,18 @@ function joinCheck() {
              			
              			<input type="file" name="picture" id="picture" class="inpt" required="required" placeholder="증명사진"> 
                         <label for="file">Image</label>
-             			
+             			<div style="border: 1px dashed Gray;padding: 10px;">
+             			<h3>직원 구분</h3>
+             			<input type="radio" name="member_teacher_code" value="j_" >자바 &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="s_" >JSP &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="o_" >Oracle &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="w_" >WEB &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="n_" >Network &nbsp;&nbsp;
+             			<br>
+             			<input type="radio" name="member_teacher_code" value="l_" >기타(외부강사/직업 등) &nbsp;&nbsp;
+             			<input type="radio" name="member_teacher_code" value="e_" >기타(일반직원) &nbsp;&nbsp;
+             			</div>
+             			<br>
                         <div class="submit-wrap">
                             <input type="submit" value="Sign up" class="submit"> 
                             <a href="#" class="more">Terms and conditions</a>

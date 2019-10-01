@@ -42,7 +42,9 @@ function mySubmit(index) {
 	document.neform.action='member/updatePassword.jsp';
 	}
 	if(index == 3){
-		document.neform.action ='member/deleteForm.jsp'; 
+// 		document.neform.action ='member/deleteForm.jsp'; 
+			window.open("member/deleteForm.jsp?member_idx="+<%=memberBean.getMember_idx()%>, "", "width=400,height =300");
+
 	}
 	document.neform.submit();
 }
@@ -81,6 +83,7 @@ function mySubmit(index) {
 					<td class="ftwrite"><label for="notice_subject">이름</label></td>
 					<td class="fttitle"><label for="notice_subject"><%=memberBean.getMember_name() %></label></td>
 					<input type="hidden" name="name" id="name" class="inpt" value="<%=memberBean.getMember_name() %>" >
+					<input type="hidden" name="member_idx" id="member_idx" class="inpt" value="<%=memberBean.getMember_idx() %>" >
 				</tr>
 				<tr>
 					<td class="ftwrite"><label for="notice_subject">아이디</label></td>

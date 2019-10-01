@@ -42,6 +42,7 @@
   ArrayList<LectureBean> applyList = (ArrayList<LectureBean>)request.getAttribute("applyList");
   ArrayList<ApplyBean> applyList2 = (ArrayList<ApplyBean>)request.getAttribute("applyList2");
   LecturePageInfo applyPageInfo = (LecturePageInfo)request.getAttribute("applyPageInfo");
+  String sId = (String)session.getAttribute("sId");
   String isMember =(String)request.getAttribute("isMember"); 
  
   int listCount = applyPageInfo.getListCount();

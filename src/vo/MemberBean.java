@@ -20,7 +20,6 @@ public class MemberBean {
     
     
     
-    
 	public String getMember_jumin() {
 		return member_jumin;
 	}

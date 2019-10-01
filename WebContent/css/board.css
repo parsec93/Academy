@@ -323,4 +323,13 @@
 	border:1px solid #e8e8e8;
 }
 /*------------------*/
-
+.boardnone{
+	color:#f8b600;
+	display:inline-block;
+	width:100%;
+	font-size:30px;
+	font-weight: bold;
+	margin-top:20px;
+	margin-bottom:0;
+	
+}
