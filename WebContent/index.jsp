@@ -20,7 +20,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <%String isMember =(String)request.getAttribute("isMember"); %>
+<%String isMember =(String)session.getAttribute("isMember"); %>
   <body>
     <!--================ Start Header Menu Area =================-->
     <jsp:include page="header_footer/header_main.jsp" >
@@ -40,7 +40,7 @@
                   검증된 전문가와 커리큘럼의 맞춤형교육
                 </p>
                 <h2 class="text-uppercase mt-4 mb-5">
-                  4차 산업혁명 대비 과정<%=isMember %>
+                  4차 산업혁명 대비 과정
                 </h2>
                 <div>
                   <a href="#" class="primary-btn2 mb-3 mb-sm-0">강의소개</a>

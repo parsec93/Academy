@@ -301,13 +301,13 @@ public class ApplyDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+lecture+"%");
 			rs=pstmt.executeQuery();
-
+			review = new ArrayList<>();
 			while(rs.next()) {
 				lectureBean = new LectureBean();
-				review = new ArrayList<>();
-				lectureBean.setLecture_subject("lecture_subject");
-				lectureBean.setLecture_content("apply_review");
-				lectureBean.setLecture_teacher("apply_member_id");
+
+				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
+				lectureBean.setLecture_content(rs.getString("apply_review"));
+				lectureBean.setLecture_teacher(rs.getString("apply_member_id"));
 				review.add(lectureBean);
 			}
 		} catch (SQLException e) {

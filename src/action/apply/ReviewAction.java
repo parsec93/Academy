@@ -18,7 +18,7 @@ public class ReviewAction implements Action {
 		ActionForward forward = new ActionForward();
 		response.setContentType("text/html;charset=UTF-8"); 
 		String lecture = request.getParameter("lecture");
-		ArrayList<LectureBean> review = new ArrayList<>();
+		ArrayList<LectureBean> review = new ArrayList<LectureBean>();
 
 		//페이징 처리를 위한 변수 선언 
 		int page = 1; // 현재 페이지 
@@ -40,7 +40,7 @@ public class ReviewAction implements Action {
 		
 		request.setAttribute("review", review);
 		
-		System.out.println(review);
+		System.out.println(review.size());
 		
 		if(lecture.equals("java")) {
 			forward.setPath("course_java.jsp");

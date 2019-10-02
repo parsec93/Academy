@@ -3,7 +3,7 @@
 	<%
 	// 세션값 가져 오기 
 	String sId = (String)session.getAttribute("sId");
-	String isMember = request.getParameter("isMember");
+	String isMember = (String)session.getAttribute("isMember");
 	%>
 <header class="header_area white-header">
 	<div class="main_menu">

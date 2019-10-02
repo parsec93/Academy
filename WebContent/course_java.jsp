@@ -117,7 +117,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                           	LectureBean lb = (LectureBean)review.get(i);
                           	%>
                                 <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'><%= lb.getLecture_content() %></a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'><b>[<%=lb.getLecture_subject() %>]</b>&nbsp;<%= lb.getLecture_content() %></a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'><%=lb.getLecture_teacher() %></a>
                                 </li>
 <!--                                 <li class="justify-content-between d-flex"> -->
