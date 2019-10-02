@@ -10,44 +10,43 @@
 <head>
 <%
 	ArrayList<MemberBean> applyMemberList = (ArrayList<MemberBean>) request.getAttribute("applyMemberList");
-	String lecture_idx = (String)request.getAttribute("lecture_idx");
-	ArrayList<AttendBean> todayCheck = (ArrayList<AttendBean>)request.getAttribute("todayCheck");
-	
+	String lecture_idx = (String) request.getAttribute("lecture_idx");
+	ArrayList<AttendBean> todayCheck = (ArrayList<AttendBean>) request.getAttribute("todayCheck");
+
 	DecimalFormat df = new DecimalFormat("00");
 	Calendar cal = Calendar.getInstance();
 	String year = Integer.toString(cal.get(Calendar.YEAR));
-	String month = df.format(cal.get(Calendar.MONTH)+1);
+	String month = df.format(cal.get(Calendar.MONTH) + 1);
 	String day = df.format(cal.get(Calendar.DATE));
 	String dayone = String.valueOf(day.charAt(0));
 	int week = cal.get(Calendar.DAY_OF_WEEK);
-	   String strWeek = "";
-	   switch(week){
-	      case 1:
-	    	  strWeek = "일요일";
-	         break;
-	      case 2:
-	    	  strWeek = "월요일";
-	         break;
-	      case 3:
-	    	  strWeek = "화요일";
-	         break;
-	      case 4:
-	    	  strWeek = "수요일";
-	         break;
-	      case 5:
-	    	  strWeek = "목요일";
-	         break;
-	      case 6:
-	    	  strWeek = "금요일";
-	         break;
-	      case 7:
-	    	  strWeek = "토요일";
-	         break;
+	String strWeek = "";
+	switch (week) {
+		case 1 :
+			strWeek = "일요일";
+			break;
+		case 2 :
+			strWeek = "월요일";
+			break;
+		case 3 :
+			strWeek = "화요일";
+			break;
+		case 4 :
+			strWeek = "수요일";
+			break;
+		case 5 :
+			strWeek = "목요일";
+			break;
+		case 6 :
+			strWeek = "금요일";
+			break;
+		case 7 :
+			strWeek = "토요일";
+			break;
 
-	      }
-	String date = year+" "+ month +" "+day+" "+ strWeek;
-	 
-	%>
+	}
+	String date = year + " " + month + " " + day + " " + strWeek;
+%>
 <!-- Required meta tags -->
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -135,7 +134,7 @@
 						<%
 							}
 
-						}
+							}
 						%>
 
 					</table>
@@ -143,8 +142,11 @@
 
 				</div>
 				<div class="signup-cont cont">
-					<form action="ApplyAttendCheck.al" name="up" method="post" onsubmit="return attendCheck(<%=applyMemberList.size()%>)">
+					<form action="ApplyAttendCheck.al" name="up" method="post"
+						onsubmit="return attendCheck(<%=applyMemberList.size()%>)">
 						<table class="teacherwrap">
+							<input type="hidden" name="lecture_idx" value="<%=lecture_idx%>">
+							<input type="hidden" name="attendDay" value="<%=day%>">
 							<%
 								if (applyMemberList == null) {
 							%>
@@ -155,70 +157,69 @@
 
 							<tr>
 								<td>이름</td>
-								<td>출석  <%=date %></td>
+								<td>출석 <%=date%></td>
 
 							</tr>
 							<%
-// 								for (int i = 0; i < applyMemberList.size(); i++) {
-// 										MemberBean memberBean = (MemberBean) applyMemberList.get(i);
-// 										AttendBean attendBean = new AttendBean();
-// 										String[] tc = new String[applyMemberList.size()-1];
-// 										if(attendBean.getAttend_check() != null){
-// 											for(int j=0; j<applyMemberList.size(); j++){
-// 												attendBean = (AttendBean) todayCheck.get(j);
-// 												if(attendBean.getAttend_member_id().equals(memberBean.getMember_id())){
-// 													tc = attendBean.getAttend_check().split("/");
-// 												}
-// 											}
-// 										}
-										String[] tc = new String[applyMemberList.size()];
-										for (int i = 0; i < applyMemberList.size(); i++) {
-											MemberBean memberBean = (MemberBean) applyMemberList.get(i);
-											AttendBean attendBean = new AttendBean();
-											
-											for(int j = 0; j<applyMemberList.size(); j++){
-												attendBean = (AttendBean) todayCheck.get(j);
-												if(memberBean.getMember_id().equals(attendBean.getAttend_member_id())){
-											    tc[i]  =  attendBean.getAttend_check();
-											}
-												
-										}
-												String[] tcs = tc[i].split("/");	
-												tc[i] = tcs[tcs.length-1];
-								
-									
+								// 								for (int i = 0; i < applyMemberList.size(); i++) {
+									// 										MemberBean memberBean = (MemberBean) applyMemberList.get(i);
+									// 										AttendBean attendBean = new AttendBean();
+									// 										String[] tc = new String[applyMemberList.size()-1];
+									// 										if(attendBean.getAttend_check() != null){
+									// 											for(int j=0; j<applyMemberList.size(); j++){
+									// 												attendBean = (AttendBean) todayCheck.get(j);
+									// 												if(attendBean.getAttend_member_id().equals(memberBean.getMember_id())){
+									// 													tc = attendBean.getAttend_check().split("/");
+									// 												}
+									// 											}
+									// 										}
+									String[] tc = new String[applyMemberList.size()];
+									for (int i = 0; i < applyMemberList.size(); i++) {
+										MemberBean memberBean = (MemberBean) applyMemberList.get(i);
+										AttendBean attendBean = new AttendBean();
 
-										
+										for (int j = 0; j < applyMemberList.size(); j++) {
+											attendBean = (AttendBean) todayCheck.get(j);
+											if (memberBean.getMember_id().equals(attendBean.getAttend_member_id())) {
+												tc[i] = attendBean.getAttend_check();
+											}
+
+										}
+										String[] tcs = tc[i].split("/");
+										tc[i] = tcs[tcs.length - 1];
 							%>
 							<tr style="cursor: pointer;">
-								<td class="code"><input type="hidden" id="m_id<%=i %>" name="m_id" value="<%=memberBean.getMember_id()%>">
-								<%=memberBean.getMember_name()%></td>
-								
+								<td class="code"><input type="hidden" id="m_id<%=i%>"
+									name="m_id" value="<%=memberBean.getMember_id()%>"> <%=memberBean.getMember_name()%></td>
+
 								<%
-									if(dayone.equals("0")){
-										day = day.substring(1);
-									}
-								System.out.println(day);
-								System.out.println(dayone);
-								if (tc[i].equals(day) || tc[i].equals("la"+day)){
-							    	%>
-							    	<td class="code"><input type="checkbox" id="attendcheck<%=i %>" name="attendcheck" checked="checked"></td>
-							    	<%
-							    }else{							
+									if (dayone.equals("0")) {
+												day = day.substring(1);
+											}
+											System.out.println(day);
+											System.out.println(dayone);
+											if (tc[i].equals(day) || tc[i].equals("la" + day)) {
 								%>
-								<td class="code"><input type="checkbox" id="attendcheck<%=i %>" name="attendcheck"></td>
-								<% }%>
-								<input type="hidden" id="attendmember" name="attendmember" >
+								<td class="code"><input type="checkbox"
+									id="attendcheck<%=i%>" name="attendcheck" checked="checked"></td>
+								<%
+									} else {
+								%>
+								<td class="code"><input type="checkbox"
+									id="attendcheck<%=i%>" name="attendcheck"></td>
+								<%
+									}
+								%>
+								<input type="hidden" id="attendmember" name="attendmember">
 								<input type="hidden" id="cYN" name="cYN">
-								
+
 							</tr>
 							<%
 								}
 
-							}
+								}
 							%>
-							<input type="hidden" name="lecture_idx" value="<%=lecture_idx %>">
-							<input type="hidden" name="attendDay" value="<%=day %>">
+
 						</table>
 
 						<div class="submit-wrap">

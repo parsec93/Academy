@@ -163,7 +163,7 @@ lecture_count int,
 lecture_teacher_code varchar(5) not null
 );
 
-insert into lecture values(null, '자바 6개월 완성', 'Java', '가즈아', '2019-09-01', '2019-09-30',  '1', '6개월만 하면 취업 못해용', 990000, '오전', '1' ,1,'1');
+insert into lecture values(null, 'jsp 6개월 완성', 'jsp', '가즈아', '2019-09-01', '2019-09-30',  '1', '6개월만 하면 취업 못해용', 990000, '오전', '1' ,1,'1');
 
  9. 수강 신청용 테이블 생성
  
@@ -188,7 +188,6 @@ insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
  basket_member_id varchar(20) not null,
  basket_lecture_idx int not null,
  CONSTRAINT fk_basket_idx FOREIGN KEY (basket_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
-
  );
  
  11. 출석체크 테이블 생성

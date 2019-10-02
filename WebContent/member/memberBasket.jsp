@@ -28,7 +28,7 @@
 
   <body>
     <!--================ Start Header Menu Area =================-->
-    <jsp:include page="header_footer/header.jsp" />
+    <jsp:include page="../header_footer/header.jsp" />
     <!--================ End Header Menu Area =================-->
 	  
     <!--================Home Banner Area =================-->
@@ -39,7 +39,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>수강신청</h2>
+                <h2>장바구니</h2>
               </div>
             </div>
           </div>
@@ -57,86 +57,22 @@
     <!-- Contain-Area -->
     <div class="clearfix content-box">
 
-        <!-- AREA: 강좌검색영역 -->
-        <div class="clearfix lecture-title-area">
-            <div class="lecture-title">
-                <strong>강좌 검색하기</strong>
-            </div>
-        </div>
-
-        <!-- Search Filter -->
-        <form action="" class="clearfix">
-            <!-- Lecture Explorer -->
-            <div class="clearfix lecture-select lecture-select-depth-3">
-                <!-- COMMENT: lecture-select-depth-*은 필터단계에 따른 하위 select-division 수와 맞춰야 한다. -->
-                
-                <div class="select-division">
-                    <!-- COMMENT: 단계 활성화(active), 선택됨(selected). -->
-                    <strong>과목 <i class="arrow-right"></i></strong>
-                    <ul class="lecture-select-area lecture-select-subject" id="select_subject">
-                    						<li class="active"><a href="#none" data-idx="0">전체</a></li>
-                                            <li class=""><a href="#none" data-idx="1">JAVA</a></li>
-                                            <li class=""><a href="#none" data-idx="2">ORACLE</a></li>
-                                            <li class=""><a href="#none" data-idx="3">JSP</a></li>
-
-                                        </ul>
-                </div>
-                
-                <div class="select-division">
-                    <strong>요일 <i class="arrow-right"></i></strong>
-                    <ul class="lecture-select-area lecture-select-day" id="select_day">
-                    						<li class="active"><a href="#none" data-idx="0">전체</a></li>
-                                            <li class=""><a href="#none" data-idx="1">월,수,금</a></li>
-                                            <li class=""><a href="#none" data-idx="2">화,목</a></li>
-                                        </ul>
-                </div>
-                
-                <div class="select-division">
-                    <strong>시간 <i class="arrow-right"></i></strong>
-                    <ul class="lecture-select-area lecture-select-time" id="select_time">
-                    						<li class="active"><a href="#none" data-idx="0">전체</a></li>
-                  						    <li class=""><a href="#none" data-idx="1">오전반</a></li>
-                                            <li class=""><a href="#none" data-idx="2">오후반</a></li>
-                                            <li class=""><a href="#none" data-idx="3">저녁반</a></li>
-                                        </ul>
-                </div>
-                
-                
-            </div>
-        </form>
-        <!-- // Search Filter -->
-        
-        
+    
         
         <script type="text/javascript">
         
-var app = (function(){
-	
-	var click_type = null;
-	
-	// 카테고리 기본값
-	// 카테고리 인덱스에 따라서 검색
-	var category = {};
-	category.category_1st = 0;
-	category.category_2nd = 0;
-	category.category_3rd = 0;
-	
-	
-	var category1_value = 0;
-	var category2_value = 0;
-	var category3_value = 0;
+
+	var sId = '<%=(String)session.getAttribute("sId")%>';
 	
 	
 	
 	// ajax function
-	function _ajax(obj){
-		console.log(obj.type);
-		console.log(obj.url);
-		console.log(obj.data);
+	function _ajax(){
+
 		$.ajax({
-			type : obj.type,
-			url  : obj.url,
-			data : obj.data,
+			type : "POST",
+			url  : "memberbasket.me",
+			data : sId,
 
 			
 			
@@ -147,19 +83,11 @@ var app = (function(){
 				   
 				   $('#lecture_list_area').empty();
 				   if(data=="[]"){
-					   $('#lecture_list_area').append("해당되는 강의가 없습니다");
+					   $('#lecture_list_area').append("장바구니가 비어있습니다");
 				   } else{
-// 				   $.each(JSON.parse(data)	, function(index, item) {
+				   $.each(JSON.parse(data)	, function(index, item) {
 						
-					   
-					   console.log(item.subject);
-					   console.log(item.course);	
-					   console.log(item.day);
-					   console.log(item.termday);
-					   console.log(item.time);
-					   console.log(item.fee);
-					   console.log(item.teacher);
-					   console.log(item.lecture_id);
+
 					   var image;
 						   if(item.course=="Java"){
 							  image = "java.png";
@@ -257,8 +185,8 @@ var app = (function(){
 						
 	                });
 						
-						$('#lecture_list_area').append('<input type="button" id="btn_basket" value="장바구니" onclick="fnGetdata();">');
 						$('#lecture_list_area').append('<input type="button" id="btn_pay" value="결제" onclick="">');
+						$('#lecture_list_area').append('<input type="button" id="btn_del" value="삭제" onclick="deleteBasket()">');
 				   }
 	
 				   
@@ -274,118 +202,64 @@ var app = (function(){
 		  
 	
 	}
-	
-	
 
 
-	
-	return {
-		init : function(){
-			
-			// 강좌 검색하기 클릭 이벤트
-			$(document).on("click", ".lecture-select-area li a",function(){
+_ajax();
+
+function deleteBasket(){
+	var del = confirm("장바구니에서 삭제하시겠습니까?");
+	var chkArray = new Array();
+	if(del){
+		
+		$('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	        chkArray.push(this.value);
+	    });
+	    $('#hiddenValue').val(chkArray);
+	    
+	   
+	    jQuery.ajaxSettings.traditional = true;
+	    
+	    $.ajax({
+			type : 'POST',
+			url  : 'basketDelete.me',
+			data : {
+			'chkArray':	chkArray
+				},
 				
-				$(this).parent().addClass('active').siblings().removeClass('active');
-				var idx = $(this).data('idx');
-				var ul_id = $(this).parent().parent().attr('id');
-				if(ul_id == 'select_subject') app.select_subject(idx);
-				else if(ul_id == 'select_day') app.select_day(idx);
-				else if(ul_id == 'select_time') app.select_time(idx);
-			});
-			
+			 success: function() {
+				 alert('삭제되었습니다.');   
+				 _ajax();
+				 return true;
+			 },
+			 error: function() {
+						
+				 alert('오류가 발생하였습니다.');
+				 return false;
+			 }
 
-			app.select_subject(category.category_1st);
-		},
-		select_subject : function(category_1st){
-			
-			click_type = 'subject';
-			category.category_1st = category_1st;
-			category1_value = category_1st;
-			category.category_2nd = category2_value; // 수업요일 첫번째
-			category.category_3rd = category3_value; // 수업시간 첫번째
-			_ajax({type:'POST', url:'./enrolment.le', data:{category1 : category.category_1st, category2 : category.category_2nd, category3 : category.category_3rd}});
-		},
-		select_day : function(category_2nd){
-			click_type = 'day';
-			category.category_2nd = category_2nd; //수업요일 선택
-			category2_value = category_2nd;
-			category.category_3rd = category3_value; // 수업시간 첫번째
-			_ajax({type:'POST', url:'./enrolment.le', data:{category1 : category.category_1st, category2 : category.category_2nd, category3 : category.category_3rd}});
-		},
-		select_time : function(category_3rd){
-			click_type = 'time';
-			category.category_3rd = category_3rd; // 수업시간 선택
-			category3_value = category_3rd;
-			_ajax({type:'POST', url:'./enrolment.le', data:{category1 : category.category_1st, category2 : category.category_2nd, category3 : category.category_3rd}});
-		}
+	    });
+	    
+	    
+	    
+	}else{
+		
+		return false;
 	}
 	
 
 	
 }
 
-	
-)();
-
-
-
-
-
 $(document).ready(function(){
-	app.init();
-	
-// 	$("input[name=cb1]").change(function(){
-// 		  if($("input[name=cb1]").is(":checked")){
-// 	          alert("체크");
-// 	      }else{
-// 	          alert("체크 해제");
-// 	      }
 
 
-// 			console.log("체크");
-// 					$("input[name=checkbox1]:checked").each(function(){
-// 						var lecture_idx = $(this).val();
-// 						console.log(lecture_idx);
-		
-// 				});
-// 	});
 	
 	
 
 
 });
 
-function fnGetdata(){
-    var chkArray = new Array(); // 배열 선언
 
-    $('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-        chkArray.push(this.value);
-    });
-    $('#hiddenValue').val(chkArray);
-    
-   
-    jQuery.ajaxSettings.traditional = true;
-
-    
-    $.ajax({
-		type : 'POST',
-		url  : 'basket.me',
-		data : {
-		'chkArray':	chkArray
-			},
-			
-		 success: function() {
-			 alert('장바구니에 추가되었습니다.');    	
-		 },
-		 error: function() {
-					
-			 alert('오류가 발생하였습니다.');
-		 }
-
-
-    });
-    
-}
 
 
 
@@ -403,7 +277,7 @@ function fnGetdata(){
 			<!-- clearfix lecture-title-area -->
 			<div class="clearfix lecture-title-area">
 				<div class="lecture-title">
-					<strong>강의목록</strong>
+					<strong>내 장바구니 목록</strong>
 				</div>
 			
 			</div>
@@ -431,7 +305,7 @@ function fnGetdata(){
 	
 
     <!--================ Start footer Area  =================-->
-    <jsp:include page="header_footer/footer.jsp" />
+    <jsp:include page="../header_footer/footer.jsp" />
     <!--================ End footer Area  =================-->
 
     <!-- Optional JavaScript -->

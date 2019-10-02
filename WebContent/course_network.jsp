@@ -12,7 +12,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>강의안내 - JSP</title>
+    <title>강의안내 - NETWORK</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -39,12 +39,12 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>JSP</h2>
+                <h2>NETWORK</h2>
                 <div class="page_link">
                   <a href="courses.jsp">강의안내</a>
                   <a href="coures_java.jsp">JAVA</a>
+                  <a href="coures_jsp.jsp">JSP</a>
                   <a href="coures_oracle.jsp">ORACLE</a>
-                  <a href="coures_network.jsp">NETWORK</a>
                   <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
@@ -61,17 +61,14 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details2.png" alt="">
+                        <img class="img-fluid" src="img/courses/course-details4.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>
                         <div class="content">
-                            컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행하고, 사용자에게 배포하며, 
-                            버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
-                            전자정부프레임워크 기반 정보시스템 개발을 위해 필요한 기능 및 아키텍처를 이용하여 효율적인 어플리케이션 구축을 할 수 있다.
-                            데이터베이스 구현을 위하여 DBMS(Data Base Management System) 설치, 데이터베이스 생성, 데이터베이스 오브젝트를계획, 설계하고 구현할 수 있다.
-                            관계형 데이터베이스에서 SQL을 사용하여 목적에 적합한 데이터를 정의하고, 조작하며, 제어할 수 있다.
-                            UI 웹표준 지침에 따라 화면과 폼, 메뉴 등의 구조와 흐름을 구현하여 반영할 수 있다.
+                            프로그래밍, 데이터베이스, 서버 기초 기술을 습득하고, 
+                            사물인터넷(IoT)의 기반이 되는 유,무선 네트워크 및 보안 기술과 장비 실습을 통해 
+                            실무 환경을 경험할 수 있도록 통합 프로젝트를 진행하는 실무형 엔지니어 양성 과정이다.
                             <br>
                             <br>
 
@@ -79,12 +76,11 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 
                         <h4 class="title">주요 훈련 내용</h4>
                         <div class="content">
-                            전자정부 프레임워크 소개(아키텍처,프레임워크,오픈소스)<br />
-                            전자정부프레임워크 환경설정<br />
-                            전자정부 프레임워크(AOP, MVC, Web , Data JPA)<br />
-                            MyBatis 프레임워크(설정, CRUD구현,동적SQL,어노테이션)<br />
-                            공통컴포넌트 적용방법<br />
-                            템플릿 프로그램 실습
+                            네트워크 운영 및 관리<br />
+                            시스템 운영 및 관리(Linux/Windows)<br />
+                            데이터베이스 관리<br />
+                            네트워크 프로그래밍(JAVA 기반)<br />
+                            통합실무프로젝트
                             <br>
                             <br>
                         </div>
@@ -92,7 +88,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                         <h4 class="title">수강후기</h4>
                         <div class="content">
                             <ul class="course_list">
-                                                    <%   if(review == null){%>
+                          <%   if(review == null){%>
                           <h1>작성된 후기가 없습니다.</h1>
                           <%}else{ 
                           
@@ -165,7 +161,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육과정</p>
-                                <span class="or">JSP를 아라보자~</span>
+                                <span class="or">network를 아라보자~</span>
                             </a>
                         </li>
                         <li>
@@ -237,14 +233,15 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 <!--                             </div> -->
 <!--                         </div> -->
                         <div class="comments-area mb-30">
+                            
                             <div class="comment-list">
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/courses/author2.png" alt="">
+                                            <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5><a href="#">홍진숙</a>
+                                            <h5><a href="#">강진석</a>
 <!--                                                 <div class="star"> -->
 <!--                                                     <span class="ti-star checked"></span> -->
 <!--                                                     <span class="ti-star checked"></span> -->
@@ -254,9 +251,10 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 <!--                                                 </div> -->
                                             </h5>
                                             <p class="comment">
-                                                JAVA, JSP, Spring, Android<br />
-                                                NCS 프로그래밍 언어활용<br />
-                                                NCS 애플리케이션 구현
+                                                시스코 네트워크(CCNA, CCNP)<br />구축 및 운영 관리<br />
+                                                정보보안(방화벽, 패킷 분석)<br />
+                                                리눅스 서버<br />
+                                                윈도우 서버
                                             </p>
                                         </div>
                                     </div>
@@ -269,7 +267,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                                             <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5><a href="#">신상국</a>
+                                            <h5><a href="#">이연태</a>
 <!--                                                 <div class="star"> -->
 <!--                                                     <span class="ti-star checked"></span> -->
 <!--                                                     <span class="ti-star checked"></span> -->
@@ -279,39 +277,11 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 <!--                                                 </div> -->
                                             </h5>
                                             <p class="comment">
-                                                JAVA, JSP Model1 & Model2<br />
-                                                JavaScript, JQuery, Ajax<br />
-                                                BootStrap<br />
-                                                Spring framework<br />
-                                                MyBatis framework<br />
-                                                Android, 사물인터넷 IOT<br />
-                                                NCS 프로그래밍 언어활용<br />
-                                                NCS 애플리케이션 구현​ 
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/courses/author1.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">정규태</a>
-<!--                                                 <div class="star"> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star checked"></span> -->
-<!--                                                     <span class="ti-star"></span> -->
-<!--                                                     <span class="ti-star"></span> -->
-<!--                                                 </div> -->
-                                            </h5>
-                                            <p class="comment">
-                                                JAVA 8 재직자, 실업자 교육<br />
-                                                JSP Model1 / Model2(MVC)<br />
-                                                Spring 프레임워크 (MVC 패턴)
+                                                시스코 네트워크(CCNA, CCNP)<br />구축 및 운영 관리<br />
+                                                정보보안(방화벽, 패킷분석)<br />
+                                                자바 프로그래밍<br />
+                                                JSP 프로그래밍<br />
+                                                안드로이드 프로그래밍
                                             </p>
                                         </div>
                                     </div>

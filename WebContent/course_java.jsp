@@ -1,3 +1,5 @@
+<%@page import="vo.LectureBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +21,30 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- <script type="text/javascript"> -->
+<!-- // $document.ready(function(){ -->
+<!-- // 	$.ajax({ -->
+<!-- // 		url:'./review.al', -->
+<!-- // 		data:{lecture:'java'}, -->
+<!-- // 		method:"GET", -->
+<!-- // 		dataType:"json", -->
+<!-- // 		success:function(json){ -->
+<!-- // 			$(json).find('행이름').each(function(){ -->
+<!-- // 				var name = $(this).find('열이름').text(); -->
+<!-- // 				var lecture = $(this).find('열이름').text(); -->
+<!-- // 				var review = $(this).find('열이름').text(); -->
+				
+<!-- // 				$('#content').append("<ul><li>" + lecture + "</li><li>" + review + "</li><li>" + name + "</li></ul>"); -->
+<!-- // 			}); -->
+<!-- // 		} -->
+<!-- // 	}); -->
+<!-- // }); -->
+
+<!-- </script> -->
+<%
+ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("review");
+%>
   </head>
 
   <body>
@@ -39,6 +65,8 @@
                   <a href="courses.jsp">강의안내</a>
                   <a href="coures_jsp.jsp">JSP</a>
                   <a href="coures_oracle.jsp">ORACLE</a>
+                  <a href="coures_network.jsp">NETWORK</a>
+                  <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
             </div>
@@ -81,28 +109,43 @@
                         <h4 class="title">수강후기</h4>
                         <div class="content">
                             <ul class="course_list">
+                          <%   if(review == null){%>
+                          <h1>작성된 후기가 없습니다.</h1>
+                          <%}else{ 
+                          
+                          	for(int i=0; i<review.size();i++){
+                          	LectureBean lb = (LectureBean)review.get(i);
+                          	%>
                                 <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'><b>[<%=lb.getLecture_subject() %>]</b>&nbsp;<%= lb.getLecture_content() %></a>
+                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'><%=lb.getLecture_teacher() %></a>
                                 </li>
-                                <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a href="#" class="course_text">수강후기 내용내ㅔ용ㄹㅇㅇㄹ...</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                
-
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+                                <%} %>
+							<%} %>
                             </ul>
                         </div>
                         
@@ -215,7 +258,7 @@
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/blog/c1.jpg" alt="">
+                                            <img src="img/courses/author2.png" alt="">
                                         </div>
                                         <div class="desc">
                                             <h5><a href="#">홍진숙</a>
@@ -240,7 +283,7 @@
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/blog/c2.jpg" alt="">
+                                            <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
                                             <h5><a href="#">신상국</a>
@@ -270,10 +313,10 @@
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/blog/c3.jpg" alt="">
+                                            <img src="img/courses/author1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5><a href="#">이연태</a>
+                                            <h5><a href="#">정규태</a>
 <!--                                                 <div class="star"> -->
 <!--                                                     <span class="ti-star checked"></span> -->
 <!--                                                     <span class="ti-star checked"></span> -->
@@ -283,11 +326,9 @@
 <!--                                                 </div> -->
                                             </h5>
                                             <p class="comment">
-                                                시스코 네트워크(CCNA, CCNP)<br />구축 및 운영 관리<br />
-                                                정보보안(방화벽, 패킷분석)<br />
-                                                자바 프로그래밍<br />
-                                                JSP 프로그래밍<br />
-                                                안드로이드 프로그래밍
+                                                JAVA 8 재직자, 실업자 교육<br />
+                                                JSP Model1 / Model2(MVC)<br />
+                                                Spring 프레임워크 (MVC 패턴)
                                             </p>
                                         </div>
                                     </div>

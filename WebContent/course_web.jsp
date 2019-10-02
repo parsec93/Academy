@@ -12,7 +12,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>강의안내 - JSP</title>
+    <title>강의안내 - WEB</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
-    <%
+        <%
 ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("review");
 %>
   </head>
@@ -39,13 +39,13 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="banner_content text-center">
-                <h2>JSP</h2>
+                <h2>WEB</h2>
                 <div class="page_link">
                   <a href="courses.jsp">강의안내</a>
                   <a href="coures_java.jsp">JAVA</a>
+                  <a href="coures_jsp.jsp">JSP</a>
                   <a href="coures_oracle.jsp">ORACLE</a>
                   <a href="coures_network.jsp">NETWORK</a>
-                  <a href="coures_web.jsp">WEB</a>
                 </div>
               </div>
             </div>
@@ -61,17 +61,14 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="img/courses/course-details2.png" alt="">
+                        <img class="img-fluid" src="img/courses/course-details5.png" alt="">
                     </div>
                     <div class="content_wrapper">
                         <h4 class="title">교육목표</h4>
                         <div class="content">
-                            컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행하고, 사용자에게 배포하며, 
-                            버전관리를 통해 제품의 성능을 향상시키고, 서비스를 개선할 수 있다.
-                            전자정부프레임워크 기반 정보시스템 개발을 위해 필요한 기능 및 아키텍처를 이용하여 효율적인 어플리케이션 구축을 할 수 있다.
-                            데이터베이스 구현을 위하여 DBMS(Data Base Management System) 설치, 데이터베이스 생성, 데이터베이스 오브젝트를계획, 설계하고 구현할 수 있다.
-                            관계형 데이터베이스에서 SQL을 사용하여 목적에 적합한 데이터를 정의하고, 조작하며, 제어할 수 있다.
-                            UI 웹표준 지침에 따라 화면과 폼, 메뉴 등의 구조와 흐름을 구현하여 반영할 수 있다.
+                            웹표준을 이해하고, HTML5.0+CSS3를 활용한 웹표준코딩으로 보다 향상된 웹접근성, 호환성을 가진 웹사이트 제작기술을 함양시킨다.
+                            UI 요구사항을 확인하여 설계한 UI 설계를 기반으로 HTML5와 CSS3.0 웹표준과 웹접근성을 이용해서 웹디자이너가 만든
+						    디자인시안을 동적인 반응형 웹페이지를 구현할 수 있다.
                             <br>
                             <br>
 
@@ -79,12 +76,18 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 
                         <h4 class="title">주요 훈련 내용</h4>
                         <div class="content">
-                            전자정부 프레임워크 소개(아키텍처,프레임워크,오픈소스)<br />
-                            전자정부프레임워크 환경설정<br />
-                            전자정부 프레임워크(AOP, MVC, Web , Data JPA)<br />
-                            MyBatis 프레임워크(설정, CRUD구현,동적SQL,어노테이션)<br />
-                            공통컴포넌트 적용방법<br />
-                            템플릿 프로그램 실습
+                            HTML5의 구조<br />
+                            마크업 및 시멘틱 마크업을 위한 HTML5 요소<br />
+                            HTML5의 임베디드 요소<br />
+                            하이퍼링크 지정<br />
+                            구조화된 테이블<br />
+                            폼의 정의와 컨트롤 요소<br />
+                            텍스트 영역, 셀렉트 메뉴, 필드세트 요소<br />
+                            CSS3의 다양한 선택자와 속성<br />
+                            CSS3레이아웃과 애니메이션 구현<br />
+                            웹페이지레이아웃<br />
+                            반응형웹
+                            
                             <br>
                             <br>
                         </div>
@@ -92,7 +95,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                         <h4 class="title">수강후기</h4>
                         <div class="content">
                             <ul class="course_list">
-                                                    <%   if(review == null){%>
+                          <%   if(review == null){%>
                           <h1>작성된 후기가 없습니다.</h1>
                           <%}else{ 
                           
@@ -165,7 +168,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육과정</p>
-                                <span class="or">JSP를 아라보자~</span>
+                                <span class="or">웹표준을 아라보자~</span>
                             </a>
                         </li>
                         <li>
@@ -236,7 +239,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
 <!--                                 <a href="#" class="primary-btn2 text-right rounded-0 text-white">Submit</a> -->
 <!--                             </div> -->
 <!--                         </div> -->
-                        <div class="comments-area mb-30">
+<div class="comments-area mb-30">
                             <div class="comment-list">
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">

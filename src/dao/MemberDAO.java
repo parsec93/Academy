@@ -589,4 +589,55 @@ public class MemberDAO {
 		}
 		
 		
+		public void insertBasket(String member_id, int lecture_idx) {
+			
+			System.out.println(member_id);
+			System.out.println(lecture_idx);
+			
+			try {
+				
+					String sql = "insert into basket values(null,?,?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, member_id);
+					pstmt.setInt(2, lecture_idx);
+					
+					
+					sql = "DELETE FROM basket" + 
+							"WHERE basket_idx not in ( SELECT basket_idx from ( SELECT basket_idx from basket group by basket_member_id,basket_lecture_idx ) as basket_member_id )";
+					pstmt = con.prepareStatement(sql);
+					pstmt.executeUpdate();
+					
+			} catch (SQLException e) {
+				
+				System.out.println("insertBasket 실패 - " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			
+		
+		}
+		
+		public void deleteBasket(String member_id, int lecture_idx) {
+
+			
+			try {
+				
+					String sql = "DELETE FROM basket WHERE basket_member_id = ? "+
+									"AND basket_lecture_idx = ? ";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, member_id);
+					pstmt.setInt(2, lecture_idx);
+					pstmt.executeUpdate();
+					
+			} catch (SQLException e) {
+				
+				System.out.println("deleteBasket 실패 - " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			
+		
+		}
+		
+		
 }

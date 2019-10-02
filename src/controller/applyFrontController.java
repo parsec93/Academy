@@ -15,6 +15,7 @@ import action.apply.ApplyListAction;
 import action.apply.ApplyReviewInsertAction;
 import action.apply.ApplyMemberListAction;
 import action.apply.ListTeacherAction;
+import action.apply.ReviewAction;
 import vo.ActionForward;
 
 @WebServlet("*.al")
@@ -81,6 +82,14 @@ public class applyFrontController extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+	        }else if(command.equals("/review.al")) {
+	        	action  = new ReviewAction();
+	        	try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 	        }
 	       
 
