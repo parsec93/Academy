@@ -88,17 +88,17 @@ public class ApplyDAO {
 		int startRow = (page-1)*10;
 		String sql = "";
 				if(listType.equals("")||listType.equals("now")) {
-					sql ="select a.apply_purchase_date, a.apply_review "
+					sql ="select a.apply_purchase_date, a.apply_review, a.apply_lecture_idx "
 				+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id =? AND a.apply_ischeck = ?" 
                 + "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() "
 				+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";
 				}else if(listType.equals("end")) {
-					sql ="select a.apply_purchase_date, a.apply_review "
+					sql ="select a.apply_purchase_date, a.apply_review, a.apply_lecture_idx "
 				+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id = ? AND a.apply_ischeck = ?" 
 				+ "AND l.lecture_end_day < now() "
 				+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 				}else {					
-					sql ="select a.apply_purchase_date, a.apply_review "
+					sql ="select a.apply_purchase_date, a.apply_review, a.apply_lecture_idx "
 						+ "from lecture l join apply a on (l.lecture_idx = a.apply_lecture_idx) where a.apply_member_id =? AND a.apply_ischeck = ?" 
 						+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";	
 					
@@ -113,6 +113,7 @@ public class ApplyDAO {
 					
 					while(rs.next()) {
 						ApplyBean ab = new ApplyBean();
+						ab.setApply_lecture_idx(rs.getInt("apply_lecture_idx"));
 						ab.setApply_purchase_date(rs.getDate("apply_purchase_date"));
 						ab.setApply_review(rs.getString("apply_review"));
 						applyList2.add(ab);
@@ -289,6 +290,32 @@ public class ApplyDAO {
 		return applyMemberList;
 	}
 
+	
+	public ArrayList<LectureBean> selectLecture(String lecture) {
+		ArrayList<LectureBean> review=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LectureBean lectureBean=null;
+		try {
+			String sql="SELECT a.apply_review, a.apply_member_id, l.lecture_subject FROM apply a JOIN lecture l ON (a.apply_lecture_idx=l.lecture_idx) WHERE l.lecture_course LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+lecture+"%");
+			rs=pstmt.executeQuery();
+			review = new ArrayList<>();
+			while(rs.next()) {
+				lectureBean = new LectureBean();
+
+				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
+				lectureBean.setLecture_content(rs.getString("apply_review"));
+				lectureBean.setLecture_teacher(rs.getString("apply_member_id"));
+				review.add(lectureBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return review;
+	}
 	
 	
 

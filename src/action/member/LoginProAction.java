@@ -43,7 +43,7 @@ public class LoginProAction implements Action {
 				forward = new ActionForward();
 				System.out.println("로그인 성공!");
 				session.setAttribute("sId", id);
-				request.setAttribute("isMember", isMember);
+				session.setAttribute("isMember", isMember);
 				forward.setPath("index.jsp");
 				forward.setRedirect(false);
 			}else {

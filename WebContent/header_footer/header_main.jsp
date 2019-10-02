@@ -3,7 +3,7 @@
 	<%
 	// 세션값 가져 오기 
 	String sId = (String)session.getAttribute("sId");
-	String isMember = request.getParameter("isMember");
+	String isMember = (String)session.getAttribute("isMember");
 	%>
 <header class="header_area">
 	<div class="main_menu">
@@ -82,11 +82,11 @@
 							data-toggle="dropdown"
 							role="button" aria-haspopup="true" aria-expanded="false" onclick="location.href='courses.jsp'">강의안내</a>
 							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="course_java.jsp">JAVA</a></li>
-								<li class="nav-item"><a class="nav-link" href="course_jsp.jsp">JSP</a></li>
-								<li class="nav-item"><a class="nav-link" href="course_oracle.jsp">ORACLE</a></li>
-								<li class="nav-item"><a class="nav-link" href="course_network.jsp">NETWORK</a></li>
-								<li class="nav-item"><a class="nav-link" href="course_web.jsp">WEB</a></li>
+								<li class="nav-item"><a class="nav-link" href="review.al?lecture=java">JAVA</a></li>
+								<li class="nav-item"><a class="nav-link" href="review.al?lecture=jsp">JSP</a></li>
+								<li class="nav-item"><a class="nav-link" href="review.al?lecture=oracle">ORACLE</a></li>
+								<li class="nav-item"><a class="nav-link" href="review.al?lecture=network">NETWORK</a></li>
+								<li class="nav-item"><a class="nav-link" href="review.al?lecture=web">WEB</a></li>
 							</ul>
 							
 							</li>

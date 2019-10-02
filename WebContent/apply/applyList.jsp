@@ -1,3 +1,4 @@
+<%@page import="vo.AttendBean"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="vo.ApplyBean"%>
 <%@page import="vo.LecturePageInfo"%>
@@ -41,6 +42,7 @@
   <%
   ArrayList<LectureBean> applyList = (ArrayList<LectureBean>)request.getAttribute("applyList");
   ArrayList<ApplyBean> applyList2 = (ArrayList<ApplyBean>)request.getAttribute("applyList2");
+  ArrayList<AttendBean> applyList3 = (ArrayList<AttendBean>)request.getAttribute("applyList3");
   LecturePageInfo applyPageInfo = (LecturePageInfo)request.getAttribute("applyPageInfo");
   String sId = (String)session.getAttribute("sId");
   String isMember =(String)request.getAttribute("isMember"); 
@@ -162,9 +164,44 @@
 	</tr>
 	</thead>
     <%
-    for(int i =0 ; i<applyList.size(); i++){
+    String[] tc = new String[applyList.size()];
+    int attend = 0;
+    int absent = 0;
+    int late = 0;
+    System.out.println(applyList.size());
+  	//과목 하나당 열 
+    for(int i =0; i<applyList.size(); i++){
 	LectureBean lectureBean = (LectureBean)applyList.get(i);
 	ApplyBean applyBean = (ApplyBean)applyList2.get(i);
+	AttendBean attendBean = (AttendBean)applyList3.get(i);
+	
+	//apply 테이블 과 attend 테이블의 수업이 같은 수업인지 비교
+	for(int j=0; j<applyList2.size(); j++ ){
+	if(applyBean.getApply_lecture_idx()==attendBean.getAttend_lecture_idx()){
+		
+	
+		tc[i] = attendBean.getAttend_check();
+		String[] tcNums =  tc[i].split("/");
+		//출석 체크 자른 갯수
+		for(int t=0; t<tcNums.length; t++){
+
+			if(!tcNums[t].equals("null")){
+				if(String.valueOf(tcNums[t].charAt(0)).equals("0")){
+					absent++;
+				}else if(String.valueOf(tcNums[t].charAt(0)).equals("l")){
+					late++;
+				}else{
+					attend++;
+				}
+			}
+			
+		}
+	}
+	
+	
+}
+		
+		
 	%>	
 	
 	<tbody>
@@ -178,7 +215,9 @@
 		String[] en = lectureBean.getLecture_end_day().toString().split("-");
 		progress = (int)(day/Integer.parseInt(en[2])*100);
 	%>
-      <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress><%=progress%>%</a>
+      <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress>
+      <%=progress%>% 출석 : <%=attend %> 결석 : <%=absent %> 지각 : <%=late %></a>
+      
    <%}%>
 
 	</td>

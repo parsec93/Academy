@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ApplyDAO;
+import dao.AttendDAO;
 
 import static db.JdbcUtil.*;
 
 import vo.ApplyBean;
+import vo.AttendBean;
 import vo.LectureBean;
 
 public class ApplyListService {
@@ -43,7 +45,17 @@ public class ApplyListService {
 		
 		return applyList2;
 	}
-	
+	//출석체크 현황을 가져온다
+	public ArrayList<AttendBean> getApplyAttendList(String sId) {
+		System.out.println("ApplyListService/getApplyList3");
+		ArrayList<AttendBean> applyList3 = null;
+		Connection con = getConnection();
+		AttendDAO attendDAO = AttendDAO.getInstance();
+		attendDAO.setConnection(con);
+		applyList3 = attendDAO.selectApplyAttendList(sId);
+		close(con);
+		return applyList3;
+	}
 	public int getApplyListCount(String sId, String listType) {
 		int listCount=0;
 		Connection con = getConnection();
