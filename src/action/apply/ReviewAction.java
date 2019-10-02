@@ -1,5 +1,6 @@
 package action.apply;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import action.Action;
 import svc.apply.ReviewService;
 import vo.ActionForward;
 import vo.ApplyBean;
+import vo.BoardPageInfo;
 import vo.LectureBean;
 
 public class ReviewAction implements Action {
@@ -18,7 +20,7 @@ public class ReviewAction implements Action {
 		ActionForward forward = new ActionForward();
 		response.setContentType("text/html;charset=UTF-8"); 
 		String lecture = request.getParameter("lecture");
-		ArrayList<LectureBean> review = new ArrayList<LectureBean>();
+
 
 		//페이징 처리를 위한 변수 선언 
 		int page = 1; // 현재 페이지 
@@ -30,17 +32,41 @@ public class ReviewAction implements Action {
 		}
 		
 		ReviewService reviewService = new ReviewService();
-		review = reviewService.selectLecture(lecture);
-		
-		int listCount =0;
 
-	
 		
+		int listCount  = reviewService.getReviewListCount(lecture);
+		System.out.println(listCount);
 		
+		ArrayList<LectureBean> review = new ArrayList<LectureBean>();
+		review = reviewService.selectLecture(page,limit,lecture);
 		
-		request.setAttribute("review", review);
+		int maxPage = (int)((double)listCount / limit + 0.95);
 		
-		System.out.println(review.size());
+		// 시작 페이지 수 계산
+		int startPage = (((int)((double)page / 10 + 0.9)) - 1) * 10 + 1;
+		
+		// 끝 페이지 수 계산 
+		int endPage = startPage + 10 - 1;
+		
+		// 끝 페이지 수가 전체 페이지 수 보다 클 경우 전체 페이지 수를 끝 페이지로 지정 
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+//		request.setAttribute("review", review);
+		
+		BoardPageInfo boardpageInfo = new BoardPageInfo(page, maxPage, startPage, endPage, listCount);
+
+        
+		if(review ==null) {
+			request.setAttribute("review", null);
+		}else {
+	        request.setAttribute("boardPageInfo", boardpageInfo);
+			request.setAttribute("review", review);
+			
+		}
+
+		
+//		System.out.println(review.size());
 		
 		if(lecture.equals("java")) {
 			forward.setPath("course_java.jsp");
