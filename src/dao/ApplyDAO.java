@@ -291,6 +291,32 @@ public class ApplyDAO {
 	}
 
 	
+	public ArrayList<LectureBean> selectLecture(String lecture) {
+		ArrayList<LectureBean> review=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LectureBean lectureBean=null;
+		try {
+			String sql="SELECT a.apply_review, a.apply_member_id, l.lecture_subject FROM apply a JOIN lecture l ON (a.apply_lecture_idx=l.lecture_idx) WHERE l.lecture_course LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+lecture+"%");
+			rs=pstmt.executeQuery();
+
+			while(rs.next()) {
+				lectureBean = new LectureBean();
+				review = new ArrayList<>();
+				lectureBean.setLecture_subject("lecture_subject");
+				lectureBean.setLecture_content("apply_review");
+				lectureBean.setLecture_teacher("apply_member_id");
+				review.add(lectureBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return review;
+	}
+	
 	
 
 }
