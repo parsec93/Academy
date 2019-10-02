@@ -49,6 +49,7 @@
     <!--================End Home Banner Area =================-->
 	
 
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="https://www.conects.com/js/course/common_player.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="//www.conects.com/js/course/online.js"></script>
@@ -140,20 +141,6 @@
 									'</div>'+
 								
 								'</div>'+
-								'<div class="summary-button">'+
-									'<ul class="summary-button-list">'+
-										'<li>'+
-											'<a href="#" class="ot_paly">장바구니</a>'+
-										
-										'</li>'+
-										'<li>'+
-											'<a href="#" class="prev_play">결제</a>'+
-										
-										'</li>'+
-									
-									'</ul>'+
-								
-								'</div>'+
 								'<ul class="summary-order">'+
 									'<li>'+
 										'<div class="summary-order-detail clearfix">'+
@@ -185,7 +172,7 @@
 						
 	                });
 						
-						$('#lecture_list_area').append('<input type="button" id="btn_pay" value="결제" onclick="">');
+						$('#lecture_list_area').append('<input type="button" id="btn_pay" value="결제" onclick="requestPay()">');
 						$('#lecture_list_area').append('<input type="button" id="btn_del" value="삭제" onclick="deleteBasket()">');
 				   }
 	
@@ -247,6 +234,102 @@ function deleteBasket(){
 	}
 	
 
+	
+}
+
+function requestPay(){
+	var amount_payment = 0;
+	var buy_email = "";
+	var buy_name = "";
+	var buy_phone = "";
+	var buy_add = "";
+	var buy_postcode = "";
+	$('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+		var value = $(this).parent().children("div").children("p").children("strong").text();
+	 	value *= 1;
+	 	amount_payment += value;
+	 	
+    });
+	
+	function memberInfo(){
+	$.ajax({
+		type : "POST",
+		url  : "memberInfo.al",
+		data : sId,
+
+			
+			
+		success : function(data){
+				  console.log("석세스");
+				  console.log(data);
+				  var i = 1;
+	
+				   $.each(JSON.parse(data)	, function(index, item) {
+					   buy_email = item.member_email;
+					   buy_name = item.member_name;
+					   buy_phone = item.member_phone;
+					   buy_add = item.member_add1;
+					   buy_postcode = item.member_postcode;
+					   
+						console.log(buy_email);
+						console.log(buy_name);
+						console.log(buy_phone);
+						console.log(buy_add);
+						console.log(buy_postcode);
+					   
+					   IMP.init('imp50126132');
+						
+						IMP.request_pay({
+						 
+							
+						
+					   	 pg : 'html5_inicis',
+					   	 pay_method : 'card',
+					   	 merchant_uid : 'merchant_' + new Date().getTime(),
+					   	 name : '수강료 결제',
+					   	 amount : amount_payment,
+			
+						}, function(rsp) {
+					    	if ( rsp.success ) {
+					        	var msg = '결제가 완료되었습니다.';
+					        	msg += '고유ID : ' + rsp.imp_uid;
+					        	msg += '상점 거래ID : ' + rsp.merchant_uid;
+					        	msg += '결제 금액 : ' + rsp.paid_amount;
+					        	msg += '카드 승인번호 : ' + rsp.apply_num;
+					        	
+					        	
+					        	
+					    } else {
+					        var msg = '결제에 실패하였습니다.';
+					        msg += '에러내용 : ' + rsp.error_msg;
+					    }
+
+					    alert(msg);
+						});
+				   });
+						
+	            
+				   
+				   
+ 
+			},error : function(){
+
+				alert('오류가 발생하였습니다.');
+				
+			}
+			
+			
+           });
+	}
+	
+		
+	
+	
+	memberInfo();
+
+	console.log("결제");
+	
+	
 	
 }
 

@@ -6,12 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 import static db.JdbcUtil.*;
 
 import vo.BoardBean;
+import vo.LectureBean;
 import vo.MemberBean;
 
 public class MemberDAO {
@@ -614,6 +616,45 @@ public class MemberDAO {
 				close(pstmt);
 			}
 			return listCount;
+		}
+		
+		
+		public List<MemberBean> getMemberInfo(String sId){
+			List<MemberBean> memberInfo = new ArrayList<MemberBean>();
+			
+			String sql = "";
+			sql = "select * "
+			+ "from member where member_id = ?";
+
+
+			try {
+				pstmt =con.prepareStatement(sql);
+				pstmt.setString(1,sId);
+				rs =pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					MemberBean mb = new MemberBean();
+					mb.setMember_email(rs.getString("member_email"));
+					mb.setMember_name(rs.getString("member_name"));
+					mb.setMember_phone(rs.getString("member_phone"));
+					mb.setMember_add1(rs.getString("member_add1"));
+					mb.setMember_postcode(rs.getString("member_postcode"));
+					memberInfo.add(mb);
+						
+					}
+					
+				
+				
+			} catch (SQLException e) {
+				System.out.println("selectgetLectureList() 에러" + e.getMessage());
+			}
+			finally {
+				close(rs);
+				close(pstmt);
+			}
+					
+			return memberInfo;
 		}
 		
 		

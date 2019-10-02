@@ -14,6 +14,7 @@ import action.apply.ApplyAttendCheckAction;
 import action.apply.ApplyBasketAction;
 import action.apply.ApplyBasketListAction;
 import action.apply.ApplyListAction;
+import action.apply.ApplyMemberInfoAction;
 import action.apply.ApplyReviewInsertAction;
 import action.apply.ApplyBasketDeleteAction;
 import action.apply.ApplyMemberListAction;
@@ -116,6 +117,14 @@ public class applyFrontController extends HttpServlet{
 	        
 	        }else if(command.equals("/basketDelete.al")) {
 	        	 action = new ApplyBasketDeleteAction();
+	 	        try {
+	 				forward = action.execute(request, response);
+	 			} catch (Exception e) {
+	 				e.printStackTrace();
+	 			}
+	 	        
+	        }else if(command.equals("/memberInfo.al")) {
+	        	 action = new ApplyMemberInfoAction();
 	 	        try {
 	 				forward = action.execute(request, response);
 	 			} catch (Exception e) {

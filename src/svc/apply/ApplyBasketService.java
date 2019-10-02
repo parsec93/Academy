@@ -2,8 +2,9 @@ package svc.apply;
 
 import dao.ApplyDAO;
 import dao.LectureDAO;
-
+import dao.MemberDAO;
 import vo.LectureBean;
+import vo.MemberBean;
 
 import static db.JdbcUtil.*;
 
@@ -69,4 +70,16 @@ public class ApplyBasketService {
 		return;
 	}
 	
+	public List<MemberBean> memberInfo(String sId){
+		System.out.println("바스켓서비스");
+		Connection con = getConnection();
+		MemberDAO mdao = MemberDAO.getInstance();
+		mdao.setConnection(con);
+		List<MemberBean> memberInfo=new ArrayList<MemberBean>();
+		memberInfo = mdao.getMemberInfo(sId);
+		
+		close(con);
+		
+		return memberInfo;
+	}
 }
