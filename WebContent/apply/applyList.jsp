@@ -67,11 +67,11 @@
   		var langSelect = document.getElementById("period"); 		
   		var lt = langSelect.options[langSelect.selectedIndex].value
   		if(lt == "now"){
-  			location.href = "./ApplyInfo.al?listType=now";
+  			location.href = "./ApplyInfo.al?listType=now&isMember=<%=isMember%>";
   		}else if(lt == "end"){
-  			location.href = "./ApplyInfo.al?listType=end";
+  			location.href = "./ApplyInfo.al?listType=end&isMember=<%=isMember%>";
   		}else if(lt == "all"){
-  			location.href = "./ApplyInfo.al?listType=all";
+  			location.href = "./ApplyInfo.al?listType=all&isMember=<%=isMember%>";
   		}
 		
 	}
