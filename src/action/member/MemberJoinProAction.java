@@ -64,7 +64,6 @@ public class MemberJoinProAction implements Action{
 		mb.setMember_bank(multi.getParameter("bank"));
 		mb.setMember_accno(multi.getParameter("accno"));
 		
-		System.out.println(multi.getParameter("member_teacher_code"));
 		if(multi.getParameter("member_isMember").equals("1")) {
 		mb.setMember_picture(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 		mb.setMember_teacher_code(multi.getParameter("member_teacher_code")); ///
@@ -79,10 +78,10 @@ public class MemberJoinProAction implements Action{
 		
 		//과목 코드와동인한 선생의 최대코드를 가져와서 +1
 		String member_teacher_code = multi.getParameter("member_teacher_code");
-		System.out.println(member_teacher_code);
+		System.out.println("member_teacher_code"+member_teacher_code);
 		ArrayList<String> list = memberJoinProService.getTeacherCode(member_teacher_code);
 		System.out.println(list);
-		if(list == null) {
+		if(list.size() == 0) {
 			mb.setMember_teacher_code(member_teacher_code+1);
 			System.out.println(member_teacher_code+1);
 		}else {
@@ -92,8 +91,8 @@ public class MemberJoinProAction implements Action{
 					code = list.get(i);
 				}
 			}
-			mb.setMember_teacher_code(code.substring(0,1)+(Integer.parseInt(code.substring(2))+1));
-			System.out.println(code.substring(0,1)+(Integer.parseInt(code.substring(2))+1));
+			mb.setMember_teacher_code(code.substring(0,2)+(Integer.parseInt(code.substring(2))+1));
+			System.out.println(code.substring(0,2)+(Integer.parseInt(code.substring(2))+1));
 		}
 		
 		boolean isJoinMember = memberJoinProService.insertMember(mb);

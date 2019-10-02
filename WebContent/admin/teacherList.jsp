@@ -179,14 +179,17 @@ function joinCheck() {
 		alert('직원 구분을 선택하세요.');
 		return false;
 	}
-	var tc = document.getElementsByName('radio_teacher_code');
-	for(var i=0;i<tc.length;i++){
-		if(tc[i].checked == true){
-			document.up.member_teacher_code.value = tc[i].value; 
-			break;
-		}
-	}
+// 	var tc = document.getElementsByName('radio_teacher_code');
+// 	for(var i=0;i<tc.length;i++){
+// 		if(tc[i].checked == true){
+// 			document.up.member_teacher_code.value = tc[i].value; 
+// 			break;
+// 		}
+// 	}
 	
+}
+function radioVal(raValue) {
+	document.up.member_teacher_code.value = raValue;
 }
 
 </script>
@@ -382,14 +385,14 @@ function joinCheck() {
                         <label for="file">Image</label>
              			<div style="border: 1px dashed Gray;padding: 10px;">
              			<h3>직원 구분</h3>
-             			<input type="radio" name="radio_teacher_code" value="j_" >자바 &nbsp;&nbsp;
-             			<input type="radio" name="radio_teacher_code" value="s_" >JSP &nbsp;&nbsp;
-             			<input type="radio" name="radio_teacher_code" value="o_" >Oracle &nbsp;&nbsp;
-             			<input type="radio" name="radio_teacher_code" value="w_" >WEB &nbsp;&nbsp;
-             			<input type="radio" name="radio_teacher_code" value="n_" >Network &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="j_" onclick="radioVal(this.value)" >자바 &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="s_" onclick="radioVal(this.value)">JSP &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="o_" onclick="radioVal(this.value)">Oracle &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="w_" onclick="radioVal(this.value)">WEB &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="n_" onclick="radioVal(this.value)">Network &nbsp;&nbsp;
              			<br>
-             			<input type="radio" name="radio_teacher_code" value="l_" >기타(외부강사/직업 등) &nbsp;&nbsp;
-             			<input type="radio" name="radio_teacher_code" value="e_" >기타(일반직원) &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="l_" onclick="radioVal(this.value)">기타(외부강사/직업 등) &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="e_" onclick="radioVal(this.value)">기타(일반직원) &nbsp;&nbsp;
              			</div>
              			<br>
              			<input type="hidden" name="member_teacher_code">

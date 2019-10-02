@@ -2,15 +2,12 @@ package dao;
 
 import static db.JdbcUtil.close;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import vo.ApplyBean;
 import vo.LectureBean;
@@ -295,30 +292,103 @@ public class ApplyDAO {
 	}
 
 	
-	public ArrayList<LectureBean> selectLecture(String lecture) {
+	public ArrayList<LectureBean> selectLecture(int page, int limit,String lecture) {
 		ArrayList<LectureBean> review=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		LectureBean lectureBean=null;
+		LectureBean lectureBean2=null;
+		ArrayList<LectureBean> review2 =null;
+
+		int startRow = (page - 1) * 10; 
 		try {
-			String sql="SELECT a.apply_review, a.apply_member_id, l.lecture_subject FROM apply a JOIN lecture l ON (a.apply_lecture_idx=l.lecture_idx) WHERE l.lecture_course LIKE ?";
+			
+			String sql="SELECT a.apply_review, a.apply_member_id, l.lecture_subject "
+					+ "FROM apply a JOIN lecture l ON (a.apply_lecture_idx=l.lecture_idx) "
+					+ "WHERE l.lecture_course LIKE ? ORDER BY a.apply_idx LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+lecture+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs=pstmt.executeQuery();
 			review = new ArrayList<>();
 			while(rs.next()) {
 				lectureBean = new LectureBean();
-
 				lectureBean.setLecture_subject(rs.getString("lecture_subject"));
 				lectureBean.setLecture_content(rs.getString("apply_review"));
-				lectureBean.setLecture_teacher(rs.getString("apply_member_id"));
+				lectureBean.setLecture_week_day(rs.getString("apply_member_id"));
 				review.add(lectureBean);
 			}
+			int o = review.size();
+			sql="select m.member_name, a.apply_idx"
+					+ " FROM apply a JOIN member m ON (m.member_id=a.apply_member_id) "
+					+ " WHERE m.member_id=?";
+			for(int i=0 ;i <review.size()-1;i++) {
+					sql+=" or ";
+					if(i !=review.size()) {
+				sql+="m.member_id=?";
+				}
+
+			}	
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			for(int i=0 ;i <review.size();i++) {
+				lectureBean = review.get(i);
+				pstmt.setString(i+1, lectureBean.getLecture_week_day());
+				System.out.println(lectureBean.getLecture_week_day());
+			}
+			rs = pstmt.executeQuery();
+			
+//			int i=0;
+			review2 = new ArrayList<>();
+
+//			while(rs.next()) {
+			for(int i=0; i<o;i++) {
+				if(rs.next()) {
+				lectureBean = review.get(i);
+//				lectureBean2 = new LectureBean();
+				lectureBean.setLecture_subject(lectureBean.getLecture_subject());
+				lectureBean.setLecture_content(lectureBean.getLecture_content());
+				lectureBean.setLecture_week_day(lectureBean.getLecture_week_day());
+				lectureBean.setLecture_teacher(rs.getString("member_name"));
+				review2.add(lectureBean);
+//				i++;
+			}
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
-		return review;
+		return review2;
+	}
+	
+	public int selectListCount(String lecture) {
+		int count =0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql="SELECT COUNT(*) "
+					+ "FROM apply a JOIN lecture l ON (a.apply_lecture_idx=l.lecture_idx) "
+					+ "WHERE l.lecture_course LIKE ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+lecture+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count =rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}	
+		System.out.println(count);
+		return count;
 	}
 	
 	public void insertBasket(String member_id, int lecture_idx) {
@@ -442,7 +512,5 @@ public class ApplyDAO {
 			
 			
 		}
-	
-	
 
 }

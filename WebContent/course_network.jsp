@@ -1,3 +1,4 @@
+<%@page import="vo.BoardPageInfo"%>
 <%@page import="vo.LectureBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,8 +22,16 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
-    <%
+<%
+request.setCharacterEncoding("UTF-8");
 ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("review");
+BoardPageInfo boardPageInfo = (BoardPageInfo)request.getAttribute("boardPageInfo");
+
+int listCount = boardPageInfo.getListCount();
+int nowPage = boardPageInfo.getPage();
+int startPage = boardPageInfo.getStartPage();
+int endPage = boardPageInfo.getEndPage();
+int maxPage = boardPageInfo.getMaxPage();
 %>
   </head>
 
@@ -92,7 +101,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                           <h1>작성된 후기가 없습니다.</h1>
                           <%}else{ 
                           
-                          	for(int i=0; i<review.size();i++){
+                        		for(int i = review.size()-1 ; i >= 0 ; i--){
                           	LectureBean lb = (LectureBean)review.get(i);
                           	%>
                                 <li class="justify-content-between d-flex">
@@ -128,7 +137,7 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                             </ul>
                         </div>
                         
-                        <nav class="blog-pagination justify-content-center d-flex">
+  <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
                                 <li class="page-item">
                                     <a href="#" class="page-link" aria-label="Previous">
@@ -137,11 +146,26 @@ ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("re
                                         </span>
                                     </a>
                                 </li>
-                                <li class="page-item"><a href="#" class="page-link">01</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                                <li class="page-item"><a href="#" class="page-link">03</a></li>
-                                <li class="page-item"><a href="#" class="page-link">04</a></li>
-                                <li class="page-item"><a href="#" class="page-link">09</a></li>
+                                		<%if(nowPage <= 1 ) { %>
+					[이전]&nbsp;
+						<%} else { %>
+						<li class="page-item"><a href="review.al?lecture=network&page=<%=nowPage -1 %>">[이전]</a></li>
+						<%} %>
+		
+					<%for(int i = startPage ; i <= endPage; i++) {
+			if(i == nowPage) {%>
+				[<%=i %>]
+			<%} else { %>
+				<li class="page-item active"><a href = "review.al?lecture=network&page=<%=i %>">[<%=i %>]</a></li>
+			<%} %>
+		<%} %>
+		
+		<%if(nowPage >= maxPage){ %>
+			&nbsp;[다음]
+		<%} else {  %>
+			 <li class="page-item"><a href="review.al?lecture=network&page=<%=nowPage +1 %>">[다음]</a></li>
+		<%} %>
+
                                 <li class="page-item">
                                     <a href="#" class="page-link" aria-label="Next">
                                         <span aria-hidden="true">
