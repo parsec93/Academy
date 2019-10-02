@@ -247,8 +247,8 @@ function joinCheck() {
                         <label for="id">Your Id</label>
                         <input type="button" value="중복확인" class="inpt_03" onClick="idCheck()">
                         <input type="hidden" name="idCheckValue" value="idUncheck"> 
-                        <output id="result"></output>
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password" onkeyup="passCheck(this.value)">
+                        <output id="result"></output>
                         
                         <label for="password">Your password</label>
                         <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2(this.value)">

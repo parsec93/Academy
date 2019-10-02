@@ -179,7 +179,17 @@ function joinCheck() {
 		alert('직원 구분을 선택하세요.');
 		return false;
 	}
+// 	var tc = document.getElementsByName('radio_teacher_code');
+// 	for(var i=0;i<tc.length;i++){
+// 		if(tc[i].checked == true){
+// 			document.up.member_teacher_code.value = tc[i].value; 
+// 			break;
+// 		}
+// 	}
 	
+}
+function radioVal(raValue) {
+	document.up.member_teacher_code.value = raValue;
 }
 
 </script>
@@ -315,7 +325,7 @@ function joinCheck() {
                         <input type="password" name="password" id="password" class="inpt" required="required" placeholder="Your password" onkeyup="passCheck(this.value)">
                         <output id="result"></output>
                         <label for="password">Your password</label>
-                        <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2()">
+                        <input type="password" name="password_more" id="password_more" class="inpt" required="required" placeholder="패스워드 확인" onkeyup="passCheck2(this.value)">
                         <output id="result2"></output>
                         <label for="password_more">패스워드 확인</label>
 
@@ -375,16 +385,17 @@ function joinCheck() {
                         <label for="file">Image</label>
              			<div style="border: 1px dashed Gray;padding: 10px;">
              			<h3>직원 구분</h3>
-             			<input type="radio" name="member_teacher_code" value="j_" >자바 &nbsp;&nbsp;
-             			<input type="radio" name="member_teacher_code" value="s_" >JSP &nbsp;&nbsp;
-             			<input type="radio" name="member_teacher_code" value="o_" >Oracle &nbsp;&nbsp;
-             			<input type="radio" name="member_teacher_code" value="w_" >WEB &nbsp;&nbsp;
-             			<input type="radio" name="member_teacher_code" value="n_" >Network &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="j_" onclick="radioVal(this.value)" >자바 &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="s_" onclick="radioVal(this.value)">JSP &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="o_" onclick="radioVal(this.value)">Oracle &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="w_" onclick="radioVal(this.value)">WEB &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="n_" onclick="radioVal(this.value)">Network &nbsp;&nbsp;
              			<br>
-             			<input type="radio" name="member_teacher_code" value="l_" >기타(외부강사/직업 등) &nbsp;&nbsp;
-             			<input type="radio" name="member_teacher_code" value="e_" >기타(일반직원) &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="l_" onclick="radioVal(this.value)">기타(외부강사/직업 등) &nbsp;&nbsp;
+             			<input type="radio" name="radio_teacher_code" value="e_" onclick="radioVal(this.value)">기타(일반직원) &nbsp;&nbsp;
              			</div>
              			<br>
+             			<input type="hidden" name="member_teacher_code">
                         <div class="submit-wrap">
                             <input type="submit" value="Sign up" class="submit"> 
                             <a href="#" class="more">Terms and conditions</a>

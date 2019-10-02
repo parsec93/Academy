@@ -89,6 +89,34 @@ public class MemberDAO {
 		
 		return isInsertCount;
 	}
+	//member_teacher_code 가져오기
+	public ArrayList<String> selectTeacherCode(String member_teacher_code) {
+		ArrayList<String> list = new ArrayList<>();
+		String sql = "select member_teacher_code from member where member_teacher_code like ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			System.out.println("member_teacher_code는"+member_teacher_code);
+			pstmt.setString(1, member_teacher_code+"%");
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString("member_teacher_code"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectTeacherCode 실패 - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+	}
+	
+	
+	
+	
 	public int idCheck(String id) {
 		
 		int Check = 1;
