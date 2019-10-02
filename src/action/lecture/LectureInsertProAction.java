@@ -19,8 +19,9 @@ public class LectureInsertProAction implements Action{
 		
 		LectureBean lb = new LectureBean();
 		lb.setLecture_subject(request.getParameter("lecture_subject"));
-		lb.setLecture_course(request.getParameter("lecture_course"));
-		lb.setLecture_teacher(request.getParameter("lecture_teacher"));
+		lb.setLecture_course(request.getParameter("lecture_course_name"));
+		lb.setLecture_teacher(request.getParameter("lecture_teacher_name"));
+		lb.setLecture_teacher_code(request.getParameter("lecture_teacher_code"));
 		
 		String lecture_month = request.getParameter("lecture_month");
 		Calendar cal = Calendar.getInstance();

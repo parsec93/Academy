@@ -1,6 +1,7 @@
 package svc.member;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.MemberDAO;
 import vo.MemberBean;
@@ -26,5 +27,15 @@ public class MemberJoinProService {
 		close(con);
 		
 		return isInsertSuccess;
+	}
+	public ArrayList<String> getTeacherCode(String member_teacher_code) {
+		Connection con = getConnection();
+		MemberDAO mdao = MemberDAO.getInstance();
+		mdao.setConnection(con);
+		ArrayList<String> list = mdao.selectTeacherCode(member_teacher_code);
+		
+		close(con);
+
+		return list;
 	}
 }

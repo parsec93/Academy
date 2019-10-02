@@ -208,6 +208,7 @@ public class LectureDAO {
 			pstmt.setString(9, lb.getLecture_time());
 			pstmt.setString(10, lb.getLecture_room());
 			pstmt.setInt(11, lecture_count);	
+			pstmt.setString(12, lb.getLecture_teacher_code());
 			isSuccess = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("lectureInsert() 에러" + e.getMessage());

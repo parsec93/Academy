@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import action.Action;
 import svc.lecture.LectureInsertFormService;
 import vo.ActionForward;
@@ -16,31 +19,30 @@ public class LectureInsertFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		
-		
-		ActionForward forward = null;
-		
+		String selCourse = request.getParameter("selCourse");
+		System.out.println("selCourse는" + selCourse);
 		LectureInsertFormService lectureInsertFormService = new LectureInsertFormService();
 		ArrayList<MemberBean> tc = lectureInsertFormService.getTeatureCode();
 		
-		if(tc != null) {
-			System.out.println("tc select 성공");
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			
-			request.setAttribute("tc", tc);
-			forward = new ActionForward();
-			forward.setPath("/admin/lecture/lectureInsertForm.jsp");
-			forward.setRedirect(false);
-		}else {
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('teatureCode 조회실패')");
-			out.println("history.back()");
-			out.println("</script>");
+		JSONArray arr=new JSONArray();
+		for(int i=0;i<tc.size();i++){
+			MemberBean mb = tc.get(i);
+			System.out.println("tc는"+mb.getMember_teacher_code());
+			if(mb.getMember_teacher_code().substring(0,2).equals(selCourse)){
+				JSONObject obj=new JSONObject();
+				obj.put("member_name", mb.getMember_name());
+				obj.put("member_teacher_code", mb.getMember_teacher_code());
+				arr.add(obj);
+			}
 		}
 		
+		System.out.println(arr);
+		response.setContentType("text/html; charset=utf-8"); 
+		PrintWriter writer = response.getWriter();
+		writer.print(arr.toString());
+		writer.flush();
+		writer.close();
 		
-		return forward;
+		return null;
 	}
 }

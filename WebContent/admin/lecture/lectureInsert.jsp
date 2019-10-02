@@ -86,6 +86,8 @@
                     <select name="lecture_room" id="lecture_room" onchange="change_Room_Month()">
                         <option value="1" <%if(lecture_room.equals("1")){ %> selected="selected"<%} %>>1 강의실</option>
                         <option value="2" <%if(lecture_room.equals("2")){ %> selected="selected"<%} %>>2 강의실</option>
+                        <option value="3" <%if(lecture_room.equals("3")){ %> selected="selected"<%} %>>3 강의실</option>
+                        <option value="4" <%if(lecture_room.equals("4")){ %> selected="selected"<%} %>>4 강의실</option>
                     </select>
                     <select name="lecture_month" id="lecture_month" onchange="change_Room_Month()">
                     	<option value="1" <%if(lecture_month.equals("1")){ %> selected="selected"<%} %>>1월</option>
@@ -187,8 +189,7 @@
                     </table>
                     
                     <div id="table_search">
-				<input type="submit" value="등록" class="btn"/>&nbsp;&nbsp;
-				<input type="reset" value="취소" class="btn"/>
+				<input type="button" value="수업목록" class="btn" onClick="location.href='./lectureList.le'" />&nbsp;&nbsp;
 				</div>
                     </form>	
 	

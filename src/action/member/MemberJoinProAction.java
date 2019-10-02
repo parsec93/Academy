@@ -1,6 +1,7 @@
 package action.member;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -73,10 +74,28 @@ public class MemberJoinProAction implements Action{
 //			mb.setMember_teacher_code("");
 		}
 		mb.setMember_isMember(multi.getParameter("member_isMember"));
-
 		System.out.println(multi.getParameter("name"));
-		
 		MemberJoinProService memberJoinProService = new MemberJoinProService();
+		
+		//과목 코드와동인한 선생의 최대코드를 가져와서 +1
+		String member_teacher_code = multi.getParameter("member_teacher_code");
+		System.out.println(member_teacher_code);
+		ArrayList<String> list = memberJoinProService.getTeacherCode(member_teacher_code);
+		System.out.println(list);
+		if(list == null) {
+			mb.setMember_teacher_code(member_teacher_code+1);
+			System.out.println(member_teacher_code+1);
+		}else {
+			String code = list.get(0);
+			for(int i=0;i<list.size();i++) {
+				if(Integer.parseInt(code.substring(2)) < Integer.parseInt(list.get(i).substring(2)) ) {
+					code = list.get(i);
+				}
+			}
+			mb.setMember_teacher_code(code.substring(0,1)+(Integer.parseInt(code.substring(2))+1));
+			System.out.println(code.substring(0,1)+(Integer.parseInt(code.substring(2))+1));
+		}
+		
 		boolean isJoinMember = memberJoinProService.insertMember(mb);
 		
 		if(isJoinMember) {

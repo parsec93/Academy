@@ -34,17 +34,49 @@
 <script src="../js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 
+// $(document).ready(function(){
+// 	$("#lecture_course").change(function() {
+// 		$.ajax('admin/lecture/test123.jsp',{
+			
+// 			data:{selCourse:$("#lecture_course option:selected").val()},
+// 			success : function(data) {
+// 				console.log(data);
+// 				$("#lecture_teacher").append("<option value='1'>"+data+"</option>");
+// 			}
+// 		});
+// 	});
+// });	
+
+
 $(document).ready(function(){
 	$("#lecture_course").change(function() {
-		$.ajax('test.jsp',{
-			data:{selCourse:$(this).val()},
-			success : function(data) {
-				
-				$("#lecture_teacher").append("<option value='1'>"+data+"</option>");
+		
+		$.ajax({
+			type: "POST", //POST로 넘길 것 
+			url: "selectTeacher.le",
+			data: {'selCourse':$("#lecture_course option:selected").val()}, 
+			success: function(data) { 
+				$("#lecture_teacher option").remove();
+				$("#lecture_teacher").append("<option>선택</option>");
+				 $.each(JSON.parse(data)	, function(index, item) { 
+					 console.log(data)
+					 if(data!="[]"){
+						 $("#lecture_teacher").append("<option value=" +item.member_teacher_code+ ">" +item.member_name+ "</option>");
+					 }
+				 });
 			}
 		});
 	});
 });	
+
+function selectTeacher() {
+	var sel_lecture_course = lecture_course.options[lecture_course.selectedIndex].text;
+	var sel_teacher_code = lecture_teacher.options[lecture_teacher.selectedIndex].value;
+	var sel_teacher_name = lecture_teacher.options[lecture_teacher.selectedIndex].text;
+	document.up.lecture_course_name.value = sel_lecture_course;
+	document.up.lecture_teacher_code.value = sel_teacher_code;
+	document.up.lecture_teacher_name.value = sel_teacher_name;
+}
 </script>
 <body>
 	  
@@ -64,11 +96,11 @@ $(document).ready(function(){
                         <td class="ftwrite"><label for="lecture_course">과목명</label></td>
                         <td class="fttitle">
                         <select name="lecture_course" id="lecture_course" >
-  							<option value="java">java</option>
- 							<option value="jsp">jsp</option>
-<!--   							<option value="oracle" >oracle</option> -->
-<!--   							<option value="w_" >web</option> -->
-<!--   							<option value="n_" >network</option> -->
+  							<option value="j_">java</option>
+ 							<option value="s_">jsp</option>
+  							<option value="o_" >oracle</option>
+  							<option value="w_" >web</option>
+  							<option value="n_" >network</option>
 						</select>
                         </td>
                         </tr>
@@ -76,7 +108,7 @@ $(document).ready(function(){
                         <tr>
                          <td class="ftwrite"><label for="lecture_teacher">수업강사</label> </td> 
                          <td class="fttitle">
-                         <select name="lecture_teacher" id="lecture_teacher" style="width: 10em">
+                         <select name="lecture_teacher" id="lecture_teacher" onChange="selectTeacher()" >
                          	<option>선택</option>
                          </select>
                          </td>
@@ -101,6 +133,9 @@ $(document).ready(function(){
 						<input type="hidden" name="lecture_count" value="<%=lecture_count %>" >
                         <input type="hidden" name="lecture_room" value="<%=lecture_room %>" >
                         <input type="hidden" name="lecture_month" value="<%=lecture_month %>" >
+                        <input type="hidden" name="lecture_course_name"  >
+                        <input type="hidden" name="lecture_teacher_code"  >
+                        <input type="hidden" name="lecture_teacher_name"  >
                     </table>
                     <div id="table_search">
 				<input type="submit" value="등록" class="btn" onClick="insertSubmit()"/>&nbsp;&nbsp;
