@@ -1,3 +1,5 @@
+<%@page import="vo.LectureBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +21,30 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- <script type="text/javascript"> -->
+<!-- // $document.ready(function(){ -->
+<!-- // 	$.ajax({ -->
+<!-- // 		url:'./review.al', -->
+<!-- // 		data:{lecture:'java'}, -->
+<!-- // 		method:"GET", -->
+<!-- // 		dataType:"json", -->
+<!-- // 		success:function(json){ -->
+<!-- // 			$(json).find('행이름').each(function(){ -->
+<!-- // 				var name = $(this).find('열이름').text(); -->
+<!-- // 				var lecture = $(this).find('열이름').text(); -->
+<!-- // 				var review = $(this).find('열이름').text(); -->
+				
+<!-- // 				$('#content').append("<ul><li>" + lecture + "</li><li>" + review + "</li><li>" + name + "</li></ul>"); -->
+<!-- // 			}); -->
+<!-- // 		} -->
+<!-- // 	}); -->
+<!-- // }); -->
+
+<!-- </script> -->
+<%
+ArrayList<LectureBean> review = (ArrayList<LectureBean>)request.getAttribute("review");
+%>
   </head>
 
   <body>
@@ -83,38 +109,43 @@
                         <h4 class="title">수강후기</h4>
                         <div class="content">
                             <ul class="course_list">
+                          <%   if(review == null){%>
+                          <h1>작성된 후기가 없습니다.</h1>
+                          <%}else{ 
+                          
+                          	for(int i=0; i<review.size();i++){
+                          	LectureBean lb = (LectureBean)review.get(i);
+                          	%>
                                 <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
+                                    <a class="course_text" href='javascript:void(0);' onClick='return false'><%= lb.getLecture_content() %></a>
+                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'><%=lb.getLecture_teacher() %></a>
                                 </li>
-                                <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기
-                                    수강후기수강후기수강후기수강후기수강후기수강후기</a>
-                                    <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a>
-                                </li>
-                                
-
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+<!--                                 <li class="justify-content-between d-flex"> -->
+<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
+<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
+<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
+<!--                                 </li> -->
+                                <%} %>
+							<%} %>
                             </ul>
                         </div>
                         

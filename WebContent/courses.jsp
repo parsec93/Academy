@@ -36,11 +36,11 @@
               <div class="banner_content text-center">
                 <h2>강의 안내</h2>
                 <div class="page_link">
-                  <a href="coures_java.jsp">JAVA</a>
-                  <a href="coures_jsp.jsp">JSP</a>
-                  <a href="coures_oracle.jsp">ORACLE</a>
-                  <a href="coures_network.jsp">NETWORK</a>
-                  <a href="coures_web.jsp">WEB</a>
+                  <a href="review.al?lecture=java">JAVA</a>
+                  <a href="review.al?lecture=jsp">JSP</a>
+                  <a href="review.al?lecture=oracle">ORACLE</a>
+                  <a href="review.al?lecture=network">NETWORK</a>
+                  <a href="review.al?lecture=web">WEB</a>
                 </div>
               </div>
             </div>
