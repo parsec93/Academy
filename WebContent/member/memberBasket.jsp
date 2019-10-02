@@ -87,15 +87,7 @@
 				   } else{
 				   $.each(JSON.parse(data)	, function(index, item) {
 						
-					   
-					   console.log(item.subject);
-					   console.log(item.course);	
-					   console.log(item.day);
-					   console.log(item.termday);
-					   console.log(item.time);
-					   console.log(item.fee);
-					   console.log(item.teacher);
-					   console.log(item.lecture_id);
+
 					   var image;
 						   if(item.course=="Java"){
 							  image = "java.png";
@@ -194,7 +186,7 @@
 	                });
 						
 						$('#lecture_list_area').append('<input type="button" id="btn_pay" value="결제" onclick="">');
-						
+						$('#lecture_list_area').append('<input type="button" id="btn_del" value="삭제" onclick="deleteBasket()">');
 				   }
 	
 				   
@@ -214,26 +206,53 @@
 
 _ajax();
 
+function deleteBasket(){
+	var del = confirm("장바구니에서 삭제하시겠습니까?");
+	var chkArray = new Array();
+	if(del){
+		
+		$('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	        chkArray.push(this.value);
+	    });
+	    $('#hiddenValue').val(chkArray);
+	    
+	   
+	    jQuery.ajaxSettings.traditional = true;
+	    
+	    $.ajax({
+			type : 'POST',
+			url  : 'basketDelete.me',
+			data : {
+			'chkArray':	chkArray
+				},
+				
+			 success: function() {
+				 alert('삭제되었습니다.');   
+				 _ajax();
+				 return true;
+			 },
+			 error: function() {
+						
+				 alert('오류가 발생하였습니다.');
+				 return false;
+			 }
 
+	    });
+	    
+	    
+	    
+	}else{
+		
+		return false;
+	}
+	
+
+	
+}
 
 $(document).ready(function(){
 
-	
-// 	$("input[name=cb1]").change(function(){
-// 		  if($("input[name=cb1]").is(":checked")){
-// 	          alert("체크");
-// 	      }else{
-// 	          alert("체크 해제");
-// 	      }
 
-
-// 			console.log("체크");
-// 					$("input[name=checkbox1]:checked").each(function(){
-// 						var lecture_idx = $(this).val();
-// 						console.log(lecture_idx);
-		
-// 				});
-// 	});
 	
 	
 
@@ -273,6 +292,7 @@ $(document).ready(function(){
 			
 			</div>
 			
+			<input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
 		</div>
 		
 		

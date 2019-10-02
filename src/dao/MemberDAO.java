@@ -617,5 +617,27 @@ public class MemberDAO {
 		
 		}
 		
+		public void deleteBasket(String member_id, int lecture_idx) {
+
+			
+			try {
+				
+					String sql = "DELETE FROM basket WHERE basket_member_id = ? "+
+									"AND basket_lecture_idx = ? ";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, member_id);
+					pstmt.setInt(2, lecture_idx);
+					pstmt.executeUpdate();
+					
+			} catch (SQLException e) {
+				
+				System.out.println("deleteBasket 실패 - " + e.getMessage());
+			}finally {
+				close(pstmt);
+			}
+			
+		
+		}
+		
 		
 }

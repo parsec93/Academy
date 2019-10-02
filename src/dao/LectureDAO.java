@@ -379,7 +379,8 @@ public class LectureDAO {
 	public List<LectureBean> getBasketList(String sId){
 		List<LectureBean> lectureList = new ArrayList<LectureBean>();
 		
-	
+		PreparedStatement pstmt2 = null;
+		ResultSet rs2 = null;
 		System.out.println("겟바스켓리스트"+sId);
 
 		String sql = ""; 
@@ -394,19 +395,20 @@ public class LectureDAO {
 					+ "from lecture where lecture_idx=?"
 					+ " AND lecture_start_day >now() "
 					+ " ORDER BY lecture_idx DESC";
-			pstmt =con.prepareStatement(sql);
-			pstmt.setInt(1,rs.getInt("basket_lecture_idx"));
-			rs =pstmt.executeQuery();
-			while(rs.next()) {
-				LectureBean lb = new LectureBean();;
-				lb.setLecture_subject(rs.getString("lecture_subject"));
-				lb.setLecture_course(rs.getString("lecture_course"));
-				lb.setLecture_week_day(rs.getString("lecture_week_day"));
-				lb.setLecture_time(rs.getString("lecture_time"));
-				lb.setLecture_fee(rs.getInt("lecture_fee"));
-				lb.setLecture_teacher(rs.getString("lecture_teacher"));
-				lb.setLecture_start_day(rs.getDate("lecture_start_day"));
-				lb.setLecture_end_day(rs.getDate("lecture_end_day"));
+			pstmt2 =con.prepareStatement(sql);
+			pstmt2.setInt(1,rs.getInt("basket_lecture_idx"));
+			rs2 =pstmt2.executeQuery();
+			while(rs2.next()) {
+				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs2.getInt("lecture_idx"));
+				lb.setLecture_subject(rs2.getString("lecture_subject"));
+				lb.setLecture_course(rs2.getString("lecture_course"));
+				lb.setLecture_week_day(rs2.getString("lecture_week_day"));
+				lb.setLecture_time(rs2.getString("lecture_time"));
+				lb.setLecture_fee(rs2.getInt("lecture_fee"));
+				lb.setLecture_teacher(rs2.getString("lecture_teacher"));
+				lb.setLecture_start_day(rs2.getDate("lecture_start_day"));
+				lb.setLecture_end_day(rs2.getDate("lecture_end_day"));
 				
 				lectureList.add(lb);
 				

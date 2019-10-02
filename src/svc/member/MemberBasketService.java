@@ -38,4 +38,20 @@ public class MemberBasketService {
 		
 		return lectureList;
 	}
+	
+	public void deleteBasket(String member_id, String lecture_id) {
+
+		System.out.println("바스켓서비스");
+		Connection con = getConnection();
+		MemberDAO mdao = MemberDAO.getInstance();
+		mdao.setConnection(con);
+		int lecture_idx = Integer.parseInt(lecture_id);
+		mdao.deleteBasket(member_id, lecture_idx);
+		
+		commit(con);
+		close(con);
+		
+		return;
+	}
+	
 }

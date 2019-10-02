@@ -363,7 +363,7 @@ function fnGetdata(){
     });
     $('#hiddenValue').val(chkArray);
     
-    alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+   
     jQuery.ajaxSettings.traditional = true;
 
     
