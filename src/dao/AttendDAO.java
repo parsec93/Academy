@@ -162,6 +162,33 @@ public class AttendDAO {
 		
 		return todayCheck;
 	}
+	public ArrayList<AttendBean> selectApplyAttendList(String sId) {
+		ArrayList<AttendBean> applyList3 = new ArrayList<AttendBean>();
+		String sql="SELECT * FROM attend WHERE attend_member_id= ?";
+		try {
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1, sId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				AttendBean atb = new AttendBean();
+				atb.setAttend_member_id(rs.getString("attend_member_id"));
+				atb.setAttend_lecture_idx(rs.getInt("attend_lecture_idx"));
+				atb.setAttend_check(rs.getString("attend_check"));
+				applyList3.add(atb);
+				
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("todayCheckList() 에러" + e.getMessage());	
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return applyList3;	
+	}
 	
 	
 

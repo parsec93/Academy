@@ -11,6 +11,7 @@ import action.Action;
 import svc.apply.ApplyListService;
 import vo.ActionForward;
 import vo.ApplyBean;
+import vo.AttendBean;
 import vo.LectureBean;
 import vo.LecturePageInfo;
 
@@ -24,6 +25,7 @@ public class ApplyListAction implements Action {
 		String sId = (String)session.getAttribute("sId");
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
+		ArrayList<AttendBean> applyList3 = new ArrayList<AttendBean>();
 		
 		String isMember = request.getParameter("isMember");
 		String listType="";
@@ -41,10 +43,12 @@ public class ApplyListAction implements Action {
 		ApplyListService applyListService = new ApplyListService();
 		
 		
+		
 		int listCount = applyListService.getApplyListCount(sId,listType);
 		
 		applyList = applyListService.getApplyList(page, limit, sId, listType);
 		applyList2 = applyListService.getApplyList2(page, limit, sId, listType);
+		applyList3 = applyListService.getApplyAttendList(sId);
 		 
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
@@ -64,6 +68,7 @@ public class ApplyListAction implements Action {
 			request.setAttribute("applyPageInfo", applyPageInfo);
 			request.setAttribute("applyList", applyList);
 			request.setAttribute("applyList2", applyList2);
+			request.setAttribute("applyList3", applyList3);
 			request.setAttribute("listType", listType);
 			request.setAttribute("isMember", isMember);
 			forward.setPath("apply/applyList.jsp");
