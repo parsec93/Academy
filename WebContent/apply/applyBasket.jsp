@@ -71,7 +71,7 @@
 
 		$.ajax({
 			type : "POST",
-			url  : "memberbasket.me",
+			url  : "memberbasket.al",
 			data : sId,
 
 			
@@ -221,7 +221,7 @@ function deleteBasket(){
 	    
 	    $.ajax({
 			type : 'POST',
-			url  : 'basketDelete.me',
+			url  : 'basketDelete.al',
 			data : {
 			'chkArray':	chkArray
 				},

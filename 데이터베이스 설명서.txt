@@ -174,7 +174,8 @@ apply_member_id varchar(20) not null,
 apply_lecture_idx int not null,
 apply_purchase_date date,
 apply_ischeck varchar(1) not null,
-apply_review varchar(200) 
+apply_review varchar(200), 
+CONSTRAINT fk_apply_idx FOREIGN KEY (apply_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
 );
 
 insert into apply values(null, 'student', 1, '2019-09-01', '0',null);

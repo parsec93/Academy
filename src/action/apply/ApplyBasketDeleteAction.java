@@ -1,4 +1,4 @@
-package action.member;
+package action.apply;
 
 import java.io.PrintWriter;
 
@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
-import svc.member.MemberBasketService;
+import svc.apply.ApplyBasketService;
 import svc.member.MemberDeleteService;
 import vo.ActionForward;
 
-public class MemberBasketDeleteAction implements Action {
+public class ApplyBasketDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,7 +23,7 @@ public class MemberBasketDeleteAction implements Action {
 		
 		for(int i=0; i<chkArray.length; i++) System.out.println("체크박스 값 :"+chkArray[i]);
 		
-		MemberBasketService memberBasketService = new MemberBasketService();
+		ApplyBasketService memberBasketService = new ApplyBasketService();
 		for(int i=0; i<chkArray.length; i++) {
 			
 			memberBasketService.deleteBasket(sId, chkArray[i]);

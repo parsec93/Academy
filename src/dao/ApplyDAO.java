@@ -2,11 +2,15 @@ package dao;
 
 import static db.JdbcUtil.close;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import vo.ApplyBean;
 import vo.LectureBean;
@@ -316,6 +320,128 @@ public class ApplyDAO {
 		
 		return review;
 	}
+	
+	public void insertBasket(String member_id, int lecture_idx) {
+
+		System.out.println(member_id);
+		System.out.println(lecture_idx);
+		
+		try {
+				
+				String sql = "insert into apply values(null,?,?,null,'0',null)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member_id);
+				pstmt.setInt(2, lecture_idx);
+				pstmt.executeUpdate();
+				
+				
+	
+		} catch (SQLException e) {
+			
+			System.out.println("insertBasket 실패 - " + e.getMessage());
+		}finally {
+			close(pstmt);
+
+		}
+		
+		return;
+		
+	
+	}
+	
+	public void deleteOverlap() {
+
+		try {
+				
+				
+				String sql = "DELETE FROM apply " + 
+						"WHERE apply_idx not in ( SELECT apply_idx from ( SELECT apply_idx from apply group by apply_member_id,apply_lecture_idx ) as apply_idx )";
+				pstmt = con.prepareStatement(sql);
+				pstmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			
+			System.out.println("deleteOverlap 실패 - " + e.getMessage());
+		}finally {
+			close(pstmt);
+
+		}
+		
+	
+	}
+	
+	public void deleteBasket(String member_id, int lecture_idx) {
+
+		
+		try {
+			
+				String sql = "DELETE FROM apply WHERE apply_member_id = ? "+
+								"AND apply_lecture_idx = ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member_id);
+				pstmt.setInt(2, lecture_idx);
+				pstmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			
+			System.out.println("deleteBasket 실패 - " + e.getMessage());
+		}finally {
+			close(pstmt);
+		}
+		
+	
+	}
+	
+	public List<LectureBean> getBasketList(String sId){
+		List<LectureBean> lectureList = new ArrayList<LectureBean>();
+		
+		PreparedStatement pstmt2 = null;
+		ResultSet rs2 = null;
+		System.out.println("겟바스켓리스트"+sId);
+
+		String sql = ""; 
+		
+		sql = "select apply_lecture_idx from apply where apply_member_id = ? AND apply_ischeck=0";
+		try {
+		pstmt =con.prepareStatement(sql);
+		pstmt.setString(1,sId);
+		rs =pstmt.executeQuery();
+		while(rs.next()) {
+			sql = "select * "
+					+ "from lecture where lecture_idx=?"
+					+ " AND lecture_start_day >now() "
+					+ " ORDER BY lecture_idx DESC";
+			pstmt2 =con.prepareStatement(sql);
+			pstmt2.setInt(1,rs.getInt("apply_lecture_idx"));
+			rs2 =pstmt2.executeQuery();
+			while(rs2.next()) {
+				LectureBean lb = new LectureBean();
+				lb.setLecture_idx(rs2.getInt("lecture_idx"));
+				lb.setLecture_subject(rs2.getString("lecture_subject"));
+				lb.setLecture_course(rs2.getString("lecture_course"));
+				lb.setLecture_week_day(rs2.getString("lecture_week_day"));
+				lb.setLecture_time(rs2.getString("lecture_time"));
+				lb.setLecture_fee(rs2.getInt("lecture_fee"));
+				lb.setLecture_teacher(rs2.getString("lecture_teacher"));
+				lb.setLecture_start_day(rs2.getDate("lecture_start_day"));
+				lb.setLecture_end_day(rs2.getDate("lecture_end_day"));
+				
+				lectureList.add(lb);
+				
+			}
+		}
+		}catch (SQLException e) {
+			System.out.println("selectgetLectureList() 에러" + e.getMessage());
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return lectureList;
+			
+			
+		}
 	
 	
 

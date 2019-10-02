@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,10 +29,11 @@ public class LectureEnrolmentAction implements Action{
 		String category_time = request.getParameter("category3");
 		List<LectureBean> lectureList =null;
 		
-
+		HttpSession session = request.getSession();
+		String sId = (String)session.getAttribute("sId");
 
 		LectureEnrolmentService lectureEnrolmentSesrvice = new LectureEnrolmentService();
-		lectureList= lectureEnrolmentSesrvice.enrolmentLecture(category_subject, category_day, category_time);
+		lectureList= lectureEnrolmentSesrvice.enrolmentLecture(category_subject, category_day, category_time, sId);
 		
 		
 		System.out.println(lectureList.size());

@@ -1,6 +1,7 @@
-package action.member;
+package action.apply;
 
 import java.io.PrintWriter;
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,17 +14,17 @@ import org.json.simple.JSONObject;
 
 import action.Action;
 import sun.awt.image.IntegerComponentRaster;
+import svc.apply.ApplyBasketService;
 import svc.lecture.LectureEnrolmentService;
-import svc.member.MemberBasketService;
 import vo.ActionForward;
 import vo.LectureBean;
 
 
-public class MemberBasketAction implements Action{
+public class ApplyBasketAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("action. MemberBasket action");
+		System.out.println("action. ApplyBasket action");
 		response.setContentType("text/html;charset=UTF-8"); 
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
@@ -31,13 +32,17 @@ public class MemberBasketAction implements Action{
 		
 		for(int i=0; i<chkArray.length; i++) System.out.println("체크박스 값 :"+chkArray[i]);
 		
-		MemberBasketService memberBasketService = new MemberBasketService();
+		ApplyBasketService applyBasketService = new ApplyBasketService();
 		for(int i=0; i<chkArray.length; i++) {
 			
-			memberBasketService.insertBasket(sId, chkArray[i]);
+
+				applyBasketService.insertBasket(sId, chkArray[i]);
+
 			
 		}
 
+		applyBasketService.deleteOverlap();
+		
 		return null;
 	}	
 }

@@ -1,4 +1,4 @@
-package action.member;
+package action.apply;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,25 +13,24 @@ import org.json.simple.JSONObject;
 
 import action.Action;
 import sun.awt.image.IntegerComponentRaster;
+import svc.apply.ApplyBasketService;
 import svc.lecture.LectureEnrolmentService;
-import svc.member.MemberBasketService;
 import vo.ActionForward;
 import vo.LectureBean;
 
 
-public class MemberBasketListAction implements Action{
+public class ApplyBasketListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("action. MemberBasketList action");
+		System.out.println("action. ApplyBasketList action");
 		response.setContentType("text/html;charset=UTF-8"); 
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
 		System.out.println(sId);
-		
 		List<LectureBean> lectureList =null;
-		MemberBasketService memberBasketService = new MemberBasketService();
-		lectureList =memberBasketService.selectBasketList(sId);
+		ApplyBasketService applyBasketService = new ApplyBasketService();
+		lectureList =applyBasketService.selectBasketList(sId);
 
 
 		System.out.println(lectureList.size());

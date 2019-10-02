@@ -13,7 +13,7 @@ import static db.JdbcUtil.*;
 public class LectureEnrolmentService {
 
 
-	public List<LectureBean> enrolmentLecture(String category_subject,String category_day,String category_time) {
+	public List<LectureBean> enrolmentLecture(String category_subject,String category_day,String category_time,String sId) {
 
 		System.out.println("LectureEnrolmentService");
 		String subject = "";
@@ -69,7 +69,7 @@ public class LectureEnrolmentService {
 		lectureDAO.setConnection(con);
 		List<LectureBean> lectureList=new ArrayList<LectureBean>();
 		
-		lectureList = lectureDAO.getLectureList(subject,day,time);
+		lectureList = lectureDAO.getLectureList(subject,day,time,sId);
 		
 	
 		
