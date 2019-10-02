@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.board.BoardViewAction;
 import action.member.MemberBasketAction;
+import action.member.MemberBasketListAction;
 import action.member.FindIdAction;
 import action.member.FindPassAction;
 import action.member.LoginProAction;
@@ -164,7 +165,20 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    
+	        
+        }else if(command.equals("/memberbasket.me")) {
+	        action = new MemberBasketListAction();
+	        try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        
+        }else if(command.equals("/mybasketlist.me")) {
+        	forward = new ActionForward();
+        	forward.setPath("/member/memberBasket.jsp");
+			
+        
         }else if(command.equals("/FindPass.me")) {
         	action = new FindPassAction();
         	try {

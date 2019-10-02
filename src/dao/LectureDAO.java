@@ -376,5 +376,57 @@ public class LectureDAO {
 		return lectureList;
 	}
 	
+	public List<LectureBean> getBasketList(String sId){
+		List<LectureBean> lectureList = new ArrayList<LectureBean>();
+		
+	
+		System.out.println("겟바스켓리스트"+sId);
+
+		String sql = ""; 
+		
+		sql = "select basket_lecture_idx from basket where basket_member_id = ?";
+		try {
+		pstmt =con.prepareStatement(sql);
+		pstmt.setString(1,sId);
+		rs =pstmt.executeQuery();
+		while(rs.next()) {
+			sql = "select * "
+					+ "from lecture where lecture_idx=?"
+					+ " AND lecture_start_day >now() "
+					+ " ORDER BY lecture_idx DESC";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1,rs.getInt("basket_lecture_idx"));
+			rs =pstmt.executeQuery();
+			while(rs.next()) {
+				LectureBean lb = new LectureBean();;
+				lb.setLecture_subject(rs.getString("lecture_subject"));
+				lb.setLecture_course(rs.getString("lecture_course"));
+				lb.setLecture_week_day(rs.getString("lecture_week_day"));
+				lb.setLecture_time(rs.getString("lecture_time"));
+				lb.setLecture_fee(rs.getInt("lecture_fee"));
+				lb.setLecture_teacher(rs.getString("lecture_teacher"));
+				lb.setLecture_start_day(rs.getDate("lecture_start_day"));
+				lb.setLecture_end_day(rs.getDate("lecture_end_day"));
+				
+				lectureList.add(lb);
+				
+			}
+		}
+		}catch (SQLException e) {
+			System.out.println("selectgetLectureList() 에러" + e.getMessage());
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+				
+		return lectureList;
+			
+			
+		}
+	
+		
+	
+	
 	
 }
