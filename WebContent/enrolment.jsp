@@ -149,7 +149,7 @@ var app = (function(){
 				   if(data=="[]"){
 					   $('#lecture_list_area').append("해당되는 강의가 없습니다");
 				   } else{
-				   $.each(JSON.parse(data)	, function(index, item) {
+// 				   $.each(JSON.parse(data)	, function(index, item) {
 						
 					   
 					   console.log(item.subject);

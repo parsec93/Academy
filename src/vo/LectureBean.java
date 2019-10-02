@@ -16,6 +16,7 @@ public class LectureBean {
 	private String lecture_room;
 	private int lecture_count;
 	private String lecture_image;
+	private	String lecture_teacher_code;
 	
 	public String getLecture_image() {
 		return lecture_image;
@@ -94,6 +95,12 @@ public class LectureBean {
 	}
 	public void setLecture_room(String lecture_room) {
 		this.lecture_room = lecture_room;
+	}
+	public String getLecture_teacher_code() {
+		return lecture_teacher_code;
+	}
+	public void setLecture_teacher_code(String lecture_teacher_code) {
+		this.lecture_teacher_code = lecture_teacher_code;
 	}
 	
 	
