@@ -45,6 +45,9 @@
   ArrayList<AttendBean> applyList3 = (ArrayList<AttendBean>)request.getAttribute("applyList3");
   LecturePageInfo applyPageInfo = (LecturePageInfo)request.getAttribute("applyPageInfo");
   String sId = (String)session.getAttribute("sId");
+  if(sId.equals("admin1234")){
+	  sId = (String)request.getAttribute("studentId");
+  }
   String isMember =(String)request.getAttribute("isMember"); 
  
   int listCount = applyPageInfo.getListCount();
@@ -67,11 +70,11 @@
   		var langSelect = document.getElementById("period"); 		
   		var lt = langSelect.options[langSelect.selectedIndex].value
   		if(lt == "now"){
-  			location.href = "./ApplyInfo.al?listType=now&isMember=<%=isMember%>";
+  			location.href = "./ApplyInfo.al?listType=now&isMember=<%=isMember%>&studentId=<%=sId%>";
   		}else if(lt == "end"){
-  			location.href = "./ApplyInfo.al?listType=end&isMember=<%=isMember%>";
+  			location.href = "./ApplyInfo.al?listType=end&isMember=<%=isMember%>&studentId=<%=sId%>";
   		}else if(lt == "all"){
-  			location.href = "./ApplyInfo.al?listType=all&isMember=<%=isMember%>";
+  			location.href = "./ApplyInfo.al?listType=all&isMember=<%=isMember%>&studentId=<%=sId%>";
   		}
 		
 	}
@@ -148,7 +151,7 @@
 		</colgroup>
 	<%}%>
 	<%if(applyList.size() == 0) {%>
-    <h1><b>작성된 글이 없습니다.</b></h1>
+    <h1><b>작성된 목록이 없습니다.</b></h1>
     <%}else{ %>
 	<thead>
 	<tr>
@@ -171,37 +174,34 @@
     System.out.println(applyList.size());
   	//과목 하나당 열 
     for(int i =0; i<applyList.size(); i++){
+    	attend=0;
+    	absent = 0;
+        late = 0;
 	LectureBean lectureBean = (LectureBean)applyList.get(i);
 	ApplyBean applyBean = (ApplyBean)applyList2.get(i);
 	AttendBean attendBean = (AttendBean)applyList3.get(i);
-	
-	//apply 테이블 과 attend 테이블의 수업이 같은 수업인지 비교
-	for(int j=0; j<applyList2.size(); j++ ){
-	if(applyBean.getApply_lecture_idx()==attendBean.getAttend_lecture_idx()){
 		
-	
-		tc[i] = attendBean.getAttend_check();
-		String[] tcNums =  tc[i].split("/");
-		//출석 체크 자른 갯수
-		for(int t=0; t<tcNums.length; t++){
+	tc[i] = attendBean.getAttend_check();
+	String[] tcNums =  tc[i].split("/");
+	//출석 체크 자른 갯수
+	for(int t=0; t<tcNums.length; t++){
 
-			if(!tcNums[t].equals("null")){
-				if(String.valueOf(tcNums[t].charAt(0)).equals("0")){
-					absent++;
-				}else if(String.valueOf(tcNums[t].charAt(0)).equals("l")){
-					late++;
-				}else if(String.valueOf(tcNums[t].charAt(0)).equals("-")){
-					continue;
-				}else{
-					attend++;
-				}
+		if(!tcNums[t].equals("null")){
+			if(String.valueOf(tcNums[t].charAt(0)).equals("0")){
+				absent++;
+			}else if(String.valueOf(tcNums[t].charAt(0)).equals("l")){
+				late++;
+			}else if(String.valueOf(tcNums[t].charAt(0)).equals("-")){
+				System.out.println("c");
+				continue;
+			}else{
+				attend++;
+				System.out.println(attend);
 			}
-			
 		}
-	}
-	
-	
-}
+		
+	}	
+
 		
 		
 	%>	

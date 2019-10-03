@@ -24,7 +24,8 @@ public class ApplyListAction implements Action {
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
 		if(sId.equals("admin1234")) {
-			sId = request.getParameter("sId");
+			sId = request.getParameter("studentId");
+			request.setAttribute("studentId", sId);
 		}
 		
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
@@ -52,7 +53,7 @@ public class ApplyListAction implements Action {
 		
 		applyList = applyListService.getApplyList(page, limit, sId, listType);
 		applyList2 = applyListService.getApplyList2(page, limit, sId, listType);
-		applyList3 = applyListService.getApplyAttendList(sId);
+		applyList3 = applyListService.getApplyAttendList(page, limit,sId);
 		 
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
