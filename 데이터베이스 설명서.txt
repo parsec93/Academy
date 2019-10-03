@@ -201,7 +201,7 @@ insert into apply values(null, 'student1', 1, '2019-11-01', '1',null);
 attend_idx int primary key auto_increment,
 attend_member_id varchar(20) not null,
 attend_lecture_idx int not null,
-attend_check varchar(150),
+attend_check varchar(150), -1 로 주기
 attend_today int
 );
 

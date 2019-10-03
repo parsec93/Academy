@@ -124,13 +124,18 @@ int maxPage = boardPageInfo.getMaxPage();
                           
                           	for(int i = review.size()-1 ; i >= 0 ; i--){
                           	LectureBean lb = (LectureBean)review.get(i);
+                          	
+                          		if(lb.getLecture_content() == null){%>
+                          			   <h1>작성된 후기가 없습니다.</h1>
+                          		<%}else {
                           	%>
                                 <li class="justify-content-between d-flex">
                                     <a class="course_text" href='javascript:void(0);' onClick='return false'><b>[<%=lb.getLecture_subject() %>]</b>&nbsp;<%= lb.getLecture_content() %></a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'><%=lb.getLecture_teacher() %></a>
                                 </li>
-                                <%} %>
-							<%} %>
+                                <%} 
+								} 
+							}%>
                             </ul>
                         </div>
                         

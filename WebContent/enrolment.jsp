@@ -164,11 +164,11 @@ var app = (function(){
 					   console.log(item.teacher);
 					   console.log(item.lecture_id);
 					   var image;
-						   if(item.course=="Java"){
+						   if(item.course=="java"){
 							  image = "java.png";
-						   }else if(item.course=="Jsp"){
+						   }else if(item.course=="jsp"){
 							   image = "jsp.png";
-						   }else if(item.course=="Oracle"){
+						   }else if(item.course=="oracle"){
 							   image = "oracle.png";
 						   }
 
@@ -342,8 +342,47 @@ function requestPay(){
 			
 			
 		success : function(data){
+			
+			
 				  console.log("석세스");
 				  console.log(data);
+				  
+				  function payment(){
+		        		var chkArray2 = new Array();
+		        
+		        			
+		        			$('input:checkbox[name=ckb]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+		        		        chkArray2.push(this.value);
+		        		    });
+		        		    $('#hiddenValue').val(chkArray2);
+		        		    
+		        		   
+		        		    jQuery.ajaxSettings.traditional = true;
+		        		    
+		        		    $.ajax({
+		        				type : 'POST',
+		        				url  : 'payment.al',
+		        				data : {
+		        				'chkArray2':	chkArray2
+		        					},
+		        					
+		        				 success: function() {
+		        					  
+		        					 return true;
+		        				 },
+		        				 error: function() {
+		        							
+		        					 
+		        					 return false;
+		        				 }
+
+		        		    });
+		        		   
+		        		    
+		        
+				  }
+				  
+				  
 				  var i = 1;
 	
 				   $.each(JSON.parse(data)	, function(index, item) {
@@ -365,11 +404,16 @@ function requestPay(){
 						 
 							
 						
-					   	 pg : 'html5_inicis',
-					   	 pay_method : 'card',
-					   	 merchant_uid : 'merchant_' + new Date().getTime(),
-					   	 name : '수강료 결제',
-					   	 amount : amount_payment,
+					   	pg : 'html5_inicis',
+					   	pay_method : 'card',
+					  	merchant_uid : 'merchant_' + new Date().getTime(),
+					  	name : '수강료 결제',
+					    amount : amount_payment,
+					   	buyer_email : buy_email,
+					    buyer_name : buy_name,
+					    buyer_tel : buy_phone,
+					    buyer_addr : buy_add,
+					    buyer_postcode : buy_postcode
 			
 						}, function(rsp) {
 					    	if ( rsp.success ) {
@@ -379,16 +423,24 @@ function requestPay(){
 					        	msg += '결제 금액 : ' + rsp.paid_amount;
 					        	msg += '카드 승인번호 : ' + rsp.apply_num;
 					        	
+								 payment();
+								 app.init();
+					        	
+					        	
 					        	
 					        	
 					    } else {
 					        var msg = '결제에 실패하였습니다.';
 					        msg += '에러내용 : ' + rsp.error_msg;
 					    }
+						
 
 					    alert(msg);
-						});
 				   });
+					    
+				   });
+						
+				   
 						
 	            
 				   
@@ -402,6 +454,7 @@ function requestPay(){
 			
 			
            });
+	
 	}
 	
 		
@@ -409,8 +462,7 @@ function requestPay(){
 	
 	memberInfo();
 
-	console.log("결제");
-	
+
 	
 	
 }

@@ -32,6 +32,31 @@ public class AttendDAO {
 		this.con = con;
 	}
 	
+	public void insertStudent(String member_id, int lecture_idx) {
+		
+	try {
+			
+			String sql = "insert into attend values(null,?,?,'-1',null)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member_id);
+			pstmt.setInt(2, lecture_idx);
+			pstmt.executeUpdate();
+			
+			
+
+	} catch (SQLException e) {
+		
+		System.out.println("insertStudent 실패 - " + e.getMessage());
+	}finally {
+		close(pstmt);
+
+	}
+	
+	return;
+		
+		
+	}
+	
 	public int isUpdateAttendCheck(String[] attendMemberArr, String[] attendCheckArr, int lecture_idx , int attendDay) {
 		
 		int updateCount =0;

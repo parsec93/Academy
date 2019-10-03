@@ -18,6 +18,7 @@ import action.apply.ApplyMemberInfoAction;
 import action.apply.ApplyReviewInsertAction;
 import action.apply.ApplyBasketDeleteAction;
 import action.apply.ApplyMemberListAction;
+import action.apply.ApplyPaymentAction;
 import action.apply.ListTeacherAction;
 import action.apply.ReviewAction;
 import vo.ActionForward;
@@ -131,10 +132,18 @@ public class applyFrontController extends HttpServlet{
 	 				e.printStackTrace();
 	 			}
 	 	        
+	        }else if(command.equals("/payment.al")) {
+	        	 action = new ApplyPaymentAction();
+	 	        try {
+	 				forward = action.execute(request, response);
+	 			} catch (Exception e) {
+	 				e.printStackTrace();
+	 			}
+	 	        
 	        }
 	       
 
-	       
+	        
 	        
 	        
 	        // if문에서 서블릿 주소 판별 후 요청 처리 뒤에 포워딩할 페이지를 ActionForward 객체로 생성했기 때문에

@@ -25,13 +25,13 @@ public class LectureEnrolmentService {
 		}
 		else if(category_subject.equals("1")) {
 			
-			subject="Java";
+			subject="java";
 		}else if(category_subject.equals("2")) {
 			
-			subject="Oracle";
+			subject="oracle";
 		}else if(category_subject.equals("3")) {
 			
-			subject="Jsp";
+			subject="jsp";
 		}
 		
 		

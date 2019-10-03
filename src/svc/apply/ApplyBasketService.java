@@ -1,6 +1,7 @@
 package svc.apply;
 
 import dao.ApplyDAO;
+import dao.AttendDAO;
 import dao.LectureDAO;
 import dao.MemberDAO;
 import vo.LectureBean;
@@ -81,5 +82,23 @@ public class ApplyBasketService {
 		close(con);
 		
 		return memberInfo;
+	}
+	
+	public void payment(String member_id, String lecture_id) {
+
+		System.out.println("바스켓서비스");
+		Connection con = getConnection();
+		ApplyDAO adao = ApplyDAO.getInstance();
+		AttendDAO atdao = AttendDAO.getInstance();
+		adao.setConnection(con);
+		atdao.setConnection(con);
+		int lecture_idx = Integer.parseInt(lecture_id);
+		adao.payment(member_id, lecture_idx);
+		atdao.insertStudent(member_id,lecture_idx);
+		
+		commit(con);
+		close(con);
+		
+		return;
 	}
 }

@@ -512,5 +512,41 @@ public class ApplyDAO {
 			
 			
 		}
+	
+		public void payment(String member_id, int lecture_idx) {
+			PreparedStatement pstmt2 = null;
+			ResultSet rs2 = null;
+		
+		try {
+				String sql = "SELECT * FROM apply WHERE apply_member_id = ? AND apply_lecture_idx = ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member_id);
+				pstmt.setInt(2, lecture_idx);
+				rs =pstmt.executeQuery();
+				
+				if(rs.next()) {
+					String sql2 = "UPDATE apply SET apply_purchase_date = NOW() , apply_ischeck = '1' "+
+									"WHERE apply_member_id = ? AND apply_lecture_idx = ? ";
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setString(1, member_id);
+					pstmt2.setInt(2, lecture_idx);
+					pstmt2.executeUpdate();
+				}else {
+					String sql2 = "insert into apply values(null,?,?,NOW(),'1',null)";
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setString(1, member_id);
+					pstmt2.setInt(2, lecture_idx);
+					pstmt2.executeUpdate();
+				}
+				
+		} catch (SQLException e) {
+			
+			System.out.println("payment 실패 - " + e.getMessage());
+		}finally {
+			close(pstmt);
+		}
+		
+	
+	}
 
 }
