@@ -56,14 +56,14 @@ public class ReviewAction implements Action {
 		
 		BoardPageInfo boardpageInfo = new BoardPageInfo(page, maxPage, startPage, endPage, listCount);
 
-        
-		if(review ==null) {
-			request.setAttribute("review", null);
-		}else {
+//        
+//		if(review ==null) {
+//			request.setAttribute("review", null);
+//		}else {
 	        request.setAttribute("boardPageInfo", boardpageInfo);
 			request.setAttribute("review", review);
-			
-		}
+//			
+//		}
 
 		
 //		System.out.println(review.size());

@@ -5,6 +5,7 @@
 <%
 	LectureBean article =(LectureBean)request.getAttribute("article");
 	String nowPage = (String)request.getAttribute("page");	
+	String listType = (String)request.getParameter("listType");
 	String Lecture_week_day="";
 // 	String listType= request.getParameter("listType");
 %>
@@ -82,9 +83,15 @@
     </section>
 	</table>
 	<div id="table_search">
-		<input type="button" value="글수정" class="btn" onclick="location.href='lectureUpdateForm.le?page=<%=nowPage%>&lecture_idx=<%=article.getLecture_idx()%>&listType=pre'">
- 		<input type="button" value="글삭제" class="btn" onclick="window.open('admin/lecture/deleteCheck.jsp?lecture_idx=<%=article.getLecture_idx() %>', '삭제 확인', 'width=600, height=200')">   
-		<input type="button" value="글목록" class="btn" onclick="location.href='lectureList.le?page=<%=nowPage%>'">
+
+	<%if(listType.equals("pre")){ %>
+		<input type="button" value="수업수정" class="btn" onclick="location.href='lectureUpdateForm.le?page=<%=nowPage%>&lecture_idx=<%=article.getLecture_idx()%>&listType=<%=listType%>'">
+ 		<input type="button" value="수업삭제" class="btn" onclick="window.open('admin/lecture/deleteCheck.jsp?lecture_idx=<%=article.getLecture_idx() %>', '삭제 확인', 'width=600, height=200')">   
+		<input type="button" value="수업목록" class="btn" onclick="location.href='lectureList.le?page=<%=nowPage%>'">
+		<%}else{ %>
+		 		<input type="button" value="수업삭제" class="btn" onclick="window.open('admin/lecture/deleteCheck.jsp?lecture_idx=<%=article.getLecture_idx() %>', '삭제 확인', 'width=600, height=200')">   
+		<input type="button" value="수업목록" class="btn" onclick="location.href='lectureList.le?page=<%=nowPage%>'">
+		<%} %>
 	</div>
 	
 <!-- 	<div class="comment"> -->

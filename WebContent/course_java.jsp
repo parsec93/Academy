@@ -129,30 +129,6 @@ int maxPage = boardPageInfo.getMaxPage();
                                     <a class="course_text" href='javascript:void(0);' onClick='return false'><b>[<%=lb.getLecture_subject() %>]</b>&nbsp;<%= lb.getLecture_content() %></a>
                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'><%=lb.getLecture_teacher() %></a>
                                 </li>
-<!--                                 <li class="justify-content-between d-flex"> -->
-<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
-<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
-<!--                                 </li> -->
-<!--                                 <li class="justify-content-between d-flex"> -->
-<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
-<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
-<!--                                 </li> -->
-<!--                                 <li class="justify-content-between d-flex"> -->
-<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
-<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
-<!--                                 </li> -->
-<!--                                 <li class="justify-content-between d-flex"> -->
-<!--                                     <a class="course_text" href='javascript:void(0);' onClick='return false'>수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기수강후기 -->
-<!--                                     수강후기수강후기수강후기수강후기수강후기수강후기</a> -->
-<!--                                     <a class="primary-btn text-uppercase" href='javascript:void(0);' onClick='return false'>김XX</a> -->
-<!--                                 </li> -->
                                 <%} %>
 							<%} %>
                             </ul>
@@ -160,17 +136,22 @@ int maxPage = boardPageInfo.getMaxPage();
                         
                         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
-                                <li class="page-item">
+                                		<%if(nowPage <= 1 ) { %>
+					                                <li class="page-item">
                                     <a href="#" class="page-link" aria-label="Previous">
                                         <span aria-hidden="true">
                                             <i class="ti-angle-left"></i>
                                         </span>
                                     </a>
                                 </li>
-                                		<%if(nowPage <= 1 ) { %>
-					[이전]&nbsp;
 						<%} else { %>
-						<li class="page-item"><a href="review.al?lecture=java&page=<%=nowPage -1 %>">[이전]</a></li>
+						                                <li class="page-item">
+                                    <a href="review.al?lecture=java&page=<%=nowPage -1 %>" class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-left"></i>
+                                        </span>
+                                    </a>
+                                </li>
 						<%} %>
 		
 					<%for(int i = startPage ; i <= endPage; i++) {
@@ -182,18 +163,24 @@ int maxPage = boardPageInfo.getMaxPage();
 		<%} %>
 		
 		<%if(nowPage >= maxPage){ %>
-			&nbsp;[다음]
-		<%} else {  %>
-			 <li class="page-item"><a href="review.al?lecture=java&page=<%=nowPage +1 %>">[다음]</a></li>
-		<%} %>
-
-                                <li class="page-item">
+			                                <li class="page-item">
                                     <a href="#" class="page-link" aria-label="Next">
                                         <span aria-hidden="true">
                                             <i class="ti-angle-right"></i>
                                         </span>
                                     </a>
                                 </li>
+		<%} else {  %>
+		                                <li class="page-item">
+                                    <a href="a href="review.al?lecture=java&page=<%=nowPage +1 %>" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-right"></i>
+                                        </span>
+                                    </a>
+                                </li>
+		<%} %>
+
+
                             </ul>
                         </nav>
                         

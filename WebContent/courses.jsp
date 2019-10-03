@@ -75,7 +75,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">JAVA</span>
                   <h4 class="mb-3">
-                    <a href="course_java.jsp">자바 프로그래밍 언어 활용</a>
+                    <a href="review.al?lecture=java">자바 프로그래밍 언어 활용</a>
                   </h4>
                   <p>
                     자바 응용소프트웨어 개발에 사용되는 자바 프로그래밍 언어의
@@ -105,7 +105,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">ORACLE</span>
                   <h4 class="mb-3">
-                    <a href="course_oracle.jsp">오라클 패키지 과정(OCP12c)</a>
+                    <a href="review.al?lecture=oracle">오라클 패키지 과정(OCP12c)</a>
                   </h4>
                   <p>
                     데이터베이스 구현을 위하여 오라클 DBMS 설치, 데이터베이스 생성, 
@@ -133,7 +133,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course_jsp.jsp">자바 스프링 프레임워크</a>
+                    <a href="review.al?lecture=jsp">자바 스프링 프레임워크</a>
                   </h4>
                   <p>
                     컴퓨터 프로그래밍 언어로 각 업무에 맞는 소프트웨어의 기능에 관한 설계, 구현 및 테스트를 수행, 사용자에게 배포, 
@@ -162,7 +162,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">Network</span>
                   <h4 class="mb-3">
-                    <a href="course_oracle.jsp">사물인터넷(IoT) 기반<br >유무선 네트워크 구축</a>
+                    <a href="review.al?lecture=network">사물인터넷(IoT) 기반<br >유무선 네트워크 구축</a>
                   </h4>
                   <p>
                     프로그래밍, 데이터베이스, 서버 기초 기술을 습득하고, 
@@ -191,7 +191,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">JSP</span>
                   <h4 class="mb-3">
-                    <a href="course_jsp.jsp">자바 서버프로그램 구현</a>
+                    <a href="review.al?lecture=jsp">자바 서버프로그램 구현</a>
                   </h4>
                   <p>
                   자바(JAVA) 서버프로그램 구현(JSP)에 필요한 환경을 구성하고, 
@@ -218,7 +218,7 @@
                   <span class="price">9월</span>
                   <span class="tag mb-4 d-inline-block">웹표준</span>
                   <h4 class="mb-3">
-                    <a href="course_oracle.jsp">반응형 웹표준(HTML5,CSS3)</a>
+                    <a href="review.al?lecture=web">반응형 웹표준(HTML5,CSS3)</a>
                   </h4>
                   <p>
                     UI 요구사항을 확인하여 설계한 UI 설계를 기반으로 HTML5와 CSS3.0 
