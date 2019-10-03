@@ -451,7 +451,6 @@ public class MemberDAO {
 					memberBean.setMember_add2(rs.getString("member_add2"));
 					memberBean.setMember_phone(rs.getString("member_phone"));
 
-
 					teacherList.add(memberBean);
 				}
 
@@ -562,11 +561,12 @@ public class MemberDAO {
 			int startRow = (page - 1)*10;// 읽어올 목록의 첫 레코드 번호 
 			
 			try {
-				sql = "SELECT * FROM MEMBER ORDER BY member_idx DESC LIMIT ?,?";
+				sql = "SELECT * FROM MEMBER WHERE member_isMember=? ORDER BY member_idx DESC LIMIT ?,?";
 				
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, startRow);
-				pstmt.setInt(2, limit);
+				pstmt.setString(1, "0");
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, limit);
 				
 				rs = pstmt.executeQuery();
 				

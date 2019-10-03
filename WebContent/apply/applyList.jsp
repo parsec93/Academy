@@ -190,6 +190,8 @@
 					absent++;
 				}else if(String.valueOf(tcNums[t].charAt(0)).equals("l")){
 					late++;
+				}else if(String.valueOf(tcNums[t].charAt(0)).equals("-")){
+					continue;
 				}else{
 					attend++;
 				}

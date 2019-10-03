@@ -77,6 +77,8 @@
                                             <li class=""><a href="#none" data-idx="1">JAVA</a></li>
                                             <li class=""><a href="#none" data-idx="2">ORACLE</a></li>
                                             <li class=""><a href="#none" data-idx="3">JSP</a></li>
+                                            <li class=""><a href="#none" data-idx="4">Network</a></li>
+                                            <li class=""><a href="#none" data-idx="5">Web</a></li>
 
                                         </ul>
                 </div>

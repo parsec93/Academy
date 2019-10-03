@@ -181,9 +181,9 @@ apply_review varchar(200),
 CONSTRAINT fk_apply_idx FOREIGN KEY (apply_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
 );
 
-insert into apply values(null, 'student', 1, '2019-09-01', '0',null);
-insert into apply values(null, 'student', 1, '2019-09-01', '1',null);
-insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
+insert into apply values(null, 'student1', 1, '2019-10-01', '0',null);
+insert into apply values(null, 'student1', 1, '2019-10-01', '1',null);
+insert into apply values(null, 'student1', 1, '2019-11-01', '1',null);
 
 
 10. 장바구니 테이블 생성
@@ -204,4 +204,6 @@ attend_lecture_idx int not null,
 attend_check varchar(150), -1 로 주기
 attend_today int
 );
+
+insert into attend values(null, 'student1', 1, "-1", null);
 
