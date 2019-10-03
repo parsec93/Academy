@@ -187,12 +187,15 @@ public class AttendDAO {
 		
 		return todayCheck;
 	}
-	public ArrayList<AttendBean> selectApplyAttendList(String sId) {
+	public ArrayList<AttendBean> selectApplyAttendList(int page, int limit,String sId) {
 		ArrayList<AttendBean> applyList3 = new ArrayList<AttendBean>();
-		String sql="SELECT * FROM attend WHERE attend_member_id= ?";
+		int startRow = (page-1)*10;
+		String sql="SELECT * FROM attend WHERE attend_member_id= ? ORDER BY attend_lecture_idx DESC LIMIT ?,?";
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, sId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
