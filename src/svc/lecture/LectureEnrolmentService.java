@@ -32,6 +32,12 @@ public class LectureEnrolmentService {
 		}else if(category_subject.equals("3")) {
 			
 			subject="jsp";
+		}else if(category_subject.equals("4")) {
+			
+			subject="network";
+		}else if(category_subject.equals("5")) {
+			
+			subject="web";
 		}
 		
 		
