@@ -109,7 +109,7 @@ String sid = (String)session.getAttribute("sid");
  						MemberBean memberBean = (MemberBean)memberList.get(i);
 						%>
 					<tbody>
-						<tr onclick="location.href='ApplyInfo.al?listType=all'">
+						<tr onclick="location.href='ApplyInfo.al?listType=all&sId=<%=memberBean.getMember_id()%>'">
 							<td class="num"><%=memberBean.getMember_idx() %></td>
 							<td class="num"><%=memberBean.getMember_name() %></td>
 							<td class="num"><%=memberBean.getMember_id() %></td>

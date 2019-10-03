@@ -23,6 +23,10 @@ public class ApplyListAction implements Action {
 		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("sId");
+		if(sId.equals("admin1234")) {
+			sId = request.getParameter("sId");
+		}
+		
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		ArrayList<ApplyBean> applyList2 = new ArrayList<ApplyBean>();
 		ArrayList<AttendBean> applyList3 = new ArrayList<AttendBean>();

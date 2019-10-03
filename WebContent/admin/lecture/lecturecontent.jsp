@@ -7,7 +7,6 @@
 	String nowPage = (String)request.getAttribute("page");	
 	String listType = (String)request.getParameter("listType");
 	String Lecture_week_day="";
-// 	String listType= request.getParameter("listType");
 %>
 <html lang="en">
   <head>

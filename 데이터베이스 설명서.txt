@@ -181,8 +181,9 @@ apply_review varchar(200),
 CONSTRAINT fk_apply_idx FOREIGN KEY (apply_lecture_idx) REFERENCES lecture (lecture_idx) ON DELETE CASCADE
 );
 
-insert into apply values(null, 'student', 1, '2019-09-01', '0',null);
-insert into apply values(null, 'student', 1, '2019-09-01', '1',null);
+insert into apply values(null, 'student1', 1, '2019-10-01', '0',null);
+insert into apply values(null, 'student1', 1, '2019-10-01', '1',null);
+insert into apply values(null, 'student1', 1, '2019-11-01', '1',null);
 insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
 
 
