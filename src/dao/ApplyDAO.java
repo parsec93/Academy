@@ -190,19 +190,22 @@ public class ApplyDAO {
 		return isInsertSuccess;
 	}
 	
-	public ArrayList<LectureBean> selectListTeacher(int page, int limit, String sId){
+	public ArrayList<LectureBean> selectListTeacher(int page, int limit, String sId, String listType){
 		ArrayList<LectureBean> applyList = new ArrayList<LectureBean>();
 		
 		int startRow = (page-1)*10;
 		
 //		String sql = "SELECT apply_lecture_idx FROM apply WHERE apply_member_id =? ORDER BY apply_purchase_date DESC LIMIT ?,?";
 
-		String sql = "select l.lecture_subject, l.lecture_week_day, l.lecture_room, l.lecture_time, l.lecture_end_day, l.lecture_idx "
+		String sql = "select l.lecture_subject, l.lecture_week_day, l.lecture_room, l.lecture_time, l.lecture_start_day ,l.lecture_end_day, l.lecture_idx "
 		+ "from lecture l join member m on (l.lecture_teacher_code = m.member_teacher_code) "
-		+ "WHERE m.member_id= ? "
-		+ "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() "
-		+ "ORDER BY l.lecture_idx DESC LIMIT ?,?";
-	
+		+ "WHERE m.member_id= ? ";
+		if(listType.equals("now")) {
+			sql += "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() ";
+		}else if(listType.equals("end")){
+			sql +="AND l.lecture_start_day >now() ";
+		}
+		sql += "ORDER BY l.lecture_idx DESC LIMIT ?,?";
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1,sId);
@@ -235,13 +238,17 @@ public class ApplyDAO {
 	
 	
 	
-	public int selectListCountTeacher(String sId) {
+	public int selectListCountTeacher(String sId,String listType) {
 		int listCount = 0;
 		
 		String 	sql="SELECT COUNT(*) FROM member m JOIN lecture l ON (m.member_teacher_code = l.lecture_teacher_code) "
-						+ "WHERE m.member_id= ? "
-						+ "AND l.lecture_start_day <=now() AND l.lecture_end_day >=now()";
-	
+						+ "WHERE m.member_id= ? ";
+										
+		if(listType.equals("now")) {
+			sql += "AND l.lecture_start_day <=now() and l.lecture_end_day >=now() ";
+		}else if(listType.equals("end")){
+			sql +="AND l.lecture_start_day >now() ";
+		}
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, sId);

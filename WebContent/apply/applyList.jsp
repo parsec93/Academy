@@ -185,7 +185,7 @@
 	String[] tcNums =  tc[i].split("/");
 	//출석 체크 자른 갯수
 	for(int t=0; t<tcNums.length; t++){
-
+			
 		if(!tcNums[t].equals("null")){
 			if(String.valueOf(tcNums[t].charAt(0)).equals("0")){
 				absent++;

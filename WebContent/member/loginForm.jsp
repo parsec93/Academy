@@ -35,13 +35,13 @@ $(document).ready(function(){
 	  		document.up.email2.focus();
 	  		return;
 	  	}
-// 		$.ajax('../emailCheck.me',{
-// 			data:{email1:$('#email1').val(), email2:$('#email2').val()},
-// 			success : function(data) {
-//  			document.getElementById('rNum').value = data;
-// 			}
-// 		});
-// 		alert("인증번호 발송 완료");
+		$.ajax('../emailCheck.me',{
+			data:{email1:$('#email1').val(), email2:$('#email2').val()},
+			success : function(data) {
+ 			document.getElementById('rNum').value = data;
+			}
+		});
+		alert("인증번호 발송 완료");
 	});
 });
 function idCheck() {

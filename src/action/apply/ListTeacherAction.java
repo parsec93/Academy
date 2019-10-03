@@ -31,12 +31,15 @@ public class ListTeacherAction implements Action {
 		if(request.getParameter("page") != null) {
 			page =Integer.parseInt(request.getParameter("page"));
 		}
-		
+		String listType="end";
+		if(request.getParameter("listType") != null) {
+			listType = request.getParameter("listType");
+		}
 		ApplyListTeacherService infoTeacherService = new ApplyListTeacherService();
 		
-		int listCount = infoTeacherService.getListCountTeacher(sId);
+		int listCount = infoTeacherService.getListCountTeacher(sId, listType);
 		
-		applyList = infoTeacherService.getListTeacher(page, limit, sId);
+		applyList = infoTeacherService.getListTeacher(page, limit, sId, listType);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = (((int)((double)page / 10 + 0.9)) -1) *10 +1;
@@ -51,6 +54,7 @@ public class ListTeacherAction implements Action {
 			LecturePageInfo applyPageInfo = new LecturePageInfo(page, maxPage, startPage, endPage, listCount);
 			request.setAttribute("applyPageInfo", applyPageInfo);
 			request.setAttribute("applyList", applyList);
+			request.setAttribute("listType", listType);
 			forward.setPath("apply/ListTeacher.jsp");
 			forward.setRedirect(false);
 		}else {

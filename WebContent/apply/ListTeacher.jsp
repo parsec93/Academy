@@ -54,7 +54,7 @@
 	int progress=0;
 	
 	String Lecture_week_day="";
-
+	String listType = (String)request.getAttribute("listType");
   %>
   
 <!-- 	선택된 select value 값 넘기기 -->
@@ -62,7 +62,17 @@
   	function applyListMember(lecture_idx) {
 		window.open("ApplyMemberList.al?lecture_idx="+lecture_idx,"","width=600,height=550");		
 	}
-
+function changePeriod() {
+  		
+  		var langSelect = document.getElementById("period"); 		
+  		var lt = langSelect.options[langSelect.selectedIndex].value
+  		if(lt == "now"){
+  			location.href = "./InfoTeacher.al?listType=now&isMember=<%=isMember%>";
+  		}else if(lt == "end"){
+  			location.href = "./InfoTeacher.al?listType=end&isMember=<%=isMember%>";
+  		}
+		
+	}
   </script>
 
   <body>
@@ -102,7 +112,10 @@
 <!-- 			<td> -->
 <!-- 			<a href="lectureList.le?listType=end">종료</a></td></td> -->
 <!-- 		</tr> -->
-
+	<select name = "period" id ="period" onchange="changePeriod()">
+		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
+		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>예정 수업</option>
+	</select>
 	<table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
 	
 
@@ -142,7 +155,9 @@
 		<% 	String[] en = lectureBean.getLecture_end_day().toString().split("-");
 		progress = (int)(day/Integer.parseInt(en[2])*100);
 	%>
+	<%if(!listType.equals("end")){ %>
       <progress id="progress"  max="100" style="width: 100%; height: 2em; " value="<%=progress%>"></progress><%=progress%>%
+	<%} %>
 	</a>
 	</td>
 	<td class="name"><%=lectureBean.getLecture_room() %>강의실</td>

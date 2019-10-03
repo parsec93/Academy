@@ -46,13 +46,13 @@ public class ApplyListService {
 		return applyList2;
 	}
 	//출석체크 현황을 가져온다
-	public ArrayList<AttendBean> getApplyAttendList(int page, int limit,String sId) {
+	public ArrayList<AttendBean> getApplyAttendList(int page, int limit,String sId,ArrayList<ApplyBean> applyList2) {
 		System.out.println("ApplyListService/getApplyList3");
 		ArrayList<AttendBean> applyList3 = null;
 		Connection con = getConnection();
 		AttendDAO attendDAO = AttendDAO.getInstance();
 		attendDAO.setConnection(con);
-		applyList3 = attendDAO.selectApplyAttendList(page, limit,sId);
+		applyList3 = attendDAO.selectApplyAttendList(page, limit,sId, applyList2);
 		close(con);
 		return applyList3;
 	}

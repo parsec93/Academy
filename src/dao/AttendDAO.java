@@ -187,15 +187,36 @@ public class AttendDAO {
 		
 		return todayCheck;
 	}
-	public ArrayList<AttendBean> selectApplyAttendList(int page, int limit,String sId) {
+	public ArrayList<AttendBean> selectApplyAttendList(int page, int limit,String sId, ArrayList<ApplyBean> applyList2) {
 		ArrayList<AttendBean> applyList3 = new ArrayList<AttendBean>();
+		ApplyBean ab = new ApplyBean();
+		int[] apply_lecture_idx = new int[applyList2.size()];
+		for(int i=0;i<applyList2.size();i++) {
+			ab = applyList2.get(i);
+			apply_lecture_idx[i] = ab.getApply_lecture_idx();
+		}
+
 		int startRow = (page-1)*10;
-		String sql="SELECT * FROM attend WHERE attend_member_id= ? ORDER BY attend_lecture_idx DESC LIMIT ?,?";
+		String sql="SELECT * FROM attend WHERE attend_member_id= ? and (";
+		for(int i=0;i<applyList2.size();i++) {
+			sql +="attend_lecture_idx=? ";
+			if(i!=applyList2.size()-1) {
+				sql+="or ";
+			}
+		}
+				
+			sql	+= ") ORDER BY attend_lecture_idx DESC LIMIT ?,?";
 		try {
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, sId);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
+			int j=2;
+			for(int i=0;i<applyList2.size();i++) {
+				pstmt.setInt(j, apply_lecture_idx[i]);
+				j++;
+			}
+			
+			pstmt.setInt(j, startRow);
+			pstmt.setInt(j+1, limit);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

@@ -53,7 +53,7 @@ public class ApplyListAction implements Action {
 		
 		applyList = applyListService.getApplyList(page, limit, sId, listType);
 		applyList2 = applyListService.getApplyList2(page, limit, sId, listType);
-		applyList3 = applyListService.getApplyAttendList(page, limit,sId);
+		applyList3 = applyListService.getApplyAttendList(page, limit,sId, applyList2);
 		 
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);

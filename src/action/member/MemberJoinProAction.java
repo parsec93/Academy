@@ -79,6 +79,8 @@ public class MemberJoinProAction implements Action{
 		//과목 코드와동인한 선생의 최대코드를 가져와서 +1
 		String member_teacher_code = multi.getParameter("member_teacher_code");
 		System.out.println("member_teacher_code"+member_teacher_code);
+		
+		if(member_teacher_code != null) {
 		ArrayList<String> list = memberJoinProService.getTeacherCode(member_teacher_code);
 		System.out.println(list);
 		if(list.size() == 0) {
@@ -93,6 +95,7 @@ public class MemberJoinProAction implements Action{
 			}
 			mb.setMember_teacher_code(code.substring(0,2)+(Integer.parseInt(code.substring(2))+1));
 			System.out.println(code.substring(0,2)+(Integer.parseInt(code.substring(2))+1));
+		}
 		}
 		
 		boolean isJoinMember = memberJoinProService.insertMember(mb);
