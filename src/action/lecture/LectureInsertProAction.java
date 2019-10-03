@@ -20,6 +20,7 @@ public class LectureInsertProAction implements Action{
 		LectureBean lb = new LectureBean();
 		lb.setLecture_subject(request.getParameter("lecture_subject"));
 		lb.setLecture_course(request.getParameter("lecture_course_name"));
+		System.out.println("과목명 "+request.getParameter("lecture_course_name"));
 		lb.setLecture_teacher(request.getParameter("lecture_teacher_name"));
 		lb.setLecture_teacher_code(request.getParameter("lecture_teacher_code"));
 		
