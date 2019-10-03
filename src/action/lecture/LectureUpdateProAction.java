@@ -20,6 +20,7 @@ public class LectureUpdateProAction implements Action {
 		System.out.println(request.getParameter("page"));
 		int lecture_idx =Integer.parseInt(request.getParameter("lecture_idx"));
 		String page = request.getParameter("page");
+		String listType = request.getParameter("listType");
 		
 		LectureUpdateService lectureUpdateSevice = new LectureUpdateService();
 		ActionForward	forward = null;
@@ -27,13 +28,10 @@ public class LectureUpdateProAction implements Action {
 		LectureBean article = new LectureBean();
 		article.setLecture_idx(lecture_idx);
 		article.setLecture_subject(request.getParameter("lecture_subject"));
-		article.setLecture_course(request.getParameter("lecture_course"));
-		article.setLecture_teacher(request.getParameter("lecture_teacher"));
-		Date lecture_start_day = Date.valueOf(request.getParameter("lecture_start_day"));
-		article.setLecture_start_day(lecture_start_day);
-		Date lecture_end_day = Date.valueOf(request.getParameter("lecture_end_day"));
-		article.setLecture_end_day(lecture_end_day);
-		article.setLecture_week_day(request.getParameter("lecture_week_day"));
+		article.setLecture_course(request.getParameter("lecture_course_name"));
+		article.setLecture_teacher(request.getParameter("lecture_teacher_name"));
+		article.setLecture_teacher_code(request.getParameter("lecture_teacher_code"));
+		System.out.println("티처코드 2는" + article.getLecture_teacher_code());
 		article.setLecture_content(request.getParameter("lecture_content"));
 		article.setLecture_fee(Integer.parseInt(request.getParameter("lecture_fee")));
 		
@@ -49,13 +47,11 @@ public class LectureUpdateProAction implements Action {
 			out.println("</script>");	
 			
 		}else {
-			
-
 
 		forward = new ActionForward();
         request.setAttribute("article", article);
         request.setAttribute("nowPage", page);
-		forward.setPath("lectureDetail.le");
+		forward.setPath("lectureList.le");
 		forward.setRedirect(false);
 		
 	}

@@ -143,20 +143,18 @@ public class LectureDAO {
 	public int isUpdateArticle(LectureBean article) {
 		int updateCount = 0;
 		
-		String sql = "UPDATE lecture SET lecture_subject=?,lecture_course=?,lecture_teacher=?,lecture_start_day=?,"
-				+ "lecture_end_day=?,lecture_week_day=?,lecture_content=?,lecture_fee=? WHERE lecture_idx=?";
+		String sql = "UPDATE lecture SET lecture_subject=?,lecture_course=?,lecture_teacher=?,lecture_teacher_code=?,"
+				+ "lecture_content=?,lecture_fee=? WHERE lecture_idx=?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getLecture_subject());
 			pstmt.setString(2, article.getLecture_course());
 			pstmt.setString(3, article.getLecture_teacher());
-			pstmt.setDate(4, article.getLecture_start_day());
-			pstmt.setDate(5, article.getLecture_end_day());
-			pstmt.setString(6, article.getLecture_week_day());
-			pstmt.setString(7, article.getLecture_content());
-			pstmt.setInt(8, article.getLecture_fee());
-			pstmt.setInt(9, article.getLecture_idx());
+			pstmt.setString(4, article.getLecture_teacher_code());
+			pstmt.setString(5, article.getLecture_content());
+			pstmt.setInt(6, article.getLecture_fee());
+			pstmt.setInt(7, article.getLecture_idx());
 			updateCount = pstmt.executeUpdate();
 			
 			
@@ -293,7 +291,7 @@ public class LectureDAO {
 			
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();
-				mb.setMember_name(rs.getNString("member_name"));
+				mb.setMember_name(rs.getString("member_name"));
 				mb.setMember_teacher_code(rs.getString("member_teacher_code"));
 				tc.add(mb);
 			}

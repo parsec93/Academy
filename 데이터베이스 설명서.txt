@@ -29,17 +29,21 @@ create database academy;
  member_phone varchar(13) not null,
  member_bank varchar(10) not null,
  member_accno varchar(16) not null,
- member_picture varchar(100) ,
+ member_picture varchar(100),
  member_isMember varchar(1) not null,
  member_teacher_code varchar(5)
 ); 
 
 로 실행  ( isMember = 0 이면 학생 / isMember=1 이면 교직원 admin은 isMember=2 줘서 구분)
 
-insert into member values(1, 'admin', 'admin', 'admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '2', '1' );
+insert into member values(1, 'admin', 'admin', 'admin','admin', 'admin@admin.co.kr', '12345', 'busan', 'busan', '01012345678',null,null,null, '2', null );
 insert into member values(null, 'admin1234', 'admin1234', 'admin1234','0001013412343', 'admin1234@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321','no', '2', 'null');
 insert into member values(3, 'student', 'student', 'student', 'student@admin.co.kr', '12345', 'busan', 'busan', '01012345678', '0', null );
-insert into member values(null, 'teacher1', 'teacher1', 'teacher1','0001013412343', 'teacher1@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', '1');
+insert into member values(null, 'teacher1', 'teacher1', 'teacher1','0001013412343', 'teacher1@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', 'j_1');
+insert into member values(null, 'teacher2', 'teacher2', 'teacher2','0001013412343', 'teacher2@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', 's_1');
+insert into member values(null, 'teacher3', 'teacher3', 'teacher3','0001013412343', 'teacher1@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', 'o_1');
+insert into member values(null, 'teacher4', 'teacher4', 'teacher4','0001013412343', 'teacher2@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', 'w_1');
+insert into member values(null, 'teacher5', 'teacher5', 'teacher5','0001013412343', 'teacher1@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '1', 'n_1');
 insert into member values(null, 'student1', 'student1', 'student1','0001013412343', 'student1@admin.co.kr', '12345', 'busan', 'busan', '01012345678','bank','101501965321',null, '0', null);
 관리자 계정 추가.
 

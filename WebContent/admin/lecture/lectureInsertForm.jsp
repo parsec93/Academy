@@ -96,6 +96,7 @@ function selectTeacher() {
                         <td class="ftwrite"><label for="lecture_course">과목명</label></td>
                         <td class="fttitle">
                         <select name="lecture_course" id="lecture_course" >
+                        	<option>선택</option>
   							<option value="j_">java</option>
  							<option value="s_">jsp</option>
   							<option value="o_" >oracle</option>
