@@ -170,6 +170,10 @@ var app = (function(){
 							   image = "jsp.png";
 						   }else if(item.course=="oracle"){
 							   image = "oracle.png";
+						   }else if(item.course=="web"){
+							   image = "web.png";
+						   }else if(item.course=="network"){
+							   image = "network.png";
 						   }
 
 					
