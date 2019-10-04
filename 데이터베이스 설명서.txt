@@ -182,7 +182,7 @@ CONSTRAINT fk_apply_idx FOREIGN KEY (apply_lecture_idx) REFERENCES lecture (lect
 );
 
 insert into apply values(null, 'student', 1, '2019-09-01', '0',null);
-insert into apply values(null, 'student', 1, '2019-09-01', '1',null);
+insert into apply values(null, 'student1', 1, '2019-09-01', '1',null);
 insert into apply values(null, 'student', 2, '2019-09-01', '1',null);
 
 
@@ -204,4 +204,6 @@ attend_lecture_idx int not null,
 attend_check varchar(150),
 attend_today int
 );
+
+insert into attend values(null, 'student1', 1, "-1", null);
 

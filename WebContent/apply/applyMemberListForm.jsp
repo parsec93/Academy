@@ -177,7 +177,7 @@
 									for (int i = 0; i < applyMemberList.size(); i++) {
 										MemberBean memberBean = (MemberBean) applyMemberList.get(i);
 										AttendBean attendBean = new AttendBean();
-
+										
 										for (int j = 0; j < applyMemberList.size(); j++) {
 											attendBean = (AttendBean) todayCheck.get(j);
 											if (memberBean.getMember_id().equals(attendBean.getAttend_member_id())) {
