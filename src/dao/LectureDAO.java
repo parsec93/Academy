@@ -293,7 +293,7 @@ public class LectureDAO {
 			
 			while(rs.next()) {
 				MemberBean mb = new MemberBean();
-				mb.setMember_name(rs.getNString("member_name"));
+				mb.setMember_name(rs.getString("member_name"));
 				mb.setMember_teacher_code(rs.getString("member_teacher_code"));
 				tc.add(mb);
 			}

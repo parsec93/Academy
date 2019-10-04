@@ -43,12 +43,14 @@ public class LectureInsertProAction implements Action{
 		}
 		lb.setLecture_start_day(lecture_start_day);
 		lb.setLecture_end_day(lecture_end_day);
+		//
+		lb.setLecture_week_day(request.getParameter("weekday"));
 		
-		if(request.getParameter("weekday").equals("1")) {
-			lb.setLecture_week_day("월,수,금");
-		}else if(request.getParameter("weekday").equals("2")){
-			lb.setLecture_week_day("화,목");
-		}
+//		if(request.getParameter("weekday").equals("1")) {
+//			lb.setLecture_week_day("월,수,금");
+//		}else if(request.getParameter("weekday").equals("2")){
+//			lb.setLecture_week_day("화,목");
+//		}
 		lb.setLecture_content(request.getParameter("lecture_content"));
 		
 		if(request.getParameter("time").equals("1")) {

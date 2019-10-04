@@ -86,6 +86,7 @@
 	<div class="boardwrap">
 	<h1>수업 목록</h1>
 	<select name = "period" id ="period" onchange="changePeriod()">
+		<option value="" >선택</option>
 		<option value="now" <%if(listType.equals("now")){ %> selected="selected"<%} %>>진행중인 수업</option>
 		<option value="pre" <%if(listType.equals("pre")){ %> selected="selected"<%} %>>예정된 수업</option>
 		<option value="end" <%if(listType.equals("end")){ %> selected="selected"<%} %>>종료된 수업</option>
@@ -131,7 +132,7 @@
 	<tr>
 	<td class="num"><%=listCount-i-(10*(nowPage-1))%></td>
 	<td class="title">
-	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>"><%=lectureBean.getLecture_subject() %></a>
+	<a href="lectureDetail.le?lecture_idx=<%=lectureBean.getLecture_idx()%>&page=<%=nowPage%>&listType=<%=listType %>"><%=lectureBean.getLecture_subject() %></a>
 	<img width="13" height="12" class="pic" alt="첨부이미지" src="img/board/ic_pic.gif"> <a class="comment" href="#">[5]</a> <img width="10" height="9" class="new" alt="새글" src="img/board/ic_new.gif">
 	</td>
 	<td class="name"><%=lectureBean.getLecture_course() %></td>
