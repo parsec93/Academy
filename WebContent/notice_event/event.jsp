@@ -22,6 +22,9 @@
 <!-- main css -->
 <link rel="stylesheet" href="css/style.css" />
 </head>
+<style>
+.col-lg-5{width:1200px; margin:0 auto; max-width:none;}
+</style>
 <%
 	//이벤트 목록 가져오기
 	ArrayList<NoticeBean> eventList = (ArrayList<NoticeBean>) request.getAttribute("eventList");

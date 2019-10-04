@@ -98,13 +98,13 @@ int maxPage = boardPageInfo.getMaxPage();
                         <div class="content">
                             <ul class="course_list">
                           <%   if(review == null){%>
-                          <h1>작성된 후기가 없습니다.</h1>
+  
                           <%}else{ 
                           
                         		for(int i = review.size()-1 ; i >= 0 ; i--){
                           	LectureBean lb = (LectureBean)review.get(i);
                         	if(lb.getLecture_content() == null){%>
-               			   			<h1>작성된 후기가 없습니다.</h1>
+  
                					<%}else {
                	
                           	%>
@@ -190,29 +190,29 @@ int maxPage = boardPageInfo.getMaxPage();
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육과정</p>
-                                <span class="or">ORACLE를 아라보자~</span>
+                                <span class="or">ORACLE</span>
                             </a>
                         </li>
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육비용</p>
-                                <span>얼마일까용</span>
+                                <span>과정별상이</span>
                             </a>
                         </li>
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육시간</p>
-                                <span>오전오후시간어떠케,,</span>
+                                <span>오전반/오후반/저녁</span>
                             </a>
                         </li>
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>교육기간</p>
-                                <span>2019.09.21 ~ 2019.10.20</span>
+                                <span>매월 1일 시작</span>
                             </a>
                         </li>
                     </ul>
-                    <a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">수강신청</a>
+                    <a href="enrolment.jsp" class="primary-btn2 text-uppercase enroll rounded-0 text-white">수강신청</a>
 
                     <h4 class="title">교직원소개</h4>
                     <div class="content">
